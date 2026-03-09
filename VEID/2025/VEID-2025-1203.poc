@@ -14,6 +14,12 @@ Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
 #@ condition: or
+#@ matcher: status_code == 200
 #> extract: name=error_user, from=body, regex=/用户\s*\'?([^\'\"\s]+)/
 #> extract: name=error_desc, from=body, regex=/出错了！ 错误描述：([^"]+)/
 
+
+
+
+
+# @VEIL-STAMP: da66c8b88ff52d9d615d62dbba275a35dee5d3541c94da24249664c56f04ed8b

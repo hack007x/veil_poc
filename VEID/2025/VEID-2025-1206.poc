@@ -17,3 +17,8 @@ User-Agent: {{random_ua}}
 #@ matcher: header["Content-Type"] contains "download"
 #@ matcher: body contains "<?xml"
 
+
+
+
+
+# @VEIL-STAMP: 2121b9384ac94fa0548c5ffdc30dc7fad387e6fe72ae7427833b100de3a309a2

