@@ -1,0 +1,21 @@
+## id: wordpress-login
+## name: WordPress Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wordpress,discovery
+## description: WordPress login panel was detected.
+## affects: wordpress
+## shodan-query: http.component:"wordpress",cpe:"cpe:2.3:a:wordpress:wordpress"
+## verification: true
+
+GET /wp-login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "WordPress</title>" || body contains "Log In</title>" || body contains '/wp-login.php?action=lostpassword">Lost your password?</a>' || body contains '<form name="loginform" id="loginform" action="{{BaseURL}}/wp-login.php" method="post">'
+
+
+
+
+
+# @VEIL-STAMP: f2351cf13fc02f6e79fc93c556a0d10faa5acd8789d267f8e4887505459dcd8e

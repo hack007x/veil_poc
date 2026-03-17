@@ -1,0 +1,25 @@
+## id: manageengine-network-config
+## name: Zoho ManageEngine Network Configuration Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine Network Configuration Manager was detected.
+## affects: manageengine_network_configuration_manager
+## shodan-query: http.title:"Network Configuration Manager",http.title:"network configuration manager"
+## fofa-query: title="network configuration manager"
+## verification: true
+
+GET /apiclient/ember/Login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Network Configuration Manager"
+#@ matcher: body contains "https://www.manageengine.com"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b41a8344c31adcb758ee4eaaaa8759c19eb5aed52be46225a6f8b30aa1aa5f1a

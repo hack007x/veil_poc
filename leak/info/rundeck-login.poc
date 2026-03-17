@@ -1,0 +1,27 @@
+## id: rundeck-login
+## name: Rundeck Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rundeck,discovery
+## description: Rundeck login panel was detected.
+## affects: rundeck
+## shodan-query: title:"Rundeck"
+## verification: true
+
+GET /user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'alt="Rundeck"' || body contains "/assets/rundeck"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex_1, from=body, regex=/utm_medium=([0-9.]+)-/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/data-version-string=\"([0-9.-]+)\"/, group=1
+#> extract: name=ex_regex_3, from=body, regex=/<span class="version">([0-9.-]+)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b5c747524c4026ec5452c69611252441e9ec7cf623a87a0920a4c0d0e20c0259

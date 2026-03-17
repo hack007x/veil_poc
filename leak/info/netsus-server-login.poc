@@ -1,0 +1,22 @@
+## id: netsus-server-login
+## name: NetSUS Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,netsus,login,discovery
+## description: NetSUS Server login panel was detected.
+## shodan-query: http.title:"NetSUS Server Login"
+## verification: true
+
+GET /webadmin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>NetSUS Server Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2a3b86eb8689cd4fc6a9a88232f13a805ed378c4d5b8de1e9a616ede92b3c71a

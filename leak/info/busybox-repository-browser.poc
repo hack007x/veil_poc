@@ -1,0 +1,25 @@
+## id: busybox-repository-browser
+## name: Busybox Repository Browser - Detect
+## author: hack007x
+## severity: info
+## tags: detect,busybox,oss,panel,discovery
+## description: Busybox Repository Browser was detected.
+## affects: busybox
+## reference: https://github.com/mirror/busybox
+## fofa-query: title="Busybox Repository Browser"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Busybox Repository Browser"
+#@ matcher: body contains "index</a>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dc4163dabcfeefc6ab10ab4f6b06917fdd15e11ead09341b66743b768e0e21ce

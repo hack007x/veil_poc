@@ -1,0 +1,25 @@
+## id: froxlor-management-panel
+## name: Froxlor Server Management Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,froxlor,discovery
+## description: Froxlor Server Management login panel was detected.
+## affects: froxlor
+## shodan-query: title:"Froxlor Server Management Panel",http.title:"froxlor server management panel"
+## fofa-query: title="froxlor server management panel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Froxlor Server Management Panel</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a46c52544ee3d0487dd231beb187412b5b17cb3b05109de5f73a5249d0cf8020

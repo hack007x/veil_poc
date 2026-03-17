@@ -1,0 +1,25 @@
+## id: phpmyadmin-panel
+## name: phpMyAdmin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,phpmyadmin,detect,discovery
+## description: phpMyAdmin panel was detected.
+## affects: phpmyadmin
+## shodan-query: http.title:phpMyAdmin,http.title:"phpmyadmin",http.component:"phpmyadmin",cpe:"cpe:2.3:a:phpmyadmin:phpmyadmin"
+## fofa-query: body="pma_servername" && body="4.8.4",title="phpmyadmin"
+## verification: true
+
+#$ paths =  | /phpmyadmin/ | /admin/phpmyadmin/ | /_phpmyadmin/ | /administrator/components/com_joommyadmin/phpmyadmin/ | /apache-default/phpmyadmin/ | /blog/phpmyadmin/ | /forum/phpmyadmin/ | /php/phpmyadmin/ | /typo3/phpmyadmin/ | /web/phpmyadmin/ | /xampp/phpmyadmin/ | /phpMyAdmin/ | /phpma/ | /phpMyAdmin/index.php
+GET /{{paths}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ matcher: body contains 'alt="phpMyAdmin' || body contains 'name="pma_username' || body contains "/pmahomme/"
+#> extract: name=ex_regex, from=body, regex=/v=([a-z0-9-._]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: ab01b2693b8b6423c802f0ca98cfe3c5b2c0a18ab5889b44d15aaf9dfa2eb561

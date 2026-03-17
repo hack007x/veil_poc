@@ -1,0 +1,23 @@
+## id: okta-panel
+## name: Okta Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,okta,login,discovery
+## description: Okta login panel was detected.
+## shodan-query: http.title:"okta"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Okta - Sign In</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a398501e8483f3f72b6d9bb4e0ee7eec2d9936d21c58f965e6889a959da100a9

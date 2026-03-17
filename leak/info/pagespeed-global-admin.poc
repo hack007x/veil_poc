@@ -1,0 +1,29 @@
+## id: pagespeed-global-admin
+## name: Pagespeed Global Admin - Detect
+## author: hack007x
+## severity: info
+## tags: pagespeed,panel,discovery
+## description: Pagespeed Global Admin panel was detected.
+## reference: https://www.modpagespeed.com/
+## verification: true
+
+GET /pagespeed-global-admin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+X-Client-IP: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Forwarded-For: 127.0.0.1
+X-Originating-IP: 127.0.0.1
+X-Host: 127.0.0.1
+X-Forwarded-Host: 127.0.0.1
+
+#@ condition: and
+#@ matcher: body contains "X-Mod-Pagespeed"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 14936389d2941a334608f25f8fc20217125ab69ada72e675f8cb4da3a4e3141a

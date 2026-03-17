@@ -1,0 +1,22 @@
+## id: sap-netweaver-portal
+## name: SAP NetWeaver Portal - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sap,discovery
+## description: SAP NetWeaver Portal login has been detected. Note that NetWeaver has multiple default passwords as listed in the references.
+## affects: netweaver_portal
+## reference: https://www.sap.com/products/technology-platform/netweaver.html
+## reference: https://www.cisoplatform.com/profiles/blogs/sap-netweaver-abap-security-configuration-part-2-default
+## verification: true
+
+GET /irj/portal HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>SAP&#x20;NetWeaver&#x20;Portal</title>"
+
+
+
+
+
+# @VEIL-STAMP: ee657d47366dea415192cdd78f821990c3199df28a8cc4c47d7f9f42782bb966

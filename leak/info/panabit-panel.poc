@@ -1,0 +1,24 @@
+## id: panabit-panel
+## name: Panabit Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panabit,panel,discovery
+## description: Panabit login panel was detected.
+## reference: https://www.panabit.com/
+## fofa-query: app="Panabit-智能网关"
+## verification: true
+
+GET /login/login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Panabit</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 55fcc5ede49e627091eca0780eec03416163bffee138d1e0dea3435c962377e1

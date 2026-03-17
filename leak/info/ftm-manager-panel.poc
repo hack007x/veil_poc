@@ -1,0 +1,25 @@
+## id: ftm-manager-panel
+## name: Financial Transaction Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ftm,ibm,discovery
+## description: Financial Transaction Manager login panel was detected.
+## affects: financial_transaction_manager
+## shodan-query: http.html:"FTM manager",http.html:"ftm manager",http.title:"ftm manager"
+## fofa-query: title="ftm manager",body="ftm manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FTM Manager"
+#@ matcher: body contains "login-panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6ccf59d4671ac6d503bd60008e2442481745bd34624091928c747b6c51209184

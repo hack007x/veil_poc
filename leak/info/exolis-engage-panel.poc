@@ -1,0 +1,23 @@
+## id: exolis-engage-panel
+## name: Exolis Engage Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exolis,engage,discovery
+## description: Exolis Engage panel was detected.
+## reference: https://www.exolis.fr/en/solution-2/
+## shodan-query: html:"engage - Portail soignant"
+## verification: true
+
+GET /app.js HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "engage-specific-config" || body contains "engage-lastAppUserType" || body contains "engage-lastHelperPatientContext" || body contains "engage-preferred-language" || body contains "engageManager.admin" || body contains "engageManager.user"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5b802096a91a42206d2bebaca8145966955e771910404d59ea3d03970696f7d8

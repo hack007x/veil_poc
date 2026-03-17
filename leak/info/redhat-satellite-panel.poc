@@ -1,0 +1,25 @@
+## id: redhat-satellite-panel
+## name: Red Hat Satellite Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redhat,satellite,discovery
+## affects: satellite
+## shodan-query: http.html:"redhat" "Satellite"
+## verification: true
+
+GET /users/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Satellite"
+#@ matcher: body contains "redhat"
+#@ matcher: body contains "LoginPage"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/&quot;version&quot;:&quot;([0-9.]+)&quot;,/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7796cf02f6a93a61e812108f432e1f370a617b72994b7aff37fa45863ff05b2a

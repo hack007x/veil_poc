@@ -1,0 +1,23 @@
+## id: sitefinity-login
+## name: Sitefinity Login
+## author: hack007x
+## severity: info
+## tags: sitefinity,edb,panel,progress,discovery
+## description: This template identifies the Sitefinity login page.
+## affects: sitefinity_cms
+## reference: https://www.exploit-db.com/ghdb/6722
+## verification: true
+
+GET /Sitefinity/Authenticate/SWT HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Telerik.Sitefinity.Web.UI.UserPreferences"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e9dae238c40c57823242a9f82225174fcb95e2a183fddff56b92e5e126a75ead

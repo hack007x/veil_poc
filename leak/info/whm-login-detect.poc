@@ -1,0 +1,23 @@
+## id: whm-login-detect
+## name: WHM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,whm,panel,login,cpanel,discovery
+## description: WHM login panel was detected.
+## affects: whm
+## reference: https://www.exploit-db.com/ghdb/7128
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>WHM Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3acc90626b440cc9232b5bc241ec34abbdad4c1134b1a778dac2656fd02a4046

@@ -1,0 +1,23 @@
+## id: vmware-cloud-availability
+## name: VMware Cloud Director Availability Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## description: VMware Cloud Director Availability login panel was detected.
+## affects: cloud_director
+## shodan-query: title:"VMware Cloud Director Availability"
+## verification: true
+
+GET /ui/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>VMware Cloud Director Availability</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7d5174b26e7a509c5fdf87c113cd3ccd6d996f0a532f237d036815da64c2c84f

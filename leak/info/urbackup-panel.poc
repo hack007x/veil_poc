@@ -1,0 +1,22 @@
+## id: urbackup-panel
+## name: UrBackup Panel - Detect
+## author: hack007x
+## severity: info
+## tags: urbackup,panel,login,detect,discovery
+## affects: urbackup
+## shodan-query: html:"UrBackup - Keeps your data safe"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>UrBackup - Keeps your data safe</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4afb3e48ce03f34fcadabc8d51c6a0523406d1fe164bb00a55c52866a17a9483

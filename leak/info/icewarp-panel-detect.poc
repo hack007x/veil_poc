@@ -1,0 +1,25 @@
+## id: icewarp-panel-detect
+## name: IceWarp Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: icewarp,panel,discovery
+## description: IceWarp login panel was detected.
+## affects: icewarp_server
+## shodan-query: title:"icewarp",http.title:"icewarp"
+## fofa-query: title="icewarp"
+## verification: true
+
+GET /webmail/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "IceWarp"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=headers, regex=/Server: (.{4,20})/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1772f33c5c3e1bbc7eb356db6e779cdf1ce065b539fd6addedc663dc2ee4b12c

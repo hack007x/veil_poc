@@ -1,0 +1,20 @@
+## id: identityguard-selfservice-entrust
+## name: Entrust IdentityGuard Self-Service Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,identityguard,discovery
+## description: Entrust IdentityGuard Self-Service login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "identityguardselfservice"
+
+
+
+
+
+# @VEIL-STAMP: c2353ea664015b30d2f8647822d20133c5604e2d920a39520eb8cf953910de46

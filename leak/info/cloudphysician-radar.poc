@@ -1,0 +1,23 @@
+## id: cloudphysician-radar
+## name: Cloudphysician RADAR Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Cloudphysician RADAR login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7466
+## shodan-query: http.title:"Cloudphysician RADAR"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cloudphysician RADAR</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d6b78628b2ee745eb61ad9eac85a9f2538f3383d1ffed654cc56589e7554889f

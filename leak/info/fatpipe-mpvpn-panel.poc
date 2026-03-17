@@ -1,0 +1,23 @@
+## id: fatpipe-mpvpn-panel
+## name: FatPipe MPVPN - Panel Detect
+## author: hack007x
+## severity: info
+## tags: tech,fatpipe,panel,discovery
+## description: The admin panel of the FatPipe MPVPN has been discovered.
+## reference: https://www.fatpipeinc.com/products/mpvpn/index.php
+## verification: true
+
+GET /fpui/jsp/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FatPipe MPVPN&nbsp;| Log in</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<h5>([0-9.a-z]+)<\/h5>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 6be276c0c401b54abb18401ace1b8e4847f79498e8127b33810d5a32e83bafc0

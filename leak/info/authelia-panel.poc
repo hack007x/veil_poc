@@ -1,0 +1,25 @@
+## id: authelia-panel
+## name: Authelia Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,panel,authelia,discovery
+## description: Authelia is an open-source authentication and authorisation service providing two-factor authentication and single sign-on (SSO) for applications via a web portal.
+## affects: authelia
+## reference: https://github.com/authelia/authelia
+## reference: https://www.authelia.com/
+## shodan-query: title:"Login - Authelia"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login - Authelia</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 19da04161ba24e4bdaa4955b34d9858b81f6376e78780014f678042f7742a2ab

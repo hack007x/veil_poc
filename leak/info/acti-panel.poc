@@ -1,0 +1,24 @@
+## id: acti-panel
+## name: ACTi Video Monitoring Panel - Detection
+## author: hack007x
+## severity: info
+## tags: acti,panel,login,detect,discovery
+## affects: camera_firmware
+## shodan-query: title:"Web Configurator" html:"ACTi"
+## fofa-query: app="ACTi-视频监控"
+## verification: true
+
+GET /cgi-bin/videoconfiguration.cgi HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Web Configurator"
+#@ matcher: body contains "ACTi"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f82bb1ea52b2a3ee2f55e5ddf59bc39c6f0fb69daf20eccfa0e09eb451b7b196

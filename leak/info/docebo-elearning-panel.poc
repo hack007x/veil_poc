@@ -1,0 +1,23 @@
+## id: docebo-elearning-panel
+## name: Docebo eLearning Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,docebo,discovery
+## description: Docebo eLearning login panel was detected.
+## affects: docebo
+## fofa-query: title="Docebo E-learning"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Docebo E-learning"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4ce21dd274d500cea0db58a67107b81096639ea78c44de58d41b3b0fccfd820c

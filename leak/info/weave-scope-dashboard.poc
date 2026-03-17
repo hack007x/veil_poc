@@ -1,0 +1,22 @@
+## id: weave-scope-dashboard
+## name: Weave Scope Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Weave Scope panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Weave Scope</title>"
+#@ matcher: body contains "__WEAVEWORKS_CSRF_TOKEN"
+#@ matcher: body contains "__CSRF_TOKEN_PLACEHOLDER__"
+
+
+
+
+
+# @VEIL-STAMP: dd7bc5f5f8e9ea732a52db7ac587a2c9ca919e9e33766db6e38fce995f7a62a6

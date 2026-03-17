@@ -1,0 +1,21 @@
+## id: ecosys-command-center
+## name: ECOSYS Command Center RX Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,printer,ecosys,iot,discovery
+## description: ECOSYS Command Center RX panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Command Center RX</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c97e44ad592c2c55e0fe190eb7850ab58214445e9ad81ea00964933810a43d18

@@ -1,0 +1,21 @@
+## id: cisco-asa-panel
+## name: Cisco ASA VPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: cisco,panel,discovery
+## description: Cisco ASA VPN panel was detected.
+## affects: adaptive_security_appliance_software
+## verification: true
+
+GET /+CSCOE+/logon.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "/+CSCOU+/portal.css" || body contains "SSL VPN Service"
+
+
+
+
+
+# @VEIL-STAMP: 1a46eea3aaca19adf9f7e47559558bd5c5d0089a03bb050940f28ecae1dc6f46

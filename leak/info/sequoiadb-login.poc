@@ -1,0 +1,22 @@
+## id: sequoiadb-login
+## name: SequoiaDB Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: sequoiadb,panel,login,discovery
+## description: SequoiaDB login panel was detected.
+## shodan-query: http.title:"SequoiaDB"
+## verification: true
+
+GET /login.html#/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SequoiaDB</title>"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: 5d236cfbd985e96bb003351fcd0891c4d353379724657e3116ce276df18cccd4

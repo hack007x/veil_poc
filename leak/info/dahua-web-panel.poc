@@ -1,0 +1,24 @@
+## id: dahua-web-panel
+## name: Dahua Web Service Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,dahua,detect,discovery
+## description: A Dahua admin login panel was detected.
+## affects: sd22204db-gny-w
+## reference: https://www.exploit-db.com/ghdb/7116
+## shodan-query: http.favicon.hash:1653394551
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>WEB SERVICE</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 71032c2f4583af45c1d2d1d736316558e3c5b7b5a614f91f4433b06e3bf760bb

@@ -1,0 +1,21 @@
+## id: oipm-detect
+## name: One Identity Password Manager Detection
+## author: hack007x
+## severity: info
+## tags: panel,oneidentity,discovery
+## description: One Identity Password Manager is a secure password manager that gives enterprises control over password management, policies, and automated reset functions.
+## affects: Ensure proper access.
+## reference: https://www.oneidentity.com/techbrief/security-guide-for-password-manager821177/
+## verification: true
+
+GET /PMUser/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "One Identity Password Manager"
+
+
+
+
+
+# @VEIL-STAMP: 2419c25f4388becc8310da1793cd8d4c6a9787360c2a1f0887bdd4f052a533de

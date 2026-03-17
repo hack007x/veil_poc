@@ -1,0 +1,25 @@
+## id: parse-dashboard
+## name: Parse Dashboard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,parse,exposure,parseplatform,discovery
+## description: Parse Dashboard login panel was detected.
+## affects: parse-server
+## shodan-query: title:"Parse Dashboard",http.title:"parse dashboard"
+## fofa-query: title="parse dashboard"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Parse Dashboard"
+#@ matcher: body contains "PARSE_DASHBOARD_PATH"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 85c003d017a3cba3a203b25f92ee0a16ec22179a964634007a23802d65e637c3

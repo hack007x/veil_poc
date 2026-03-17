@@ -1,0 +1,21 @@
+## id: powercom-network-manager
+## name: PowerCom Network Manager
+## author: hack007x
+## severity: info
+## tags: powercommanager,login,panel,discovery
+## shodan-query: http.title:"PowerCom Network Manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "PowerCom Network Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 26fc0cb0fcf5d6628000c52cdaebe25171775258bbd638c80e5bb2962dc3687c

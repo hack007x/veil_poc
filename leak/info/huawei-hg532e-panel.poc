@@ -1,0 +1,25 @@
+## id: huawei-hg532e-panel
+## name: Huawei HG532e Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: huawei,panel,discovery
+## description: Huawei HG532e router login panel was detected. After installation, both the default username and default password are user.
+## affects: hg532e
+## reference: https://setuprouter.com/router/huawei/hg532e/1194.pdf
+## reference: https://www.192-168-1-1-ip.co/router/huawei/hg532e/2186/
+## shodan-query: http.html:"HG532e"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>HG532e</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a975939fd6a00e47721b327b55ed9bdea32ea50e9c588d1ee69f5eb08c1a1396

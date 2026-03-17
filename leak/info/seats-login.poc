@@ -1,0 +1,21 @@
+## id: seats-login
+## name: Seats Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Seats login panel was detected.
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>seats.io  | login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 46f20af7e9488d8d25b5261e4f01009bfa9e7f55d4d60b4e0439fcd89ba7d86c

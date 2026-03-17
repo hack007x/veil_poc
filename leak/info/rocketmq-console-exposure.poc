@@ -1,0 +1,22 @@
+## id: rocketmq-console-exposure
+## name: Apache RocketMQ Console Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,apache,discovery
+## description: Apache RocketMQ Console panel was detected.
+## affects: rocketmq
+## shodan-query: http.title:"RocketMq-console-ng",http.title:"rocketmq-console-ng",http.title:"rocketmq"
+## fofa-query: title="rocketmq-console-ng",protocol="rocketmq",title="rocketmq"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>RocketMq-console-ng</title>"
+
+
+
+
+
+# @VEIL-STAMP: b35b19675066bcb267b721be5622c72d45b6cb62b4ffb704eb78b0e746e39820

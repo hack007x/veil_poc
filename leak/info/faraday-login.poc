@@ -1,0 +1,23 @@
+## id: faraday-login
+## name: Faraday Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,faraday,discovery
+## description: Faraday login panel was detected.
+## affects: faraday
+## shodan-query: html:"faradayApp"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'ng-app="faradayApp">'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a054bcccafd0805f726ebf36e0fb38121aa1aa0b85c1f37e281f67f51de53434

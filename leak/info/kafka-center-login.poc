@@ -1,0 +1,23 @@
+## id: kafka-center-login
+## name: Apache Kafka Control Center Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kafka,apache,discovery
+## description: Apache Kafka Control Center login panel was detected.
+## affects: kafka
+## shodan-query: http.title:"Kafka Center",http.title:"kafka center",http.title:"kafka consumer offset monitor"
+## fofa-query: title="kafka center",title="kafka consumer offset monitor"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "<title>Kafka Center</title>"
+
+
+
+
+
+# @VEIL-STAMP: 0d5b268fa84f41c6aeec18f500d5f9fb6539e3bb3498c094fe164672729971e7

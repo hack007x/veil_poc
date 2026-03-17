@@ -1,0 +1,24 @@
+## id: gitea-login
+## name: Gitea Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: gitea,panel,discovery
+## description: Gitea login panel was detected.
+## affects: gitea
+## shodan-query: html:"Powered by Gitea Version",http.html:"powered by gitea version",http.title:"gitea",cpe:"cpe:2.3:a:gitea:gitea"
+## fofa-query: title="gitea",body="powered by gitea version"
+## verification: true
+
+GET /user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Powered by Gitea"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 74d186f511fbfe5864af80b7f68b4885d4cfa7a396f0810b6c74603939c393e2

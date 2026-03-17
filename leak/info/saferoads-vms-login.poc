@@ -1,0 +1,20 @@
+## id: saferoads-vms-login
+## name: Saferoads VMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Saferoads VMS login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6941
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Saferoads VMS"
+
+
+
+
+
+# @VEIL-STAMP: 5b065a4e699e2b66a76d3946477b83b40c2436fc9a582379df94e2e2af586a22

@@ -1,0 +1,26 @@
+## id: fortinet-fortiddos-panel
+## name: Fortinet FortiDDoS Panel
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortiddos,login,discovery
+## description: Fortinet FortiDDoS panel was detected.
+## affects: fortiddos
+## reference: https://www.fortinet.com/products/ddos/fortiddos
+## shodan-query: http.title:"FortiDDoS",http.title:"fortiddos"
+## fofa-query: title="fortiddos"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>FortiDDoS</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a35f38ad09daf5fca68a142eaa5739fbb8aff8101a15f8758be0c93483fd2ad

@@ -1,0 +1,25 @@
+## id: avtech-avn801-camera-panel
+## name: Avtech AVN801 Network Camera Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,avtech,iot,camera,discovery
+## description: An Avtech AVN801 Network Camera administration panel was detected.
+## reference: http://www.avtech.com.tw
+## shodan-query: title:"login" product:"Avtech AVN801 network camera"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "IP Surveillance for Your Life"
+#@ matcher: body contains "avtech"
+#@ matcher: body contains "/cgi-bin/guest/Login.cgi?rnd="
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9e3613d3df47d06e929d9054faea2755057212625521fd1f39545af5cecf441b

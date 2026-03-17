@@ -1,0 +1,25 @@
+## id: temenos-t24-login
+## name: Temenos Transact Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exposure,temenos,discovery
+## description: Temenos Transact login panel was detected.
+## affects: t24
+## reference: https://www.temenos.com/products/transact/
+## shodan-query: http.title:"t24 sign in"
+## verification: true
+
+GET /servlet/BrowserServlet HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>T24 Sign in</title>"
+#@ matcher: body contains 'value="CREATE.SESSION"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c352ad7cb111839337e089d8304ba3a2d3f2fb5bee3115c550ba63e64252a846

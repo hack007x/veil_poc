@@ -1,0 +1,22 @@
+## id: mystrom-panel
+## name: MyStrom Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mystrom,iot,discovery
+## description: Mystrom panel was detected.
+## shodan-query: title:"myStrom"
+## verification: true
+
+GET /index.html#en HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>myStrom</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d9ec8d7085ffe84beb58917718a2ed4abb8fc4b00b32fe24e1636de4f4c8c5da

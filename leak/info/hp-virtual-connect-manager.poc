@@ -1,0 +1,22 @@
+## id: hp-virtual-connect-manager
+## name: HP Virtual Connect Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,hp,discovery
+## description: HP Virtual Connect Manager login panel was detected.
+## shodan-query: http.title:"HP Virtual Connect Manager"
+## verification: true
+
+GET /html/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>HP Virtual Connect Manager</title>"
+
+
+
+
+
+# @VEIL-STAMP: d413a28ba94eaec7f1a27afc9cabe6e2bcd340a81e395ae123867de50a6a01e5

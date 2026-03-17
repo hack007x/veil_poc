@@ -1,0 +1,25 @@
+## id: mspcontrol-login
+## name: MSPControl Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mspcontrol,discovery
+## description: MSPControl login panel was detected.
+## reference: https://mspcontrol.org/
+## reference: https://mspcontrol.org/downloads/
+## shodan-query: http.title:"MSPControl - Sign In"
+## verification: true
+
+GET /Default.aspx?pid=Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: UserCulture=en-US
+
+#@ condition: and
+#@ matcher: body contains "MSPControl - Sign In" || body contains "Sign In to Control Panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5e40bf717ecdccfa36c0de8d7da76ff1b8b233ddce555f7cbae6bb9feb30500f

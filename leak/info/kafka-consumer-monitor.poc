@@ -1,0 +1,23 @@
+## id: kafka-consumer-monitor
+## name: Apache Kafka Consumer Offset Monitor Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kafka,apache,discovery
+## description: Apache Kafka Consumer Offset Monitor panel was detected.
+## affects: kafka
+## shodan-query: http.title:"Kafka Consumer Offset Monitor",http.title:"kafka center",http.title:"kafka consumer offset monitor"
+## fofa-query: title="kafka center",title="kafka consumer offset monitor"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "<title>Kafka Consumer Offset Monitor</title>"
+
+
+
+
+
+# @VEIL-STAMP: 5e9c6e43e2c6da2528a6804604656cd8b6f1665514a5f301fbd3c810b4e740d4

@@ -1,0 +1,25 @@
+## id: recoverpoint-panel
+## name: Dell EMC RecoverPoint Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,recoverpoint,dell,emc,login,discovery
+## description: Dell EMC RecoverPoint management panel was detected.
+## affects: emc_recoverpoint
+## reference: https://www.delltechnologies.com/en-us/data-protection/recoverpoint-for-virtual-machines.htm
+## shodan-query: http.favicon.hash:-742276344
+## verification: true
+
+GET /#!/welcome HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "RecoverPoint Wizard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a8c399599bf28587e4c0f1a78b85b5d0710a70baa5b8a73d55696d28cd4c2560

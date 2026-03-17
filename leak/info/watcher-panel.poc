@@ -1,0 +1,21 @@
+## id: watcher-panel
+## name: Watcher Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,watcher,login,discovery
+## shodan-query: html:"/vsaas/v2/static/"
+## verification: true
+
+GET /vsaas/v2/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Watcher</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4da6625e496a9930a16bc9debf8bf8c79a672145bdb29eb9a391600b98cbb12a

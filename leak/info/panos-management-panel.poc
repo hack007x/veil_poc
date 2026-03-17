@@ -1,0 +1,24 @@
+## id: panos-management-panel
+## name: PAN-OS Management Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,panos,login,detect,paloaltonetworks,discovery
+## description: PAN-OS management panel was detected.
+## reference: https://security.paloaltonetworks.com/PAN-SA-2024-0015
+## shodan-query: http.favicon.hash:873381299
+## verification: true
+
+GET /php/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<TITLE>Login</TITLE>"
+#@ matcher: body contains "PAN_FORM_CONTENT"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a321e2fbc2cad0f4d92e8568f1f2c7008fc59309ffbbf06032f5408ac054d5b6

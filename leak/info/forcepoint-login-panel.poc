@@ -1,0 +1,23 @@
+## id: forcepoint-login-panel
+## name: Forcepoint Login panel
+## author: hack007x
+## severity: info
+## tags: forcepoint,panel,login,discovery
+## affects: email_security
+## reference: https://www.forcepoint.com/product/email-security
+## verification: true
+
+GET /pem/login/pages/login.jsf HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Forcepoint Email Security"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version&[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z];[0-9]+\.[0-9]/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d465063f472e8521a5bbe2d830c39038b163452bd2879ddb1f66490a5de2a3cc

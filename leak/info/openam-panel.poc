@@ -1,0 +1,28 @@
+## id: openam-panel
+## name: OpenAM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openam,opensso,login,forgerock,discovery
+## description: OpenAM login panel was detected.
+## affects: openam
+## shodan-query: http.title:"OpenAM",http.title:"openam"
+## fofa-query: title="openam"
+## verification: true
+
+#$ paths = /openam/XUI | /XUI | /XUI/#login | /UI | /sso/XUI | /sso/UI | /sso/UI/#login | /opensso/UI/Login | /openam/UI/login | /openam/UI/#loginlogin | /openam/UI/Login | /openam/XUI/Login | /openam/XUI/login | /openam/XUI/#login | /am/UI/Login | /am/UI/#login | /am/XUI/ | /am/XUI/Login | /am/json/serverinfo/* | /openam/json/serverinfo/*
+GET /{{paths}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body contains 'urlArgs: "v=' || body contains "Sign in to OpenAM" || body contains "ForgeRock" || body contains "forgerock" || body contains "FRForgotUsername" || body contains "successfulUserRegistrationDestination"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/urlArgs: "v=([0-9.abcd]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: bf3012d9492962105e7b76e39fea847ea784725e75a981de4ccf44dae74c2801

@@ -1,0 +1,25 @@
+## id: wiren-board-webui
+## name: Wiren Board WebUI Panel - Detect
+## author: hack007x
+## severity: medium
+## tags: panel,exposure,wiren,discovery
+## description: Wiren Board WebUI panel was detected.
+## cvss-score: 6.5
+## shodan-query: http.title:"Wiren Board Web UI"
+## verification: true
+
+GET /#!/dashboards HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Wiren Board Web UI"
+#@ matcher: body contains "accessLevel"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 45ddb29ec62f86f501815335fbdcb1abe95fedacd75209dda6cf0943e4667a6b

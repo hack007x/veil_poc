@@ -1,0 +1,23 @@
+## id: cisco-secure-desktop
+## name: Cisco Secure Desktop Installation Panel - Detect
+## author: hack007x
+## severity: info
+## tags: cisco,panel,discovery
+## description: Cisco Secure Desktop installation panel was detected.
+## affects: secure_desktop
+## verification: true
+
+GET /CACHE/sdesktop/install/start.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Installation"
+#@ matcher: body contains "WebLaunch"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2fbbbafac25b52d93fc82224dec47f254b4d8dd1ecb444801da6dd51d878f2fc

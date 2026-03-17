@@ -1,0 +1,25 @@
+## id: project-insight-login
+## name: Project Insight Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,helpproject,discovery
+## description: Project Insight login panel was detected.
+## affects: help
+## reference: https://www.exploit-db.com/ghdb/7413
+## shodan-query: http.title:"Project Insight - Login",http.title:"project insight - login"
+## fofa-query: title="project insight - login"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Project Insight - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 40c0961ca20681d096ebd0f4c08f9228362ad386c13697d700b7e8af6ed39cd9

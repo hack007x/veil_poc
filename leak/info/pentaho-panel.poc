@@ -1,0 +1,21 @@
+## id: pentaho-panel
+## name: Pentaho User Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pentaho,discovery
+## description: Pentaho User Console login panel was detected.
+## affects: vantara_pentaho
+## shodan-query: pentaho
+## verification: true
+
+GET /pentaho/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Pentaho User Console - Login</title>"
+
+
+
+
+
+# @VEIL-STAMP: 7a614fda34215d8d2ae692e2a8750640e6d8ac3ed7b1946deca246c0dc287b45

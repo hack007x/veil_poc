@@ -1,0 +1,24 @@
+## id: clearpass-policy-manager
+## name: ClearPass Policy Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,aruba,arubanetworks,discovery
+## description: ClearPass Policy Manager login panel was detected.
+## affects: clearpass_policy_manager
+## shodan-query: http.title:"ClearPass Policy Manager",http.title:"clearpass policy manager"
+## fofa-query: title="clearpass policy manager"
+## verification: true
+
+GET /tips/tipsLogin.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ClearPass Policy Manager - Aruba Networks</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e0c3e70d6a8172144d1f4833dfa5d830aaf3e17c3ca279549bec07a863cdb4b7

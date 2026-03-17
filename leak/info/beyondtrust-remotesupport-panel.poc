@@ -1,0 +1,25 @@
+## id: beyondtrust-remotesupport-panel
+## name: BeyondTrust Remote Support Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,detect,beyondtrust,discovery
+## description: Detect BeyondTrust Remote Support Panel.
+## affects: remote_support
+## shodan-query: http.favicon.hash:-694003434
+## fofa-query: icon_hash="-694003434"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "BeyondTrust Remote Support"
+#@ matcher: body contains "powered_by_text"
+
+
+
+
+
+# @VEIL-STAMP: 191d3b0083125d0a95bc16b27e4c35d6c0757eaa6525b847c6a278ac5e99ecb0

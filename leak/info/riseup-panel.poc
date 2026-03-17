@@ -1,0 +1,23 @@
+## id: riseup-panel
+## name: Rise Up Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,riseup,discovery
+## description: Rise Up login panel was detected.
+## reference: https://www.riseup.ai/en/
+## verification: true
+
+GET /Account/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "cfg.envRiseUp" || body contains "imgresize.riseup.ai" || body contains "content.riseup.ai"
+#@ matcher: body contains "login-page"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 572c61d62206b65ca4e8441e1e049a79c8c9d7333055a3b096f58f7fce20f33a

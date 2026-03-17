@@ -1,0 +1,22 @@
+## id: dell-bmc-panel
+## name: Dell BMC Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bmc,dell,login,discovery
+## description: Dell BMC web panel was detected.
+## shodan-query: title:"Dell Remote Management Controller"
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Dell Remote Management Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e950b16b7472089a45b273872b28126d66180be8e59bc03080ed70d4894bffc6

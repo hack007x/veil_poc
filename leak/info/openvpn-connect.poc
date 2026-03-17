@@ -1,0 +1,23 @@
+## id: openvpn-connect
+## name: OpenVPN Connect Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openvpn,connect,vpn,discovery
+## description: OpenVPN Connect panel was detected.
+## affects: connect
+## shodan-query: http.title:"openvpn connect"
+## fofa-query: title="openvpn connect"
+## verification: true
+
+GET /?src=connect HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains 'content="OpenVPN Connect' || body contains "<title>OpenVPN Connect</title>"
+
+
+
+
+
+# @VEIL-STAMP: c126a4bc27b2654529abc533c7e2efe971f6068c62a48c6c4492da9b8b6c8177

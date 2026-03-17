@@ -1,0 +1,24 @@
+## id: sas-login-panel
+## name: SAS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: sas,panel,discovery
+## description: SAS login panel has been detected.
+## affects: base_sas
+## shodan-query: http.favicon.hash:957255151
+## fofa-query: icon_hash=957255151
+## verification: true
+
+GET /SASLogon/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SAS&reg; Logon Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b13d7ef8265419f00e872d6d37bb35cf5e58128264c207d9197415dfc06a35f8

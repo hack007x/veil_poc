@@ -1,0 +1,22 @@
+## id: openbmcs-detect
+## name: OpenBMCS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openbmcs,detect,discovery
+## description: OpenBCMS login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "BMS - Login" || body contains "Copyright all rights reserved by Open BMCS" || body contains "OpenBMCS does not support Internet Explorer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f6f701a4c61d80d47513090daa06f81f54f75f210eef91af34b43f1e1cd3d4cc

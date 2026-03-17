@@ -1,0 +1,22 @@
+## id: sensu-panel
+## name: Sensu by Sumo Logic Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sensu,sumo,detect,discovery
+## description: Sensu by Sumo Logic login panel was detected.
+## shodan-query: http.favicon.hash:-749942143
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Sensu"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a7be175e81c45df05ab437a2e164c954afe9568db3fc531a650fe8d6872bb4c

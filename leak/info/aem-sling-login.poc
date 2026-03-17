@@ -1,0 +1,28 @@
+## id: aem-sling-login
+## name: Adobe Experience Manager Sling User Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,aem,adobe,sling,discovery
+## description: Adobe Experience Manager Sling user login panel was detected.
+## affects: experience_manager
+## reference: https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/aem2.txt
+## shodan-query: http.title:"AEM Sign In",http.component:"Adobe Experience Manager",http.component:"adobe experience manager",http.title:"aem sign in",cpe:"cpe:2.3:a:adobe:experience_manager"
+## fofa-query: title="aem sign in"
+## verification: true
+
+GET /system/sling/cqform/defaultlogin.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login</title>"
+#@ matcher: body contains "j_username"
+#@ matcher: body contains "j_password"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d00f6af2fa8ffad71f511857dca0e18446f1307c364ebde9371313c06c77224

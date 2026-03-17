@@ -1,0 +1,26 @@
+## id: pterodactyl-panel
+## name: Pterodactyl game server - Panel
+## author: hack007x
+## severity: info
+## tags: detect,pterodactyl,panel,oos,discovery
+## description: Detects Pterodactyl game server management panel.
+## affects: panel
+## reference: https://github.com/pterodactyl/panel
+## shodan-query: title:"Pterodactyl",http.favicon.hash:-456405319,http.favicon.hash:846001371,Set-Cookie: pterodactyl_session=
+## fofa-query: title="Pterodactyl",icon_hash="-456405319",icon_hash="846001371",Set-Cookie: pterodactyl_session=
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["set-cookie"] contains "pterodactyl_session="
+#@ matcher: body contains "window.SiteConfiguration"
+
+
+
+
+
+# @VEIL-STAMP: 245228fd106f6ae4c740d01531b1b1d4b7b2a4fc3f11c1ef77dd1d503fed489b

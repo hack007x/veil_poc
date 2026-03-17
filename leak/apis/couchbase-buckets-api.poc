@@ -1,0 +1,27 @@
+## id: couchbase-buckets-api
+## name: Couchbase Buckets Unauthenticated REST API - Detect
+## author: hack007x
+## severity: medium
+## tags: exposure,couchbase,discovery
+## description: Couchbase Buckets REST API without authentication was detected.
+## cvss-score: 5.3
+## reference: https://docs.couchbase.com/server/current/rest-api/rest-bucket-intro.html
+## reference: https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-metricset-couchbase-bucket.html
+## verification: true
+
+GET /pools/default/buckets HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains '"couchbase":'
+#@ matcher: body contains '"bucket":'
+#@ matcher: body contains '"data":'
+#@ matcher: header["content-type"] contains "application/json"
+
+
+
+
+
+# @VEIL-STAMP: 7032cc55fb5f31c2016697d529cecd11367b810cfd90b506b3f26af5d22c2b11

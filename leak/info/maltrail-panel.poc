@@ -1,0 +1,23 @@
+## id: maltrail-panel
+## name: Maltrail Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,maltrail,detect,discovery
+## description: Maltrail is a malicious traffic detection system, utilizing publicly available (black)lists containing malicious and/or generally suspicious trails, along with static trails compiled from various AV reports and custom user defined lists, where trail can be anything from domain name, URL (e.g. hXXp://109.162.38.120/harsh02.exe for known malicious executable), IP address (e.g. 185.130.5.231 for known attacker) or HTTP User-Agent header value.
+## shodan-query: title:"Maltrail"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Maltrail</title>" || body contains "/stamparm/maltrail/wiki" || body contains "<b>M</b>altrail"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<b>M<\/b>altrail \(v<b>([0-9.]+)<\/b>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: eb814d3731e9e64d435c8e532bb1e2905b103f6010f8cccaa98ece0172ba8525

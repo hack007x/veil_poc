@@ -1,0 +1,24 @@
+## id: cisco-prime-infrastructure
+## name: Cisco Prime Infrastructure Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: A Cisco Prime Infrastructure login panel was discovered.
+## affects: prime_infrastructure
+## shodan-query: http.title:"prime infrastructure"
+## fofa-query: title="prime infrastructure"
+## verification: true
+
+GET /webacs/pages/common/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'productName = "Prime Infrastructure"' || body contains "Cisco&nbsp;"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c75987209409e21014b24c6f9e4aac85658f031c3cd32911a70dbb51b016e57c

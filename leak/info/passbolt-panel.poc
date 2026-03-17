@@ -1,0 +1,25 @@
+## id: passbolt-panel
+## name: Passbolt Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,passbolt,login,discovery
+## description: Passbolt login panel was detected.
+## affects: passbolt_api
+## reference: https://www.passbolt.com/
+## shodan-query: http.title:"Passbolt | Open source password manager for teams"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Passbolt" && body contains "Open source password manager for teams"
+#> extract: name=ex_regex, from=body, regex=/(?i)v=([0-9a-z.-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: a646c96355a46e24220160b28ea14df4557f4b5af87194fa568f651cd603163a

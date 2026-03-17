@@ -1,0 +1,25 @@
+## id: casdoor-login
+## name: Casdoor Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,casdoor,casbin,discovery
+## description: Casdoor login panel was detected.
+## affects: casdoor
+## reference: https://casdoor.org/
+## shodan-query: http.title:"Casdoor",http.title:"casdoor"
+## fofa-query: title="casdoor"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Casdoor</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 67dad503436257e94eefe22b45396573b639078345250c36aff0dd055760871e

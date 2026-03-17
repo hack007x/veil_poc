@@ -1,0 +1,21 @@
+## id: beyondtrust-panel
+## name: BeyondTrust Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: beyondtrust,pam,panel,discovery
+## description: BeyondTrust login panel was detected.
+## affects: beyondinsight
+## shodan-query: http.html:"BeyondInsight"
+## verification: true
+
+GET /WebConsole/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>BeyondInsight</title>"
+
+
+
+
+
+# @VEIL-STAMP: fc3eca31bf41b62e7307d952e2e9d2d5cae52f94667eefe5cebc59635caf4254

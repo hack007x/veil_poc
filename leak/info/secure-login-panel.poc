@@ -1,0 +1,22 @@
+## id: secure-login-panel
+## name: Secure Login Service Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sls,login,service,discovery
+## description: Secure Login Service login panel was detected.
+## shodan-query: http.title:"Secure Login Service"
+## verification: true
+
+GET /login/sls/auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Secure Login Service</title>"
+
+
+
+
+
+# @VEIL-STAMP: cd7acfc9eb49ae98fee29d4aaa57242edd03c4aaedccafa90754d92c36a0ad3a

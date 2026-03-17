@@ -1,0 +1,22 @@
+## id: vmware-ftp-server
+## name: VMware FTP Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,ftp,discovery
+## description: VMware FTP Server login panel was detected.
+## shodan-query: title:"VMWARE FTP SERVER"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "VMWARE FTP SERVER"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 23941672ac0f528af2a735e247e34179188ee2156cd2abbcac02bb2be5f36b07

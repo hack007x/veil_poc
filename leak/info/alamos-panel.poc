@@ -1,0 +1,22 @@
+## id: alamos-panel
+## name: Alamos GmbH Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,alamos,login,detect,discovery
+## description: Alamos GmbH panel was detected.
+## shodan-query: http.title:"Alamos GmbH | FE2"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Alamos GmbH | FE2"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 013db1f4a0c1ea21daed52e2b9b7fd181d52cacdc99a6dd43b61affd202f89e6

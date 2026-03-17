@@ -1,0 +1,22 @@
+## id: ambari-exposure
+## name: Apache Ambari Exposure Admin Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,apache,ambari,exposure,discovery
+## description: An Apache Ambari panel was discovered.
+## affects: ambari
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Ambari</title>"
+#@ matcher: body contains 'href="http://www.apache.org/licenses/LICENSE-2.0"'
+
+
+
+
+
+# @VEIL-STAMP: 8c9cd8340ce6bb2c3ea8e07d72b7fbcc43b3c892e3211edaaa15d263c800114c

@@ -1,0 +1,25 @@
+## id: kavita-panel-detect
+## name: Kavita Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kavita,discovery
+## description: Kavita login panel was detected.
+## affects: kavita
+## reference: https://github.com/kareadita/kavita
+## shodan-query: http.title:"kavita"
+## fofa-query: title="kavita"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Kavita"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f42a7d144d92d4cb52e12d23044f3a842e08013b1bcb671b4c0518272922ab9d

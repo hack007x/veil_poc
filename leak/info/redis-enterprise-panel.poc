@@ -1,0 +1,23 @@
+## id: redis-enterprise-panel
+## name: Redis Enterprise - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redis,enterprise,discovery
+## affects: redis_enterprise
+## shodan-query: title:"Enterprise-Class Redis for Developers"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Enterprise-Class Redis for Developers"
+#@ matcher: body contains "cm/config/environment"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 330961ddd9f7afdb7ab943d4260d733ad57dbed3a130c88d2864dd4547e86661

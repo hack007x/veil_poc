@@ -1,0 +1,21 @@
+## id: nagios-logserver-panel
+## name: Nagios Log Server - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nagios,nagios-logserver,login,detect,discovery
+## description: Detects the presence of Nagios Log Server by identifying specific response patterns, HTTP headers, or unique page elements.
+## shodan-query: http.favicon.hash:1460499495
+## fofa-query: icon_hash="1460499495"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Nagios Log Server" || body contains "/nagioslogserver/"
+
+
+
+
+
+# @VEIL-STAMP: 8f127ca59319bed25aead63d0e8fafc65742efa554cdfba4e2f501b4bdc745b5

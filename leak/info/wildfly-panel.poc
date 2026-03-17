@@ -1,0 +1,22 @@
+## id: wildfly-panel
+## name: WildFly Welcome Page - Tech Detect
+## author: hack007x
+## severity: info
+## tags: panel,jboss,wildfly,redhat,discovery
+## description: WildFly welcome page was detected.
+## affects: wildfly
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Welcome to WildFly"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f907267b11d9b7a9b8dc4c78140344dc1295e3d010f6fe2af2c501ddadcf5f73

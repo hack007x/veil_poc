@@ -1,0 +1,22 @@
+## id: cisco-vmanage-login
+## name: Cisco vManage Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco vManage login panel was detected.
+## shodan-query: title:"Cisco vManage"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco vManage</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ceb0637e63450a999f276c6f7de948e900a0618c8e1b70e0ef3ae4c5b84ba09c

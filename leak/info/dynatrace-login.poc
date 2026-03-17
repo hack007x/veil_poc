@@ -1,0 +1,22 @@
+## id: dynatrace-login
+## name: Dynatrace Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: dynatrace,login,panel,discovery
+## description: Dynatrace login panel was detected.
+## shodan-query: http.favicon.hash:1828614783
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login - Dynatrace"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c346dd4addd4e12f060dbcfb2d6993c28dab5b6b6c9c91567111456d30e4bf8d

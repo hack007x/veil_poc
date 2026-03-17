@@ -1,0 +1,23 @@
+## id: star-network-utility
+## name: Star Micronics Network Utility Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,utility,discovery
+## description: Star Micronics Network Utility panel was detected.
+## shodan-query: http.html:"Network Utility"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Star Micronics"
+#@ matcher: body contains "Network Utility"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e96fb8092005e0e316fc8a7dcd39e0fd47bd817d3c409d6c0ab645d1a92816f8

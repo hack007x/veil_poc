@@ -1,0 +1,25 @@
+## id: nsq-admin-panel
+## name: NSQ Admin Panel - Detect
+## author: hack007x
+## severity: medium
+## tags: nsq,admin,panel,exposure,discovery
+## description: NSQ admin panel was detected.
+## cvss-score: 6.5
+## reference: https://nsq.io/components/nsqd.html
+## shodan-query: title:"nsqadmin"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>nsqadmin</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/nsqadmin\/v([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b96dadf71af5704ba3a7ae34116846fc176c99ac29e17ac3b9905b7c1ddff33d

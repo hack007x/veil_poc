@@ -1,0 +1,23 @@
+## id: webroot-login
+## name: Webroot Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,webroot,discovery
+## description: Webroot login panel was detected.
+## affects: secureanywhere
+## shodan-query: title:"Webroot - Login"
+## verification: true
+
+GET /Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Webroot - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e7482f86b3c4e00c767a41a81636cf66fa72523a277820d9be763d1e2180d60

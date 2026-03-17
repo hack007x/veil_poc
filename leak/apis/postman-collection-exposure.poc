@@ -1,0 +1,78 @@
+## id: postman-collection-exposure
+## name: Postman Collection Exposure
+## author: hack007x
+## severity: low
+## tags: api,postman,exposure,discovery
+## description: Detected exposed Postman collection JSON files that contained API endpoints and environment details. These files were publicly accessible and disclosed authentication headers and other sensitive information.
+## reference: https://medium.com/@utkarshporwal24/exposed-postman-collections-ed6086b96ba5
+## shodan-query: http.html:"postman.json"
+## verification: true
+
+GET /postman.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: header["content-type"] matches /(?i)content-type:\s*application\/(json|vnd\.postman\.[^;\s]+)/
+#@ matcher: body matches /(?i)"info"\s*:\s*\{\s*"name"\s*:\s*".+?"/
+#@ matcher: body matches /(?i)"item"\s*:\s*\[/
+#@ matcher: status_code == 200
+
+---
+
+GET /docs/postman.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: header["content-type"] matches /(?i)content-type:\s*application\/(json|vnd\.postman\.[^;\s]+)/
+#@ matcher: body matches /(?i)"info"\s*:\s*\{\s*"name"\s*:\s*".+?"/
+#@ matcher: body matches /(?i)"item"\s*:\s*\[/
+#@ matcher: status_code == 200
+
+---
+
+GET /api/postman.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: header["content-type"] matches /(?i)content-type:\s*application\/(json|vnd\.postman\.[^;\s]+)/
+#@ matcher: body matches /(?i)"info"\s*:\s*\{\s*"name"\s*:\s*".+?"/
+#@ matcher: body matches /(?i)"item"\s*:\s*\[/
+#@ matcher: status_code == 200
+
+---
+
+GET /postman_collection.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: header["content-type"] matches /(?i)content-type:\s*application\/(json|vnd\.postman\.[^;\s]+)/
+#@ matcher: body matches /(?i)"info"\s*:\s*\{\s*"name"\s*:\s*".+?"/
+#@ matcher: body matches /(?i)"item"\s*:\s*\[/
+#@ matcher: status_code == 200
+
+---
+
+GET /collections/postman.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: header["content-type"] matches /(?i)content-type:\s*application\/(json|vnd\.postman\.[^;\s]+)/
+#@ matcher: body matches /(?i)"info"\s*:\s*\{\s*"name"\s*:\s*".+?"/
+#@ matcher: body matches /(?i)"item"\s*:\s*\[/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 506bc3f3a2d0b0e5c9b425b71cef2d740a7cb9dcb099d6ac75ec40e250c95e0d

@@ -1,0 +1,23 @@
+## id: pulsar360-admin-panel
+## name: Pulsar360 Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pulsar360,pulsar,admin,discovery
+## description: Pulsar360 admin panel was detected.
+## shodan-query: title:"Pulsar Admin"
+## verification: true
+
+GET /admin/config.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Pulsar Admin"
+#@ matcher: body contains "User Control Panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0ed4a07481981694d2652d616546d10efd7db129147e6e6a621d52ee3800ac2b

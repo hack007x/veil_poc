@@ -1,0 +1,22 @@
+## id: royalevent-management-panel
+## name: Royal Event Management System Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: royalevent,panel,discovery
+## description: Royal Event Management System admin panel was detected.
+## verification: true
+
+GET /royal_event/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Royal Event Management Software"
+#@ matcher: body contains "Welcome Administrator"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 450d6356a278154fda29ba4f50aa504dceca65f39d2e941b8ae42bc7f026b2f4

@@ -1,0 +1,22 @@
+## id: secmail-detect
+## name: SecMail Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: secmail,panel,discovery
+## description: SecMail login panel was detected.
+## shodan-query: secmail
+## verification: true
+
+GET /SecMail/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Path=/SecMail"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 59de1ddcfe9b57a0a9ab7204b83d426faf03af33050f5d09a9ace44b997bf130

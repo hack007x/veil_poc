@@ -1,0 +1,23 @@
+## id: unauth-xproxy-dashboard
+## name: X-Proxy Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: xproxy,panel,discovery
+## description: X-Proxy Dashboard panel was detected.
+## fofa-query: X-Proxy Dashboard
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>X-Proxy</title>"
+#@ matcher: body contains "Dashboard</a>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 362b4296732e476752291dbc59aaa69c4315068ab444f150c8e196c9ac6eaec4

@@ -1,0 +1,21 @@
+## id: intelliflash-login-panel
+## name: IntelliFlash Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,intelliflash,discovery
+## description: IntelliFlash login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>IntelliFlash</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c801c1f267c0fcdbc20b7c2f2c9cc2011b31335364e2ea64ec3d8d33800b2f31

@@ -1,0 +1,26 @@
+## id: manageengine-exchangereporter
+## name: ZOHO ManageEngine Exchange Reporter Plus Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,login,discovery
+## description: ZOHO ManageEngine Exchange Reporter Plus panel was detected.
+## affects: manageengine_exchange_reporter_plus
+## reference: https://www.manageengine.com/products/exchange-reports/
+## shodan-query: title:"ManageEngine - Exchange Reporter Plus",http.favicon.hash:230963457
+## fofa-query: title="ManageEngine - Exchange Reporter Plus",icon_hash="230963457"
+## verification: true
+
+GET /exchange/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Exchange Reporter Plus"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/src="js\/div-util.js\?v=(\d+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f19bca445e4708c76177aacde8514423444b9e54591b17c7c95c6b4441d9c2b5

@@ -1,0 +1,26 @@
+## id: proxmox-panel
+## name: Proxmox Virtual Environment Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,proxmox,login,discovery
+## description: Proxmox Virtual Environment login panel was detected.
+## affects: proxmox
+## reference: https://www.proxmox.com/
+## shodan-query: http.favicon.hash:213144638
+## fofa-query: icon_hash=213144638
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Proxmox Virtual Environment</title>" || body contains "auth_cookie_name: 'PVEAuthCookie'"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?:pvemanagerlib.js[?](ver=[0-9]{1}[.][0-9]{1,}[-][0-9]))/, group=1
+
+
+
+
+
+# @VEIL-STAMP: feb47bf7e244acddb58838d80119bb6507bd2c0d19d3e61d962dc1dc14ee68de

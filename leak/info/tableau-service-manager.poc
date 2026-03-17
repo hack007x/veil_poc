@@ -1,0 +1,25 @@
+## id: tableau-service-manager
+## name: Tableau Services Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tableau,tableausoftware,discovery
+## description: Tableau Services Manager login panel was detected.
+## affects: tableau_server
+## reference: https://help.tableau.com/current/server/en-us/sign_in_tsm.htm
+## shodan-query: title:"Login - Tableau Services Manager",http.title:"login - tableau services manager"
+## fofa-query: title="login - tableau services manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login - Tableau Services Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3ee824e3382da14af11073835d58ef4d967f4bdc4b426994aa9df7aa27f81a65

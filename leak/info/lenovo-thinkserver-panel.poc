@@ -1,0 +1,21 @@
+## id: lenovo-thinkserver-panel
+## name: Lenovo ThinkServer System Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,thinkserver,lenovo,discovery
+## description: Lenovo ThinkServer System Manager login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Lenovo ThinkServer System Manager - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5d794cf9db9e44a0926f8c270ce0ee51605fbec3c242f08613806f5bd088918d

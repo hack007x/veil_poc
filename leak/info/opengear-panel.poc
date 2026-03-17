@@ -1,0 +1,25 @@
+## id: opengear-panel
+## name: Opengear Management Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,opengear,discovery
+## description: The Opengear Management Console admin panel has been discovered.
+## affects: opengear
+## reference: https://opengear.com/
+## fofa-query: app="opengear-Management-Console"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<a href="http://www.Opengear.com" build="_new">&copy; Opengear'
+#@ matcher: body contains "Opengear Management Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1bda8896c25a7ecd6dd177d88ff50a7cced419eb457cd951b80a4cccd61c98b5

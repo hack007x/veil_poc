@@ -1,0 +1,21 @@
+## id: netlify-cms
+## name: Netlify CMS Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,netlify,discovery
+## description: Netlify CMS admin login panel was detected.
+## verification: true
+
+GET /admin/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Netlify CMS"
+
+
+
+
+
+# @VEIL-STAMP: 620c3f8fdaec8bd3dd40027a32cb2984c03e2931e5bdff4e9f4daf9a50ceab14

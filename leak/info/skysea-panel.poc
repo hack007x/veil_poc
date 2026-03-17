@@ -1,0 +1,24 @@
+## id: skysea-panel
+## name: SKYSEA Client View Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,skysea,detect,login,discovery
+## description: SKYSEA Client View panel was detected.
+## reference: https://www.skyseaclientview.net/
+## shodan-query: http.favicon.hash:385597939
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "SKYSEA Client View"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 197fbb64ddd83a8ef2e43d128b9b728b57b1ac32c01f2609134d088066d65ebe

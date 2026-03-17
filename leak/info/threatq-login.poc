@@ -1,0 +1,23 @@
+## id: threatq-login
+## name: ThreatQ Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,threatq,discovery
+## description: ThreatQ login panel was detected.
+## reference: https://www.threatq.com/threat-intelligence-platform/
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<title ng-bind="PageTitle.getTitle()">ThreatQ</title>' || body contains '<script src="/assets/js/threatq.min.js'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<script src="\/assets\/js\/threatq.min.js\?(.*)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 0f5f00c09c2f5d6ec08140a745b14e74297e7cecc83aaf67a0c9379ecaa3cf67

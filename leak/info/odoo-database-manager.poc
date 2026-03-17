@@ -1,0 +1,25 @@
+## id: odoo-database-manager
+## name: Odoo - Database Manager Discovery
+## author: hack007x
+## severity: low
+## tags: panel,odoo,backup,discovery
+## description: Odoo database manager was discovered.
+## affects: odoo
+## shodan-query: title:"Odoo",http.title:"odoo",cpe:"cpe:2.3:a:odoo:odoo"
+## fofa-query: title="odoo"
+## verification: true
+
+GET /web/database/manager HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Odoo</title>"
+#@ matcher: body contains ".o_database_delete"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 184687aafa13edef96e8c78b127fbed778611ef89c38468c10b0a796fa23d5e7

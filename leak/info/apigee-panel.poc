@@ -1,0 +1,24 @@
+## id: apigee-panel
+## name: Apigee Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,apigee,login,discovery
+## description: Apigee login panel was detected.
+## reference: https://cloud.google.com/apigee?hl=en
+## shodan-query: http.favicon.hash:"-839356603"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Apigee" || body contains 'content=\"Apigee'
+#> extract: name=ex_regex, from=body, regex=/Version:?\s+([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 031e1773bb3d6ddbbdfc1df2c18aba76a55d5330ddf568866cba7cb73679d0a9

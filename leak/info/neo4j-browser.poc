@@ -1,0 +1,24 @@
+## id: neo4j-browser
+## name: Neo4j Browser - Detect
+## author: hack007x
+## severity: info
+## tags: neo4j,exposure,unauth,panel,discovery
+## description: The Neo4j Browser has been detected.
+## affects: neo4j
+## shodan-query: http.title:"Neo4j Browser",http.title:"neo4j browser"
+## fofa-query: title="neo4j browser"
+## verification: true
+
+GET /browser/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Neo4j Browser</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d176d81e2e96bfd28ccf6414a037ad409522bafef8b516e9e4ef3ee4b6947989

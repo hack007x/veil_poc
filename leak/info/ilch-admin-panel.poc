@@ -1,0 +1,24 @@
+## id: ilch-admin-panel
+## name: Ilch CMS Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ilch,cms,discovery
+## description: Ilch CMS admin login panel was detected.
+## affects: cms
+## shodan-query: http.title:"Ilch",http.title:"ilch"
+## fofa-query: title="ilch"
+## verification: true
+
+GET /index.php/admin/admin/login/index/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ilch_token"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f05ee207a127d33574518d27d8aa1e256de245a9bf58ededfaa8242ac2ddc015

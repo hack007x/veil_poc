@@ -1,0 +1,23 @@
+## id: webshell4-login-panel
+## name: WebShell4 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: webshell4,panel,discovery
+## description: WebShell4 login panel was detected.
+## shodan-query: http.html:"webshell4"
+## verification: true
+
+GET /webshell4/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/webshell4/index2.php"
+#@ matcher: body contains "enter login name"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b417d393145459a4cbdd177c2a043498a40acc0143f7cc3567e1c643b41682c8

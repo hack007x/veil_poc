@@ -1,0 +1,23 @@
+## id: fortiswitch-panel
+## name: Fortiswitch Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,panel,fortiswitch,discovery
+## description: Fortiswitch panel was detected.
+## affects: fortiswitch
+## fofa-query: app="FortiSwitch"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FortiSwitch"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e1fd28b21aea418088efde4f1bb5eae6a0b1e5b9e12ae777ad88056451520181

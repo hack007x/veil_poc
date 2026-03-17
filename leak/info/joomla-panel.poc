@@ -1,0 +1,21 @@
+## id: joomla-panel
+## name: Joomla! Panel
+## author: hack007x
+## severity: info
+## tags: panel,joomla,discovery
+## affects: joomla\!
+## shodan-query: http.html:"joomla! - open source content management",http.component:"joomla",cpe:"cpe:2.3:a:joomla:joomla\!"
+## fofa-query: body="joomla! - open source content management"
+## verification: true
+
+GET /administrator/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains '<meta name="generator" content="Joomla! - Open Source Content Management" />' || body contains "/administrator/templates/isis/images/joomla.png"
+
+
+
+
+
+# @VEIL-STAMP: 9793d2dcf369f0f70dbd21b3e34a379c3a21c4e962b849df04d7c32e6584233d

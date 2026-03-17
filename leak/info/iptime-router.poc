@@ -1,0 +1,23 @@
+## id: iptime-router
+## name: ipTIME Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,iptime,router,discovery
+## description: ipTIME router login panel was detected.
+## reference: http://pierrekim.github.io/blog/2015-07-01-poc-with-RCE-against-127-iptime-router-models.html
+## verification: true
+
+GET /sess-bin/login_session.cgi HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<TITLE>ipTIME ([A-Z0-9_-]+)<\/TITLE>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<TITLE>ipTIME ([A-Z0-9_-]+)<\/TITLE>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 258f597b847523d664ab67e6faa515bd5264c446c6f052b330e1375c8f1b9fa2

@@ -1,0 +1,23 @@
+## id: php-mailer
+## name: PHPMailer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,php,mailer,discovery
+## description: PHPMailer panel was detected.
+## affects: phpmailer
+## shodan-query: http.title:"PHP Mailer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PHP Mailer</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 511b5c5845ef89ba6b2882be976a3332ca8b690cca7aef0099f309d6312e5183

@@ -1,0 +1,23 @@
+## id: asus-aicloud-panel
+## name: ASUS AiCloud Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,asus,aicloud,detect,discovery
+## description: ASUS AiCloud Panel was detected.
+## reference: https://www.asus.com/in/content/aicloud/
+## shodan-query: title:"AiCloud"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AiCloud</title>"
+#@ matcher: status_code == 200 || status_code == 401
+
+
+
+
+
+# @VEIL-STAMP: d01113aec08793d8357526d459e21808eef5bb3a1eacda13d043bf67dc748df3

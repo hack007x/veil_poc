@@ -1,0 +1,24 @@
+## id: icinga-web-login
+## name: Icinga Web 2 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,icinga,discovery
+## description: Icinga Web 2 login panel was detected.
+## affects: icinga_web_2
+## shodan-query: http.title:"Icinga Web 2 Login",http.title:"icinga",http.title:"icinga web 2 login"
+## fofa-query: title="icinga web 2 login",title="icinga"
+## verification: true
+
+GET /authentication/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Icinga Web 2 Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: caf47144fe6de16312a2b1ef8acf372f39de7bfda4f952e681f0e2029b07237c

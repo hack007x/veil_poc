@@ -1,0 +1,22 @@
+## id: quantum-scalar-detect
+## name: Quantum Scalar i500 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,quantum,scalar,discovery
+## description: Quantum Scalar i500 login panel was detected.
+## affects: scalar_i500
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>QUANTUM - Scalar (.*) Login Screen/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: de46637aad5d2fb82a383009af8fc1b7c0dceed3302ecfb4fd0d52fcafa60d44

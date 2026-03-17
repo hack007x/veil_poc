@@ -1,0 +1,22 @@
+## id: elemiz-network-manager
+## name: Elemiz Network Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: elemiz,manager,login,panel,discovery
+## description: Elemiz Network Manager login panel was detected.
+## shodan-query: title:"Elemiz Network Manager"
+## verification: true
+
+GET /admin/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Elemiz Network Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a0bbed1df88afaa034530e8500c3e6b6f5c6ba24b1ac69e963bbba812c6b4a7c

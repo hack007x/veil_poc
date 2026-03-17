@@ -1,0 +1,23 @@
+## id: achecker-panel
+## name: AChecker Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,achecker,discovery
+## description: AChecker login panel was detected.
+## reference: https://achecker.achecks.ca/checker/index.php
+## verification: true
+
+GET /checker/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains ": Web Accessibility Checker</title>"
+#@ matcher: body contains "AChecker - Copyright"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: acba6216411728b727cdc46963b1db04a5edf8972e661219888194aceac06d1f

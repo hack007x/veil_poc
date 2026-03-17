@@ -1,0 +1,27 @@
+## id: mybb-forum-install
+## name: MyBB Installation Panel - Detect
+## author: hack007x
+## severity: high
+## tags: panel,mybb,forum,discovery
+## description: MyBB installation panel was detected.
+## affects: mybb
+## cvss-score: 8.6
+## shodan-query: http.title:"MyBB",http.title:"mybb"
+## fofa-query: title="mybb"
+## verification: true
+
+GET /install/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "MyBB"
+#@ matcher: body contains "Installation Wizard"
+#@ matcher: body not_contains "currently locked"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2b38a36524e0d749b18e8527391679b0b193f7c42457e02e9ed39035ae247e03

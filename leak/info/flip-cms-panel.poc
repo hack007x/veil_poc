@@ -1,0 +1,24 @@
+## id: flip-cms-panel
+## name: FlipCMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,flip,cms,discovery
+## description: FlipCMS login panel was detected.
+## reference: https://www.fliplab.it/
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Flip CMS</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<span class="copy">Copyright © 2022 • v\.(.+) • <a href="https:\/\/www.fliplab.it" target="_blank">/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e9c0d0e3ddf8266e64adc174b4f116e00b0f05096c7e1cea4d5d462d72e183c3

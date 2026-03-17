@@ -1,0 +1,22 @@
+## id: rustici-content-controller
+## name: Rustici Content Controller Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rustici,discovery
+## description: Rustici Content Controller panel was detected.
+## shodan-query: title:"Rustici Content Controller"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Rustici Content Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: faed819a9579a0763ba4bec37b1cab3844e23e0f402b8175f2d63d4f9aafd852

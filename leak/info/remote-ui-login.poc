@@ -1,0 +1,22 @@
+## id: remote-ui-login
+## name: Canon Remote UI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Canon Remote UI login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6815
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<th>System Manager ID:</th>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 38c7498516b20e28394f7a6bafd6c535a4f35d6520882c07a6a05dfdb83cc765

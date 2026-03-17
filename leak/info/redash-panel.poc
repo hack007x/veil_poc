@@ -1,0 +1,24 @@
+## id: redash-panel
+## name: Redash Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redash,discovery
+## description: Redash login panel was detected.
+## affects: redash
+## shodan-query: http.favicon.hash:698624197
+## fofa-query: icon_hash=698624197
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login to Redash</title>" || body contains "<title>Login | Redash</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9f6e17a9c27367e0775cd9d906d1a1a05a647cd75baaf33f46795055eb08d1c2

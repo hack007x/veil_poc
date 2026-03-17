@@ -1,0 +1,24 @@
+## id: zblogphp-panel
+## name: Z-BlogPHP Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zblogphp,discovery
+## description: Z-BlogPHP panel was detected.
+## affects: zblogphp
+## shodan-query: http.html:"Z-BlogPHP"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<meta name="generator" content="Z-BlogPHP'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<meta name="generator" content="([:A-Z-a-z 0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 07be87794352427f78d7da76933639e3a9d3ffbf2f9cfa21082f9f413b1499a0

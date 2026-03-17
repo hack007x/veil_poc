@@ -1,0 +1,22 @@
+## id: actifio-panel
+## name: Actifio Resource Center - Panel
+## author: hack007x
+## severity: info
+## tags: panel,actifio,login,detect,discovery
+## description: Actifio Resource Center was detected.
+## shodan-query: http.title:"Actifio Resource Center"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Actifio Resource Center"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 50d2b0aa486be3775f1a32f408316f00d8d93a7560b6d6e793df0a6d6695e21e

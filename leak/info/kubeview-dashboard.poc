@@ -1,0 +1,24 @@
+## id: kubeview-dashboard
+## name: KubeView Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,k8s,kubernetes,kubeview,dashboard,panel,kubeview_project,discovery
+## description: KubeView dashboard was detected.
+## affects: kubeview
+## shodan-query: http.favicon.hash:-379154636,http.title:"kubeview"
+## fofa-query: icon_hash=-379154636,title="kubeview"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>KubeView</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: eebf205bde0ce1202cf795868b5d2114ac2e37dc591925bfded0ac9cdfdff298

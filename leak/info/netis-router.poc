@@ -1,0 +1,23 @@
+## id: netis-router
+## name: Netis Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,netis,router,discovery
+## description: Netis router login panel was detected.
+## reference: https://www.tacnetsol.com/blog/cve-2019-8985-rce
+## verification: true
+
+GET /login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>AP setup</title>"
+#@ matcher: body contains "Server: netis"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 82d2da16335d72fd8dbb7d2d2d33eb777e8e4ce20cd1dbe3162026e9b1689702

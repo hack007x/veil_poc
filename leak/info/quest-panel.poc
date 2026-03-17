@@ -1,0 +1,22 @@
+## id: quest-panel
+## name: Quest Modem Configuration Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,quest,login,detect,discovery
+## description: Quest Modem Configuration login Panel was detected.
+## shodan-query: http.title:"Advanced Setup - Security - Admin User Name &amp; Password"
+## verification: true
+
+GET /cgi-bin/webcm?getpage=../html/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Advanced Setup - Security - Admin User Name &amp; Password</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: be1d374bf5759222f580954d80657c75ecbbf450102b6097ec16896a3be2dabe

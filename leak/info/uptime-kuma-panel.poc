@@ -1,0 +1,25 @@
+## id: uptime-kuma-panel
+## name: Uptime Kuma - Panel
+## author: hack007x
+## severity: info
+## tags: uptime,kuma,panel,login,detect,discovery
+## description: Realtime website and application monitoring tool
+## affects: uptime_kuma
+## reference: https://github.com/louislam/uptime-kuma
+## reference: https://github.com/louislam/uptime-kuma/wiki
+## shodan-query: title:"Uptime Kuma"
+## verification: true
+
+GET /dashboard HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Uptime Kuma</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e00216963b83f88872fb2783cd2d9b2d6dd20d06c1a7e6ee2b164c9317ab16d1

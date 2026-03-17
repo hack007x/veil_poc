@@ -1,0 +1,23 @@
+## id: cisco-ace-device-manager
+## name: Cisco ACE 4710 Device Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco ACE 4710 Device Manager login panel was detected.
+## affects: ace_4710_application_control_engine
+## shodan-query: html:"ACE 4710 Device Manager"
+## verification: true
+
+GET /index.vm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ACE 4710 DM - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ce8879ffd343016dd80395ee1a1715b754850a68d565f924409c4158022e6058

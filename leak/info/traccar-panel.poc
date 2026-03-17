@@ -1,0 +1,24 @@
+## id: traccar-panel
+## name: Traccar Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,traccar,detect,discovery
+## description: Traccar panel was discovered.
+## shodan-query: html:"Traccar"
+## fofa-query: app="Traccar"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Traccar</title>" || body contains "Traccar GPS Tracking System"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 71c7db2d848e1afcecf95f915282aa7a3d998b28d483c90b39e6cd70a1623649

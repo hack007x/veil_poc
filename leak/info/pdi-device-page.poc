@@ -1,0 +1,22 @@
+## id: pdi-device-page
+## name: PDI Intellifuel - Device Page
+## author: hack007x
+## severity: low
+## tags: exposure,pdi,intellifuel,panel,discovery
+## reference: https://www.facebook.com/photo?fbid=629130339257489&set=a.467014098802448
+## shodan-query: html:"PDI Intellifuel"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Intellifuel Device page"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5518b780ec52bed016cc6640ebfb1e7a2b977001fb4a8cfbc9d9c9abaf3ea14c

@@ -1,0 +1,26 @@
+## id: fortisiem-panel
+## name: Fortinet FortiSIEM - Panel
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,login,discovery
+## description: FortiSIEM login panel was discovered.
+## affects: fortisiem
+## shodan-query: http.favicon.hash:-1341442175,http.html:"var hst = location.hostname"
+## fofa-query: icon_hash="-1341442175",body="var hst = location.hostname"
+## verification: true
+
+GET /phoenix/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login</title>"
+#@ matcher: body contains "loginToFlexDiv"
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=last_modified
+
+
+
+
+
+# @VEIL-STAMP: 3665cffbbca2427657df6c489c8759899f7ce866639228c8fcd9770c4ef9ad90

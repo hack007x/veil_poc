@@ -1,0 +1,23 @@
+## id: shoutcast-server
+## name: SHOUTcast Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: SHOUTcast Server panel was detected.
+## affects: dnas
+## shodan-query: http.title:"SHOUTcast Server"
+## verification: true
+
+GET /index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SHOUTcast Server</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6d5004a00c2756a32d0b9a7271fb42cc92c95094dfb14dbdfd950fa7d6cd1276

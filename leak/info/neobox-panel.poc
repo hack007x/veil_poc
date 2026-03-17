@@ -1,0 +1,23 @@
+## id: neobox-panel
+## name: Neobox Web Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,neobox,webserver,discovery
+## description: Neobox Web Server login panel was detected.
+## shodan-query: http.html:"NeoboxUI"
+## fofa-query: app="neobox-Web-Server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'ng-app="NeoboxUI" ng-controller="GlobalCtrl">'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b5f659545ebe74d0a522bdd24d710046fbab1fd570aee7465893d855d52cb857

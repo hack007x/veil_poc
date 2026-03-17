@@ -1,0 +1,20 @@
+## id: jmx-console
+## name: JBoss JMX Management Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,jmx,jboss,redhat,discovery
+## description: JBoss JMX Management Console login panel was detected.
+## affects: jboss_keycloak
+## verification: true
+
+GET /jmx-console/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "JBoss JMX Management Console"
+
+
+
+
+
+# @VEIL-STAMP: 4880cbda41bb9ccc917413a7a58208f4f87008c76fde09dd709ca0f27818af28

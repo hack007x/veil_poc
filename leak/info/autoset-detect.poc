@@ -1,0 +1,23 @@
+## id: autoset-detect
+## name: AutoSet Page - Detect
+## author: hack007x
+## severity: info
+## tags: tech,php,autoset,apache,panel,discovery
+## reference: http://autoset.net/xe/
+## shodan-query: title:"AutoSet"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>AutoSet" || body contains 'alt">AutoSet' || body contains "logo-map logo-autoset"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<title>AutoSet (\d+(\.\d+)+)\b/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 2edcad3f6d4563d8d3df49f5374b58424f632e6fdeb04328b2ab6a48a72f1ccb

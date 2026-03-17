@@ -1,0 +1,22 @@
+## id: cisco-secure-cn
+## name: Cisco Secure CN Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco Secure CN login panel was detected.
+## shodan-query: http.title:"Cisco Secure CN"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco Secure CN</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a702951cb25b3a5973ec0b8b1f425ac847bd823b44389cbc9cb23c8bebcf93a4

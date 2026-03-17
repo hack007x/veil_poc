@@ -1,0 +1,23 @@
+## id: spacelogic-cbus-panel
+## name: SpaceLogic C-Bus Home Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,spacelogic,login,schneider-electric,discovery
+## affects: spacelogic_c-bus_home_controller_firmware
+## shodan-query: html:"SpaceLogic C-Bus",http.html:"spacelogic c-bus"
+## fofa-query: body="spacelogic c-bus"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SpaceLogic C-Bus Home</title>" || body contains 'content="SpaceLogic C-Bus Home'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0d3072ac71c0034f0d0015089379eaa34e2dd55e6c71ce8093604caf8020fef5

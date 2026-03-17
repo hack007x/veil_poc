@@ -1,0 +1,25 @@
+## id: phoronix-panel
+## name: Phoronix Test Suite Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,phoronix,phoronix-media,discovery
+## description: Phoronix Test Suite panel was detected.
+## affects: phoronix_test_suite
+## shodan-query: http.title:"phoronix-test-suite"
+## fofa-query: title="phoronix-test-suite"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>Phoronix Test Suite (.*) - Phoromatic - Welcome<\/title>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<title>Phoronix Test Suite (.*) - Phoromatic - Welcome<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 15152d26f292c3843ee4b1d34e6a7e629ed1fec0db00abf9ed4620ac72fa7efd

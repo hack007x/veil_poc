@@ -1,0 +1,24 @@
+## id: dxplanning-panel
+## name: DXPlanning Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dxplanning,login,detect,discovery
+## description: DXPlanning was detected.
+## reference: https://www.dedalus.com/fr/wp-content/uploads/sites/13/2022/05/Catalogue-formations-DxCare-2022.pdf
+## verification: true
+
+GET /DxPlanning/WebBooking/Version HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "dxplanning/webbooking/"
+#@ matcher: body contains "Webbooking</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<td>([0-9.]+)<\/td>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 564334376dc4f80e6e9e04fb90124d56c58048df692bcbaeea68cd11784bfbc7

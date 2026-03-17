@@ -1,0 +1,22 @@
+## id: sauter-login
+## name: Sauter moduWeb Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sauter,edb,discovery
+## description: Sauter moduWeb login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6883
+## verification: true
+
+GET /?locale=en HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Sauter moduWeb - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d4e0439c6ac10b6f52107dc423020a7037143724c8e09c4a7f73d4e5a0091b07

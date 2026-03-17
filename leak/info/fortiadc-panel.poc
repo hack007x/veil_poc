@@ -1,0 +1,26 @@
+## id: fortiadc-panel
+## name: FortiADC Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,discovery
+## description: FortiADC login panel was detected.
+## affects: fortiadc
+## reference: https://www.fortinet.com/products/application-delivery-controller/fortiadc
+## shodan-query: title:"FortiADC",http.title:"fortiadc"
+## fofa-query: title="fortiadc"
+## verification: true
+
+GET /ui/#navigate/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FortiADC</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7d9c4b64da0a9aa9dc62382957fd269109a1fa80b6f8d0f70a7b8c82f92e624a

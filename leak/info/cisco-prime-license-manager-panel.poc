@@ -1,0 +1,23 @@
+## id: cisco-prime-license-manager-panel
+## name: Cisco Prime License Manager - Detect
+## author: hack007x
+## severity: info
+## tags: cisco,cisco-prime-license-manager,panel,discovery
+## description: Detected exposed Cisco Prime License Manager portals
+## reference: https://www.cisco.com/c/en/us/support/cloud-systems-management/prime-license-manager/series.html
+## shodan-query: http.title:"Cisco Prime License Manager"
+## verification: true
+
+GET /elm-admin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco Prime License Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: cfe2fd6e6f043a294d4d80d2f70b1fd6ca86ae7ff14a0f2447458500e015c64f

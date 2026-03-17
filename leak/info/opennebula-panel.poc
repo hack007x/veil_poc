@@ -1,0 +1,26 @@
+## id: opennebula-panel
+## name: OpenNebula Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,opennebula,discovery
+## description: OpenNebula login panel was detected.
+## reference: https://opennebula.io/
+## reference: https://github.com/OpenNebula
+## shodan-query: http.html:"opennebula",title:"OpenNebula Sunstone Login",http.favicon.hash:-1616420987,http.favicon.hash:656672194
+## fofa-query: title="OpenNebula Sunstone Login",icon_hash="-119786698",icon_hash="656672194"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>OpenNebula" || body contains "OpenNebula Systems" || body contains 'target="_blank">OpenNebula'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/href="css\/app\.min\.css\?v=([\d\.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1bb9c800292323b5c354a7040f0adf41f13bb38b9de00bbb46581eae660b2ab0

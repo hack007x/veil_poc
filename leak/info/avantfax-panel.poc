@@ -1,0 +1,26 @@
+## id: avantfax-panel
+## name: AvantFAX Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,avantfax,login,discovery
+## description: An AvantFAX login panel was discovered.
+## affects: avantfax
+## reference: http://www.avantfax.com/
+## shodan-query: http.title:"AvantFAX - Login",http.title:"avantfax - login"
+## fofa-query: title="avantfax - login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>- AvantFAX - Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<p align="center">([0-9.]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8bb58468391fc18c20dfc4ea53fc254cdd71fd63497c40285ccf4fa2c7f3e54e

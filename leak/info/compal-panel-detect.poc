@@ -1,0 +1,20 @@
+## id: compal-panel-detect
+## name: Compal CH7465LG Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,compal,discovery
+## description: Compal CH7465LG login panel was detected.
+## affects: ch7465lg_firmware
+## verification: true
+
+GET /common_page/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<!--for router status S-->"
+
+
+
+
+
+# @VEIL-STAMP: 101e13afa7f8a41e359a0edcb41415d22fd8c429bf556c26718a198ad345a702

@@ -1,0 +1,24 @@
+## id: vmware-vcloud-director
+## name: VMware vCloud Director Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,vcloud,discovery
+## description: VMware vCloud Director panel was detected.
+## affects: vcloud_director
+## shodan-query: title:"VMware vCloud Director",http.title:"vmware vcloud director"
+## fofa-query: title="vmware vcloud director"
+## verification: true
+
+GET /cloud/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>VMware vCloud Director</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c160079423dc6055d501e69910ada4fe0ea8dcc166cbe133ecb5bbd962d3c704

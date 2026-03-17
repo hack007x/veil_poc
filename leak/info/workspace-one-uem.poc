@@ -1,0 +1,23 @@
+## id: workspace-one-uem
+## name: VMware Workspace ONE UEM Airwatch Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,workspaceone,vmware,discovery
+## description: VMware Workspace ONE UEM Airwatch login panel was detected.
+## affects: workspace_one_uem
+## reference: https://twitter.com/Jhaddix/status/1295861505963909120
+## shodan-query: http.html:"Airwatch",http.html:"airwatch"
+## fofa-query: body="airwatch"
+## verification: true
+
+GET /AirWatch/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "About VMware AirWatch" || body contains 'content="AirWatch' || body contains "/AirWatch/Images"
+
+
+
+
+
+# @VEIL-STAMP: d4a15735027b0a2492ff6c8c95880f8d0529bc71e75dea921f973340536822c6

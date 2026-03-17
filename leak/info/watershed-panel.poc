@@ -1,0 +1,23 @@
+## id: watershed-panel
+## name: Watershed Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,watershed,discovery
+## description: Watershed login panel was detected.
+## shodan-query: http.title:"Watershed LRS"
+## verification: true
+
+GET /app/outside.html#/signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Watershed LRS"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 17aa24b40f9fe17abe5e10daf54f5bb6c82e25febfd7cf222338e31b56610f1c

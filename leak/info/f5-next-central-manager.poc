@@ -1,0 +1,23 @@
+## id: f5-next-central-manager
+## name: F5 Next Central Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,login,f5,discovery
+## description: F5 Next Central Manager login panel was detected.
+## affects: big-ip
+## reference: https://clouddocs.f5.com/bigip-next/latest/use_cm/
+## verification: true
+
+GET /gui/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>BIG-IP Next | Central Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4df1c423b5d45d80a4bdd8537b45063576f3236c8effb5b99f21159f7ea4b5d8

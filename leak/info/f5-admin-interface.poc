@@ -1,0 +1,25 @@
+## id: f5-admin-interface
+## name: F5 Admin Interface - Detect
+## author: hack007x
+## severity: info
+## tags: f5,admin,detect,panel,login,discovery
+## description: Detects F5 Admin Interfaces.
+## shodan-query: html:"BIG-IP Configuration Utility"
+## verification: true
+
+GET /tmui/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Configuration Utility"
+#@ matcher: body contains "F5 Networks"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Copyright\s+([0-9\-]+),/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 974daedfa0e07a1b3abbf81de4b6e6482608d91c105d711a01c731efd79e07a3

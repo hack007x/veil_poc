@@ -1,0 +1,22 @@
+## id: gerapy-detect
+## name: Gerapy Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,gerapy,panel,discovery
+## description: Gerapy panel was detected.
+## affects: gerapy
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Gerapy</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5fbbfda14dbc64a4dbffb4cb4454e3e815b0a29e9255b925a74b275780754662

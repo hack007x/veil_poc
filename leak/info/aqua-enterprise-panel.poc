@@ -1,0 +1,23 @@
+## id: aqua-enterprise-panel
+## name: Aqua Enterprise - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,aqua,aquasec,discovery
+## description: Aqua Enterprise panel was detected.
+## reference: https://www.aquasec.com/
+## shodan-query: http.title:"Aqua Enterprise" || http.title:"Aqua Cloud Native Security Platform"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Aqua Enterprise</title>" || body contains "<title>Aqua Cloud Native Security Platform</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 65a0e49ed5e747ad1843839fdf141623c863076c5119e572faabc0009f5de485

@@ -1,0 +1,22 @@
+## id: o2-easy-panel
+## name: O2 Router Setup Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,o2,easy,iot,router,discovery
+## description: O2 router setup panel was detected.
+## shodan-query: title:"O2 Easy Setup"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>O2 Easy Setup</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b83d4cae557f4cf9bf91d61c0be478319d12bcdff7d5e06fc338547e21043762

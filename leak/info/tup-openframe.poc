@@ -1,0 +1,23 @@
+## id: tup-openframe
+## name: T-Up OpenFrame
+## author: hack007x
+## severity: info
+## tags: exposure,login,tup,openframe,panel,discovery
+## reference: https://www.facebook.com/photo/?fbid=642772827893240&set=a.467014098802448
+## shodan-query: http.favicon.hash:824580113
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "T-Up OpenFrame"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fee246c575d5adb2f3be9e99aac898523d2d0c39c825667a4d662002ef289338

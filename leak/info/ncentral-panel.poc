@@ -1,0 +1,25 @@
+## id: ncentral-panel
+## name: N-central Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,n-central,discovery
+## description: N-central login panel was detected.
+## affects: n-central
+## shodan-query: http.title:"N-central Login",http.favicon.hash:1519363246,http.favicon.hash:1937353549,Set-Cookie: ncentral_version=
+## fofa-query: title="N-central Login",icon_hash="1519363246",icon_hash="1937353549",Set-Cookie: ncentral_version=
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'class="ncentral"'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/ncentralVersion:\s+"([\d\.]+)",/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b7b78a0051702828e9f83da7d9547b3a3f2893f5fc7e39c735523eaf410c423c

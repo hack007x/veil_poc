@@ -1,0 +1,24 @@
+## id: kubernetes-enterprise-manager
+## name: Kubernetes Enterprise Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,kubernetes,panel,discovery
+## description: Kubernetes Enterprise Manager panel was detected.
+## affects: kubernetes
+## shodan-query: http.title:"kubernetes web view"
+## fofa-query: app="Kubernetes-Enterprise-Manager",title="kubernetes web view",app="kubernetes-enterprise-manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Kubernetes Enterprise Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b5c9390f8ddc21207404b74c0ffb47487bf9d172e6bcef6150637ad88088675f

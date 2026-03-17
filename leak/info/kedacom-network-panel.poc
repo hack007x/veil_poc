@@ -1,0 +1,22 @@
+## id: kedacom-network-panel
+## name: Kedacom Network Keyboard Console Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,kedacom,network,discovery
+## description: A Kedacom network keyboard console panel was detected.
+## fofa-query: 网络键盘控制台
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "网络键盘控制台"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6dd3d825fd5e7655b3e65258bfb6ed1a125ad8c52f2b30772e876c22b3ab28ff

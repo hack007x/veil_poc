@@ -1,0 +1,26 @@
+## id: syncthru-web-service
+## name: SyncThru Web Service Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,syncthru,printer,samsung,discovery
+## description: SyncThru Web Service panel was detected.
+## affects: syncthru_web_service
+## reference: https://www.exploit-db.com/ghdb/7843
+## shodan-query: title:"SyncThru Web Service",http.title:"syncthru web service"
+## fofa-query: title="syncthru web service"
+## verification: true
+
+GET /sws/index.sws HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SyncThru Web Service</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2bbfbf9b6038dbce37f67e3bc3801e85d9766bab61c1f1f1f7937d8e88fcc8f7

@@ -1,0 +1,25 @@
+## id: zblog-admin-panel
+## name: Z-BlogPHP Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: zblog,panel,zblogcn,discovery
+## description: Z-BlogPHP admin login panel was detected.
+## affects: zblogphp
+## reference: https://github.com/zblogcn/zblogphp
+## shodan-query: http.title:zblog
+## fofa-query: title=zblog
+## verification: true
+
+GET /zb_system/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Z-Blog</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ecbd235a59b85521c434d14b660ac59dc48137e5049b82996407528e289a2914

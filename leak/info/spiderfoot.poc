@@ -1,0 +1,23 @@
+## id: spiderfoot
+## name: SpiderFoot Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,tech,spiderfoot,discovery
+## description: SpiderFoot login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SpiderFoot"
+#@ matcher: body contains "support@spiderfoot.net"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/SpiderFoot v([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 2db1d93c1b159f2d058cd353090e01119d701db9e4e20d54a8e601bf6d6fcb9d

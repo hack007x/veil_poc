@@ -1,0 +1,25 @@
+## id: speedtest-panel
+## name: Speedtest Panel - Detection
+## author: hack007x
+## severity: info
+## tags: speedtest,tracker,panel,login,discovery
+## description: Speedtest panel was discovered
+## affects: speed_test
+## reference: https://github.com/alexjustesen/speedtest-tracker
+## reference: https://docs.speedtest-tracker.dev/
+## shodan-query: title:"Speedtest Tracker"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login -  Speedtest Tracker"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7bb28bf50da66c22ec2ce823242e38a31cf6251b315c8d7bc11d2ca402ea11b1

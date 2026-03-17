@@ -1,0 +1,24 @@
+## id: tabby-panel
+## name: Tabby Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,tabby,detect,discovery
+## description: Tabby panel was discovered.
+## reference: https://github.com/TabbyML/tabby
+## fofa-query: title="Tabby"
+## verification: true
+
+GET /auth/signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Tabby - Sign In"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4b2c7e9e5deed2c43888ddc74308d1b15f82465c9ecc03a9a46678529c4b87d0

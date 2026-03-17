@@ -1,0 +1,23 @@
+## id: asus-router-panel
+## name: Asus Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,asus,router,iot,discovery
+## description: Asus router login panel was detected.
+## affects: rt-n53
+## shodan-query: Server: httpd/2.0 port:8080
+## verification: true
+
+GET /Main_Login.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ASUS Login</title>" || body contains "Sign in with your ASUS router account"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 199161dddf246c70eb667939ba263cec446a8df008b87ba43b01ddcb6310c73c

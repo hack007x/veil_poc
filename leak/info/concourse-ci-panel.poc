@@ -1,0 +1,23 @@
+## id: concourse-ci-panel
+## name: Concourse CI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,concourse,oss,discovery
+## description: Concourse CI login panel was detected.
+## affects: concourse
+## reference: https://github.com/concourse/concourse
+## reference: https://concourse-ci.org
+## shodan-query: title:"Concourse"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Concourse</title>" || body contains "login to Concourse"
+
+
+
+
+
+# @VEIL-STAMP: ae78d23f2c88b9c027e3099ace6c0471019a364231687a1cdbc3efa16288612f

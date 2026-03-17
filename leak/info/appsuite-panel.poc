@@ -1,0 +1,25 @@
+## id: appsuite-panel
+## name: Appsuite Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,appsuite,detect,open-xchange,discovery
+## affects: open-xchange_appsuite
+## shodan-query: html:"Appsuite",http.html:"appsuite"
+## fofa-query: body="appsuite"
+## verification: true
+
+GET /appsuite/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "/appsuite"
+#@ matcher: body contains "io-ox-login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: aa0a454fb9584c6505861c99e653854ebe69e12b26d732079230fe629acbfe1e

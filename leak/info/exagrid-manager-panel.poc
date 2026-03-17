@@ -1,0 +1,26 @@
+## id: exagrid-manager-panel
+## name: ExaGrid Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: exagrid,manager,login,panel,discovery
+## description: ExaGrid Manager login panel was detected.
+## affects: backup_appliance
+## shodan-query: title:"ExaGrid Manager",http.title:"exagrid manager"
+## fofa-query: title="exagrid manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "ExaGrid Manager"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 67a610a00573470a38cf5f414d28ccaa29d188cc940a710993ce4ca95c09e91c

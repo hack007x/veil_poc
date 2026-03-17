@@ -1,0 +1,25 @@
+## id: netflix-conductor-ui
+## name: Netflix Conductor UI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: webserver,netflix,conductor,panel,discovery
+## description: Netflix Conductor UI panel was detected.
+## affects: conductor
+## shodan-query: http.title:"Conductor UI", http.title:"Workflow UI",http.title:"conductor ui", http.title:"workflow ui"
+## fofa-query: title="conductor ui", http.title:"workflow ui"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Conductor UI</title>" || body contains "<title>Workflow UI</title>"
+
+
+
+
+
+# @VEIL-STAMP: 3211e4528460d946072e7a236796cf12c048e9d3c0b5a74c07ecdba77fe7edbc

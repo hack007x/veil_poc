@@ -1,0 +1,25 @@
+## id: weblogic-uddiexplorer
+## name: Oracle WebLogic UDDI Explorer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,oracle,weblogic,tenable,discovery
+## description: Oracle WebLogic UDDI Explorer panel was detected.
+## affects: weblogic_server
+## reference: https://www.tenable.com/plugins/was/112421
+## shodan-query: product:"oracle weblogic",http.title:"oracle peoplesoft sign-in"
+## fofa-query: title="oracle peoplesoft sign-in"
+## verification: true
+
+GET /uddiexplorer/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "WebLogic UDDI Explorer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: beac5ad4ef2df5988d57a6162a3b23296e60f2c8a35b8db11b12cb433d9c0d42

@@ -1,0 +1,23 @@
+## id: hoobs-panel
+## name: HOOBS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,iot,homekit,hoobs,discovery
+## description: HOOBS is a home automation platform that bridges HomeKit and non-HomeKit devices.
+## reference: https://hoobs.com
+## shodan-query: http.title:"HOOBS"
+## verification: true
+
+GET /login?url=%2F HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>HOOBS"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 95723ada2d53d2e8380c5589ae44be1737e5de4a1e3954c51187bfff86079b97

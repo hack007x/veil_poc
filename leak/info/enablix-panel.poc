@@ -1,0 +1,22 @@
+## id: enablix-panel
+## name: Enablix Panel - Detect
+## author: hack007x
+## severity: info
+## tags: enablix,login,panel,discovery
+## description: Enablix panel was detected.
+## shodan-query: title:"Enablix"
+## verification: true
+
+GET /login.html#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Enablix</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9bf15bfcec7bf7780f4f05aa905806b69c7a9d829cc50a691b301eb11117d5bc

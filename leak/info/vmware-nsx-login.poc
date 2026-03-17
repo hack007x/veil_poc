@@ -1,0 +1,23 @@
+## id: vmware-nsx-login
+## name: VMware NSX Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## description: VMware NSX login panel was detected.
+## affects: nsx-t_data_center
+## shodan-query: html:"vmw_nsx_logo-black-triangle-500w.png"
+## verification: true
+
+GET /login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>VMware Appliance Management</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 19fc51f06c9a49641bd8b103fe0c573143371b46d2737e78835208135a0b8836

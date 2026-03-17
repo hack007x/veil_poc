@@ -1,0 +1,24 @@
+## id: vinchin-panel
+## name: Vinchin Backup & Recovery Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vinchin,login,discovery
+## description: Vinchin Backup & Recovery login panel was detected.
+## affects: vinchin_backup_and_recovery
+## shodan-query: html:"VinChin"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Vinchin Backup & Recovery"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a533737f3162d1e28eed31302aacf6de9e74b8944b52d9264946221884f2ec41

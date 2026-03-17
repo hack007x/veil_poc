@@ -1,0 +1,23 @@
+## id: symantec-iam-console
+## name: Symantec Identity Manager Management Console
+## author: hack007x
+## severity: info
+## tags: symantec,panel,login,broadcom,discovery
+## description: Management Console to administrate Symantec Identity Manager environment, authentication is sometimes disabled.
+## affects: symantec_identity_manager
+## reference: https://techdocs.broadcom.com/us/en/symantec-security-software/identity-security/identity-manager/14-4/configuring/environments-overview/management-console.html
+## verification: true
+
+GET /iam/immanage/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Management Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 25514a0833a6fcb5926fbeeb5796e0e141be18a1ce386bbb1b73e84b2d54992b

@@ -1,0 +1,26 @@
+## id: gogs-panel
+## name: Gogs Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gogs,discovery
+## description: Gogs login panel was detected.
+## affects: gogs
+## reference: https://gogs.io/
+## shodan-query: title:"Sign In - Gogs",http.title:"sign in - gogs",cpe:"cpe:2.3:a:gogs:gogs",Set-Cookie: i_like_gogs=,http.favicon.hash:-449283196,http.favicon.hash:917966895,http.favicon.hash:1935513730
+## fofa-query: title="sign in - gogs",Set-Cookie: i_like_gogs=,icon_hash="-449283196",icon_hash="917966895",icon_hash="1935513730"
+## verification: true
+
+GET /user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<meta property="og:description" content="Gogs is a painless self-hosted Git service.">' || body contains '<meta name="description" content="Gogs is a painless self-hosted Git service" />' || body contains "<title>Sign In - Gogs</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version: ([0-9.]+) Page:/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 70345a620708476d3a0bb1a5eca894eeb3f23665a190f501b746cc72651e3963

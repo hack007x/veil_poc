@@ -1,0 +1,26 @@
+## id: ambassador_api
+## name: Ambassador API Gateway Diagnostics - Exposure
+## author: hack007x
+## severity: medium
+## tags: exposure,ambassador,api,gateway,misconfig
+## description: Detected Ambassador API Gateway diagnostics portal, revealing service mappings, API endpoints, routing configurations, and internal cluster information.
+## reference: https://www.getambassador.io/docs/edge-stack/latest/
+## reference: https://www.getambassador.io/docs/edge-stack/latest/topics/running/diagnostics/
+## shodan-query: http.title:"Ambassador Diagnostic Overview"
+## fofa-query: title="Ambassador Diagnostic Overview"
+## verification: true
+
+GET /ambassador/v0/diag/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Ambassador Diagnostic Overview" && body contains "Ambassador version"
+#@ matcher: body contains "Cluster ID" || body contains "Ambassador Route Table" || body contains "Ambassador namespace"
+
+
+
+
+
+# @VEIL-STAMP: e205fe5be032000d4c8461f96eab2e56ae4db58aa34fbeee001617d7af30c005

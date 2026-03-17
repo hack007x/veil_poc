@@ -1,0 +1,24 @@
+## id: looker-panel
+## name: Looker Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,looker,discovery
+## description: Looker login panel was detected.
+## shodan-query: http.html:"lookerVersion"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "lookerVersion"
+#@ matcher: body contains "lookerLocation.title"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/lookerVersion: '([0-9.]+)',/, group=1
+
+
+
+
+
+# @VEIL-STAMP: cbb5ef5298e98132916019d61b93aeb4b89e3147fe186fca0196bd6162fb2a36

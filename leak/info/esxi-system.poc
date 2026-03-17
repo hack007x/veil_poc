@@ -1,0 +1,24 @@
+## id: esxi-system
+## name: ESXi System Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,esxi,vmware,discovery
+## description: ESXi System login panel was detected.
+## affects: esxi
+## shodan-query: html:"esxUiApp",http.html:"esxuiapp",cpe:"cpe:2.3:o:vmware:esxi"
+## fofa-query: body="esxuiapp"
+## verification: true
+
+GET /ui/#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'ng-app="esxUiApp"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2673190caa40969ee600336691102344ca1ed4505b9139f53928412615d80841

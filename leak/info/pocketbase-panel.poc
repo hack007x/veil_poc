@@ -1,0 +1,24 @@
+## id: pocketbase-panel
+## name: PocketBase Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pocketbase,login,detect,discovery
+## description: PocketBase Login panel was discovered.
+## reference: https://pocketbase.io/
+## reference: https://pocketbase.io/docs/
+## shodan-query: http.favicon.hash:981081715
+## verification: true
+
+GET /_/#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PocketBase"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e4011e3b56b76bc4d481cfd5b149cbf9e2f7174803741cf0b26924a20ace4851

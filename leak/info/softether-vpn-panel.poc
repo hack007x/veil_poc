@@ -1,0 +1,23 @@
+## id: softether-vpn-panel
+## name: SoftEther VPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vpn,softether,discovery
+## description: SoftEther VPN panel was detected.
+## affects: vpn
+## shodan-query: http.title:"SoftEther VPN Server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SoftEther VPN Server</title>"
+#@ matcher: status_code == 202
+
+
+
+
+
+# @VEIL-STAMP: 0e07c1e328b4e502c4566d497a7f7c2489f8654a5b034033b4d51120cbb18a9b

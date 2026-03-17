@@ -1,0 +1,24 @@
+## id: solarwinds-servuftp-detect
+## name: SolarWinds Serv-U File Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: solarwinds,panel,discovery
+## description: SolarWinds Serv-U File Server panel was detected.
+## affects: serv-u
+## shodan-query: product:"rhinosoft serv-u httpd"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /Serv-U/
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=Server
+
+
+
+
+
+# @VEIL-STAMP: 0b88815b2e9ef9f2d0e22348bc66c53a36cb60b0dda000da730214453a252be5

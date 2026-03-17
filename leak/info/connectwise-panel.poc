@@ -1,0 +1,26 @@
+## id: connectwise-panel
+## name: ConnectWise Control Remote Support Software Panel - Detect
+## author: hack007x
+## severity: info
+## tags: screenconnect,panel,connectwise,detect,discovery
+## affects: screenconnect
+## shodan-query: http.favicon.hash:-82958153
+## fofa-query: app="screenconnect-remote-support-software",icon_hash=-82958153
+## verification: true
+
+GET /Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "ScreenConnect"
+#@ matcher: body contains "ConnectWise Control Remote Support"
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=Server
+
+
+
+
+
+# @VEIL-STAMP: 455c4b05cc56ed34028d1f7c262506a29748dba7bce31a2f6baca04df8e9379d

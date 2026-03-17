@@ -1,0 +1,24 @@
+## id: overseerr-panel
+## name: Overseerr Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,overseerr,detect,discovery
+## description: Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.
+## reference: https://overseerr.dev/
+## reference: https://github.com/sct/overseerr
+## fofa-query: Overseerr account
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Sign In - Overseerr"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 02f481509f509fa9ad65340bce5f36469c6e4ffd9bd9c610690ea610b6c250c7

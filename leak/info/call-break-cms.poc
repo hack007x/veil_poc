@@ -1,0 +1,19 @@
+## id: call-break-cms
+## name: Call Break CMS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Call Break CMS panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Call Break CMS</title>"
+
+
+
+
+
+# @VEIL-STAMP: 841621d4c4ea929d7ce0dcbcf3410d8b53bcbc24705711c0b162ab7a63d88fed

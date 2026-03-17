@@ -1,0 +1,24 @@
+## id: corebos-panel
+## name: coreBOS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,corebos,discovery
+## description: coreBOS panel was detected.
+## affects: corebos
+## shodan-query: http.html:"corebos"
+## fofa-query: body="corebos"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Powered by coreBOS"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8b132581afde7596412f1324d8081fbb04cb97047444433ae0256b0ca2da2911

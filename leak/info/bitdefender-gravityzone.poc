@@ -1,0 +1,24 @@
+## id: bitdefender-gravityzone
+## name: Bitdefender GravityZone Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bitdefender,discovery
+## description: Bitdefender GravityZone panel was detected.
+## affects: gravityzone
+## shodan-query: title:"Bitdefender GravityZone",http.title:"bitdefender gravityzone"
+## fofa-query: title="bitdefender gravityzone"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Bitdefender GravityZone</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e4e131ec78ff276a52a0462a7ad4e5e0c0307a98b6836d30488fb63e099ed223

@@ -1,0 +1,25 @@
+## id: livehelperchat-admin-panel
+## name: Live Helper Chat Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: livehelperchat,panel,discovery
+## description: Live Helper Chat admin login panel was detected.
+## affects: live_helper_chat
+## shodan-query: title:"Live Helper Chat",http.title:"live helper chat"
+## fofa-query: title="Live Helper Chat",title="live helper chat"
+## verification: true
+
+GET /site_admin/user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Live Helper Chat"
+#@ matcher: body contains "Please login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d3954179831c0d294fee60a7c0376c5cbaede8d953dc2d2cdc5f479465c531f5

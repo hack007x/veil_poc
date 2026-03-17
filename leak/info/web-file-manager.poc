@@ -1,0 +1,24 @@
+## id: web-file-manager
+## name: Web File Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,filemanager,discovery
+## description: Web File Manager login panel was detected.
+## affects: file_manager
+## shodan-query: title:"Web File Manager"
+## verification: true
+
+GET /Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Web File Manager"
+#@ matcher: body contains "Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 72d3dd80b3db7e02b00a591d6344a80bdb5f5d9311c43b17dd119d35db60adb6

@@ -1,0 +1,23 @@
+## id: mybb-forum-detect
+## name: MyBB Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mybb,forum,discovery
+## description: MyBB login panel was detected.
+## affects: mybb
+## shodan-query: http.title:"MyBB",http.title:"mybb"
+## fofa-query: title="mybb"
+## verification: true
+
+GET /portal.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "MyBB Forum" || body contains "<title>MyBB"
+
+
+
+
+
+# @VEIL-STAMP: 4523bbd5cc213c8db344655059d3221338b0cdb3d4d6c9be40f819691c0c4e63

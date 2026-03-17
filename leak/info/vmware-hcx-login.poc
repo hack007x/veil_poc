@@ -1,0 +1,23 @@
+## id: vmware-hcx-login
+## name: VMware HCX Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## description: VMware HCX login panel was detected.
+## affects: vmware_hcx
+## shodan-query: title:"VMware HCX"
+## verification: true
+
+GET /hybridity/ui/hcx-client/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>VMware HCX</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 55174f5f6f9067ca7daeea41507ca619d5962bb257b4c2edfa2f22d21fb4399f

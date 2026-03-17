@@ -1,0 +1,25 @@
+## id: bluemind-panel
+## name: Bluemind Panel - Detect
+## author: hack007x
+## severity: info
+## tags: bluemind,login,panel,detect,discovery
+## description: Bluemind application panel was discovered.
+## reference: https://bluemind.net/
+## shodan-query: http.title:"Welcome to BlueMind"
+## verification: true
+
+GET /login/native HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'alt="BlueMind"'
+#@ matcher: body contains "window.bmExtensions"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/window\.applicationVersion = "([0-9.]+)";/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 9bfaa8cd1d07d1395960c68e709dc52934f50bef9406f0ebe21844696d64684f

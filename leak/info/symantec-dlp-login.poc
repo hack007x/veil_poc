@@ -1,0 +1,24 @@
+## id: symantec-dlp-login
+## name: Symantec Data Loss Prevention Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: symantec,panel,login,discovery
+## description: Symantec Data Loss Prevention login panel was detected.
+## affects: data_loss_prevention
+## shodan-query: http.title:"Symantec Data Loss Prevention",http.title:"symantec data loss prevention"
+## fofa-query: title="symantec data loss prevention"
+## verification: true
+
+GET /ProtectManager/Logon HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Symantec Data Loss Prevention</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 72bbbda84bfdf3432d1dd3abfcecb9d19f2ac01eed7e980fd77d0885706271ae

@@ -1,0 +1,22 @@
+## id: unauthenticated-frp
+## name: FRPS Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: frp,unauth,panel,discovery
+## description: FRPS Dashboard panel was detected.
+## reference: https://github.com/fatedier/frp/
+## verification: true
+
+GET /static/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>frps dashboard</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e29c9b6b33b1f7ee91ab38de1c11078a4606be61ecfdde17ec10501918bc5aae

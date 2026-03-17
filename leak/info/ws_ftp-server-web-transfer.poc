@@ -1,0 +1,25 @@
+## id: ws_ftp-server-web-transfer
+## name: WS_FTP Server Web Transfer - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,ws_ftp,progress,discovery
+## description: WS_FTP Server Web Transfer panel was detected.
+## affects: ws_ftp
+## shodan-query: http.title:"WS_FTP Server Web Transfer",ws_ftp port:22,http.title:"ad hoc transfer",http.title:"ws_ftp server web transfer"
+## fofa-query: title="ws_ftp server web transfer",title="ad hoc transfer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Web Transfer Client"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 87bef23363f381aec1776c003b5269678b5ab589a68643e0855efa6f92ed29c0

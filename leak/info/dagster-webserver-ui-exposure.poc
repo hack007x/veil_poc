@@ -1,0 +1,28 @@
+## id: dagster-webserver-ui-exposure
+## name: Dagster - Webserver UI Exposure
+## author: hack007x
+## severity: medium
+## tags: dagster,data,exposure,panel
+## description: Detected an exposed Dagster data orchestration webserver UI, potentially allowing unauthorized access to data pipelines, job configurations, and execution history.
+## cvss-score: 6.5
+## reference: https://dagster.io/
+## reference: https://github.com/dagster-io/dagster
+## shodan-query: http.title:"Dagster"
+## fofa-query: title="Dagster"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Dagster</title>" && body contains "initialization-data" && body contains "instanceId"
+#@ matcher: body contains "liveDataPollRate" || body contains "telemetryEnabled" || body contains "pathPrefix" || body contains "X-Dagster"
+
+
+
+
+
+# @VEIL-STAMP: a7a620ec9e4d29da3582355edfaa7c8b92168aab854beba210ad3c9e3c47a477

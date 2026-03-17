@@ -1,0 +1,24 @@
+## id: tracer-sc-login
+## name: Tracer SC Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tracer,trane,iot,panel,login,discovery
+## description: Tracer SC login panel was detected.
+## affects: tracer_sc
+## reference: https://www.trane.com/commercial/north-america/us/en/products-systems/building-management---automation/building-automation-systems/tracer-sc-plus.html
+## verification: true
+
+GET /hui/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Tracer SC</title>"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: 80282771d4e9a1b6a38d84175976cbeb7d6ea9f07c102759d42ca92e9808609e

@@ -1,0 +1,24 @@
+## id: jenkins-api-panel
+## name: Jenkins API Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,api,jenkins,discovery
+## description: Jenkins API panel was detected.
+## affects: jenkins
+## shodan-query: cpe:"cpe:2.3:a:jenkins:jenkins",http.favicon.hash:81586312,product:"jenkins"
+## fofa-query: icon_hash=81586312
+## verification: true
+
+GET /api/xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "hudson.model.Hudson"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bbfc0e208a3e0f46bec86f1404f62f1019b81f1675773c7a02c0146e3f94c589

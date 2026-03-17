@@ -1,0 +1,26 @@
+## id: hashicorp-consul-webgui
+## name: HashiCorp Consul Web UI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: consul,webserver,panel,hashicorp,discovery
+## description: HashiCorp Consul Web UI login panel was detected,
+## affects: consul
+## shodan-query: http.title:"Consul by HashiCorp",http.title:"consul by hashicorp",cpe:"cpe:2.3:a:hashicorp:consul"
+## fofa-query: title="consul by hashicorp"
+## verification: true
+
+GET /ui/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Consul by HashiCorp</title>" || body contains "%22%2C%22CONSUL_COPYRIGHT_URL%22%3A%22https%3A%2F%2Fwww.hashicorp.com%22"
+#> extract: name=ex_regex, from=body, regex=/CONSUL_VERSION:.*([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c6433812a97b3d431ed4f5097c50318a0076805abf7a16e5ba21bae2b8fe446c

@@ -1,0 +1,22 @@
+## id: fatpipe-ipvpn-panel
+## name: FatPipe IPVPN® Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ipvpn,fatpipe,discovery
+## reference: https://www.fatpipeinc.com/products/index.php
+## verification: true
+
+GET /fpui/jsp/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FatPipe IPVPN&nbsp;| Log in</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<h5>([0-9.a-z]+)<\/h5>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 672f4d7b479d3baa7abce37c8246b418b64ce8697542094600c1a11591c2bfd1

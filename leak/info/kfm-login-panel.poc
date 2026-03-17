@@ -1,0 +1,22 @@
+## id: kfm-login-panel
+## name: Kae's File Manager Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kfm,discovery
+## description: Kae's File Manager admin login panel was detected.
+## verification: true
+
+GET /kfm/admin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "KFM Login"
+#@ matcher: body contains "password"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 70c41fe54c155da8b890162920f9a3353b32b61b9cc07011197e11d134678f83

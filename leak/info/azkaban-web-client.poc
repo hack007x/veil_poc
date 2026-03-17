@@ -1,0 +1,24 @@
+## id: azkaban-web-client
+## name: Azkaban Web Client
+## author: hack007x
+## severity: info
+## tags: panel,azkaban,discovery
+## description: An Azkaban web client panel was discovered.
+## affects: azkaban
+## reference: https://azkaban.github.io/
+## shodan-query: http.title:"Azkaban Web Client"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Azkaban Web Client"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4b19b7c5a0c0b604843d28d55655cd718c2ae81c41e8c3b5b9314bc2b5067a0e

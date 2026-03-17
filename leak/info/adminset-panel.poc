@@ -1,0 +1,23 @@
+## id: adminset-panel
+## name: Adminset Login Panel
+## author: hack007x
+## severity: info
+## tags: adminset,panel,discovery
+## description: An Adminset login panel was detected.
+## fofa-query: app="AdminSet"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>AdminSet Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 07fcaec25b7d69b87f127230bfd0025bb61d07c317b49766f0c1575dbb537c62

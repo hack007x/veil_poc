@@ -1,0 +1,22 @@
+## id: loxone-web-panel
+## name: Loxone WebInterface Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,loxone,detect,discovery
+## shodan-query: html:"<title>Webinterface</title>"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Webinterface</title>"
+#@ matcher: body contains "loxone"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 18e209b933260552acb2864bbe42cdc7b7036c49a7a60d9636e21f2df6a1e6f2

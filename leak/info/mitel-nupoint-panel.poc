@@ -1,0 +1,25 @@
+## id: mitel-nupoint-panel
+## name: Mitel NuPoint Unified Messaging Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mitel,nupoint-unified-messaging,detect,discovery
+## description: Mitel NuPoint Unified Messaging login panel was detected.
+## affects: micollab
+## shodan-query: http.html:"mitel networks",http.favicon.hash:"-1922044295",http.html:"micollab end user portal"
+## fofa-query: body="mitel networks","micollab end user portal" && title=="redirecting...",body="micollab end user portal",icon_hash="-1922044295"
+## verification: true
+
+GET /npm-admin/showLoginPage.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>NuPoint Unified Messaging - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 556f52b34c0cfd6924fb4e518336513e78346b91062e823d7093c2d993207c09

@@ -1,0 +1,22 @@
+## id: sevone-nms-network-manager
+## name: SevOne NMS Network Manager
+## author: hack007x
+## severity: info
+## tags: sevone,manager,login,panel,discovery
+## shodan-query: http.title:"SevOne NMS - Network Manager"
+## verification: true
+
+GET /#login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "SevOne NMS - Network Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a7d4fc178fa119fe8a4d976fb9fcc1b2f3dd46c46ba41d0379ac2252c788988a

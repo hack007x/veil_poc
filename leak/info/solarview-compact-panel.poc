@@ -1,0 +1,24 @@
+## id: solarview-compact-panel
+## name: SolarView Compact Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,solarview,iot,contec,discovery
+## description: SolarView Compact panel was detected.
+## affects: solarview_compact_firmware
+## shodan-query: http.html:"SolarView Compact",http.favicon.hash:"-244067125",http.html:"solarview compact",cpe:"cpe:2.3:o:contec:solarview_compact_firmware"
+## fofa-query: body="solarview compact" && title="top",icon_hash="-244067125",body="solarview compact"
+## verification: true
+
+GET /Solar_Menu.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SolarViewCompact"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: efd97d7b84a45034b501f6c59a9c332894e2ebde665a801e2669ec77927e58cd

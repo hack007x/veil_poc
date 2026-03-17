@@ -1,0 +1,25 @@
+## id: suse-manager-panel
+## name: SUSE Manager Server - Panel
+## author: hack007x
+## severity: info
+## tags: panel,detect,suse,login,discovery
+## description: SUSE Manager login panel detected.
+## shodan-query: title:"SUSE Manager - Sign In",title:"SUSE Multi-Linux Manager - Sign In",title:"Uyuni - Sign In",http.favicon.hash:1158194469
+## fofa-query: title="SUSE Manager - Sign In",title="SUSE Multi-Linux Manager - Sign In",title="Uyuni - Sign In",icon_hash="1158194469"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>SUSE Manager - Sign In</title>" || body contains "<title>SUSE Multi-Linux Manager - Sign In</title>" || body contains "<title>Uyuni - Sign In</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/webVersion:\s+'([\d\.\s\w]+)',/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 2ef49770df0f7022ca13894acd7cba0505ce23143b356281b366a390041109bc

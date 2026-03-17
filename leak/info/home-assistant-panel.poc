@@ -1,0 +1,23 @@
+## id: home-assistant-panel
+## name: Home Assistant Panel
+## author: hack007x
+## severity: info
+## tags: panel,iot,homeassistant,discovery
+## affects: home-assistant
+## reference: https://www.home-assistant.io/
+## shodan-query: http.title:"Home Assistant"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Home Assistant</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2e99b700ee16d53ad6e0a2bcab49e3d12579ae58dcbd3693a52aeef06ffa40ef

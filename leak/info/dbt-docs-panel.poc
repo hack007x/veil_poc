@@ -1,0 +1,22 @@
+## id: dbt-docs-panel
+## name: dbt Docs Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dbt,discovery
+## description: dbt Docs panel was detected.
+## shodan-query: http.title:"dbt Docs"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>dbt Docs</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5603d327f165a44d65e6ef5ae3f712069f8905f7282390c01c9d36466d06d5ac

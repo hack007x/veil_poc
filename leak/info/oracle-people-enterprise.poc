@@ -1,0 +1,25 @@
+## id: oracle-people-enterprise
+## name: Oracle PeopleSoft Enterprise Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: oracle,login,panel,discovery
+## description: Oracle PeopleSoft Enterprise login panel detected.
+## affects: peoplesoft_enterprise
+## shodan-query: http.title:"Oracle Peoplesoft Enterprise",http.title:"oracle peoplesoft enterprise"
+## fofa-query: title="oracle peoplesoft enterprise"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/signon.html"
+#@ matcher: body contains "<meta HTTP-EQUIV='Refresh' CONTENT='1"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9742778ae90184f3a573ba01509ba7b8d412dbf3441304a87fae0d611ffc4d97

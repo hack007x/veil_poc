@@ -1,0 +1,26 @@
+## id: interactsoftware-panel
+## name: Interact Software Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,interactsoftware,interact,detect,discovery
+## description: Interact Software was detected.
+## reference: https://www.interactsoftware.com
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "www.interactsoftware.com"
+#@ matcher: body contains "community.interact-intranet.com"
+#@ matcher: body contains "/InteractV"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?:v=)([0-9]+\.[0-9]+\.?[0-9]*\.?[0-9]*)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8e3f7d2caa6ec55efa5416e2e1b31000cb6eee6eb1213dee9843cf1c7d66c6e8

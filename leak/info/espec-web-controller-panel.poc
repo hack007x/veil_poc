@@ -1,0 +1,26 @@
+## id: espec-web-controller-panel
+## name: Espec Web Controller - Panel
+## author: hack007x
+## severity: info
+## tags: panel,espec,ics,login,discovery
+## description: Espec Web Controller panel was discovered.
+## affects: web_controller
+## reference: https://espec.com/na/products/option_detail/web_controller/
+## shodan-query: title:"Espec Web Controller",http.favicon.hash:529766441
+## fofa-query: title="Espec Web Controller",icon_hash="1190353375"
+## verification: true
+
+GET /version HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Espec Web Controller"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version: ([\d\.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 9b2101b84c3fc09b068f359d94957af3cf7c96bff43f311b924bdc4c30681a85

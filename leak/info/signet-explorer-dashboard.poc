@@ -1,0 +1,23 @@
+## id: signet-explorer-dashboard
+## name: Signet Explorer Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: panel,signet,bitcoin,dashboard,discovery
+## description: Signet Explorer Dashboard was detected.
+## reference: https://github.com/mempool/mempool
+## shodan-query: html:"mempool-space" || title:"Signet Explorer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Signet Explorer</" || body contains "mempool-summary" || body contains "mempool-space"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8fa86c7eb6f2522e04b2f6d6f332b2052eb1d70bbb6f513d154d99eb58ba1c1a

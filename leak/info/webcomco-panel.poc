@@ -1,0 +1,23 @@
+## id: webcomco-panel
+## name: WebcomCo - Panel
+## author: hack007x
+## severity: info
+## tags: panel,webcomco,login,discovery
+## reference: https://www.facebook.com/photo/?fbid=626548889515634&set=a.467014098802448
+## shodan-query: title:"WebcomCo"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>WebcomCo</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a731d6102dd57d609b6f3606a2ed4c99e1ce74aa89385352b1db41b5bd21f02

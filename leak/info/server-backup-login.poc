@@ -1,0 +1,22 @@
+## id: server-backup-login
+## name: Server Backup Manager SE Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,paneil,idera,edb,discovery
+## description: Server Backup Manager SE login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6949
+## verification: true
+
+GET /login.zul HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Idera Server Backup Manager SE  </title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a105cc5369f9b9bf3c42d99acbef47d3072a996399bc9a6b9ec971d4c5185f36

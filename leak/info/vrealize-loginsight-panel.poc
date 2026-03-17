@@ -1,0 +1,24 @@
+## id: vrealize-loginsight-panel
+## name: vRealize Log Insight - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,vrealize,discovery
+## description: Detect vRealize Log Insight login panel was detected.
+## affects: vrealize_log_insight
+## shodan-query: title:"vRealize Log insight",http.title:"vrealize log insight"
+## fofa-query: title="vrealize log insight"
+## verification: true
+
+GET /login?loginUrl=%2Findex HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "vRealize Log Insight"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 05307d0b8e53736c74a28c4a46b800f5ebf550c0920240409ef2d0c229f5e3d8

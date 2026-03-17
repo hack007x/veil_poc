@@ -1,0 +1,26 @@
+## id: cloudflare-access-panel
+## name: Cloudflare Access - Login Panel Detection
+## author: hack007x
+## severity: info
+## tags: cloudflare,panel,discovery
+## description: Detected exposed Cloudflare Access login pages.
+## affects: - Ensure Cloudflare Access policies are properly configured to restrict access to authorized users only - Review and enforce appropriate authentication rules and multi-factor authentication requirements - Limit exposure of Access login pages to necessary endpoints only
+## reference: https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/
+## reference: https://developers.cloudflare.com/cloudflare-one/
+## reference: https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Sign in ・ Cloudflare Access"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5cb4423d2b65ee3fa71a6a9591be77c4f0a5a01a43fa4a41750bd970e022aa35

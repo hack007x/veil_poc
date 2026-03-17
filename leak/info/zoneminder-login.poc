@@ -1,0 +1,25 @@
+## id: zoneminder-login
+## name: ZoneMinder Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoneminder,discovery
+## description: ZoneMinder panel was detected.
+## affects: zoneminder
+## shodan-query: http.html:"zm - login"
+## fofa-query: body="zm - login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>ZM - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3a30e2ecfa1f97f80b42099779381f0eb86314645e3d7e41fe99e6aebb58b743

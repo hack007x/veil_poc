@@ -1,0 +1,22 @@
+## id: sonarqube-login
+## name: SonarQube Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sonarqube,sonarsource,discovery
+## description: SonarQube panel was detected.
+## affects: sonarqube
+## verification: true
+
+GET /sessions/new HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SonarQube"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 21b697f87eaee2aec3304aca0850273c4c3b3e6fe740d3efb65b77a802c67e47

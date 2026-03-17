@@ -1,0 +1,22 @@
+## id: jeecg-boot-swagger
+## name: Jeecg Boot Swagger Bootstrap UI - Detect
+## author: hack007x
+## severity: info
+## tags: jeecg,swagger,detect,exposure,discovery
+## description: Jeecg Swagger Bootstrap UI exposed.
+## affects: jeecg-boot
+## shodan-query: title:"Jeecg-Boot"
+## fofa-query: title="JeecgBoot 企业级低代码平台"
+## verification: true
+
+GET /jeecg-boot/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Swagger-Bootstrap-UI</title>"
+
+
+
+
+
+# @VEIL-STAMP: ed2bf83b8a83849820844c30fa9736d123bf3a7173ca3cca455650521df286fd

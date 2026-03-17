@@ -1,0 +1,23 @@
+## id: wampserver-homepage
+## name: WampServer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wampserver,discovery
+## description: WampServer panel was detected.
+## affects: wampserver
+## shodan-query: title:"WAMPSERVER Homepage"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>WAMPSERVER Homepage</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dbea99defc721a0d81ce645f9401d55872def683befb2cef83f8f6bcd5caeefa

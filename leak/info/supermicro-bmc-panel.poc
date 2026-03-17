@@ -1,0 +1,26 @@
+## id: supermicro-bmc-panel
+## name: Supermicro BMC Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,supermicro,bmc,discovery
+## description: Supermicro BMC login panel was detected.
+## affects: x11ssv-m4f
+## reference: https://www.supermicro.com/en
+## reference: https://www.supermicro.com/en/solutions/management-software/bmc-resources
+## reference: https://www.supermicro.com/white_paper/IPMI_white_paper.pdf
+## shodan-query: http.title:"Supermicro BMC Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Supermicro BMC Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 593e3f2e1de80edf45075e20e7a8a504208ae7becedf37f202ff440f271f4b27

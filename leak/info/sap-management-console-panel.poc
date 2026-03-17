@@ -1,0 +1,22 @@
+## id: sap-management-console-panel
+## name: SAP Management Console - Panel
+## author: hack007x
+## severity: info
+## tags: panel,sap,sapmc,ui,discovery,login
+## description: Detected the SAP Management Console (SAP MC) web panel by requesting /sapmc/sapmc.html and checking for a gSOAP server header the page title.
+## shodan-query: title:"SAP Management Console"
+## verification: true
+
+GET /sapmc/sapmc.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SAP Management Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a1aedc951fd769dbebc0704c3f24ea8abee952cec7587087d5998f29c579c469

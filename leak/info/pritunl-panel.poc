@@ -1,0 +1,25 @@
+## id: pritunl-panel
+## name: Pritunl - Panel
+## author: hack007x
+## severity: info
+## tags: pritunl,panel,login,discovery
+## description: Realtime website and application monitoring tool
+## affects: pritunl
+## reference: https://github.com/louislam/uptime-kuma
+## reference: https://uptime.kuma.pet/docs/
+## shodan-query: title:"Pritunl"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Pritunl</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 321dc47759a5d0fb137d165e1aa781ebdd482458051c211b6d752fecd0612008

@@ -1,0 +1,24 @@
+## id: manageengine-apex-helpdesk
+## name: ZOHO ManageEngine APEX IT Help-Desk Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO MangageEngine APEX panel was detected.
+## affects: manageengine_analytics_plus
+## shodan-query: http.title:"APEX IT Help Desk",http.title:"apex it help desk"
+## fofa-query: app="zoho-流量管理",title="apex it help desk"
+## verification: true
+
+GET /jsp/index.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>APEX IT Help Desk</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2e237b8d1087e6f9fe2b7b0eaf2f9d2fbc5ee073c02798a9a02df0db00d989fe

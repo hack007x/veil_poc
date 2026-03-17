@@ -1,0 +1,24 @@
+## id: nordex-wind-farm-portal
+## name: Nordex Control Wind Farm Portal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nordex,iot,discovery
+## description: Nordex Control Wind Farm Portal login panel was detected.
+## reference: https://www.nordex-online.com/en/
+## shodan-query: http.html:"Nordex Control"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Nordex Control" || body contains "Wind Farm Portal"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 994aa1a8c073ec2c826f5fa97e850c9ade5c3cad1fff1bfa6dfd3fa86bdf5f75

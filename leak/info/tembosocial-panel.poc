@@ -1,0 +1,23 @@
+## id: tembosocial-panel
+## name: TemboSocial Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tembosocial,discovery
+## description: TemboSocial Admin panel was detected.
+## shodan-query: title:"TemboSocial Administration"
+## verification: true
+
+GET /admin.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>TemboSocial Administration</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b016520743283e0fd4600502aa4b8291c0f9c93f9c7e822d9c57bca3a0eb853f

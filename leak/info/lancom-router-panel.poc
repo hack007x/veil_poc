@@ -1,0 +1,23 @@
+## id: lancom-router-panel
+## name: Lancom Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,lancom,router,discovery
+## description: Lancom router login panel was detected.
+## affects: wlc-4006
+## shodan-query: html:"LANCOM Systems GmbH"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'alt="LANCOM Systems GmbH"' || body contains 'class="outside_device_string_common">LANCOM'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3a6307678a9ea4d95ab70318fc0e63933bab361c7e60401812303e0f53ee479e

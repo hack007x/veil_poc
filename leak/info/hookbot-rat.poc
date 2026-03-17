@@ -1,0 +1,20 @@
+## id: hookbot-rat
+## name: Hookbot Rat Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,rat,hookbot,c2,panel,detect,vuln
+## description: Hookbot panel were detected.
+## shodan-query: title:"hookbot"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: status_code == 200 && body contains "HOOKBOT PANEL"
+
+
+
+
+
+# @VEIL-STAMP: 7481ab4d5c3b8e8cab5a7f9def3ab7ee01429356ae6f08bad0fa813a619db186

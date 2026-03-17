@@ -1,0 +1,23 @@
+## id: acenet-panel
+## name: AceNet AceReporter Report Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,acenet,acereporter,discovery
+## shodan-query: http.favicon.hash:-1595726841
+## fofa-query: body="Login @ Reporter"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Welcome to Reporter"
+#@ matcher: body contains "Login @ Reporter"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8b7eafa0be45cf414bef4b2ec06377a47c3b609e80f6df53e65a5f18bb50c89e

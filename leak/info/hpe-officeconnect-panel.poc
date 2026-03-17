@@ -1,0 +1,24 @@
+## id: hpe-officeconnect-panel
+## name: HPE OfficeConnect Switch - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,hp,hpe,officeconnect,login,discovery
+## description: The HPE OfficeConnect Switch was a network switch series built for small and medium businesses.It provided reliable connectivity, simple management, and PoE options to support growing networks.
+## shodan-query: html:"HPE OfficeConnect"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>HPE OfficeConnect Switch"
+#> extract: name=version, from=body, regex=/HPE OfficeConnect Switch ([0-9A-Z a-z+()]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f6eacd2630fc457e50ef1efa2d58c09c7498bcb650f6aec65bb5a69b4fb061f8

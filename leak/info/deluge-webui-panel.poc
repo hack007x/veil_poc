@@ -1,0 +1,27 @@
+## id: deluge-webui-panel
+## name: Deluge WebUI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,deluge,deluge-torrent,discovery
+## description: Deluge WebUI login panel was detected.
+## affects: deluge
+## shodan-query: title:"Deluge WebUI",http.title:"deluge webui"
+## fofa-query: title="deluge webui"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Deluge WebUI"
+#@ matcher: body contains "author: 'Deluge Team"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version: '([0-9.]+)',/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e1f6597bfb6ae591a79c4868887ed1ae395df5d1a022579da59fa44d01c17233

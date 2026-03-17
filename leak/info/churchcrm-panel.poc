@@ -1,0 +1,26 @@
+## id: churchcrm-panel
+## name: ChurchCRM Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,churchcrm,detect,discovery
+## description: ChurchCRM panel was discovered.
+## affects: churchcrm
+## reference: https://github.com/ChurchCRM/CRM
+## shodan-query: http.title:"churchcrm"
+## fofa-query: app="churchcrm"
+## verification: true
+
+GET /session/begin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>ChurchCRM" && body contains "Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f843310f01e1b78aeddc79c009020ba07db699979370d0c8a8a4cf4f57189e3e

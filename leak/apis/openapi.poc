@@ -1,0 +1,24 @@
+## id: openapi
+## name: OpenAPI - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,discovery
+## description: OpenAPI was detected.
+## reference: https://www.openapis.org/
+## verification: true
+
+GET /openapi.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "openapi"
+#@ matcher: body contains "paths"
+#@ matcher: header["content-type"] contains "application/openapi+json" || header["content-type"] contains "application/json"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e245cd1b2ebf08a7ac5d5b3240ebbe80705eaf7308e234bf8a7907252970b762

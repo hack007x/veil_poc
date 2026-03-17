@@ -1,0 +1,26 @@
+## id: papercut-ng-panel
+## name: PaperCut NG Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,papercut,detect,papercut-ng,discovery
+## description: PaperCut is a print management system. Log in to manage your print quotas, see your print history and configure your system.
+## affects: papercut_ng
+## shodan-query: product:"PaperCut MF",title:"PaperCut Login",http.favicon.hash:-1142586156,http.html:'content="papercut',cpe:"cpe:2.3:a:papercut:papercut_ng",http.html:"content=\"papercut\""
+## fofa-query: icon_hash="-1142586156",title="PaperCut Login",body='content="papercut',body="content=\"papercut\""
+## verification: true
+
+GET /user HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'content="PaperCut' || body contains "<title>PaperCut Login"
+#@ matcher: status_code == 200
+#> extract: name=build, from=body, regex=/\/css\/style\.css\?(\d+)papercut-mf/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7c2a93306ad631f1d70990aa5e63c23ca7ba70636b4d1518d4f9c10982287c07

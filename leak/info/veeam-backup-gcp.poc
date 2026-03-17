@@ -1,0 +1,23 @@
+## id: veeam-backup-gcp
+## name: Veeam Backup for Google Cloud Platform Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,google,cloud,discovery
+## description: Veeam Backup for Google Cloud Platform panel was detected.
+## affects: veeam_backup_for_google_cloud
+## shodan-query: title:"Veeam Backup for GCP"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Veeam Backup for GCP</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 235c07e1a967d221e2b29a0c17ee3ff410fa740073b577908f0322bb6c906510

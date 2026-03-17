@@ -1,0 +1,26 @@
+## id: wazuh-panel
+## name: Wazuh Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,wazuh,login,discovery
+## description: Wazuh - The Open Source Security Platform
+## affects: wazuh
+## reference: https://github.com/wazuh/wazuh
+## shodan-query: http.title:"Wazuh",http.title:"wazuh"
+## fofa-query: title="wazuh"
+## verification: true
+
+GET /app/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "&quot;id&quot;:&quot;wazuh&quot;" || body contains "&quot;title&quot;:&quot;Wazuh&quot;" || body contains "&quot;icon&quot;:&quot;plugins/wazuh/img/icon_blue.png&quot;" || body contains "&quot;url&quot;:&quot;/app/wazuh&quot;"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/&quot;(?:version|wazuhVersion)&quot;:&quot;([0-9.]+)&quot;/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7300010897b3c444486ca115b3425c16b92b7453c8d74c7ed562da17731149fe

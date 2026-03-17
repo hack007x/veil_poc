@@ -1,0 +1,24 @@
+## id: dradis-pro-panel
+## name: Dradis Professional Edition Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dradis,discovery
+## description: Dradis Professional Edition login panel was detected.
+## affects: dradis
+## reference: https://dradisframework.com/ce/
+## shodan-query: title:"Dradis Professional Edition"
+## verification: true
+
+GET /pro/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Dradis Professional Edition"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d0fd7057f813badbec780da23cac5c9a66adbc9b668ed991628c37f18a9484b9

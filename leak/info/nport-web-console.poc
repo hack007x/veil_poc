@@ -1,0 +1,24 @@
+## id: nport-web-console
+## name: NPort Web Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nport,discovery
+## description: NPort Web Console login panel was detected.
+## affects: nport_6450-t_firmware
+## reference: https://www.moxa.com/en/
+## shodan-query: title:"NPort Web Console"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "NPort Web Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ca91865a65461d46e457560ccb8587798026576d4f10a67f0b0f0d8add6c1cfe

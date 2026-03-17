@@ -1,0 +1,24 @@
+## id: wd-mycloud-panel
+## name: WD My Cloud Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,mycloud,wd,detect,western_digital,discovery
+## affects: mycloud_nas
+## reference: https://www.zerodayinitiative.com/blog/2023/4/19/cve-2022-29844-a-classic-buffer-overflow-on-the-western-digital-my-cloud-pro-series-pr4100
+## shodan-query: http.favicon.hash:-1074357885
+## fofa-query: icon_hash=-1074357885
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "WDMyCloud" || body contains "Cloud_Connection_StatusID" || body contains "my_cloud_os" || body contains "WD Privacy Statement"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 11b029d4cdfcf4d50ff663ed1148090bef4a1a9015e2dfeb03d6dd0feafbf95c

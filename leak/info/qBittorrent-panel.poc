@@ -1,0 +1,25 @@
+## id: qBittorrent-panel
+## name: qBittorrent Web UI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,qbittorrent,detect,discovery
+## affects: qbittorrent
+## reference: https://www.qbittorrent.org/
+## shodan-query: title:"qbittorrent",http.title:"qbittorrent"
+## fofa-query: title="qbittorrent"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "qBittorrent Web UI" || body contains 'alt="qBittorrent'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ba2ea4ba4f8686b023fc81b9955c8f1869ed22c2cfbac36dd82b234e8f35fb8b

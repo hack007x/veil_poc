@@ -1,0 +1,24 @@
+## id: doris-panel
+## name: Doris Panel - Detect
+## author: hack007x
+## severity: info
+## tags: doris,panel,login,detect,discovery
+## description: Doris panel detection template.
+## affects: doris
+## shodan-query: http.favicon.hash:24048806
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Doris</title>"
+#@ matcher: body contains "location.pathname.split"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fd2409d1602f9e3543f9bd19f732e545d9339b4543a242d84d5ae093b59a14ca

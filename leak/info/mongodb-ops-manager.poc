@@ -1,0 +1,23 @@
+## id: mongodb-ops-manager
+## name: MongoDB Ops Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mongodb,discovery
+## description: MongoDB Ops Manager login panel was detected.
+## affects: ops_manager_server
+## shodan-query: http.title:"MongoDB Ops Manager"
+## verification: true
+
+GET /account/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "MongoDB Ops Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 981dda9447b5d7b815d2f15f8f6d2157474571f5070def51ed62c33cd8eabf76

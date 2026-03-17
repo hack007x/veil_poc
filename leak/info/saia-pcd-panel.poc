@@ -1,0 +1,22 @@
+## id: saia-pcd-panel
+## name: Saia PCD Web Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: saia,login,panel,pcd,discovery
+## description: Saia PCD Web Server panel was detected.
+## shodan-query: html:"Saia PCD Web Server"
+## verification: true
+
+GET /pwdform.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Saia PCD Web Server</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9965a845fd851997d3ec0f8e0fe1943afefb831cc4afd0f160a51e138ad207c1

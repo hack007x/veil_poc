@@ -1,0 +1,23 @@
+## id: landrayoa-panel
+## name: Landray Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,landrayoa,discovery
+## description: Landray login panel was detected.
+## verification: true
+
+GET /login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "lui_login_input_username"
+#@ matcher: body contains "lui_login_input_password"
+#@ matcher: body contains "isopen="
+
+
+
+
+
+# @VEIL-STAMP: 46d3779379ae50d4beef68b46f23d02cbd5d3cdb43634e9e895430085b582f44

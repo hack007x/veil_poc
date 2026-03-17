@@ -1,0 +1,23 @@
+## id: verizon-router-panel
+## name: Verizon Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,verizon,router,discovery
+## description: Verizon router panel was detected.
+## affects: fios_actiontec_mi424wr-gen31_router_firmware
+## shodan-query: http.title:"Verizon Router"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Verizon Router</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3afe12b3a581f5e06f4d802d474f79500e4d668ec6b92833ac996362196d2b4d

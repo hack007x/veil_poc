@@ -1,0 +1,23 @@
+## id: haivision-media-platform-panel
+## name: Haivision Media Platform Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,haivision,login,detect,discovery
+## description: Haivision Media Platform login panel was detected.
+## reference: https://www.haivision.com/
+## shodan-query: http.title:"Haivision Media Platform"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Haivision Media Platform" || body contains 'content=\"Haivision Network Video'
+
+
+
+
+
+# @VEIL-STAMP: 4048aa9f0cea962023777c1ebf723b3387e49a11008667fdd9b7a568fe4d680a

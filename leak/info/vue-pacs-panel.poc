@@ -1,0 +1,28 @@
+## id: vue-pacs-panel
+## name: Vue PACS - Panel
+## author: hack007x
+## severity: info
+## tags: vue,pacs,panel,login,philips,discovery
+## description: Vue PACS was detected.
+## affects: vue_pacs
+## reference: https://www.usa.philips.com/healthcare/solutions/diagnostic-informatics/enterprise-imaging-pacs
+## shodan-query: http.title:"Vue PACS",http.title:"vue pacs"
+## fofa-query: title="vue pacs"
+## verification: true
+
+GET /portal/WebLogin.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Vue PACS</title>"
+#@ matcher: body contains "loginUsernameHidden"
+#@ matcher: body contains "loginPasswordHidden"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version=([a-z0-9\.\s\-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 03e54934c92c47940c8fa9921d327f1c3845535c9c485265ffa61f3e7b118f54

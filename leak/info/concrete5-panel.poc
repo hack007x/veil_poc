@@ -1,0 +1,27 @@
+## id: concrete5-panel
+## name: Concrete5 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,concrete5,cms,discovery
+## description: Concrete5 login panel was detected.
+## affects: concrete5
+## shodan-query: http.title:"concrete5",cpe:"cpe:2.3:a:concrete5:concrete5",http.title:"install concrete5"
+## fofa-query: title="install concrete5",title="concrete5"
+## verification: true
+
+GET /index.php/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /(?mi)<title>(.*)concrete5(.*)<\/title>/
+#@ matcher: body matches /(?mi)content="concrete5 - (.*)/
+#> extract: name=ex_regex_1, from=body, regex=/content="concrete5 \- ([0-9.]+)"\/>/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/Version ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: db8d44e11df501039918e696e6fe26dfcebb41b1e89cf329b268541ec7f604de

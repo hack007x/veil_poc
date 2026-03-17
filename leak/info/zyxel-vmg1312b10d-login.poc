@@ -1,0 +1,24 @@
+## id: zyxel-vmg1312b10d-login
+## name: Zyxel VMG1312-B10D - Login Detection
+## author: hack007x
+## severity: info
+## tags: tech,zyxel,modem,router,panel,discovery
+## affects: vmg1312-b10d_firmware
+## shodan-query: http.html:"VMG1312-B10D",http.html:"vmg1312-b10d"
+## fofa-query: body="vmg1312-b10d"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "VMG1312-B10D"
+#@ matcher: body contains "Welcome to the Web-Based Configurator"
+#@ matcher: status_code == 401
+
+
+
+
+
+# @VEIL-STAMP: 667d68baa723b615034fa5e0669b2a5ecfb0841ce75301ebf75169ce67c8d4fc

@@ -1,0 +1,22 @@
+## id: pypicloud-panel
+## name: PyPICloud Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pypicloud,discovery
+## description: PyPLCloud login panel was detected.
+## reference: https://pypicloud.readthedocs.io/en/latest/
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Pypicloud</title>" || body contains '<html ng-app="pypicloud">'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4d13d128867bff3283806b7575ebd8a70e59f2cb513ab542c9975441cde2cb02

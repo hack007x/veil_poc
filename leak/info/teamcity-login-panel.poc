@@ -1,0 +1,26 @@
+## id: teamcity-login-panel
+## name: TeamCity Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,teamcity,jetbrains,detect,discovery
+## description: TeamCity login panel was detected.
+## affects: teamcity
+## shodan-query: http.component:"TeamCity",http.title:teamcity,http.component:"teamcity"
+## fofa-query: title=teamcity
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Log in to TeamCity &mdash; TeamCity</title>"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/Version<\/span> ([0-9.]+)/, group=1
+#> extract: name=build, from=body, regex=/Version<\/span> [0-9.]+ \(build (.*)\)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 9f4fdba663747874e8e3834bb1eded3cdde05eaecedcc1cc1ddb7c0f460fc08c

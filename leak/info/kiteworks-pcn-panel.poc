@@ -1,0 +1,27 @@
+## id: kiteworks-pcn-panel
+## name: Kiteworks PCN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kiteworks,login,detect,accellion,discovery
+## description: Kiteworks PCN Login Panel was detected.
+## affects: kiteworks
+## reference: https://www.kiteworks.com/platform/private-content-network/
+## shodan-query: http.favicon.hash:-1215318992
+## fofa-query: icon_hash=-1215318992
+## verification: true
+
+GET /login/locales/login_en.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Secured by Kiteworks"
+#@ matcher: body contains "Return to sign in"
+#@ matcher: header["content-type"] contains "application/octet-stream"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5ef884b5cba114bf8a7b669fec29c8198e7cdb86d9c8cb59f562c4f954b8a45e

@@ -1,0 +1,23 @@
+## id: sitecore-login
+## name: Sitecore Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sitecore,discovery
+## description: Sitecore login panel was detected.
+## affects: experience_platform
+## shodan-query: http.title:"Welcome to Sitecore"
+## verification: true
+
+GET /sitecore/login/default.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/sitecore/shell/Themes/Standard/Default/Login.css"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 225101381ef37fe919d13261afa5e7778c045e1110f1cb81ab69782baabf85d5

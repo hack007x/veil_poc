@@ -1,0 +1,22 @@
+## id: flightpath-panel
+## name: FlightPath Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,flightpath,discovery
+## description: FlightPath login panel was detected.
+## shodan-query: http.title:"flightpath"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login | FlightPath</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 20bbe4e72f3a59662c962b5e6fdd05e0b5ce789db2546849a9964c97b56b1bb4

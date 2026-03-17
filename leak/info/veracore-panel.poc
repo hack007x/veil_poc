@@ -1,0 +1,25 @@
+## id: veracore-panel
+## name: Veracore Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,veracore,login,detect,discovery
+## description: A veracore login panel was detected.
+## reference: https://www.advantive.com/brands/veracore/
+## shodan-query: html:"veraCoreScreenHeight"
+## fofa-query: body="veraCoreScreenHeight"
+## verification: true
+
+GET /veracore/Home/#systems HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "VeraCore"
+#@ matcher: body contains "/veracore/img/LoginLogo.png"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ef6889bae31cc728b0512f023cd1878e04cce42877afbf036495b27331d17b0d

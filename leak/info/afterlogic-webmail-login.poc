@@ -1,0 +1,24 @@
+## id: afterlogic-webmail-login
+## name: AfterLogic WebMail Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,afterlogic,login,detect,discovery
+## description: AfterLogic WebMail Login panel was detected.
+## affects: aurora
+## fofa-query: X-Server: AfterlogicDAVServer
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "afterlogic"
+#@ matcher: body contains "dav_url"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 62d37ad2010371696165d2c318b2e341f91689038a13289622e12117522fd16a

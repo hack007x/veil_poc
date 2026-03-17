@@ -1,0 +1,25 @@
+## id: blue-iris-login
+## name: Blue Iris Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,blueiris,edb,discovery
+## description: Blue Iris login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6814
+## reference: https://blueirissoftware.com/
+## shodan-query: http.title:"Blue Iris Login"
+## verification: true
+
+GET /login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Blue Iris Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/var bi_version = "(.*)";/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 389ca0b7e556f3ef49711e7dfe7207e04718957f967d0df764d8fcda94400ab2

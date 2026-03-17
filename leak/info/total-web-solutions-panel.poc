@@ -1,0 +1,22 @@
+## id: total-web-solutions-panel
+## name: Total Web Solutions Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Total Web Solutions panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6811
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Total Web Solutions</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dac2b83dc0626b28aaa6dcfd893a3d52a848506e8791bd80a56b4cac9aec43a2

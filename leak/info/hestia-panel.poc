@@ -1,0 +1,25 @@
+## id: hestia-panel
+## name: Hestia Control Panel Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,hestia,detect,hestiacp,discovery
+## description: Hestia Control Panel login was detected.
+## affects: control_panel
+## reference: https://hestiacp.com/
+## shodan-query: title:"Hestia Control Panel",http.favicon.hash:-476299640,http.title:"hestia control panel"
+## fofa-query: icon_hash=-476299640,title="hestia control panel"
+## verification: true
+
+GET /login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Hestia Control Panel" || body contains "Welcome to Hestia Control"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8c79882d14815e89bf8b647152def48b53fe68ba9d97630cf8926a7b86a6ef58

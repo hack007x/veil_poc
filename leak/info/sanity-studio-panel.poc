@@ -1,0 +1,25 @@
+## id: sanity-studio-panel
+## name: Sanity Studio Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sanity,tech,discovery,detect
+## description: Sanity Studio panel was detected. Sanity is a headless CMS platform.
+## reference: https://www.sanity.io/
+## shodan-query: http.title:"Sanity Studio"
+## fofa-query: title="Sanity Studio"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Sanity Studio" || body contains "window.__sanityErrorChannel" || body contains "__sanityError"
+#@ matcher: status_code == 200 || status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 0a078909f6caeb8dde7a822e7687b43182bc2daa804116022dca998e4cf68a5b

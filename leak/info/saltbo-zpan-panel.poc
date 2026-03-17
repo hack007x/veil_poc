@@ -1,0 +1,26 @@
+## id: saltbo-zpan-panel
+## name: Saltbo/zpan Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zpan,login,detect,discovery
+## description: Detects the presence of the Saltbo/zpan file management panel.
+## affects: zpan
+## reference: https://github.com/saltbo/zpan
+## shodan-query: title:"zpan"
+## fofa-query: title="zpan"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>ZPan"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0efb4f754ab0d65342c5b73f52d8b40cf550e7c914640f3313d7e957eb15af0a

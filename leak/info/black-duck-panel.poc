@@ -1,0 +1,27 @@
+## id: black-duck-panel
+## name: Black Duck Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,blackduck,synopsys,discovery
+## description: Black Duck login panel was detected.
+## affects: black_duck_hub
+## reference: https://www.blackducksoftware.com/
+## reference: https://www.synopsys.com/software-integrity/security-testing/software-composition-analysis.html
+## shodan-query: http.title:"Black Duck"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /(?m)<title>Black Duck(.*)<\/title>/
+#@ matcher: body contains "ProtexLoginPage" || body contains "CCLoginPage"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9f94de0340ce4c607c0f425e7f6760a3ba784e2abaec48fff32b394a0ba1dd52

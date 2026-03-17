@@ -1,0 +1,23 @@
+## id: remkon-manager-panel
+## name: RemKon Device Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,remkon,login,discovery
+## description: RemKon Device Manager login panel was detected.
+## affects: remkon_device_manager
+## shodan-query: http.title:"Remkon Device Manager"
+## verification: true
+
+GET /login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Remkon Device Manager</title>"
+
+
+
+
+
+# @VEIL-STAMP: 8151f8d933b62c82adf6943b09e65e9ff9b01cb86047c53e1347a664dac33fcd

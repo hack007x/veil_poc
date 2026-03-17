@@ -1,0 +1,25 @@
+## id: 3cx-phone-webclient-management-panel
+## name: 3CX Phone System Web Client Management Console - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,3cx,discovery
+## description: 3CX Phone System Web Client Management Console panel was detected.
+## affects: 3cx
+## reference: https://www.3cx.com/phone-system/
+## reference: https://www.3cx.com/blog/unified-communications/client-apps/
+## reference: https://medium.com/@frycos/pwning-3cx-phone-management-backends-from-the-internet-d0096339dd88
+## shodan-query: http.title:"3CX Webclient",http.title:"3cx webclient",http.title:"3cx phone system management console",http.favicon.hash:970132176
+## fofa-query: icon_hash=970132176,title="3cx phone system management console",title="3cx webclient"
+## verification: true
+
+GET /webclient/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains " <title>3CX Webclient</title>" || body contains '<meta name="description" content="3CX">'
+
+
+
+
+
+# @VEIL-STAMP: b36aa9e32195f1d7f34948d4749cda8f8b8d5b765cdea5a05d84a88454c489ae

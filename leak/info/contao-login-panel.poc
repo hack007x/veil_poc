@@ -1,0 +1,25 @@
+## id: contao-login-panel
+## name: Contao Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,contao,discovery
+## description: Contao login panel was detected.
+## affects: contao
+## shodan-query: http.html:"Contao Open Source CMS",http.title:"contao",http.html:"contao open source cms",cpe:"cpe:2.3:a:contao:contao"
+## fofa-query: title="contao",body="contao open source cms"
+## verification: true
+
+GET /contao/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Contao Open Source CMS"
+#@ matcher: body contains "<h1>Login</h1>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fe4c681c3111d1e8202a64ee9210352e9bf4a063dac091c2b138513089989bdf

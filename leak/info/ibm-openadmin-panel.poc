@@ -1,0 +1,21 @@
+## id: ibm-openadmin-panel
+## name: IBM OpenAdmin Tool - Panel
+## author: hack007x
+## severity: info
+## tags: openadmin,login,panel,discovery
+## shodan-query: http.favicon.hash:965982073
+## verification: true
+
+GET /openadmin/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'class="oat oneui"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 27991a1dc03af4ae5579bd67315a405fbe15fd6442405c8d1a38fb5257da75f0

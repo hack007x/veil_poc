@@ -1,0 +1,23 @@
+## id: xds-amr-status
+## name: XDS-AMR Status Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tech,xamr,xds,discovery
+## description: XDS-AMR Status login panel was detected.
+## shodan-query: http.title:"XDS-AMR - status"
+## verification: true
+
+GET /login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>XDS-AMR - Status</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/XAMR\-([0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 751111a443c55be0cf4e31c2bd28ec8352af71be1baee297995b8480f356b37f

@@ -1,0 +1,23 @@
+## id: anaqua-login-panel
+## name: Anaqua Login - Panel
+## author: hack007x
+## severity: info
+## tags: anaqua,login,panel,discovery
+## description: Checks for the presence of Anaqua login page
+## shodan-query: title:"Anaqua User Sign On""
+## verification: true
+
+GET /anaqua/Public/Login.aspx?ReturnUrl=%2fanaqua%2f HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Anaqua User Sign On"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f5b3458ed9986af14c7eff313fa9249274374f42868b6f77f4e16758acc0d04c

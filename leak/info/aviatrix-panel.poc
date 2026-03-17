@@ -1,0 +1,26 @@
+## id: aviatrix-panel
+## name: Aviatrix Cloud Controller Panel
+## author: hack007x
+## severity: info
+## tags: panel,aviatrix,discovery
+## description: An Aviatrix Cloud Controller login panel was detected.
+## affects: controller
+## reference: https://docs.aviatrix.com/HowTos/controller_config.html
+## shodan-query: http.title:"Aviatrix Cloud Controller",http.title:"aviatrix cloud controller"
+## fofa-query: title="aviatrix cloud controller"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Aviatrix"
+#@ matcher: body contains "Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b016292bc917745e9343366f1b8dc00b6eb4b0356027d70a58e99c41d0876dfd

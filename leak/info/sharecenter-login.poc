@@ -1,0 +1,22 @@
+## id: sharecenter-login
+## name: ShareCenter Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,login,discovery
+## description: ShareCenter login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6892
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ShareCenter"
+#@ matcher: body contains "Please Select Your Account"
+
+
+
+
+
+# @VEIL-STAMP: 7a12285ee8813214e31e22238dbda5417cdf59e04c3fd9d4515d7595b729f89e

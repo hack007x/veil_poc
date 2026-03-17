@@ -1,0 +1,23 @@
+## id: quivr-panel
+## name: Quivr Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,quivr,detect,discovery
+## description: Quivr panel was discovered.
+## reference: https://github.com/QuivrHQ/quivr
+## fofa-query: icon_hash="848114197"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Quivr - Get a Second Brain" || body contains 'data-sentry-component=\"QuivrLogo\"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 95d81222ecc17d99d2155246ff54843f07fc29ec330ef7ed8da44deb77e4d098

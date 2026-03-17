@@ -1,0 +1,25 @@
+## id: jenkins-login
+## name: Jenkins Login Detected
+## author: hack007x
+## severity: info
+## tags: panel,jenkins,discovery
+## description: Jenkins is an open source automation server.
+## affects: Ensure proper access.
+## reference: https://www.jenkins.io/doc/book/security/
+## shodan-query: cpe:"cpe:2.3:a:jenkins:jenkins",http.favicon.hash:81586312,product:"jenkins"
+## fofa-query: icon_hash=81586312
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Sign in [Jenkins]"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e0126caa1d0190870416650f11e7f62b15e5b80b6a8dd09376eb2495f793856d

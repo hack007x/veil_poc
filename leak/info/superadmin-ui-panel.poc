@@ -1,0 +1,22 @@
+## id: superadmin-ui-panel
+## name: SuperAdmin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,superadmin,discovery
+## description: SuperAdmin login panel was detected.
+## shodan-query: title:"Superadmin UI - 4myhealth"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Superadmin UI - 4myhealth"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5ee400977a3f8fe7bac01bdf6ea669319dcba2f559bbc12446df8fb37b24dec4

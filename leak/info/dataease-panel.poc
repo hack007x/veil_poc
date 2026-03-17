@@ -1,0 +1,25 @@
+## id: dataease-panel
+## name: Dataease - Login Panel
+## author: hack007x
+## severity: info
+## tags: login,panel,dataease,discovery
+## description: Dataease Login Panel is discovered
+## affects: dataease
+## reference: https://github.com/dataease/dataease
+## shodan-query: html:"Dataease",http.html:"dataease"
+## fofa-query: body="dataease"
+## verification: true
+
+GET /#/login?redirect=%2F HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "DataEase doesn't work"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: daf00c08874dcfad1ee684fa9008a1d4020bd2e297041e852535230f120a02f4

@@ -1,0 +1,22 @@
+## id: metasploit-setup-page
+## name: Metasploit Setup and Configuration Page - Detect
+## author: hack007x
+## severity: info
+## tags: panel,metasploit,setup,rapid7,discovery
+## description: Metasploit setup and configuration page was detected.
+## affects: metasploit
+## shodan-query: title:"Metasploit - Setup and Configuration",http.title:"metasploit",http.title:"metasploit - setup and configuration"
+## fofa-query: title="metasploit",title="metasploit - setup and configuration"
+## verification: true
+
+GET /users/new HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Metasploit - Setup and Configuration"
+
+
+
+
+
+# @VEIL-STAMP: 1eaf4d3c96f6974ff7de8f75bda56e0a4bcd0958e1a10592e07a068def4bcbed

@@ -1,0 +1,23 @@
+## id: labtech-panel
+## name: LabTech Web Portal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,labtech,labtech_software,discovery
+## description: LabTech Web Portal login panel was detected.
+## affects: labtech
+## verification: true
+
+GET /WCC2/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<li>LabTech</li>" || body contains '<form action="/WCC2/Search/search" id="searchForm method="post">' || body contains "<h1> Welcome to the LabTech Web Portal</h1>" || body contains "Universal Agent Uninstaller" || body contains "Technician Login" || body contains '<form action="/WCC2/Home/Login" autocomplete="off" method="post">'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e06b1dcfab807490860f37cd5757b9d2b54f90b1271b9149f1ed29e7f2b2fff5

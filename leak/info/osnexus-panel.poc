@@ -1,0 +1,23 @@
+## id: osnexus-panel
+## name: OSNEXUS QuantaStor Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,osnexus,login,discovery
+## description: OSNEXUS QuantaStor Manager login panel was detected.
+## affects: quantastor
+## shodan-query: http.title:"OSNEXUS QuantaStor Manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>OSNEXUS QuantaStor Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: af6cdb4efd861dda023e5d319c0737dc2adf9d93293b2c341ac4b7c5260e8350

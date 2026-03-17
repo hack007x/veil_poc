@@ -1,0 +1,26 @@
+## id: h2console-panel
+## name: H2 Console Web Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,h2,console,h2database,discovery
+## description: H2 Console Web login panel was detected.
+## affects: h2
+## reference: https://mp.weixin.qq.com/s/Yn5U8WHGJZbTJsxwUU3UiQ
+## reference: https://jfrog.com/blog/the-jndi-strikes-back-unauthenticated-rce-in-h2-database-console
+## shodan-query: http.title:"H2 Console",http.title:"h2 console",cpe:"cpe:2.3:a:h2database:h2"
+## fofa-query: title="h2 console"
+## verification: true
+
+GET /h2-console/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>h2 console</title>"
+
+
+
+
+
+# @VEIL-STAMP: 98330228cb4dbaa3b3844eba6a58a014f9feb3e7198b9394944fd3f55ab294ec

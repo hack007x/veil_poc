@@ -1,0 +1,22 @@
+## id: logitech-harmony-portal
+## name: Logitech Harmony Pro Installer Portal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,logitech,harmony,exposure,discovery
+## description: Logitech Harmony Pro Installer Portal login panel was detected.
+## shodan-query: http.title:"Logitech Harmony Pro Installer"
+## verification: true
+
+GET /portal/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Logitech Harmony Pro Installer Portal"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 606c98d00eb6c50325389dc64ff1d259942cd4cd86a9b62ff12c0880797346f6

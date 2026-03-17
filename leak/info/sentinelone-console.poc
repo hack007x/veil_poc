@@ -1,0 +1,22 @@
+## id: sentinelone-console
+## name: SentinelOne Management Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sentinelone,discovery
+## description: SentinelOne Management Console login panel was detected.
+## shodan-query: title:"SentinelOne - Management Console"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SentinelOne - Management Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e55474d8a4c1f429ab3016180862a0b07b94e68708aa0e9b26dd4d264c29fab3

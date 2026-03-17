@@ -1,0 +1,24 @@
+## id: kubernetes-mirantis
+## name: Mirantis Kubernetes Engine Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,kubernetes,devops,kube,k8s,panel,discovery
+## description: Mirantis Kubernetes Engine panel was detected.
+## affects: kubernetes_engine
+## shodan-query: http.html:"Mirantis Kubernetes Engine"
+## fofa-query: app="Mirantis-Kubernetes-Engine"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Mirantis Kubernetes Engine"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c60d14503a87d612df15bbb681801fcca231ab38ec3e282f738d8e4d107a877b

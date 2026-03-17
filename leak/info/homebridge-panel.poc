@@ -1,0 +1,24 @@
+## id: homebridge-panel
+## name: Homebridge Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,homebridge,detect,discovery
+## description: Homebridge allows you to integrate with smart home devices that do not natively support HomeKit.
+## reference: https://homebridge.io/
+## reference: https://github.com/homebridge
+## shodan-query: title:"Homebridge"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Homebridge</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c11007aee38125d1d45c64f1ea0cf9d4a8d276632b762a0b77facd13a91f500f

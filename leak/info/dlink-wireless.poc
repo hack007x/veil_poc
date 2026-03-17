@@ -1,0 +1,22 @@
+## id: dlink-wireless
+## name: D-Link Wireless Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: dlink,router,edb,panel,discovery
+## description: D-Link Wireless Router panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6784
+## verification: true
+
+GET /status.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>D-LINK SYSTEMS, INC. | WIRELESS ROUTER | HOME</title>" || body contains "<title>D-LINK SYSTEMS, INC. | WIRELESS ACCESS POINT | HOME</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 86ddbac608477d813d81c4c5739f79c83e85696238a739bb110b036bc5fddb3b

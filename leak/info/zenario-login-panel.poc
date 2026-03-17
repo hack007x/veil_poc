@@ -1,0 +1,22 @@
+## id: zenario-login-panel
+## name: Zenario Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zenario,tribalsystems,discovery
+## description: Zenario admin login panel was detected.
+## affects: zenario
+## verification: true
+
+GET /zenario/admin/welcome.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Welcome to Zenario"
+
+
+
+
+
+# @VEIL-STAMP: 762f3ca8f35e07d0a774bfde08da5ddc10b3fd45db44ba5b3d4eff2f3aeaaf8f

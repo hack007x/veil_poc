@@ -1,0 +1,21 @@
+## id: nutanix-web-console-login
+## name: Nutanix Web Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nutanix,login,discovery
+## description: Nutanix Web Console login panel was detected.
+## verification: true
+
+GET /console/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Nutanix Web Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c8fd726ff8bab9f58c62d782f335c67c854b34de1787febf9afba39b66b371ef

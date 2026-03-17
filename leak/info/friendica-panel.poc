@@ -1,0 +1,26 @@
+## id: friendica-panel
+## name: Friendica Panel - Detect
+## author: hack007x
+## severity: info
+## tags: friendica,panel,login,detect,discovery
+## description: Friendica Login Panel was detected.
+## affects: friendica
+## reference: https://friendi.ca
+## shodan-query: http.title:"Friendica",http.title:"friendica"
+## fofa-query: title="friendica"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'title="Search in Friendica' || body contains "Welcome to Friendica Social Network" || body contains 'content="Friendica'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)v=([a-z0-9.-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 6cd19ad1487a4a258e9d3722b226f10c948c0ae477903ba077b3c80b1bffd1ac

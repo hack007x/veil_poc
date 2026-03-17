@@ -1,0 +1,24 @@
+## id: cloudpanel-login
+## name: CloudPanel Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,cloudpanel,detect,mgt-commerce,discovery
+## affects: cloudpanel
+## shodan-query: http.favicon.hash:151132309,http.title:"cloudpanel",http.favicon.hash:"151132309"
+## fofa-query: icon_hash="151132309",title="cloudpanel"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "CloudPanel | Log In"
+#@ matcher: body contains "Forgot password"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c321fb81f9c318895ceef9befb9f39584185216181a3f5e7d597a1089bcf8e6e

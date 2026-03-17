@@ -1,0 +1,21 @@
+## id: netscaler-aaa-login
+## name: NetScaler AAA Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,netscaler,login,edb,citrix,detect,discovery
+## description: NetScaler AAA login panel was detected.
+## affects: netscaler
+## reference: https://www.exploit-db.com/ghdb/6898
+## verification: true
+
+GET /logon/LogonPoint/tmindex.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "NetScaler AAA</title>" || body contains "_ctxstxt_NetscalerAAA"
+
+
+
+
+
+# @VEIL-STAMP: 0abe9d2360716b0d3dd1fc083dfe05627898ea644a0c9192b3e22a335dda48ee

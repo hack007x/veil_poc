@@ -1,0 +1,24 @@
+## id: trendnet-tew827dru-login
+## name: TRENDnet TEW-827DRU Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,router,trendnet,discovery
+## description: TRENDnet TEW-827DRU login panel was detected.
+## affects: tew-827dru_firmware
+## shodan-query: http.html:"TEW-827DRU",http.html:"tew-827dru"
+## fofa-query: body="tew-827dru"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'var model = "TEW-827DRU";'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5883d2a9bd24c75fd63cf24ef2257eb1afbb0b1c6802e2b66ff327a7517dd160

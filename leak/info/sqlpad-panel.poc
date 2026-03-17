@@ -1,0 +1,23 @@
+## id: sqlpad-panel
+## name: SQLPad Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,sqlpad,detect,discovery
+## description: SQLPad panel was discovered.
+## reference: https://github.com/sqlpad/sqlpad
+## fofa-query: SQLPad
+## verification: true
+
+GET /signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SQLPad</title>" || body contains "webpackJsonpsqlpad"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4abf9afdf7698d626ad16527074cea10e63aa089fac78f290e9bf10f9393f438

@@ -1,0 +1,26 @@
+## id: fortinet-fortinac-panel
+## name: Fortinet FortiNAC Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortinac,login,discovery
+## description: Fortinet FortiNAC login panel was detected.
+## affects: fortinac
+## shodan-query: http.title:"Fortinac",http.title:"fortinac"
+## fofa-query: title="fortinac"
+## verification: true
+
+GET /WelcomeActions.jsp?action=ajaxGetWelcomeViewInfo HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FortiNAC"
+#@ matcher: body contains '"product":'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/"version":"([0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b25e4335ee7bdb84b72050c04e77848de1fa0b8b3d84dc3c464ba0e79a1238af

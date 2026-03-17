@@ -1,0 +1,23 @@
+## id: siteomat-loader
+## name: Orpak SiteOmat Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: siteomat,login,edb,panel,orpak,discovery
+## description: Orpak SiteOmat login panel was detected.
+## affects: siteomat
+## reference: https://www.exploit-db.com/ghdb/6624
+## verification: true
+
+GET /login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SiteOmat Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 01478c1ae338024ba7887cffb892852341866476129c2f22c3333014f8dc15fa

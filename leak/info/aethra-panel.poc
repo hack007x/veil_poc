@@ -1,0 +1,23 @@
+## id: aethra-panel
+## name: Aethra Telecommunications Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,aethra,login,detect,discovery
+## description: Aethra Telecommunication login Panel was detected.
+## shodan-query: http.title:"Aethra Telecommunications Operating System"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Aethra Telecommunications Operating System"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d6cc674417709e7db8ca89959910753b4564df469961d0d0d0927cb80a37c01

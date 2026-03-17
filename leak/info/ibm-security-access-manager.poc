@@ -1,0 +1,26 @@
+## id: ibm-security-access-manager
+## name: IBM Security Access Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ibm,login,detect,discovery
+## description: IBM Security Access Manager login panel was detected.
+## affects: security_access_manager
+## reference: https://www.ibm.com/docs/en/sva/9.0.7?topic=overview-introduction-security-access-manager
+## shodan-query: http.title:"IBM Security Access Manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>IBM Security Access Manager</title>" || body contains "IBM Security <em>Access Manager</em>"
+#@ matcher: body contains "IBM Security Access Manager for Web"
+#@ matcher: body contains "/mga/sps/authsvc/policy/forgot_username"
+#@ matcher: body contains "/mga/sps/authsvc/policy/forgot_password"
+
+
+
+
+
+# @VEIL-STAMP: e11052488fea31e06dabe44f8018fbd03b46c01fbe93a407b1f19a35478f670d

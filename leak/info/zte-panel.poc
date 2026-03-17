@@ -1,0 +1,26 @@
+## id: zte-panel
+## name: ZTE Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zte,discovery
+## description: ZTE panel was detected. ZTE Corporation is a global leader in telecommunications and information technology. Founded in 1985 and listed on both the Hong Kong and Shenzhen Stock Exchanges, the company has been committed to providing innovative technologies and integrated solutions for global operators, government and enterprise, and consumers from over 160 countries across the globe. ZTE Corporation is a global leader in telecommunications and information technology. Founded in 1985 and listed on both the Hong Kong and Shenzhen Stock Exchanges, the company has been committed to providing innovative technologies and integrated solutions for global operators, government and enterprise, and consumers from over 160 countries across the globe.
+## affects: nr8120a
+## reference: https://www.zte.com.cn/global/
+## shodan-query: http.html:"ZTE Corporation"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ZTE Corporation. All rights reserved. </div>"
+#@ matcher: body contains '<form name="fLogin" id="fLogin" method="post"  onsubmit="return false;" action="">'
+#@ matcher: body contains "Mini web server 1.0 ZTE corp 2005."
+#> extract: name=ex_regex, from=body, regex=/<div class="type"><font id="">(.+)<\/font><\/div>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c4f75af13d97e9bd95aadbc106bf29d60597f84cf691b439ce5a6b04372d03b0

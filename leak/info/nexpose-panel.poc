@@ -1,0 +1,24 @@
+## id: nexpose-panel
+## name: Rapid7 Nexpose VM Security Console - Detect
+## author: hack007x
+## severity: info
+## tags: nexpose,panel,login,detect,discovery
+## description: Rapid7 Nexpose VM Security Console login panel was detected.
+## shodan-query: http.favicon.hash:-516760689
+## verification: true
+
+GET /login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Security Console"
+#@ matcher: body contains "nexposeccusername"
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=Server
+
+
+
+
+
+# @VEIL-STAMP: d2fbf1697870282fac06c56ea616521bd0464910a405d94c3f0b9521242b3ed2

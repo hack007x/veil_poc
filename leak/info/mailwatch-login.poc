@@ -1,0 +1,23 @@
+## id: mailwatch-login
+## name: MailWatch Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mailwatch,discovery
+## description: MailWatch login panel was detected.
+## shodan-query: http.title:"MailWatch Login Page"
+## verification: true
+
+GET /mailscanner/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "MailWatch Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 218638b75da0bdb900dc6f02b9c2a44159d88202fd012600ba05fd322b05a615

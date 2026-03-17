@@ -1,0 +1,21 @@
+## id: mpsec-isg1000-panel
+## name: MPSec ISG1000 Security Gateway Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,mpsec,isg1000,discovery
+## fofa-query: 迈普通信技术股份有限公司
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/webui/images/maipu/login/"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 73d13f47c8ae153e9dcca7c258d0d0b28eb0608001584603c6c7f5b32fac1638

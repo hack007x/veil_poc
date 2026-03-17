@@ -1,0 +1,25 @@
+## id: ansible-semaphore-panel
+## name: Ansible Semaphore Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,ansible,semaphore,cicd,oss,discovery
+## description: An Ansible Semaphore login panel was detected.
+## affects: ansible_semaphore
+## reference: https://ansible-semaphore.com/
+## reference: https://github.com/ansible-semaphore/semaphore
+## shodan-query: http.html:"Semaphore</title>"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>Ansible Semaphore</title>"
+#@ matcher: body matches /<title(.*)>Semaphore<\/title>/
+
+
+
+
+
+# @VEIL-STAMP: 62be17e366b3a1bee73c34e4c4c88de7befe21de6b4806aaf98e639c85f136a9

@@ -1,0 +1,24 @@
+## id: cortex-xsoar-login
+## name: Cortex XSOAR Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,soar,login,paloaltonetworks,detect,discovery
+## description: Cortex XSOAR login panel was detected.
+## affects: cortex_xsoar
+## shodan-query: http.title:"Cortex XSOAR"
+## fofa-query: title="cortex xsoar"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Cortex XSOAR</title>" || body contains 'content=\"Cortex XSOAR\">'
+
+
+
+
+
+# @VEIL-STAMP: 7abfeb217520623020db78161548b6225c738e46649b5406addadeca5c983a88

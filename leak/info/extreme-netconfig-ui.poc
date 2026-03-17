@@ -1,0 +1,23 @@
+## id: extreme-netconfig-ui
+## name: Extreme NetConfig UI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tech,hiveos,extreme,discovery
+## description: Extreme NetConfig UI panel was detected.
+## shodan-query: http.title:"Extreme NetConfig UI"
+## verification: true
+
+GET /index.php5 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Extreme NetConfig UI</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version" align="right" valign="bottom">([0-9.a-z]+)<\/td>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 0b7527b14622be9735e7fcd2a9a25e79e45a5e7f42e1b2f9a81787f58ee2fd37

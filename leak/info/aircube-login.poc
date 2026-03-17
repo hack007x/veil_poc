@@ -1,0 +1,23 @@
+## id: aircube-login
+## name: airCube Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,aircube,ubiquiti,discovery
+## description: airCube login panel was detected.
+## affects: aircube
+## shodan-query: http.favicon.hash:1249285083
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>airCube</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 647244eb392e8d49931a8884f59b1c40223040505cf706a67dcbf606e7393ed9

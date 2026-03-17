@@ -1,0 +1,24 @@
+## id: mailhog-panel
+## name: MailHog Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mailhog,mail,smtp,discovery
+## description: MailHog panel was detected.
+## reference: https://github.com/mailhog/MailHog
+## shodan-query: http.html:"mailhog"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "MailHog"
+#@ matcher: body contains "SMTP server"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 38ab75bbb161910b01d32a8c212b0b0d4cc12efae7e60830c43261d72ac2629b

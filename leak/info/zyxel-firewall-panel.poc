@@ -1,0 +1,24 @@
+## id: zyxel-firewall-panel
+## name: Zyxel Firewall Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xyxel,firewall,discovery
+## description: Zyxel Firewall panel was detected.
+## affects: zywall_vpn50_firmware
+## shodan-query: http.favicon.hash:-440644339
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/lib/mode_ana"
+#@ matcher: body contains "VPN" || body contains "USG" || body contains "ATP"
+#> extract: name=ex_regex, from=body, regex=/<title>(.*)<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7bb257444a8b106c690c51469daf53c6498b4d571c5d2888ddace12f6d049a64

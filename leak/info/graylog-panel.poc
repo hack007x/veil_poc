@@ -1,0 +1,24 @@
+## id: graylog-panel
+## name: Graylog Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,graylog,login,detect,discovery
+## description: Graylog login panel was detected.
+## affects: graylog
+## reference: https://graylog.org/
+## shodan-query: http.title:"Graylog Web Interface"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Graylog Web Interface"
+
+
+
+
+
+# @VEIL-STAMP: f626b88b9289cae18e52e96a7defcdfaf9a818a2da6b02ac7b655dd8c226443b

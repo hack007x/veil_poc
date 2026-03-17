@@ -1,0 +1,19 @@
+## id: supervpn-detect
+## name: SuperVPN Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: SuperVPN login panel was detected.
+## verification: true
+
+GET /admin/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Sign In-SuperVPN</title>"
+
+
+
+
+
+# @VEIL-STAMP: 023496544b6cac015f50f775f6118319a0eb29bd7ecdc638853ac5fc0d2ee185

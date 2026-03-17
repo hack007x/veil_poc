@@ -1,0 +1,24 @@
+## id: xnat-login
+## name: XNAT Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: xnat,panel,discovery
+## description: XNAT login panel was detected.
+## affects: xnat
+## shodan-query: title:"xnat"
+## verification: true
+
+GET /app/template/Login.vm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>XNAT</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ecc619784cc8246a6e5566bc9ee409e1b0faba77a7aba68c91ff6e0d9bff051c

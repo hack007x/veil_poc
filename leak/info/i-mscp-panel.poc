@@ -1,0 +1,23 @@
+## id: i-mscp-panel
+## name: Internet Multi Server Control Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,i-mscp,detect,discovery
+## description: Internet Multi Server Control Panel was detected.
+## reference: https://i-mscp.net/
+## shodan-query: title:"i-MSCP - Multi Server Control Panel"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>i-MSCP - Multi Server Control Panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 52209d354fc6b450998d716bb2ea76e479d588d1538bd420672b277d0e5e5f34

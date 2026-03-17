@@ -1,0 +1,22 @@
+## id: oracle-enterprise-manager-login
+## name: Oracle Enterprise Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,oracle,manager,login,discovery
+## description: Oracle Enterprise Manager login panel was detected.
+## affects: enterprise_manager_base_platform
+## verification: true
+
+GET /em/console/logon/logon HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Oracle UIX" || body contains "libNPSVG3.so" || body contains "Oracle Enterprise Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bb0eb677f565df40d47db3205b07f86fce26fc6e7faaab5ce1e975bda9f8d8a7

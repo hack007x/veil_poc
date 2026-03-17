@@ -1,0 +1,27 @@
+## id: bookstack-panel
+## name: BookStack Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bookstack,bookstackapp,discovery
+## description: Bookstack login panel was detected.
+## affects: bookstack
+## reference: https://github.com/BookStackApp/BookStack
+## shodan-query: http.title:"BookStack",http.title:"bookstack"
+## fofa-query: title="bookstack"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>BookStack</title>" || body contains '<span class="logo-text">BookStack</span>'
+#@ matcher: header["set-cookie"] contains "Set-Cookie: bookstack_session"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?:app\.js|(?:print\-)?styles\.css)\?version=([\w\.\-]+)["']>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 84ea4610ce2f050433cf3591d097bf1293e6a34656153c1ae4108c0c5ef907d9

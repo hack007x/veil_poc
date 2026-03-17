@@ -1,0 +1,24 @@
+## id: oracle-integrated-manager
+## name: Oracle Integrated Lights Out Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: oracle,login,panel,discovery
+## description: Oracle Integrated Lights Out Manager login panel was detected.
+## affects: integrated_lights_out_manager_firmware
+## shodan-query: http.title:"Oracle(R) Integrated Lights Out Manager"
+## verification: true
+
+GET /iPages/i_login.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Oracle(R) Integrated Lights Out Manager - Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/id="hostname">([a-z0-9-]+)<\/span><\/td>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 4a951567bf41de558045b41a5c340ea1175ce1e6ab2f0e0891e84f215dd10e1e

@@ -1,0 +1,24 @@
+## id: tlr-2005ksh-login
+## name: Telesquare TLR-2005KSH Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,router,telesquare,discovery
+## description: Telesquare TLR-2005KSH login panel was detected.
+## affects: tlr-2005ksh_firmware
+## shodan-query: http.html:"TLR-2005KSH",http.html:"tlr-2005ksh"
+## fofa-query: body="tlr-2005ksh"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login to TLR-2005KSH</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1881b1604318c4d2bcb5512c2439f7225a7bec7610ce971aba35e6b4ce116702

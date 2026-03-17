@@ -1,0 +1,23 @@
+## id: aws-ec2-autoscale
+## name: AWS EC2 Auto Scaling Lab
+## author: hack007x
+## severity: info
+## tags: exposure,ec2,aws,amazon,panel,discovery
+## reference: https://www.facebook.com/photo/?fbid=620605120110011&set=a.467014098802448
+## shodan-query: html:"AWS EC2 Auto Scaling Lab"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AWS EC2 Auto Scaling Lab"
+#@ matcher: body contains "EC2 Instance Metadata"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 22686c1b968cf4b8be4f0e82b218e5cfa930ccdcf35a7a1b43270f4c3766ba1d

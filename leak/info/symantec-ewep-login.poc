@@ -1,0 +1,22 @@
+## id: symantec-ewep-login
+## name: Symantec Encryption Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,symantec,login,discovery
+## description: Symantec Encryption Server login panel was detected.
+## shodan-query: http.title:"Symantec Encryption Server"
+## verification: true
+
+GET /b/l.e HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<TITLE>Symantec Encryption Server: Web Email Protection - Login</TITLE>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 46be2e289f3f1685f1fab846e1584465a3bc22025fa38e5d9d7be04eb303abce

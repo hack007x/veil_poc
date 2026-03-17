@@ -1,0 +1,23 @@
+## id: glowroot-panel
+## name: Glowroot - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,glowroot,discovery
+## reference: https://www.facebook.com/photo?fbid=618105097026680&set=a.467014098802448
+## shodan-query: title:"Glowroot"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Glowroot"
+#@ matcher: body contains "Change my password"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1922df5584f9853ae1081ea7f9c85946ee53bc1d1994b4962cac2c2dde3ae8df

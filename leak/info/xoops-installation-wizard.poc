@@ -1,0 +1,22 @@
+## id: xoops-installation-wizard
+## name: XOOPS Installation Wizard Panel - Detect
+## author: hack007x
+## severity: low
+## tags: panel,xoops,discovery
+## description: XOOPS Installation Wizard panel was detected.
+## affects: xoops
+## verification: true
+
+GET /install/page_start.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?i)(<title>(.*)XOOPS Installation Wizard(.*)<\/title>)/
+#@ matcher: body matches /(?i)(<title>(.*)XOOPS 安裝精靈(.*)<\/title>)/
+
+
+
+
+
+# @VEIL-STAMP: ab5cb19a29f8f4161a14fdb06b239fd9439a16fc5aa73026b35a10695c5694e3

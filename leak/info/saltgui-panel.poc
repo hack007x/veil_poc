@@ -1,0 +1,22 @@
+## id: saltgui-panel
+## name: SaltGUI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,saltgui,discovery
+## description: SaltGUI login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>SaltGUI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 31e1db774eb61942cb76480d80c27b63218f137ba383cd4553902abc248cf3ee

@@ -1,0 +1,24 @@
+## id: sql-monitor
+## name: SQL Monitor - Discovery
+## author: hack007x
+## severity: info
+## tags: panel,red-gate,discovery
+## description: SQL Monitor was discovered.
+## affects: sql_monitor
+## shodan-query: html:"SQL Monitor",http.html:"sql monitor"
+## fofa-query: body="sql monitor"
+## verification: true
+
+GET /Account/LogIn?returnUrl=%2F&hasAttemptedCookie=True HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<p>JavaScript needs to be enabled for SQL Monitor to work properly.</p>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9e8d3d031205546769f2fc37879d3cacc462eb3b37ce4a63b17cd2816d1c9065

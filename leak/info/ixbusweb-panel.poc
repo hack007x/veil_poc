@@ -1,0 +1,23 @@
+## id: ixbusweb-panel
+## name: iXBus Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ixbusweb,cms,discovery
+## description: iXBus login panel was detected.
+## shodan-query: http.title:"iXBus"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>iXBus</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(iXBusWeb[\n\t ]+\((([0-9]+(.[0-9]+)?(.[0-9]+)?(.[0-9]+)?))\))/, group=2
+
+
+
+
+
+# @VEIL-STAMP: ebf15a86f5126617147d29be5800cd22e6c39c0771fbcdd91814fcfb47b72360

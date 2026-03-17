@@ -1,0 +1,23 @@
+## id: oxf-phaas-panel
+## name: OXF Phishing as a Service Panel - Detect
+## author: hack007x
+## severity: info
+## tags: c2,oxf,phishing,panel,login,vuln
+## description: OXF Phishing as a Service Panel was discovered.
+## reference: https://x.com/solostalking/status/1946069612090495059
+## fofa-query: title="OXF Panel"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login · OXF Panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c74703e0982167761746f3238d2a51d60a6f9852a95f50d00a1d96996ae6c657

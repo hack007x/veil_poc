@@ -1,0 +1,24 @@
+## id: seagate-nas-login
+## name: Seagate NAS Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,seagate,login,discovery
+## description: Seagate NAS - SEAGATE Login was detected.
+## affects: nas_os
+## shodan-query: title:"Seagate NAS - SEAGATE",http.title:"seagate nas - seagate"
+## fofa-query: title="seagate nas - seagate"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Seagate NAS - SEAGATE"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b875828a3ec36a917d9a48fd3b4cdb5c44c23e00dc43ba8c9c71125594515193

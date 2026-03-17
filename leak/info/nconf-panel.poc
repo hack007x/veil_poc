@@ -1,0 +1,23 @@
+## id: nconf-panel
+## name: NConf Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nconf,discovery
+## description: NConf login panel was detected.
+## affects: nconf
+## shodan-query: http.title:"nconf"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "nconf.js" || body contains "<title>NConf"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2293727777f21fda7ef6750a405cc401dd22380a59ba9d6f6ab5712f3a17d65e

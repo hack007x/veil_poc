@@ -1,0 +1,20 @@
+## id: sonicwall-management-panel
+## name: SonicWall Management Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sonicwall,discovery
+## description: SonicWall Management admin login panel was detected.
+## affects: global_management_system
+## verification: true
+
+GET /auth.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>SonicWall - Authentication</title>" || body contains "SonicWall Administrator"
+
+
+
+
+
+# @VEIL-STAMP: bd5f5a0c0b7168f26c3b780ae16d47056345ab420e12a3cb9ba7940a6c01d4d5

@@ -1,0 +1,21 @@
+## id: meduza-stealer
+## name: Meduza Stealer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: rat,meduza-stealer,c2,panel,vuln
+## description: Meduza Stealer panel were detected.
+## shodan-query: http.title:"Meduza Stealer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d021f0a1e6f9d351858a8600220ebfce94318003c1b7df334a07b7563c268587

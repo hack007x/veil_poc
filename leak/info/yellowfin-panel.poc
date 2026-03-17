@@ -1,0 +1,23 @@
+## id: yellowfin-panel
+## name: Yellowfin Information Collaboration - Detect
+## author: hack007x
+## severity: info
+## tags: yellowfin,panel,login,discovery
+## affects: yellowfin
+## shodan-query: title:"Yellowfin Information Collaboration"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Yellowfin Information Collaboration</title>" || body contains 'alt="Yellowfin"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 99e02cbc5b3333ef040f65c3ad62fbc1e6b5b7f78801f3fb2e2424f148540379

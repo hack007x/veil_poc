@@ -1,0 +1,26 @@
+## id: atlassian-bamboo-panel
+## name: Atlassian Bamboo Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bamboo,login,detect,discovery
+## description: Atlassian Bamboo login panel was detected.
+## affects: bamboo
+## reference: https://www.atlassian.com/software/bamboo
+## shodan-query: http.title:"Bamboo"
+## verification: true
+
+GET /userlogin!doDefault.action?os_destination=%2Fstart.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Log in as a Bamboo user" || body contains 'content="Bamboo' || body contains "atlassian.bamboo.plugins" || body contains "Atlassian Bamboo</a>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex_1, from=body, regex=/version\s+([0-9A-Za-z\s\.]+)\s+-/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/pvpVersion = "([a-z0-9.]+)";/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 36c36ef93c0fd7f8fb33531b8829fa5de06864430ab701ebb9d7d62de452c1e6

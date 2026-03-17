@@ -1,0 +1,24 @@
+## id: mattermost-panel
+## name: Mattermost Login - Panel
+## author: hack007x
+## severity: info
+## tags: login,mattermost,panel,discovery
+## description: Mattermost Login Panel was discovered.
+## shodan-query: html:'content="Mattermost"'
+## fofa-query: content="Mattermost"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'content="Mattermost"'
+#@ matcher: status_code == 200
+#> extract: name=version, from=headers, regex=/X-Version-Id: (\d+\.\d+\.\d+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b78f2b5e44ccfe6f6e6c01cd2c040d49c807804d1c59c6a2257cc703ad29f128

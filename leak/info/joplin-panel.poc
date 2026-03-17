@@ -1,0 +1,22 @@
+## id: joplin-panel
+## name: Joplin Server Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,joplin,login,discovery
+## description: Joplin Server login panel detected.
+## shodan-query: title:"Joplin Server"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Joplin Server - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8f4d0df5e18d9b3fa15d019d7844bda4bfd938828ec5748a70b50bab7c26b0c6

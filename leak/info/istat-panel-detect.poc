@@ -1,0 +1,21 @@
+## id: istat-panel-detect
+## name: Abbott i-STAT Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,abbott,istat,discovery
+## description: Abbott i-STAT login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Abbott Point of Care Inc. i-STAT</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 64c3bf87aec7c95a3960ae55554ff8d929db1a90232b17dae5e15e6ed928d24c

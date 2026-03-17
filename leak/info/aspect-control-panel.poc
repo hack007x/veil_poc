@@ -1,0 +1,23 @@
+## id: aspect-control-panel
+## name: ASPECT Control Panel - Detect
+## author: hack007x
+## severity: info
+## tags: detect,panel,aspect,login,abb,ics,discovery
+## description: ASPECT Control Panel login was detected.
+## affects: aspect-ent-256
+## shodan-query: title:"ASPECT Control Panel",http.favicon.hash:1011076161,http.favicon.hash:-1849398868,ssl.cert.subject.cn:"aspect.local",http.html:'src="libjs/pngfix.js"'
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ASPECT Control Panel" || body contains 'src="libjs/pngfix.js"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c1068483580d574d0ae9b285a849f590203036318c3d16e0096862416d8a1963

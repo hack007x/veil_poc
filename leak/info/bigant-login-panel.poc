@@ -1,0 +1,22 @@
+## id: bigant-login-panel
+## name: BigAnt Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bigant,discovery
+## description: BigAnt admin login panel was detected.
+## shodan-query: http.html:"BigAnt Admin"
+## verification: true
+
+GET /index.php/Home/login/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>BigAnt Admin </title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f8c2f78475d651823d77707d19163309cc5811cf502424d7f50e0c8f5f93f8f9

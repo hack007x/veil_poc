@@ -1,0 +1,26 @@
+## id: hp-ilo-5
+## name: Hewlett Packard Integrated Lights Out 5 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: hp,ilo,panel,hpe,discovery
+## description: Hewlett Packard Integrated Lights Out 5 login panel was detected.
+## affects: integrated_lights-out_5
+## reference: https://www.hpe.com/us/en/servers/integrated-lights-out-ilo.html
+## verification: true
+
+GET /html/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "titleHeading>iLO 5"
+#@ matcher: body contains "titleFwver>Firmware"
+#@ matcher: body contains "2002-2018 Hewlett Packard Enterprise Development LP"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: bced2d8a6d2a7aeee9c7ac57a8ed2c1ec510187fcaefc10cf843407d1731c1f3

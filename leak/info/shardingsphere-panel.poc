@@ -1,0 +1,25 @@
+## id: shardingsphere-panel
+## name: ShardingSphere ElasticJob UI Panel
+## author: hack007x
+## severity: info
+## tags: panel,shardingsphere,login,apache,discovery
+## description: An ShardingSphere ElasticJob UI panel was detected.
+## affects: shardingsphere_elasticjob-ui
+## shodan-query: http.favicon.hash:816588900
+## fofa-query: icon_hash=816588900
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>ShardingSphere ElasticJob UI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 98f13b9f79525d65e134a4f4cb82b67da3da3bfeef92e8145ac49646ebb5ea1c

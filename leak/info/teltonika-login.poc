@@ -1,0 +1,24 @@
+## id: teltonika-login
+## name: Teltonika Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,teltonika,edb,discovery
+## description: Teltonika login panel was detected.
+## affects: rut900
+## reference: https://www.exploit-db.com/ghdb/7819
+## reference: https://teltonika-iot-group.com/
+## verification: true
+
+GET /cgi-bin/luci HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>Teltonika(.*) - Web UI<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1a6ec65af5c16437fe27b53d55e0695f38e15cc5fc413150c5366d7be1abdb6b

@@ -1,0 +1,25 @@
+## id: pandora-fms-console
+## name: Pandora FMS Mobile Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,pandorafms,discovery
+## description: Pandora FMS Mobile Console login panel was detected.
+## affects: pandora_fms
+## reference: https://www.exploit-db.com/ghdb/6827
+## shodan-query: http.title:"pandora fms"
+## fofa-query: title="pandora fms"
+## verification: true
+
+GET /pandora_console/mobile/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Pandora FMS mobile</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 05f8812c7506b72a55313a0960b1e5ffccf0ca198130e73edbb095ced1c80bfd

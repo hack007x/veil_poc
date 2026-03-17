@@ -1,0 +1,27 @@
+## id: zimbra-web-login
+## name: Zimbra Collaboration Suite Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zimbra,synacor,discovery
+## description: Zimbra Collaboration Suite panel was detected. Zimbra Collaboration Suite simplifies the communication environment, connects people over multiple channels, and provides a single place to manage collaboration and communication.
+## affects: zimbra_collaboration_suite
+## reference: https://www.zimbra.com/
+## shodan-query: http.title:"Zimbra Collaboration Suite",http.title:"zimbra collaboration suite",http.title:"zimbra web client sign in"
+## fofa-query: title="zimbra web client sign in",title="zimbra collaboration suite"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Zimbra Collaboration Suite Log In" || body contains "Zimbra Web Client Sign In" || body contains "Zimbra Web Client Log In"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/v=([0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7749df20595f1614d5320edcb250753eb805778166e2d0dc54d5d33be86eda7c

@@ -1,0 +1,24 @@
+## id: freshrss-fever-api
+## name: FreshRSS Fever API - Exposure
+## author: hack007x
+## severity: low
+## tags: exposure,freshrss,fever,api
+## description: Detected an exposed FreshRSS instance with the Fever API enabled, which could allow unauthorized access to RSS feed data and user-related information via accessible Fever-compatible API endpoints.
+## reference: https://freshrss.github.io/FreshRSS/en/developers/06_Fever_API.html
+## shodan-query: http.html:"FreshRSS"
+## verification: true
+
+GET /api/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FreshRSS API endpoints"
+#@ matcher: body contains "Fever compatible API"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3248588a310d9e1f8cdfb898cb2520ac6a146aeef58fa7e790709f94cdd6f66f

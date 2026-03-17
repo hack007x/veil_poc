@@ -1,0 +1,24 @@
+## id: rsa-self-service
+## name: RSA Self-Service Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rsa,discovery
+## description: RSA Self-Service login panel was detected.
+## verification: true
+
+GET /console-selfservice/SelfService.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Self-Service Console"
+#@ matcher: body contains "RSA"
+#@ matcher: body contains "AM_Self_Service_Console"
+#@ matcher: body contains "console-selfservice"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bcb8e904cb81f43cc39cb7592af2203af0e730545110d0d960d691d09e5b9a66

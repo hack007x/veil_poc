@@ -1,0 +1,26 @@
+## id: openwrt-luci-panel
+## name: Opentwrt luCI - Admin Login Page
+## author: hack007x
+## severity: info
+## tags: panel,default-login,openwrt,x-wrt,discovery
+## description: An Opentwrt admin login page was discovered.
+## affects: luci
+## reference: https://forum.archive.openwrt.org/viewtopic.php?id=16611
+## shodan-query: http.title:"OpenWrt - LuCI",http.title:"openwrt - luci"
+## fofa-query: title="openwrt - luci"
+## verification: true
+
+GET /cgi-bin/luci HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "OpenWrt"
+#@ matcher: body contains "LuCI"
+#@ matcher: body contains "login"
+
+
+
+
+
+# @VEIL-STAMP: 58b2bd088e17d53107e44bb6ed5fcfe6847db248d95fe5f161ac2fbd2ddaa539

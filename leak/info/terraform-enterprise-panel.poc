@@ -1,0 +1,25 @@
+## id: terraform-enterprise-panel
+## name: Terraform Enterprise Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,terraform,hashicorp,discovery
+## description: Terraform Enterprise panel was detected.
+## affects: terraform
+## reference: https://www.terraform.io/enterprise/releases
+## shodan-query: title:"Terraform Enterprise",http.title:"terraform enterprise"
+## fofa-query: title="terraform enterprise"
+## verification: true
+
+GET /session HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "Terraform Enterprise"
+#> extract: name=ex_regex, from=body, regex=/<span class="tag is-light is-lowercase">(.+)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7ab6ceb17dab8b2ab33978450713bfcd03d164543e437ab49fabce8a663dc814

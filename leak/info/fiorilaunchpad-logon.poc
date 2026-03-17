@@ -1,0 +1,24 @@
+## id: fiorilaunchpad-logon
+## name: Fiori Launchpad Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,sap,discovery
+## description: Fiori Launchpad login panel was detected.
+## affects: fiori_launchpad
+## reference: https://www.exploit-db.com/ghdb/6793
+## verification: true
+
+GET /sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?saml2=disabled HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Logon</title>"
+#@ matcher: body contains "fioriLogin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4bcc5beaae5b25f7de9495a0585afdaa7c1b5e6520213ac4428827c7c72f0468

@@ -1,0 +1,25 @@
+## id: juniper-panel
+## name: Juniper J-Web Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,juniper,vpn,login,discovery
+## description: Juniper J-Web panel was detected.
+## reference: https://www.juniper.net/documentation/us/en/software/jweb-ex/jweb-ex-application-package/topics/concept/ex-series-j-web-interface-overview.html
+## shodan-query: http.title:"Juniper Web Device Manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /(i?)<title>(Log In - )?Juniper Web Device Manager<\/title>/
+#@ matcher: status_code == 200
+#> extract: name=model, from=body, regex=/var modelphpStr = "(.*?)";/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 0fc1ee1588ef2af8ef7f7ccd41b14f093c0c9745751974e6df42642fc14a3a02

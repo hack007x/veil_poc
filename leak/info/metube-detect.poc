@@ -1,0 +1,23 @@
+## id: metube-detect
+## name: MeTube Instance Detected
+## author: hack007x
+## severity: info
+## tags: metube,detect,panel,login,discovery
+## description: A MeTube instance was detected.
+## reference: https://github.com/alexta69/metube
+## shodan-query: http.title:MeTube
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>MeTube</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 389e2e627f064cced654cf772d231878e38d1b7224303e01c4e7e8c94a0d3df8

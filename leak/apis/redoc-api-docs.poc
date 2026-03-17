@@ -1,0 +1,27 @@
+## id: redoc-api-docs
+## name: ReDoc API Docs - Detect
+## author: hack007x
+## severity: info
+## tags: api,openapi,redoc,exposure,discovery
+## description: ReDoc API documentation interface is available without authentication, potentially exposing information about the API endpoints.
+## reference: https://redocly.com/docs/redoc
+## shodan-query: html:"redoc.standalone.js"
+## verification: true
+
+#$ path = /redoc | /docs | /api/docs | /openapi 
+
+GET {{path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: body contains "__REDOC_EXPORT" || body contains "redoc.standalone.js"
+
+
+
+
+
+# @VEIL-STAMP: b1ea62ba62a8936a2236733eef487b0987a957a29170e6859367299222f382f5

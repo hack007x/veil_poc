@@ -1,0 +1,22 @@
+## id: suprema-biostar-panel
+## name: Suprema BioStar 2 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,biostar,detect,discovery
+## affects: biostar_2
+## shodan-query: title:"Biostar"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "BioStar 2</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6469e1952aa44199fbfeec517b29c023b57930752204251863576cee22b3a8cb

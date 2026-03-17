@@ -1,0 +1,22 @@
+## id: dex-panel
+## name: Dex Authentication - Panel
+## author: hack007x
+## severity: info
+## tags: dex,sso,panel,login,discovery
+## reference: https://dexidp.io
+## shodan-query: html:"Log in to dex"
+## verification: true
+
+GET /dex/auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Log in to dex"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 07a95fd59c0964f3addb19f7474f6916b8e7695f846957c5a20dea5087fc1ea0

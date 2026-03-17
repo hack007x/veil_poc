@@ -1,0 +1,22 @@
+## id: tekton-dashboard
+## name: Tekton Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tekton,exposure,discovery
+## description: Tekton Dashboard panel was detected.
+## shodan-query: title:"Tekton"
+## verification: true
+
+GET /#/pipelines HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Tekton Dashboard"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: dac1514d8b3a35144ad8fda9ba87736e5a4df1d00703ccf096233e7166bd82c1

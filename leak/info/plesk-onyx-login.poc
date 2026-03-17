@@ -1,0 +1,28 @@
+## id: plesk-onyx-login
+## name: Plesk Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,plesk,login,edb,discovery
+## description: Plesk login panel was detected.
+## affects: onyx
+## reference: https://www.exploit-db.com/ghdb/6501
+## reference: https://www.plesk.com/
+## shodan-query: http.html:"Plesk Onyx" http.html:"plesk-build",http.html:"plesk onyx" http.html:"plesk-build"
+## fofa-query: body="plesk onyx" http.html:"plesk-build"
+## verification: true
+
+GET /login_up.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'alt="Plesk Onyx' || body contains "plesk-build" || body contains "plesk-revision" || body contains "plesk-root"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex_1, from=body, regex=/alt="Plesk Onyx ([0-9.]+)"/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/(?i)"urlArgs":"([0-9.-]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d4f3c384163b7f0f097a537805d8ce59f1e8419a2eadef350592de9833b5a125

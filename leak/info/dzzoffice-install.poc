@@ -1,0 +1,26 @@
+## id: dzzoffice-install
+## name: DzzOffice Installation Panel - Detect
+## author: hack007x
+## severity: high
+## tags: panel,dzzoffice,install,discovery
+## description: DzzOffice installation panel was detected.
+## affects: dzzoffice
+## cvss-score: 7.5
+## shodan-query: http.favicon.hash:-1961736892
+## fofa-query: title="dzzoffice",icon_hash=-1961736892
+## verification: true
+
+GET /install/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "DzzOffice"
+#@ matcher: body contains "简体中文 UTF8 版" || body contains "Simplified Chinese UTF8 version"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 823ad26e200bc0c761413368504d8a5b3a517a0eb7f6a9e4e85fa44770703da2

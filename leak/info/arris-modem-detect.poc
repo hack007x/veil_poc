@@ -1,0 +1,24 @@
+## id: arris-modem-detect
+## name: ARRIS Touchstone Telephony Modem - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,arris,commscope,discovery
+## description: ARRIS Touchstone Telephony Modem status panel was detected.
+## affects: dg3450
+## shodan-query: html:"phy.htm",http.html:"phy.htm"
+## fofa-query: body="phy.htm"
+## verification: true
+
+GET /phy.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Touchstone Status</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 202b3b664cfa9341e7aea6f6cb7a9af03d173554c1cfa497ce510ab529654413

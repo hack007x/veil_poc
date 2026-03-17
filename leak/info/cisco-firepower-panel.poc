@@ -1,0 +1,28 @@
+## id: cisco-firepower-panel
+## name: Cisco Secure Firewall Management Center - Panel
+## author: hack007x
+## severity: info
+## tags: login,cisco,panel,console,discovery
+## description: Cisco Secure Firewall Management Center login panel was detected. Secure Firewall Management Center was formerly known as Firepower Management Center.
+## affects: secure_firewall_management_center
+## shodan-query: http.html:"Cisco Firepower Management Center",http.html:"Secure Firewall Management Center",http.html:"UA-110054821-1"
+## fofa-query: body="Cisco Firepower Management Center",body="Secure Firewall Management Center",body="UA-110054821-1"
+## verification: true
+
+GET /ui/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login"
+#@ matcher: body contains "/img/cisco-icon.svg"
+#@ matcher: body contains "Cisco Firepower Management Center" || body contains "Secure Firewall Management Center"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/'version':\s*'([^\']+)'/, group=1, internal=true
+#> extract: name=build, from=body, regex=/'build':\s*'([^\']+)'/, group=1, internal=true
+
+
+
+
+
+# @VEIL-STAMP: 995d18e2f5a3588eff6a9f8f2bdf7d932c3f3387356f36fed863788633151ec5

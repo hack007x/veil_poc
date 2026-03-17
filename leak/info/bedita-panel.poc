@@ -1,0 +1,26 @@
+## id: bedita-panel
+## name: BEdita Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bedita,discovery
+## description: BEdita login panel was detected.
+## affects: bedita
+## reference: https://www.bedita.com/
+## shodan-query: http.title:"BEdita",http.title:"bedita"
+## fofa-query: title="bedita"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /BEdita(.*)<\/a><br>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/target="besite">(.*)<\/a><br>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8e235ac2709e2aa9c882da0f496f1cf816b20ad01ae99fcd90e1d5664887a146

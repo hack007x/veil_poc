@@ -1,0 +1,21 @@
+## id: forcepoint-applicance
+## name: Forcepoint Appliance
+## author: hack007x
+## severity: info
+## tags: panel,forcepoint,discovery
+## shodan-query: http.title:"Forcepoint Appliance"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Forcepoint Appliance</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 452a3b3a0add03fea2497752ae868cfc640a6db752487c408cb5a7aa30dceb0d

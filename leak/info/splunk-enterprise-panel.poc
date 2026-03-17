@@ -1,0 +1,29 @@
+## id: splunk-enterprise-panel
+## name: Splunk Enterprise Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,splunk,discovery
+## description: Splunk Enterprise login panel was detected.
+## affects: splunk
+## reference: https://www.splunk.com/en_us/software/splunk-enterprise.html
+## shodan-query: http.title:"Login - Splunk",http.title:"login - splunk"
+## fofa-query: title="login - splunk"
+## verification: true
+
+GET /en-US/account/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Splunk Inc."
+#@ matcher: status_code == 200
+#> extract: name=ex_regex_1, from=body, regex=/"version": "(.*)"/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/versionNumber": "([0-9.]+)"/, group=1
+#> extract: name=ex_regex_3, from=body, regex=/"VERSION_LABEL": "([0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 232acf09cdc27c141edee422a3ac5124efe93b3a8f3a8d220ae8e608eb7d63a1

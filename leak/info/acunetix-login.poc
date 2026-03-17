@@ -1,0 +1,24 @@
+## id: acunetix-login
+## name: Acunetix Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,acunetix,discovery
+## description: Acunetix login panel was detected.
+## affects: web_vulnerability_scanner
+## shodan-query: title:"Acunetix"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Acunetix</title>" || body contains "assets/images/invicti-acunetix-logo.svg"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: cdddd7f2f326c75890c8646f4e3be2732dedaf0a04c06e2f3e6a5c30f7ec0a7a

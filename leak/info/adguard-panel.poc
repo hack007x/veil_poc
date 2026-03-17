@@ -1,0 +1,24 @@
+## id: adguard-panel
+## name: AdGuard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: adguard,panel,login,detect,discovery
+## description: AdGuard panel has been detected.
+## affects: adguard
+## fofa-query: title="AdGuard Home"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "AdGuard Home</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5e2fe7886cf88ab5479fa627d1c3faa090a84ac999fcf1a2059a183673c7c2d0

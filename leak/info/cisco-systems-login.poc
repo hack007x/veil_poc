@@ -1,0 +1,23 @@
+## id: cisco-systems-login
+## name: Cisco Systems Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco Systems login panel was detected.
+## shodan-query: http.title:"Cisco Systems Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Cisco Systems Login"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<script src="javascript\/translate\.js\?ver=(.+)"><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 48d7017a4a6fd746b5c4739b719221d15d6ec4aeaba191d263d3f2162985f794

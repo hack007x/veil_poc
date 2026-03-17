@@ -1,0 +1,24 @@
+## id: mag-dashboard-panel
+## name: MAG Dashboard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mag,discovery
+## description: MAG Dashboard login panel was detected.
+## shodan-query: http.title:"MAG Dashboard Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "MAG Dashboard Login"
+#@ matcher: body contains "Check for Renewal License"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f9c5171d92d3cb13197475fd336a35e4453f64159512ca79ab0f657ecc53587c

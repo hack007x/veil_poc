@@ -1,0 +1,21 @@
+## id: secnet-ac-panel
+## name: SecNet Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: secnet-ac,panel,discovery
+## description: SecNet login panel was detected.
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>安网科技-智能路由系统</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 45d986ab621b226b48eeb58d1b773f02510282712cd96bbc73b78909e0eaa915

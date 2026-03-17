@@ -16,10 +16,11 @@ User-Agent: {{random_ua}}
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "json"
 #@ matcher: body contains "成功"
+#@ matcher: body matches /"enterprise_icp"\s*:\s*"[^"]+"/
 #> extract: name=icp, from=body, regex=/"enterprise_icp"\s*:\s*"([^"]+)"/, group=1
 
 
 
 
 
-# @VEIL-STAMP: a2445267db6eef6051304f469e5440da461993d10f971b634acc5723624d0c6f
+# @VEIL-STAMP: 2346d289c679733aa72ca7f44fa8ed8cdd07e7db999de99e1d704a62dc96fb0a

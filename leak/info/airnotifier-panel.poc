@@ -1,0 +1,25 @@
+## id: airnotifier-panel
+## name: AirNotifier Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,airnotifier,discovery
+## description: AirNotifier login panel was detected.
+## shodan-query: http.title:"AirNotifier"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AirNotifier"
+#@ matcher: body contains "Stats"
+#@ matcher: body contains "Server Info"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 57fbba5696c2adf2514ad9868f41b62a4d1eca6c2800c25f3b4f7a7327367c05

@@ -1,0 +1,24 @@
+## id: sap-cloud-analytics
+## name: SAP Analytics Cloud Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sap,cloudanalytics,discovery
+## description: SAP Analytics Cloud panel was detected.
+## shodan-query: http.html:"SAP Analytics Cloud"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "SAP Analytics Cloud"
+#@ matcher: body contains "/approuter/"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 65f7be7bde40031f6bda209b46219594b458b38a286c51d16a5fa2ee9b6ffe42

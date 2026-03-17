@@ -1,0 +1,22 @@
+## id: usermin-panel
+## name: Usermin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,usermin,detect,discovery
+## description: Usermin panel was discovered.
+## fofa-query: Login to Usermin
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login to Usermin</title>" && body contains "/manifest-usermin.json"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 05ede80e63cf4cc8c31b7578978e01ced347097bd16a36ba5ed25d299278c2ca

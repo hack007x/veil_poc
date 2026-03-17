@@ -1,0 +1,24 @@
+## id: cisco-edge-340
+## name: Cisco Edge 340 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco Edge 340 panel was detected.
+## affects: edge_340_firmware
+## shodan-query: http.title:"Cisco Edge 340",http.title:"cisco edge 340"
+## fofa-query: title="cisco edge 340"
+## verification: true
+
+GET /auth/?next=%2F HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco Edge 340</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bc040627de70162772576330b9a0407f0b2047aba3b7d05f0ebb1f09cd48dbd7

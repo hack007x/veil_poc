@@ -1,0 +1,23 @@
+## id: rstudio-panel
+## name: RStudio Sign In Panel - Detect
+## author: hack007x
+## severity: info
+## tags: rstudio,login,panel,discovery
+## description: RStudio Sign In panel was detected.
+## shodan-query: title:"RStudio Sign In"
+## verification: true
+
+GET /auth-sign-in?appUri=%2F HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>RStudio Sign In</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 43d335b8b6450e3a537c9a914230695b26e6b822077b2d92204b66ee64e2daa6

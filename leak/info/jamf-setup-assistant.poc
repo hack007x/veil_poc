@@ -1,0 +1,23 @@
+## id: jamf-setup-assistant
+## name: Jamf Pro Setup Assistant Panel - Detect
+## author: hack007x
+## severity: info
+## tags: jamf,setup,panel,discovery
+## description: Jamf Pro Setup Assistant panel was detected.
+## affects: jamf
+## shodan-query: http.html:"Jamf Pro Setup"
+## verification: true
+
+GET /setupAssistant.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Jamf Pro Setup Assistant"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7f73b662afd9c6fc722d52972fd360540940791fc305455e85c3c1f7f6be16c4

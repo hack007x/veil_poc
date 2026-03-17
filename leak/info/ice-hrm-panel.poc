@@ -1,0 +1,23 @@
+## id: ice-hrm-panel
+## name: ICE HRM Login - Detect
+## author: hack007x
+## severity: info
+## tags: icehrm,login,hrm,panel,web,detect,discovery
+## description: The ICE HRM login panel was discovered.
+## reference: https://icehrm.com
+## shodan-query: http.title:"Ice Hrm Login"
+## verification: true
+
+GET /app/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?i)<title>ice hrm login<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a477cb6d1e111234fe02bb815d53f5cae7e7d6051bb1097a7cd67fa6109b8bc4

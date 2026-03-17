@@ -1,0 +1,22 @@
+## id: oracle-containers-panel
+## name: Oracle Containers for J2EE 10g Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,oracle,containers,discovery
+## description: Oracle Containers for J2EE 10g panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Welcome to Oracle Containers for J2EE 10g" || body contains "Administration Guide is included"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Oracle Containers for J2EE 10g \(.*\)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c3aac9f2295976e488ea4afdef6e7f5c041044f0f4b54f50a4c728ed48c10921

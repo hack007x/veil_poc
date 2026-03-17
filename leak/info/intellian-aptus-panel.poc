@@ -1,0 +1,26 @@
+## id: intellian-aptus-panel
+## name: Intellian Aptus Web Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,intellian,aptus,intelliantech,discovery
+## description: Intelllian Aptus Web login panel was detected.
+## affects: aptus_web
+## shodan-query: http.title:"Intellian Aptus Web",http.title:"intellian aptus web"
+## fofa-query: title="intellian aptus web"
+## verification: true
+
+GET /cgi-bin/getagent.cgi?type=s&xxxx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /<title>Intellian Aptus Web (.*)<\/title>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<title>Intellian Aptus Web (.*)<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: df6fe7f32a871874f92797b646837ab881226900be77e24a0e1ca480fffe51ed

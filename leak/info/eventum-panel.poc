@@ -1,0 +1,26 @@
+## id: eventum-panel
+## name: Eventum Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,eventum,mysql,discovery
+## description: Eventum login panel was detected.
+## affects: eventum
+## shodan-query: http.favicon.hash:305412257
+## fofa-query: icon_hash=305412257
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: or
+#@ matcher: body contains "<title>Login - Eventum</title>" || body contains 'title="Eventum Issues search"'
+#@ matcher: body contains "Database Error:"
+#@ matcher: body contains "There seems to be a problem connecting to the database server specified in your configuration file"
+
+
+
+
+
+# @VEIL-STAMP: b5895f07653d9be240f9a3c6e5eeec2f2c98220205ddf643b1440ae85f504e7e

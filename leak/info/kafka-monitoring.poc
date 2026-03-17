@@ -1,0 +1,22 @@
+## id: kafka-monitoring
+## name: Apache Kafka Monitor Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kafka,apache,discovery
+## description: Apache Kafka Monitor login panel was detected.
+## affects: kafka
+## shodan-query: http.title:"kafka center",http.title:"kafka consumer offset monitor"
+## fofa-query: title="kafka center",title="kafka consumer offset monitor"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains ">KafkaMonitor</a>" || body contains ">Kafka Monitor GUI</h1>"
+
+
+
+
+
+# @VEIL-STAMP: 10c1ea25e5f9e716a51c3b1330df7222902f0c1fb4bd20d5b5120f45cf89e7e9

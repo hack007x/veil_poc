@@ -1,0 +1,25 @@
+## id: allegro-rompager-panel
+## name: Allegro RomPager - Panel
+## author: hack007x
+## severity: info
+## tags: tech,allegro,rompager,panel,login,discovery
+## description: Allegro RomPager was detected.This toolkit was commonly used in embedded devices such as routers, cameras, and IoT devices, often on historical hardware with possible default credentials.
+## reference: http://rompager.com
+## shodan-query: product:"Allegro RomPager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Allegro-Software-RomPager/"
+#@ matcher: status_code == 200
+#> extract: name=version, from=headers, regex=/RomPager\/([\d\.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5f3fbb2e2828d16feae18f89fbb6f9371401d67e935eae4169d9140d89e58ea4

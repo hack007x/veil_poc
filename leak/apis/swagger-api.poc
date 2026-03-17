@@ -1,0 +1,28 @@
+## id: swagger_api
+## name: Public Swagger API - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,swagger,discovery
+## description: Public Swagger API was detected.
+## reference: https://swagger.io/
+## shodan-query: http.title:"swagger"
+## verification: true
+
+#$ paths = /v2/api-docs | /v1/api-docs | /api-docs | /swagger-ui/swagger-ui.js | /swagger/swagger-ui.js | /swagger-ui.js | /swagger/ui/swagger-ui.js | /swagger/ui/index | /swagger/index.html | /swagger-ui.html | /swagger/swagger-ui.html | /api/swagger-ui.html | /api-docs/swagger.json | /api-docs/swagger.yaml | /api_docs | /swagger.json | /swagger.yaml | /swagger/v1/swagger.json | /swagger/v1/swagger.yaml | /api/index.html | /api/doc | /api/docs/ | /api/swagger.json | /api/swagger.yaml | /api/swagger.yml | /api/swagger/index.html | /api/swagger/swagger-ui.html | /api/api-docs/swagger.json | /api/api-docs/swagger.yaml | /api/swagger-ui/swagger.json | /api/swagger-ui/swagger.yaml | /api/apidocs/swagger.json | /api/apidocs/swagger.yaml | /api/swagger-ui/api-docs | /api/doc.json | /api/api-docs | /api/apidocs | /api/swagger | /api/swagger/static/index.html | /api/swagger-resources | /api/swagger-resources/restservices/v2/api-docs | /api/__swagger__/ | /api/_swagger_/ | /api/spec/swagger.json | /api/spec/swagger.yaml | /api/swagger/ui/index | /__swagger__/ | /_swagger_/ | /api/v1/swagger-ui/swagger.json | /api/v1/swagger-ui/swagger.yaml | /swagger-resources/restservices/v2/api-docs | /api/swagger_doc.json | /docu | /docs | /docs/ | /swagger | /api-doc | /doc/ | /swagger-ui/springfox.js | /swagger-ui/swagger-ui-standalone-preset.js | /swagger-ui/swagger-ui/swagger-ui-bundle.js | /webjars/swagger-ui/swagger-ui-bundle.js | /webjars/swagger-ui/index.html | /developers/documentation
+
+GET {{paths}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: text/html, application/json
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body contains "swagger:" || body contains "Swagger 2.0" || body contains '"swagger":' || body contains "Swagger UI" || body contains "loadSwaggerUI" || body contains "**token**:" || body contains 'id="swagger-ui'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/ @version (v[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})/, group=1
+
+
+
+
+
+# @VEIL-STAMP: eec8e9af3878187426b4da5d7fe53b7833d62c1cde4c74ba62db7f2a7953a608

@@ -1,0 +1,25 @@
+## id: satis-repository
+## name: Satis Composer Repository - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exposure,composer,satis,discovery
+## description: Satis composer repository was detected
+## reference: https://github.com/composer/satis
+## shodan-query: html:"<a href=\"https://github.com/composer/satis\">Satis</a>"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "This is a private repository"
+#@ matcher: body contains "https://github.com/composer/satis"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/\d+\.\d+\.\d+-dev/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e6e34ecd352f0c3acbaf811b9c58c272e4a185c262040d1cfc6d02a0854d6399

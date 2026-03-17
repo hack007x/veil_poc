@@ -1,0 +1,23 @@
+## id: librephotos-panel
+## name: LibrePhotos Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,librephotos,detect,login,discovery
+## affects: librephotos
+## reference: https://github.com/LibrePhotos/librephotos
+## shodan-query: title:"LibrePhotos"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>LibrePhotos"
+#@ matcher: status_code == 200 || status_code == 404
+
+
+
+
+
+# @VEIL-STAMP: 9af98c747e692b162c97bb49891266f399e705ca479f0350c98f04107fa8d6cc

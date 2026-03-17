@@ -1,0 +1,25 @@
+## id: camaleon-panel
+## name: Camaleon CMS Login - Panel
+## author: hack007x
+## severity: info
+## tags: camaleon,panel,login,discovery
+## description: Camaleon CMS admin login panel was discovered.
+## affects: camaleon_cms
+## shodan-query: html:"camaleon_cms"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "camaleon_cms"
+#@ matcher: body contains "Forgot your password"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 53c49aee5ff78b204c6915f1082f77cd7cddb0c789b8578cc3e8d8ca06d4ee28

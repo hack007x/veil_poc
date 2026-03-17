@@ -1,0 +1,24 @@
+## id: hypertest-dashboard
+## name: HyperTest Common Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exposure,hypertest,discovery
+## description: HyperTest Common Dashboard was detected.
+## reference: https://www.facebook.com/photo?fbid=487809593389565&set=a.467014098802448
+## reference: https://www.hypertest.co
+## shodan-query: title:"HyperTest"
+## verification: true
+
+GET /dashboard/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>HyperTest | Common Dashboard</title>" || body contains "HyperTest | Dashboard" || body contains "HyperTest doesn't work"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: bbcdb0ae1f935cd37cb954ad4d738c5ad4713ba7c9b3278894b4a86fe5a076c1

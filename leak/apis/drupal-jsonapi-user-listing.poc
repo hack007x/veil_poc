@@ -1,0 +1,26 @@
+## id: drupal-jsonapi-user-listing
+## name: Drupal JSON:API Username Listing - Detect
+## author: hack007x
+## severity: medium
+## tags: drupal,exposure,discovery
+## description: Drupal JSON:API username listing was detected via the /user/user endpoint.
+## affects: drupal
+## cvss-score: 5.3
+## reference: https://www.drupal.org/project/drupal/issues/3240913
+## shodan-query: http.component:"drupal",cpe:"cpe:2.3:a:drupal:drupal"
+## verification: true
+
+GET /jsonapi/user/user HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /\{"display_name":"([A-Sa-z0-9-_]+)"\}/
+#@ matcher: status_code == 200
+#> extract: name=ex_json, from=body, json=.data[].attributes.display_name
+
+
+
+
+
+# @VEIL-STAMP: d6272b7eae7e70e4c5e440d9036a05ff862c0f478629c1866038fc7e93f95112

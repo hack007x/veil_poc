@@ -1,0 +1,24 @@
+## id: atvise-login
+## name: Atvise Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,atvise,edb,discovery
+## description: An Atvise login panel was discovered. Atvise is a leading visualization and control center solutions based on pure web technology.
+## affects: atvise
+## reference: https://www.exploit-db.com/ghdb/7837
+## reference: https://www.atvise.com/en
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>atvise - next generation</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3fc2eedb64e2c0ef47e5ac38ff94291a1f91094bb3c127fc91861079399e5d19

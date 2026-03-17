@@ -1,0 +1,22 @@
+## id: alienVault-usm
+## name: AlienVault USM Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,alienvault,discovery
+## description: An AlienVault USM login panel was detected.
+## shodan-query: http.title:"AlienVault USM"
+## verification: true
+
+GET /ossim/session/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>AlienVault USM"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9de2a9b90bd4472e3461bbad1326b9cfc3a16a93a646eea6b49fe8efe531fd69

@@ -1,0 +1,25 @@
+## id: phpcollab-panel
+## name: phpCollab Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,phpcollab,login,discovery
+## description: phpCollab login panel was detected.
+## affects: phpcollab
+## shodan-query: http.title:"PhpCollab",http.title:"phpcollab"
+## fofa-query: title="phpcollab"
+## verification: true
+
+GET /general/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PhpCollab</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<p id="footer">(.*)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 86a5913edc2b009c40832dc00a4d15b1460ebaaaa978980b27667e4740b75fd7

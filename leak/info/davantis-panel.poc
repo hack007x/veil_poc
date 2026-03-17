@@ -1,0 +1,22 @@
+## id: davantis-panel
+## name: Davantis Video Analytics Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,davantis,discovery
+## description: Davantis Video Analytics panel was detected.
+## shodan-query: http.title:"Davantis"
+## verification: true
+
+GET /index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Davantis</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: eca3299d78680f0b98432a6395df99d97c1305cd351e3fd0ec7c3b799811fb3f

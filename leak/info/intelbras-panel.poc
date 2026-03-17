@@ -1,0 +1,24 @@
+## id: intelbras-panel
+## name: Intelbras Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,intelbras,discovery
+## description: Intelbras router panel was detected.
+## affects: cip_92200_firmware
+## shodan-query: http.title:"Intelbras",http.title:"intelbras"
+## fofa-query: app="Intelbras",title="intelbras",app="intelbras"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "<title>Intelbras"
+#> extract: name=ex_regex, from=body, regex=/id="product">([A-Za-z 0-9]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f7b94497c326dfd669ec82ebf2cceb84704d9d13ddc527b43351241b8896f8b9

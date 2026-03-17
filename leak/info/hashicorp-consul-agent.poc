@@ -1,0 +1,26 @@
+## id: hashicorp-consul-agent
+## name: Hashicorp Consul Agent - Detect
+## author: hack007x
+## severity: info
+## tags: tech,consul,api,panel,hashicorp,discovery
+## description: Hashicorp Consul Agent was detected.
+## affects: consul
+## shodan-query: http.title:"consul by hashicorp",cpe:"cpe:2.3:a:hashicorp:consul"
+## fofa-query: title="consul by hashicorp"
+## verification: true
+
+GET /v1/agent/self HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"Datacenter":'
+#@ matcher: body contains '"Revision":'
+#@ matcher: body contains '"PrimaryDatacenter"'
+#> extract: name=ex_json, from=body, json= .Config.Version
+
+
+
+
+
+# @VEIL-STAMP: b68b6b6d5568b4474f075f26f522ffd5663ee90d4c67a7d74e5777e528a047ee

@@ -1,0 +1,25 @@
+## id: connectbox-panel
+## name: Connect Box Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,connectbox,iot,upc,discovery
+## description: Connect Box login panel was detected.
+## affects: connect_box_eurodocsis_firmware
+## shodan-query: NET-DK/1.0,net-dk/1.0
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "NET-DK/1.0"
+#@ matcher: header["content-type"] matches /..\/common_page\/(.*).html/
+#@ matcher: status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 469adfc2b5fbe922fa1516c2f975c2d684f877df0742174b4a313bd567ed34fa

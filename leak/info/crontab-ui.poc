@@ -1,0 +1,22 @@
+## id: crontab-ui
+## name: Crontab UI - Dashboard Exposure
+## author: hack007x
+## severity: high
+## tags: exposure,crontab,ui,panel,discovery
+## reference: https://www.facebook.com/photo/?fbid=629288492575007&set=a.467014098802448
+## shodan-query: html:"Crontab UI"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Crontab UI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4fca5f423406f12b205d9bc0d4494f45ada25211112c61a5f22a72d9cc5ab434

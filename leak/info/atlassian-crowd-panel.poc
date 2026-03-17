@@ -1,0 +1,23 @@
+## id: atlassian-crowd-panel
+## name: Atlassian Crowd Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,atlassian,discovery
+## description: An Atlassian Crowd login panel was discovered.
+## affects: crowd
+## reference: https://www.atlassian.com/
+## shodan-query: http.component:"atlassian jira"
+## verification: true
+
+GET /crowd/console/login.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Atlassian Crowd - Login</title>"
+#> extract: name=version, from=body, regex=/value="Version:&nbsp;([\d.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c787da21bf3ff7a89ea6ae90b1420806572525156d193fab4b1e7986a9b69663

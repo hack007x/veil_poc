@@ -1,0 +1,22 @@
+## id: securityspy-detect
+## name: SecuritySpy Camera Panel - Detect
+## author: hack007x
+## severity: info
+## tags: unauth,iot,securityspy,panel,camera,discovery
+## description: SecuritySpy Camera panel was detected.
+## shodan-query: title:SecuritySpy
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SecuritySpy</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3e969d22096ac6488c01af267dc76ea86caeb8724126dbc6bcffd1054444d957

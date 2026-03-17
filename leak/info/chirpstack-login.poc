@@ -1,0 +1,22 @@
+## id: chirpstack-login
+## name: ChirpStack LoRaWAN Detection
+## author: hack007x
+## severity: info
+## tags: panel,chirpstack,discovery
+## description: Detects the presence of ChirpStack LoRaWAN Network-Server by identifying unique page characteristics in the HTML response.
+## reference: https://www.chirpstack.io/docs/chirpstack/use/login.html
+## shodan-query: http.title:"ChirpStack LoRaWAN"
+## fofa-query: title="ChirpStack LoRaWAN"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "ChirpStack LoRaWAN"
+
+
+
+
+
+# @VEIL-STAMP: ba9652b96de8253fbfd4a05d39103f25979a4a0bfc3821a95ac05e2a254b9fbd

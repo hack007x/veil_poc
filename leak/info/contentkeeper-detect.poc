@@ -1,0 +1,24 @@
+## id: contentkeeper-detect
+## name: ContentKeeper Cloud Panel - Detect
+## author: hack007x
+## severity: info
+## tags: contentkeeper,panel,discovery
+## description: ContentKeeper Cloud panel was detected.
+## reference: https://www.contentkeeper.com/
+## verification: true
+
+GET /cgi-bin/ck/domenu.cgi HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "ContentKeeper Technologies</div>"
+#@ matcher: body contains "ContentKeeper</span>.com"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: 78adca58d2ad5f02e037f81038dc01636dadb668bc9a5224e161aeb8388d4204

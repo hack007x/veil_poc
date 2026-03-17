@@ -1,0 +1,26 @@
+## id: amcrest-login
+## name: Amcrest Login
+## author: hack007x
+## severity: info
+## tags: panel,camera,amcrest,edb,discovery
+## description: An Amcrest LDAP user login was discovered.
+## affects: ip2m-853ew
+## reference: https://www.exploit-db.com/ghdb/7273
+## shodan-query: html:"amcrest",http.html:"amcrest" "ldap user",http.html:"amcrest"
+## fofa-query: body="amcrest" "ldap user",body="amcrest"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Amcrest Technologies"
+#@ matcher: body contains "LDAPUser"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 55927cf72b87658ee903f127a38b7e6f16ed0e75da5cc0e7a3aca555ac1392ad

@@ -1,0 +1,24 @@
+## id: danswer-panel
+## name: Danswer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,danswer,detect,discovery
+## description: Danswer panel was discovered.
+## affects: danswer
+## reference: https://github.com/danswer-ai/danswer
+## fofa-query: icon_hash="484766002"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Danswer</title>" || body contains "Log In to Danswer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: efa9546ba3342a5898f1086fd4b6dd0f141568fd6d5c3bad2db6742ab9bc4504

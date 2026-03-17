@@ -1,0 +1,24 @@
+## id: acrolinx-dashboard
+## name: Acrolinx Dashboard
+## author: hack007x
+## severity: info
+## tags: acrolinx,panel,discovery
+## description: An Acrolinx Analytics dashboard was detected.
+## reference: https://docs.acrolinx.com/coreplatform/latest/en/analytics/acrolinx-analytics-dashboards
+## shodan-query: http.title:"Acrolinx Dashboard"
+## fofa-query: title=="Acrolinx Dashboard"
+## verification: true
+
+GET /dashboard.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Acrolinx Dashboard</title>" || body contains "Acrolinx</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4bafef4f0bca1fccd54dbf81904d0f7d42e5d260edcd1e4222f78d05cc09fd60

@@ -1,0 +1,23 @@
+## id: hitron-technologies-detect
+## name: Hitron Technologies Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,router,discovery
+## description: Hitron Technologies router login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7062
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "hitron"
+#@ matcher: body contains "$.hitron.languages.lang_init();"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6c1b523a542d12146941d36ad598ffdd28c18fd476d266fe9d68443cd3567c53

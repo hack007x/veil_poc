@@ -1,0 +1,24 @@
+## id: amatera-stealer-panel
+## name: Amatera Stealer C2 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: c2,amatera,stealer,panel,login,vuln
+## description: Amatera Stealer C2 Login Panel was discovered.
+## reference: https://x.com/solostalking/status/1930844795330761206
+## shodan-query: http.title:"Amatera App"
+## verification: true
+
+GET /sign-in HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Amatera App"
+#@ matcher: body contains "Amatera Stealer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1c975b3f1b9715c12a32af0033ddd06824e08e5aa2626a8ec35c2d08a45a1a3b

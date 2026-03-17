@@ -1,0 +1,22 @@
+## id: lantronix-webmanager-panel
+## name: Lantronix Web Manager Login Panel- Detect
+## author: hack007x
+## severity: info
+## tags: panel,lantronix,discovery
+## description: Lantronix Web Manager login panel was detected.
+## verification: true
+
+GET /LTX_navi.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Lantronix WEB-Manager</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/>Version ([0-9.]+)<\/font>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d6bd98d42e85d9c450f654d7d36f146b433384b58705b4c371fb4860d80a4a12

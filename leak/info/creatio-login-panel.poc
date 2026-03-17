@@ -1,0 +1,22 @@
+## id: creatio-login-panel
+## name: Creatio Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,creatio,discovery
+## description: Creatio login panel was detected.
+## shodan-query: http.title:"Creatio"
+## verification: true
+
+GET /Login/NuiLogin.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/creatio/widget" || body contains "creatio-sdk/" || body contains "Creatio Debug mode"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 90f54ea33be1b865914d453cdc903f2887aa5317a0a29d65e6624d5e294b0e26

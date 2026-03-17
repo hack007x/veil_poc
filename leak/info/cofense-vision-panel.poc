@@ -1,0 +1,24 @@
+## id: cofense-vision-panel
+## name: Cofense Vision Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cofense,vision,discovery
+## description: Cofense Vision login panel was detected.
+## reference: https://cofense.com
+## shodan-query: http.favicon.hash:739801466
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Vision</title>"
+#@ matcher: body contains "Cofense Inc."
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 35ea778e3183aea28a6909263ddec18908be8e3f7cc344a3af64802e9d267b0b

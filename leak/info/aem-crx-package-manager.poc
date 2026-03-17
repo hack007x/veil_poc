@@ -1,0 +1,26 @@
+## id: aem-crx-package-manager
+## name: Adobe AEM CRX Package Manager - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,aem,adobe,discovery
+## description: Adobe AEM CRX Package Manager panel was detected.
+## affects: experience_manager
+## reference: https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/aem2.txt
+## shodan-query: http.title:"AEM Sign In",http.component:"Adobe Experience Manager",http.component:"adobe experience manager",http.title:"aem sign in",cpe:"cpe:2.3:a:adobe:experience_manager"
+## fofa-query: title="aem sign in"
+## verification: true
+
+GET /crx/packmgr/index.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>CRX Package Manager</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ed32db09b5e2fa88d2a032a7644215f7716f8c0ac340b549f07c1c0512d0a7a2

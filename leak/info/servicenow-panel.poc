@@ -1,0 +1,28 @@
+## id: servicenow-panel
+## name: ServiceNow Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,servicenow,login,detect,discovery
+## description: ServiceNow Login Panel was detected.
+## affects: servicenow
+## reference: https://www.servicenow.com/
+## shodan-query: http.favicon.hash:1701804003,http.title:"servicenow"
+## fofa-query: icon_hash=1701804003,title="servicenow"
+## verification: true
+
+GET /login.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ServiceNow"
+#@ matcher: body contains "window.NOW."
+#@ matcher: body contains "NOW.user.userID"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)g_builddate\s+=\s+"([0-9._-]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: ad46860644232eede9d0d2f013f872efb9b0aa46bcec659f120e302bad55110b

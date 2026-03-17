@@ -1,0 +1,23 @@
+## id: aircube-dashboard-panel
+## name: airCube Dashboard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,aircube,discovery
+## description: airCube Dashboard login panel was detected.
+## affects: aircube
+## shodan-query: http.title:"AirCube Dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AirCube Dashboard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3fe71e5c8fdf48a9be308bac30eebd67c25d20a49df16be9708d15fba92afb5e

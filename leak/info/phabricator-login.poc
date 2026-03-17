@@ -1,0 +1,24 @@
+## id: phabricator-login
+## name: Phabricator Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,phabricator,phacility,discovery
+## description: Phabricator login panel was detected.
+## affects: phabricator
+## shodan-query: html:"phabricator-standard-page",http.html:"phabricator-standard-page"
+## fofa-query: body="phabricator-standard-page"
+## verification: true
+
+GET /auth/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "phabricator-standard-page"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8679c894224856bcbcd6a032e41356d7f97aff82e6f6e64f6311531a828b72e5

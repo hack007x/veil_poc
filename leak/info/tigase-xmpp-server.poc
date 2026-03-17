@@ -1,0 +1,23 @@
+## id: tigase-xmpp-server
+## name: Tigase XMPP Server - Exposure
+## author: hack007x
+## severity: info
+## tags: tigase,xmpp,server,panel,exposure,discovery
+## affects: tigase
+## reference: https://www.facebook.com/photo/?fbid=617926933711163&set=a.467014098802448
+## shodan-query: title:"Tigase XMPP Server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tigase XMPP Server</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e8486b062b491c4718a4a91215094e68e4b01ac4439c95f3f500adab765d736c

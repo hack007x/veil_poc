@@ -1,0 +1,26 @@
+## id: polycom-hdx-web-exposure
+## name: Polycom HDX - Web Interface Exposure
+## author: hack007x
+## severity: low
+## tags: polycom,hdx,iot,exposure,video-conferencing
+## description: Detecetd Polycom HDX video conferencing system web interface, potentially allowing unauthorized access to device configuration and video calls.
+## cvss-score: 6.5
+## reference: https://www.polycom.com/products-services/hd-telepresence-video-conferencing.html
+## reference: https://support.polycom.com/content/support/north-america/usa/en/support/video.html
+## shodan-query: http.title:"Polycom HDX"
+## fofa-query: title="Polycom" && body="HDX"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Polycom" && body contains "u_keepalive.htm" && body contains "u_status.xml" && body contains "contentFrame"
+
+
+
+
+
+# @VEIL-STAMP: 657d1ac6bdceb557b43fd05d59bfb11e1e6b13c6952bca708fb6d6c9151ca313

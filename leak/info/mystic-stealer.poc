@@ -1,0 +1,21 @@
+## id: mystic-stealer
+## name: Mystic Stealer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,rat,mystic-stealer,c2,panel,vuln
+## description: Mystic Stealer panel were detected.
+## shodan-query: http.title:"Mystic Stealer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: status_code == 200 && body contains "Mystic Stealer"
+
+
+
+
+
+# @VEIL-STAMP: 0d53d85b6b3f233287b29826f6385ed87ac5d10c78a29f4091465e8494b5b82d

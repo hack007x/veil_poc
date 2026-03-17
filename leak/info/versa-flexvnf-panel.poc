@@ -1,0 +1,23 @@
+## id: versa-flexvnf-panel
+## name: Versa FlexVNF Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,versa,flexvnf,discovery
+## description: Versa FlexVNF panel was detected.
+## reference: https://versa-networks.com/products/components/
+## shodan-query: http.title:"Flex VNF Web-UI"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Flex VNF Web-UI"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 188274185a3ce5c749016e0dbfaa2937d05bd34df22b8ff1ca255abf24800901

@@ -1,0 +1,25 @@
+## id: adobe-connect-central-login
+## name: Adobe Connect Central Login Panel
+## author: hack007x
+## severity: info
+## tags: adobe,panel,connect-central,discovery
+## description: An Adobe Connect Central login panel was detected.
+## affects: connect
+## reference: https://www.adobe.com/products/adobeconnect.html
+## shodan-query: http.title:"openvpn connect"
+## fofa-query: title="openvpn connect"
+## verification: true
+
+GET /system/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Adobe Connect Central Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6b86e3f913700f5bb555b80fa2d209f9df59286a46230093b80b8e2fd554b143

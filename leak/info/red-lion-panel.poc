@@ -1,0 +1,18 @@
+## id: red-lion-panel
+## name: Red Lion Control Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redlion,detect,iot,discovery
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Red Lion</a>" || body contains "Red Lion Controls</a>"
+
+
+
+
+
+# @VEIL-STAMP: eef426ae2a67770c09a834d331bd64c2c60b59e7f9e0116e160ab816711cb445

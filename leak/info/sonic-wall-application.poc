@@ -1,0 +1,24 @@
+## id: sonic-wall-application
+## name: SonicWall Appliance Management Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sonicwall,login,discovery
+## description: SonicWall Appliance Management Console login panel was detected.
+## affects: sma1000_firmware
+## shodan-query: title:"Appliance Management Console Login",http.title:"appliance management console login"
+## fofa-query: title="appliance management console login"
+## verification: true
+
+GET /login.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Appliance Management Console Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 68b36db024cbd1aa45ebdbc39eabaeb270c52789f54c2e48311002d5bef9c4ad

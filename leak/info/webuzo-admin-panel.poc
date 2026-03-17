@@ -1,0 +1,25 @@
+## id: webuzo-admin-panel
+## name: Webuzo Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,webuzo,admin,softaculous,discovery
+## description: Webuzo admin login panel was detected.
+## affects: webuzo
+## shodan-query: http.title:"Webuzo - Admin Panel",http.title:"webuzo - admin panel"
+## fofa-query: title="webuzo - admin panel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Webuzo - Admin Panel"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 754fd7b88ac8f19da0890d2ed94a0f01ec203488d0292b118ec48ad5585114fe

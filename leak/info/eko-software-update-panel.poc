@@ -1,0 +1,23 @@
+## id: eko-software-update-panel
+## name: Eko Software Update Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,eko,discovery
+## description: Eko software update panel for embedded systems was detected. An attacker can possibly upload a software image or restart the system.
+## reference: https://ekoenergetyka.com.pl/software-solutions/
+## shodan-query: http.title:"Ekoenergetyka-Polska Sp. z o.o - CCU3 Software Update for Embedded Systems"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Ekoenergetyka-Polska Sp. z o.o - CCU3 Software Update for Embedded Systems</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8e7d1bd0afefe7c7ecf033ff0a560759a9e988b92cadae49597d03f776a8b2ca

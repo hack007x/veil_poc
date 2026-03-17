@@ -1,0 +1,27 @@
+## id: rdweb-panel
+## name: RD Web Access Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,rdp,web-access,Microsoft,detect,microsoft,discovery
+## description: RD web access panel was discovered.
+## affects: remote_desktop
+## reference: https://rdweb.wvd.microsoft.com/webclient
+## shodan-query: html:"RD Web Access",http.html:"rd web access"
+## fofa-query: body="rd web access"
+## verification: true
+
+GET /RDWeb/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: or
+#@ matcher: body contains "TSWAFeatureCheckCookie=true; path=/RDWeb/"
+#@ matcher: body contains "<rdp-client-top-view>"
+#@ matcher: body contains "Microsoft Remote Desktop"
+
+
+
+
+
+# @VEIL-STAMP: fae93bf5242934f8c265fb39dfe36fa4105a25a182d55ae9823f1bc08a25e219

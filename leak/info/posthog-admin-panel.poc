@@ -1,0 +1,24 @@
+## id: posthog-admin-panel
+## name: PostHog Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,posthog,discovery
+## description: PostHog login panel was detected.
+## affects: posthog
+## shodan-query: http.title:"posthog"
+## fofa-query: title="posthog"
+## verification: true
+
+GET /login?next=/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PostHog</title>" || body contains 'content="PostHog' || body contains "POSTHOG_HOST"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b8d75f818348cdd79cef5ae12a2c1d63591105bcebaf9fe918f1e95af4cc85a5

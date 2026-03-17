@@ -1,0 +1,27 @@
+## id: teamforge-panel
+## name: TeamForge Panel - Detection
+## author: hack007x
+## severity: info
+## tags: panel,teamforge,login,discovery
+## description: TeamForge Login Panel was discovered.
+## reference: https://digital.ai/products/teamforge/
+## shodan-query: title:"TeamForge :"
+## fofa-query: title="TeamForge :"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>TeamForge :"
+#@ matcher: body contains "Log In to TeamForge"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/teamforge(\d+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 3604df980101766e836377b11057f2914a6d7d3e93e1e95bc91e6ad4a93f8cf6

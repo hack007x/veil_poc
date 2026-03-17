@@ -1,0 +1,23 @@
+## id: dericam-login
+## name: Dericam Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dericam,edb,discovery
+## description: Dericam login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7354
+## shodan-query: http.title:"Dericam"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Dericam</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a75befdd08df26367e41eb20b0e6ad13152ec1c071178a0f06573fb562d26174

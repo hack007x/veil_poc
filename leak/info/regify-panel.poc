@@ -1,0 +1,26 @@
+## id: regify-panel
+## name: Regify Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,regify,login,detect,discovery
+## description: Regify Login Panel was detected.
+## reference: https://www.regify.com/
+## shodan-query: http.favicon.hash:1817615343
+## verification: true
+
+GET /phpLogin.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "regify"
+#@ matcher: body contains "regibill"
+#@ matcher: body contains "regify_default.css"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)appv=([0-9.-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f5eb95f34fccbc27f0ae266de6f09375071dd2b561a741c12937112d10dbbea4

@@ -1,0 +1,22 @@
+## id: vmware-carbon-black-edr
+## name: VMware Carbon Black EDR Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## description: VMware Carbon Black EDR panel was detected.
+## shodan-query: title:"VMware Carbon Black EDR"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "VMware Carbon Black EDR"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 06dee026476d7b78f83dd5dd2d1fba848fdf0d9e7ee7d19994b9824d4be11851

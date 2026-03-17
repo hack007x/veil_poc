@@ -1,0 +1,25 @@
+## id: appsmith-web-login
+## name: Appsmith User Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,appsmith,discovery
+## description: Appsmith user login panel was detected.
+## affects: appsmith
+## reference: https://www.appsmith.com
+## shodan-query: http.title:"appsmith"
+## fofa-query: title="appsmith"
+## verification: true
+
+GET /user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Appsmith</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c9669fb582a5ce47d37fc06f5f5311e3b362dfd9d8d71da8e804c43fd363819f

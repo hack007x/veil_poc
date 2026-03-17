@@ -1,0 +1,24 @@
+## id: webtransfer-client-panel
+## name: Web Transfer Client Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,webtransferclient,login,detect,discovery
+## description: Progress Web Transfer Client login panel was detected.
+## affects: moveit_transfer
+## reference: https://www.progress.com/ftp-server/web-transfer
+## shodan-query: http.title:"Web Transfer Client"
+## verification: true
+
+GET /ThinClient/WTM/public/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Web Transfer Client"
+
+
+
+
+
+# @VEIL-STAMP: 88c8a269a43802ec61a538ca7424f80f8a5a6519d3a3cd6d8d029d43fa5cbf0e

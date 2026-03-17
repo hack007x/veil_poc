@@ -1,0 +1,21 @@
+## id: start-element-manager-panel
+## name: Start Element Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Start Element Manager panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Start Element Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: cb83b7d0be046f8bda75ab913990efd2549c483e9352e5dc77a1e984acaa9d1c

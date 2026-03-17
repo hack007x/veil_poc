@@ -1,0 +1,22 @@
+## id: bigbluebutton-login
+## name: BigBlueButton Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,bigbluebutton,discovery
+## description: A BigBlueButton login panel was detected.
+## affects: greenlight
+## reference: https://github.com/bigbluebutton/greenlight
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains 'content="BigBlueButton'
+#> extract: name=version, from=body, regex=/Greenlight<\/a>\. (.*)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: dc07f486396de4f7bbc139c39afabcf17dd9a45d3437ab903ea7a66ffb071c45

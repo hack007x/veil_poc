@@ -1,0 +1,28 @@
+## id: emby-panel
+## name: Emby Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,emby,oss,discovery
+## description: Emby login panel was detected.
+## affects: emby
+## reference: https://github.com/MediaBrowser/Emby
+## reference: https://emby.media/
+## shodan-query: http.title:"emby"
+## fofa-query: title="emby"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Emby</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<script src="apploader\.js\?v=(.+)" defer><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f998138ea86428c3fa99f51d0fbb6965773fde1524d51cd63151e9849554657b

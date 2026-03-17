@@ -1,0 +1,21 @@
+## id: slocum-login
+## name: Slocum Fleet Mission Control Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tech,slocum,discovery
+## description: Slocum Fleet Mission Control login panel was detected.
+## verification: true
+
+GET /sfmc/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Slocum Fleet Mission Control - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: db11c2ce87f6dd8abc1a0ede6513ababd2d25d65d2314efc9d32b95ff2171178

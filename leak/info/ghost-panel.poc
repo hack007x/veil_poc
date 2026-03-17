@@ -1,0 +1,23 @@
+## id: ghost-panel
+## name: Ghost Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ghost,login,detect,discovery
+## description: Beautiful, modern publishing with email newsletters and paid subscriptions built-in.
+## affects: ghost
+## reference: https://ghost.org/
+## fofa-query: app="Ghost"
+## verification: true
+
+GET /ghost/#/signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>Ghost Admin" || body contains 'content="Ghost"'
+
+
+
+
+
+# @VEIL-STAMP: 323689b8152aa9565cb0e361df2d68bda7a353eb110cd2cb979c6cafd7590b78

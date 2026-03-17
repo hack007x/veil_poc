@@ -1,0 +1,22 @@
+## id: delta-login-panel
+## name: Delta Controls Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,delta,discovery
+## description: Delta Controls admin login panel was detected.
+## shodan-query: http.html:"Delta Controls ORCAview"
+## verification: true
+
+GET /deltaweb/hmi_login.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Delta Controls ORCAview"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f1add1d63aa5ba33257edb8c8238427ca5bb35e9e38f115cfd396fa1bd21fedb

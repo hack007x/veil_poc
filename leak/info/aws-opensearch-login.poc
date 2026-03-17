@@ -1,0 +1,23 @@
+## id: aws-opensearch-login
+## name: AWS OpenSearch Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,opensearch,aws,amazon,discovery
+## description: AWS OpenSearch login page was detected.
+## affects: opensearch
+## reference: https://aws.amazon.com/pt/blogs/opensource/introducing-opensearch/
+## verification: true
+
+GET /_dashboards/app/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Please login to OpenSearch Dashboards"
+
+
+
+
+
+# @VEIL-STAMP: cf9de429519508811788e3ba8cce1ca4b47788fdd60b02edfe50bf1910ca675c

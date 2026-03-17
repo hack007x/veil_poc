@@ -1,0 +1,20 @@
+## id: noescape-login
+## name: NoEscape Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,noescape,discovery
+## description: NoEscape login panel was detected.
+## shodan-query: title:"NoEscape - Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "NoEscape - Login"
+
+
+
+
+
+# @VEIL-STAMP: 59d07a7701ddb066660588313d638f674a78221d8560117191af0b23c3d33381

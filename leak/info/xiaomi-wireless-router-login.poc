@@ -1,0 +1,24 @@
+## id: xiaomi-wireless-router-login
+## name: Xiaomi Wireless Router Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xiaomi,discovery
+## description: Xiaomi Wireless router admin panel was detected.
+## affects: xiaomi_router_ax3200
+## reference: https://www.mi.com/shop/search?keyword=%E8%B7%AF%E7%94%B1%E5%99%A8
+## shodan-query: http.title:"小米路由器"
+## verification: true
+
+GET /cgi-bin/luci/web HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>小米路由器</title>" || body contains "<title>Redmi路由器</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 75d4b337ec67d5725d92d846295ebd7c6012bca0030f95389a4975e8fad4c999

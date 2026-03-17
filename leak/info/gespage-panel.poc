@@ -1,0 +1,25 @@
+## id: gespage-panel
+## name: Gespage Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gespage,discovery
+## description: Gespage login panel was detected.
+## affects: gespage
+## shodan-query: Path=/gespage
+## verification: true
+
+GET /gespage/webapp/login.xhtml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<link rel="stylesheet" href="css/gespage.css" />'
+#@ matcher: body contains '<link rel="stylesheet" href="css/menugrey.css" />'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/\(Ver: ([0-9._A-Z]+)\)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5d6ff2917ff74007c14ba1073f4ae8cf708a8f14bb09b52d0c64b21cf4c46383

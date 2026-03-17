@@ -1,0 +1,22 @@
+## id: jsherp-boot-panel
+## name: JshERP Boot Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,jsherp,login,detect,discovery
+## affects: jsherp
+## shodan-query: http.favicon.hash:-1298131932
+## verification: true
+
+GET /user/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "jshERP-boot" || body contains "ERP系统"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 96f3ce8116edbd951139aa0cdd4653c7e53a289fcdf27f5f10be52caba6ae156

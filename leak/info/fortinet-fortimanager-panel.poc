@@ -1,0 +1,26 @@
+## id: fortinet-fortimanager-panel
+## name: Fortinet FortiManager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortios,fortimanager,detect,discovery
+## description: Fortinet FortiManager panel was detected.
+## affects: fortimanager
+## reference: https://www.fortinet.com/br/products/management/fortimanager
+## shodan-query: http.html_hash:-1527157728 "Model: FMG-VM"
+## fofa-query: title="FortiManager-"
+## verification: true
+
+GET /p/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FortiManager"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<span class="platform">(.*?)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1b4f90741c2d05573067d66ec80d4996090fdab093879cb1113752d4a4afc16f

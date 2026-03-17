@@ -1,0 +1,24 @@
+## id: moodle-workplace-panel
+## name: Moodle Workplace Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,moodle,login,detect,discovery
+## description: Moodle workplace login panel was detected.
+## affects: moodle
+## reference: https://moodle.com/solutions/workplace/
+## shodan-query: http.html:"moodle"
+## verification: true
+
+GET /login/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains 'content=\"moodle", "\"name\":\"moodle\"' && body contains "workplace"
+
+
+
+
+
+# @VEIL-STAMP: 8d067959f3b11a534bce20f4a7093bef17ddb2ec74587a4fa42612bbf73887c4

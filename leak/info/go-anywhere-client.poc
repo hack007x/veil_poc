@@ -1,0 +1,20 @@
+## id: go-anywhere-client
+## name: GoAnywhere Web Client Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,goanywhere,login,discovery
+## description: GoAnywhere Web Client login panel was detected.
+## verification: true
+
+GET /webclient/Login.xhtml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "Powered by GoAnywhere" || body contains "GoAnywhere.com"
+
+
+
+
+
+# @VEIL-STAMP: 41dde294d4680cb40492a37a16d3b958afcc18181d0ce4e6d99a46cac4dc38d0

@@ -1,0 +1,23 @@
+## id: zentao-detect
+## name: Zentao Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,easycorp,discovery
+## description: Zentao panel was detected.
+## affects: zentao
+## verification: true
+
+GET /zentao/index.php?mode=getconfig HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"sessionName":"zentaosid"'
+#@ matcher: body contains '{"version":"'
+#> extract: name=ex_regex, from=body, regex=/"version":"([v0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 4129dd19d441a9ee27b931da22e992dc2ec88d7b305e1ba387756e687dde04ec

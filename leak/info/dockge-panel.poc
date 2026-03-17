@@ -1,0 +1,26 @@
+## id: dockge-panel
+## name: Dockge Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dockge,login,discovery
+## description: A fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager
+## affects: dockge
+## reference: https://github.com/louislam/dockge
+## reference: https://dockge.kuma.pet/
+## shodan-query: title:"Dockge"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Dockge</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ed2b5cf7fb829e5861638fc428ebad3eb66a09e745658f8191789d0364143d3e

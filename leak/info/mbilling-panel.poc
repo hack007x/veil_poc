@@ -1,0 +1,23 @@
+## id: mbilling-panel
+## name: MagnusBilling - Login Panel
+## author: hack007x
+## severity: info
+## tags: mbilling,login,panel,magnusbilling,discovery
+## description: Identified an exposed MagnusBilling login panel.
+## shodan-query: html:"MagnusBilling"
+## verification: true
+
+GET /mbilling/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "MagnusBilling"
+#@ matcher: body contains "Voip System"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ad1a9b14a1e580c1134e3c978d6391c14961ff3ac053cd010ab372ece4dad0ae

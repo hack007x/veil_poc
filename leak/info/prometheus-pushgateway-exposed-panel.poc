@@ -1,0 +1,19 @@
+## id: prometheus-pushgateway-exposed-panel
+## name: Prometheus Pushgateway Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,prometheus,pushgateway,discovery
+## description: Prometheus Pushgateway panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Prometheus Pushgateway</title>"
+
+
+
+
+
+# @VEIL-STAMP: 2578b492511d5f409df3055ef1aad24a18f8d7674cc6b4ffb70d2e0ba7120856

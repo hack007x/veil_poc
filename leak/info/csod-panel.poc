@@ -1,0 +1,20 @@
+## id: csod-panel
+## name: Cornerstone OnDemand Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,csod,discovery
+## description: Cornerstone OnDemand panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "csod-custom" || body contains "csodcommon"
+
+
+
+
+
+# @VEIL-STAMP: 61ecd63eb57f744914c2da6f74edc7acea9debe37c07a5115c67a71337716a28

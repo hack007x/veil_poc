@@ -1,0 +1,24 @@
+## id: ares-rat-c2
+## name: Area Rat C2 - Detect
+## author: hack007x
+## severity: info
+## tags: c2,ir,osint,ares,panel,rat,vuln
+## description: Ares is a Python Remote Access Tool.
+## reference: https://github.com/montysecurity/C2-Tracker/blob/main/tracker.py
+## shodan-query: product:'Ares RAT C2'
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Ares</title>"
+#@ matcher: body contains "Passphrase:"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4448996e5860f34a10878bb93e5cb4739c8778f707708d02f01b7a75f71c02af

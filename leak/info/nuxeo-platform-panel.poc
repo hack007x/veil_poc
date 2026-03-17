@@ -1,0 +1,23 @@
+## id: nuxeo-platform-panel
+## name: Nuxeo Platform Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nuxeo,discovery
+## description: Nuxeo Platform login panel was detected.
+## affects: nuxeo
+## shodan-query: title:"Nuxeo Platform"
+## verification: true
+
+GET /nuxeo/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Nuxeo Platform" || body contains 'alt="Nuxeo"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5cd1ce6ec68341f59755611945d4c6543cc3631020d30af0253b0b764969a2a0

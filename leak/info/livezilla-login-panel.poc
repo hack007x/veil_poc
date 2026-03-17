@@ -1,0 +1,24 @@
+## id: livezilla-login-panel
+## name: LiveZilla Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,livezilla,login,discovery
+## description: LiveZilla login panel was detected.
+## affects: livezilla
+## shodan-query: http.html:livezilla
+## fofa-query: body=livezilla
+## verification: true
+
+GET /mobile/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "LiveZilla"
+
+
+
+
+
+# @VEIL-STAMP: c2e2cd9eba82a78af35281908a8cb70448dcb8f5f414fff3b145f751b9c0e626

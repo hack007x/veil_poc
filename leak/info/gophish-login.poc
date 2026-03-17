@@ -1,0 +1,23 @@
+## id: gophish-login
+## name: Gophish Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gophish,discovery
+## description: Gophish login panel was detected.
+## affects: gophish
+## shodan-query: http.title:"Gophish - Login"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Gophish - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ad0eedb7159c48c260fea9edb367d048d2082a9ff42e48bf3b8733aeedaf6d6d

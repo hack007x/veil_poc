@@ -1,0 +1,23 @@
+## id: discuz-panel
+## name: Discuz Panel - Detection
+## author: hack007x
+## severity: info
+## tags: panel,discuz,detect,login,discovery
+## affects: discuz\\!
+## shodan-query: title:"Discuz!"
+## fofa-query: title="Discuz!"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "discuz_uid =" || body contains "discuz</a>" || body contains "Powered by Discuz!" || body contains 'content="Discuz'
+#> extract: name=ex_regex, from=body, regex=/<em>X([0-9.]+)<\/em><\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 6cbe45199b7d24d6b49dae32e861d0465cdf2009d3f03223ff3e6745f435a195

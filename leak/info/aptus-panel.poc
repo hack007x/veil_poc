@@ -1,0 +1,23 @@
+## id: aptus-panel
+## name: Aptus Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,aptus,discovery
+## description: Aptus login panel was detected.
+## affects: aptus
+## shodan-query: http.title:"Aptus Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Aptus Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 15db99b54c9e5fbc5fc88b2d3a4b2ee80301639fe1e0d4324a538302360d5795

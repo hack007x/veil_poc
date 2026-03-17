@@ -1,0 +1,23 @@
+## id: filegator-panel
+## name: FileGator Panel - Detect
+## author: hack007x
+## severity: info
+## tags: filegator,panel,login,detect,discovery
+## reference: https://serverpilot.io/docs/how-to-install-a-file-manager-on-your-server/#:~:text=You%20should%20see%20the%20FileGator,Password%3A%20admin123
+## shodan-query: title:"FileGator"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>FileGator"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 11e5a38bb6777ff247584c8d98a4cbf85a2022c013f1d0754aa7488f91173f6a

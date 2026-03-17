@@ -1,0 +1,25 @@
+## id: mikrotik-routeros-old
+## name: MikroTik RouterOS Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,mikrotik,discovery
+## description: MikroTik RouterOS admin login panel was detected.
+## affects: routeros
+## shodan-query: title:"mikrotik routeros > administration",http.title:"mikrotik routeros > administration"
+## fofa-query: title="mikrotik routeros > administration"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "mikrotik routeros > administration"
+#@ matcher: body contains "configuration page"
+#> extract: name=ex_regex, from=body, regex=/<div class="top">mikrotik routeros (.[0-9.]+) configuration page<\/div>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 695f6717a15f3b50471aeda3bf6e17728ec131a9d24538dc6a04f387b0163a26

@@ -1,0 +1,26 @@
+## id: fortiap-panel
+## name: FortiAP Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortiap,discovery
+## description: FortiAP login panel was detected.
+## affects: fortiap
+## reference: https://www.fortinet.com/products/wireless-access-points
+## shodan-query: title:"FortiAP",http.title:"fortiap"
+## fofa-query: title="fortiap"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FortiAP</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: eea90fcef6b1a45feef007d56cdf69b02156403d481f5bd70894f78bb18b749b

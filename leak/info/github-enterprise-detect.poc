@@ -1,0 +1,22 @@
+## id: github-enterprise-detect
+## name: Github Enterprise Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,github,discovery
+## description: Github Enterprise login panel was detected.
+## affects: enterprise_server
+## shodan-query: title:"Setup GitHub Enterprise",micro focus dsd
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "GitHub · Enterprise"
+
+
+
+
+
+# @VEIL-STAMP: e9923b0d5d2c8472b394718dd765be492247b1d18896df118c3b6954f6f9de83

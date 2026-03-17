@@ -1,0 +1,26 @@
+## id: riello-netman204-panel
+## name: Riello UPS NetMan 204 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: netman,panel,detect,login,discovery
+## description: Riello UPS NetMan 204 login panel was detected.
+## affects: netman_204_firmware
+## reference: https://www.riello-ups.com
+## shodan-query: title:"netman 204"
+## fofa-query: title="netman 204"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Netman 204"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2344051473e27f5349a6e7c84a1aa6657871fde7559fce41247e5c1b3ac4b402

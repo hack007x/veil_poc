@@ -1,0 +1,24 @@
+## id: racksnet-login
+## name: Racksnet Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,racksnet,discovery
+## description: Racksnet login panel was detected.
+## reference: https://racksnet.com/en/
+## reference: https://racksnet.com/en/product-overview/
+## shodan-query: http.title:"My Datacenter - Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "My Datacenter - Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e1aa4c1931d73b79d9ec7d307f9cb427527fefd7027fdce5d753bfbc94884338

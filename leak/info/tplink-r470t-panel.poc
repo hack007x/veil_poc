@@ -1,0 +1,22 @@
+## id: tplink-r470t-panel
+## name: TP-LINK Router R470T - Detect
+## author: hack007x
+## severity: info
+## tags: tplink,r470t,panel,login,detect,discovery
+## shodan-query: r470t
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "userRpm"
+#@ matcher: body contains "R470T"
+
+
+
+
+
+# @VEIL-STAMP: f025e7b978abfd6ff86609085c7b9e7ef1f58deb53138e0e8adf8401f138a377

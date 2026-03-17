@@ -1,0 +1,27 @@
+## id: ibm-websphere-admin-panel
+## name: IBM WebSphere Application Server Community Edition Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: websphere,panel,ibm,discovery
+## description: IBM WebSphere Application Server Community Edition admin login panel was detected.
+## affects: websphere_application_server
+## reference: https://www.ibm.com/support/pages/what-default-username-and-password-websphere-application-server-community-edition-and-how-add-users-admin-group
+## shodan-query: http.favicon.hash:1337147129
+## fofa-query: icon_hash=1337147129
+## verification: true
+
+GET /console HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Administrative Console Login"
+#@ matcher: body contains "Log in to the Administrative Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2042f1f6be67c66d6cc87ce3f0f8dde64e4273eb0dc306549f6998565239ff2a

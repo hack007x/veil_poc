@@ -1,0 +1,24 @@
+## id: fuelcms-panel
+## name: Fuel CMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fuelcms,oss,daylightstudio,discovery
+## description: Fuel CMS login panel was detected.
+## affects: fuel_cms
+## shodan-query: http.title:"fuel cms"
+## fofa-query: title="fuel cms"
+## verification: true
+
+GET /fuel/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FUEL CMS</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a7d9be579c5fb4ba475b61896b3b157396cc8fe267c6a9aa69fdd53a60ca18ac

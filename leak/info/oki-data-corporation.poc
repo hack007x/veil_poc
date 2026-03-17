@@ -1,0 +1,22 @@
+## id: oki-data-corporation
+## name: OKI Data Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,oki,edb,discovery
+## description: OKI Data panel was detected.
+## reference: https://www.exploit-db.com/ghdb/5937
+## verification: true
+
+GET /status.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Oki Data Corporation"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6c1693be426a285ab101c6cfa0fb1173603aab1f60988875385e8b62088bafb1

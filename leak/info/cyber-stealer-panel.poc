@@ -1,0 +1,25 @@
+## id: cyber-stealer-panel
+## name: Cyber Stealer C2 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: c2,cyber-stealer,stealer,panel,login,vuln
+## description: Cyber Stealer C2 Login Panel was discovered.
+## reference: https://x.com/solostalking/status/1947143367336534254
+## shodan-query: html:"Cyber Stealer - Secure Access"
+## fofa-query: title="Cyber Stealer - Secure Access"
+## verification: true
+
+GET /webpanel/panel/login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Cyber Stealer - Secure Access"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8e6f9a4c8a8562dc55252077a6fc78011fd7802dcec669c401f08dae68220fba

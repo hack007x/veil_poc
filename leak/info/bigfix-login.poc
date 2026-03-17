@@ -1,0 +1,24 @@
+## id: bigfix-login
+## name: HCL BigFix Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bigfix,discovery
+## description: HCL BigFix login panel was detected.
+## affects: bigfix_mobile
+## reference: https://www.hcltechsw.com/bigfix
+## shodan-query: http.title:"BigFix"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title> BigFix </title>" || body contains '<div class="bigfix-logo">'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c2ce57b3c44ea7b4b059ffb3879ec64b9e3fb7d43f6f2ac69b0475d319775267

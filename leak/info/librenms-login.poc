@@ -1,0 +1,23 @@
+## id: librenms-login
+## name: LibreNMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: librenms,panel,discovery
+## description: LibreNMS login panel was detected.
+## affects: librenms
+## fofa-query: title="librenms"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>LibreNMS</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 80725ac51b86e587f2f2b0a0a85f0137473945b1eee96973811f198009bc451c

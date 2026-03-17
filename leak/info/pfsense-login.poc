@@ -1,0 +1,27 @@
+## id: pfsense-login
+## name: pfSense Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pfsense,discovery
+## description: pfSense login panel was detected.
+## affects: pfsense
+## reference: https://www.pfsense.org/download/
+## reference: https://www.pfsense.org/getting-started/
+## shodan-query: http.title:"pfSense - Login",http.title:"pfsense - login"
+## fofa-query: title="pfsense - login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>pfSense - Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<script src="\/js\/pfSense\.js\?(.+)"><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8a0397b6780aff58e8a4286068423af5d86e9925611afe49ff4e8f8667477cbb

@@ -1,0 +1,22 @@
+## id: opencast-panel
+## name: Opencast Admin Panel Discovery
+## author: hack007x
+## severity: info
+## tags: panel,opencast,discovery
+## description: An Opencast Admin panel was discovered. Opencast is a free and open source solution for automated video capture and distribution at scale.
+## reference: https://github.com/opencast/opencast
+## verification: true
+
+GET /admin-ng/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Opencast</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a1af6d87ed50e02e481d78ab167e38186597fd408557870b4beb749f6cfc6e92

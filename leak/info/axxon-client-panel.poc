@@ -1,0 +1,25 @@
+## id: axxon-client-panel
+## name: Axxon Next Client Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,axxon,vms,login,detect,axxonsoft,discovery
+## description: Axxon One is a limitlessly scalable video management software
+## affects: axxon_next
+## reference: https://www.axxonsoft.com/products/video-management-software
+## shodan-query: title:"Axxon Next client",http.title:"axxon next client"
+## fofa-query: title="axxon next client"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Axxon Next client"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fcac96c60badfd81d9778a4339e33c7aeaf1f4cb431ba5e17b07478dd07d7dc8

@@ -1,0 +1,22 @@
+## id: completeview-web-panel
+## name: CompleteView Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,completeview,discovery
+## description: CompleteView panel was detected.
+## shodan-query: http.title:"CompleteView Web Client"
+## verification: true
+
+GET /en-US/login?return=/live-view HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "CompleteView Web Client"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e0c1c01a32ad6868bd1d8a09bf7143d795b84cd7363d2978ba4923bd4c4969a9

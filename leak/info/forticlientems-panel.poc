@@ -1,0 +1,23 @@
+## id: forticlientems-panel
+## name: FortiClient Endpoint Management Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,forticlient,ems,login,detect,discovery
+## affects: forticlient_endpoint_management_server
+## shodan-query: http.favicon.hash:-800551065
+## verification: true
+
+GET /signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FortiClient Endpoint Management Server"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/VERSION_FULL\\u0022: \\u0022(.*?)\\u0022/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 17a712d6eee44d9ac4f4f287461e14fbd877e7155432ca205b80c5ec6c2a4cdf

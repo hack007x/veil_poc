@@ -1,0 +1,22 @@
+## id: netflow-analyzer-panel
+## name: Netflow Analyzer Login - Panel
+## author: hack007x
+## severity: info
+## tags: netflow,analyzer,panel,login,discovery
+## affects: manageengine_netflow_analyzer
+## shodan-query: html:"Login - Netflow Analyzer"
+## verification: true
+
+GET /netflow/jspui/NetworkSnapShot.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login - Netflow Analyzer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7eebc4720d988caf1410b291b417907fb629b9c3afe8d3551e2bc2d4346f9e6e

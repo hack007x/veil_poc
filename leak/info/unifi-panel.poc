@@ -1,0 +1,24 @@
+## id: unifi-panel
+## name: UniFi Network Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: unifi,ubnt,panel,discovery
+## description: UniFi Network login panel was detected.
+## affects: unifi_network_application
+## shodan-query: http.title:"UniFi Network"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>UniFi Network</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 32fec16759a02afcc77b65aea35a14fd6a91dcf6638e298b38d135bcfdd716d7

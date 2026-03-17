@@ -1,0 +1,23 @@
+## id: teradek-panel
+## name: Teradek Cube Administrative Console - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,teradek,discovery
+## reference: https://www.facebook.com/photo/?fbid=612496907587499&set=a.467014098802448
+## shodan-query: title:"Teradek Cube Administrative Console"
+## verification: true
+
+GET /login.cs HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Teradek Cube Administrative Console"
+#@ matcher: body contains "Password:"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 122d7d8320bc75c2842b45c7125d3a847cd43a912bed02f7857423c8005803f5

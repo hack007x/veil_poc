@@ -1,0 +1,21 @@
+## id: sitecore-login-panel
+## name: Sitecore Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sitecore,login,discovery
+## description: Sitecore admin login panel was detected.
+## verification: true
+
+GET /sitecore/admin/login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Sitecore Login"
+
+
+
+
+
+# @VEIL-STAMP: 274aa15a83cebfb97d0c15462e3e51bf49760eb8ce2300c0e521feb22a2d075f

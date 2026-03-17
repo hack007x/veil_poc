@@ -1,0 +1,28 @@
+## id: projectsend-login
+## name: ProjectSend Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,projectsend,edb,discovery
+## description: ProjectSend login panel was detected.
+## affects: projectsend
+## reference: https://www.exploit-db.com/ghdb/7380
+## reference: https://github.com/projectsend/projectsend
+## shodan-query: http.html:provided by projectsend
+## fofa-query: body=provided by projectsend
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /Provided by <a href="https?:\/\/www\.projectsend\.org\/" target="_blank">ProjectSend<\/a>/
+#@ matcher: body contains 'id="login_form"'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version (.*) - Free software/, group=1
+
+
+
+
+
+# @VEIL-STAMP: a096649aa4f6f41a8f696e7321474af3b42abd0540766ba0cc8a348751259579

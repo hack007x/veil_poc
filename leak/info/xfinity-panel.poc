@@ -1,0 +1,22 @@
+## id: xfinity-panel
+## name: Xfinity Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xfinity,discovery
+## description: Xfinity panel was detected.
+## shodan-query: title:"xfinity"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "alt='XFINITY'" || body contains "title='XFINITY'"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 70d14957b1ad854797bfa1322b7a79cbed4f7c12e87a6aa2a90d7b42c54cb7e5

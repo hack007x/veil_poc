@@ -1,0 +1,25 @@
+## id: n8n-panel
+## name: n8n Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,n8n,login,detect,discovery,ai
+## description: The worlds most popular workflow automation platform for technical teams
+## affects: n8n
+## reference: https://n8n.io/
+## shodan-query: http.favicon.hash:-831756631
+## verification: true
+
+GET /signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>n8n.io"
+#@ matcher: status_code == 200
+#> extract: name=base64_content, from=body, regex=/<meta name="n8n:config:sentry" content="([A-Za-z0-9+\/=]+)"/, group=1, internal=true
+
+
+
+
+
+# @VEIL-STAMP: c6498f89bd103286910ee4a12280d6cdaf8573641622639d1353354c2d4b1ec1

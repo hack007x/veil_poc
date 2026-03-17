@@ -1,0 +1,21 @@
+## id: gradle-enterprise-panel
+## name: Gradle Enterprise Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gradle,discovery
+## description: Gradle Enterprise logjn panel was detected.
+## affects: gradle_enterprise
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "<title>Gradle Enterprise</title>"
+
+
+
+
+
+# @VEIL-STAMP: 64e182fedd07ecbcd2d961f75a1d69a31133b434ef8c8aba6418c10caa96ebd2

@@ -1,0 +1,25 @@
+## id: kanboard-login
+## name: Kanboard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kanboard,discovery
+## description: Kanboard login panel was detected.
+## affects: kanboard
+## shodan-query: http.favicon.hash:2056442365
+## fofa-query: icon_hash=2056442365
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "/?controller=UserAjaxController&amp;action=status"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 245de47ddbe594ad388ba9810f49987fd43071dcf8d0c920f6ae992bc718b741

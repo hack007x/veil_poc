@@ -1,0 +1,24 @@
+## id: couchdb-exposure
+## name: Apache CouchDB Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,couchdb,apache,discovery
+## description: Apache CouchDB panel was detected.
+## affects: couchdb
+## shodan-query: product:"couchdb",cpe:"cpe:2.3:a:apache:couchdb"
+## verification: true
+
+GET /_all_dbs HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "CouchDB/"
+#@ matcher: body contains "Erlang OTP/"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e012333947b1601219b740016ae38ba945c1ab5c57d16f80b4460152a89c4993

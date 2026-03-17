@@ -1,0 +1,23 @@
+## id: snapcomms-panel
+## name: SnapComms Content Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,snapcomms,login,detect,discovery
+## description: SnapComms Content Manager was detected.
+## reference: https://www.snapcomms.com/
+## verification: true
+
+GET /Manager/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SnapComms Content Manager</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version=([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1ab16585c06037a551560d02b75e63a52614a0cc50545b96fa8d332a84d4e804

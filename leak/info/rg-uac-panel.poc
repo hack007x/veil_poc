@@ -1,0 +1,25 @@
+## id: rg-uac-panel
+## name: Ruijie RG-UAC Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ruijie,router,firewall,discovery
+## description: Ruijie RG-UAC login panel was detected.
+## affects: rg-uac_firmware
+## shodan-query: http.html:"Get_Verify_Info",http.html:"get_verify_info"
+## fofa-query: body="get_verify_info"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "dkey_check.php"
+#@ matcher: body contains "get_dkey_passwd"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0a1b58f29e43c3c077a4863f9d54db8ea3a23d9b7665720d838e9c659bcb6ce0

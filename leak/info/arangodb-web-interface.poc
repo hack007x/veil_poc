@@ -1,0 +1,25 @@
+## id: arangodb-web-interface
+## name: ArangoDB Web Interface - Detect
+## author: hack007x
+## severity: info
+## tags: panel,arangodb,login,discovery
+## description: ArangoDB Web Interface was detected.
+## affects: arangodb
+## reference: https://www.arangodb.com/docs/stable/
+## shodan-query: http.title:"ArangoDB Web Interface",http.title:"arangodb web interface"
+## fofa-query: title="arangodb web interface"
+## verification: true
+
+GET /_db/_system/_admin/aardvark/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ArangoDB Web Interface</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7e7d819e625fc18053a61144b73ab6a6186b130e318c5c83712d72376f7a3e6c

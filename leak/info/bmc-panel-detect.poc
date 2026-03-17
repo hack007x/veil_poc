@@ -1,0 +1,19 @@
+## id: bmc-panel-detect
+## name: BMC Discovery Outpost Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bmc,discovery
+## description: BMC Discovery Outpost admin panel was detected.
+## verification: true
+
+GET /adminlogin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>BMC Discovery Outpost: Login</title>"
+
+
+
+
+
+# @VEIL-STAMP: 36dde20c652d06e0cd6f8187f14128d4a9345d3ab699d948e22f5c28b5412112

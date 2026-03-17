@@ -1,0 +1,23 @@
+## id: httpbin-panel
+## name: HTTPBin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,httpbin,oss,discovery
+## description: HTTPBin login panel was detected.
+## reference: https://github.com/postmanlabs/httpbin
+## shodan-query: http.title:"httpbin.org"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>httpbin.org</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3bfb9429c6e845d8a83e99c716761b355b517bb0d1d28f67f2456f518325ddbd

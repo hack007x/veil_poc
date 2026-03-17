@@ -1,0 +1,24 @@
+## id: openerp-database
+## name: Odoo OpenERP Database Selector Panel - Detect
+## author: hack007x
+## severity: info
+## tags: openerp,panel,odoo,discovery
+## description: Odoo OpenERP database selector panel was detected.
+## affects: odoo
+## shodan-query: http.title:"odoo",cpe:"cpe:2.3:a:odoo:odoo"
+## fofa-query: title="odoo"
+## verification: true
+
+GET /web/database/selector/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Odoo</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e7c9b5778aba0020ff976392adece451fb3cab99aa704da6a95c9c55d0d61801

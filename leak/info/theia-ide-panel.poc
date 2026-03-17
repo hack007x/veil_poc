@@ -1,0 +1,26 @@
+## id: theia-ide-panel
+## name: Eclipse Theia IDE Panel - Detect
+## author: hack007x
+## severity: info
+## tags: theia,ide,panel,detect,tech,discovery
+## description: Detected Eclipse Theia IDE panel was exposed. Theia is an extensible platform for multi-language Cloud and Desktop IDEs. Exposed panels may have allowed unauthenticated access to development environments and terminal.
+## reference: https://github.com/eclipse-theia/theia
+## reference: https://theia-ide.org/
+## shodan-query: title:"Theia IDE"
+## fofa-query: title="Theia IDE"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Theia IDE</title>" || body contains "<title>Eclipse Theia</title>"
+#@ matcher: body contains "theia-preload"
+
+
+
+
+
+# @VEIL-STAMP: 2be3ec38d0fab909079cf946c9b1d3658ed555349d6e0ef42e1191e737c88757

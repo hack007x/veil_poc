@@ -1,0 +1,23 @@
+## id: opennms-web-console
+## name: OpenNMS Web Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,edb,opennms,discovery
+## description: OpenNMS Web Console login panel was detected.
+## affects: opennms
+## reference: https://www.exploit-db.com/ghdb/5468
+## verification: true
+
+GET /opennms/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "OpenNMS Web Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f9b5681529e8a8108848ef6c51fcf6c055541020461f7f3499ee596cd17e3b25

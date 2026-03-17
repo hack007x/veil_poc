@@ -1,0 +1,22 @@
+## id: keenetic-web-login
+## name: Keenetic Web Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,keenetic,edb,discovery
+## description: Keenetic Web login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6817
+## verification: true
+
+GET /login#goto=%2Fdashboard HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<title ng-bind="$root.title">Keenetic Web</title>'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 40801bc83dd9a6ecb525f87a0a9ca4b8352245cf280c9996473ed0b169c80f1b

@@ -1,0 +1,27 @@
+## id: microfocus-vibe-panel
+## name: Micro Focus Vibe Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,microfocus,vibe,discovery
+## description: Micro Focus Vibe login panel was detected.
+## affects: vibe
+## shodan-query: http.html:"Micro Focus Vibe",http.html:"micro focus vibe"
+## fofa-query: body="micro focus vibe"
+## verification: true
+
+GET /ssf/s/portalLogin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Micro Focus Vibe"
+#@ matcher: body contains "baseVibeUrl"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)Copyright\s+([0-9-]+)\s+Micro\s+Focus/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b734a973e50ecb25005c3cb5691b6084897ffe5dbcd11743f99d2c6b7519c725

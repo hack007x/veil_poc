@@ -1,0 +1,25 @@
+## id: ampps-panel
+## name: AMPPS Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,ampps,login,discovery
+## description: An AMPPS login panel was detected.
+## verification: true
+
+GET /ampps/index.php?act=login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains '<a href="http://www.ampps.com">'
+#@ matcher: body contains "<title>Login</title>"
+#@ matcher: body contains "themes/default/images/ampps/favicon.ico"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/mpps\.com">Powered By FREE ([A-Z 0-9.]+)<\/a>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: efeed40c50bed3ab7e8b7356e5f029a5d302a71bf2f3a8ba02e01e4c8a64c172

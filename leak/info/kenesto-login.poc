@@ -1,0 +1,23 @@
+## id: kenesto-login
+## name: Kenesto - Login Detect
+## author: hack007x
+## severity: info
+## tags: login,tech,kenesto,panel,discovery
+## description: Kenesto login panel was discovered.
+## reference: https://www.kenesto.com/
+## fofa-query: app="kenesto"
+## verification: true
+
+GET /Kenesto/Account/LogOn?ReturnUrl=%2fkenesto HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Welcome To Kenesto&reg;</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bbe6758d2d2e73064f6edd88ed09cb24b37fe8448e3446e8360a7b2a89b82809

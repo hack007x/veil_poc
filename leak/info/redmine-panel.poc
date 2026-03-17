@@ -1,0 +1,24 @@
+## id: redmine-panel
+## name: Redmine Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redmine,login,detect,discovery
+## description: Redmine login panel was detected.
+## affects: redmine
+## reference: https://www.redmine.org/
+## shodan-query: http.html:'content="Redmine'
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains 'content=\"Redmine'
+
+
+
+
+
+# @VEIL-STAMP: 1781cf401c0729e99458ba494309ebed6bc81cd9305973ca059eae88cc5d5a16

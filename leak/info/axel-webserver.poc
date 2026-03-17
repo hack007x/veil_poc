@@ -1,0 +1,24 @@
+## id: axel-webserver
+## name: Axel WebServer - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,axel,webserver,discovery
+## description: Axel WebServer panel was detected.
+## shodan-query: http.title:"Axel"
+## fofa-query: app="AxelWebServer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>(.*)Axel MyWeb(.*)<\/title>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Axel MyWeb (.*)<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1f1d88ffa0cf90c34614b1c00bd7e0ae8a9290fabbbfd03514e12178e2718865

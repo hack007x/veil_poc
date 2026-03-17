@@ -1,0 +1,23 @@
+## id: watchguard-panel
+## name: Watchguard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: watchguard,edb,panel,discovery
+## description: Watchguard login panel was detected.
+## affects: firebox_t15
+## reference: https://www.exploit-db.com/ghdb/7008
+## verification: true
+
+GET /sslvpn_logon.shtml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>User Authentication" || body contains "WatchGuard Technologies"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b893ad4aefb184606584567e00bca54c116d623a4a326006434858092f352bc3

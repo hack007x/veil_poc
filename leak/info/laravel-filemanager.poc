@@ -1,0 +1,22 @@
+## id: laravel-filemanager
+## name: Laravel File Manager - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,laravel,filemanager,fileupload,intrusive,discovery
+## description: Laravel File Manager panel was detected.
+## reference: https://github.com/UniSharp/laravel-filemanager
+## verification: true
+
+GET /laravel-filemanager?type=Files HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Laravel FileManager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0a301555c0be971634c89ac2a8010ba8bd932ece81a971581a9e4856e1d43c16

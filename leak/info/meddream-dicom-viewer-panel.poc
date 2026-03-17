@@ -1,0 +1,27 @@
+## id: meddream-dicom-viewer-panel
+## name: MedDream DICOM Viewer - Panel
+## author: hack007x
+## severity: info
+## tags: panel,meddream,detect,discovery
+## description: MedDream DICOM Viewer panel was detected.
+## affects: dicom-viewer
+## reference: https://meddream.com/products/meddream-dicom-viewer/
+## shodan-query: Set-Cookie: MEDDREAMSESSID
+## fofa-query: Set-Cookie: MEDDREAMSESSID
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'src="js/md.main.min.'
+#@ matcher: body contains "unsupported-browser-msg"
+#@ matcher: body contains "MEDDREAMSESSID"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d0260832ea7c22c36fbde2e1078f543316151aec1614a34625d91b85d2775765

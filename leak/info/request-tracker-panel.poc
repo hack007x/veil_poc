@@ -1,0 +1,23 @@
+## id: request-tracker-panel
+## name: Request Tracker - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,request,tracker,discovery
+## description: Request Tracker panel was discovered.
+## shodan-query: http.favicon.hash:203612613
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "RT.Config"
+#@ matcher: body contains "RT.CurrentUser"
+#> extract: name=ex_regex, from=body, regex=/RT(?:\sVersion)?\s+(\d+\.\d+\.\d+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5b90e09d3a02f5fc1a13aa21ccf7248ce138361d0942f296bc1bfe99b66ae7e2

@@ -1,0 +1,24 @@
+## id: greenbone-panel
+## name: Greenbone Security Assistant Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,greenbone,login,discovery
+## description: Greenbone Security Assistant Web Panel is detected
+## affects: greenbone_security_assistant
+## shodan-query: http.title:"Greenbone Security Assistant",http.title:"greenbone security assistant"
+## fofa-query: title="greenbone security assistant"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Greenbone Security Assistant</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d6d570f524f0885bd0d461ad53d5086fc76ed11adc84f3843ae8ee796535876

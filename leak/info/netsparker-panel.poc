@@ -1,0 +1,24 @@
+## id: netsparker-panel
+## name: Netsparker Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,netsparker,discovery
+## description: Netsparker login panel was detected.
+## reference: https://www.invicti.com/
+## shodan-query: http.title:"Sign in to Netsparker Enterprise"
+## verification: true
+
+GET /account/signin?ReturnUrl=%2f HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Netsparker Ltd"
+#@ matcher: body contains "Netsparker Enterprise"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d14c0fd998868b57bab2a79e9711db44d6d4aff814d32af0b1c10f8c7c83c9bb

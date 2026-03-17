@@ -1,0 +1,23 @@
+## id: drone-ci-panel
+## name: Drone CI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,droneci,cicd,discovery
+## description: Drone CI login panel was detected.
+## reference: https://www.drone.io
+## shodan-query: http.favicon.hash:1354079303
+## verification: true
+
+GET /welcome HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Drone CI</title>" || body contains "<title>Drone | Continuous Integration</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: df9d8024d9fd23ecebb7b29b6c20ef85d20f8cb5d05a1c4067bbd11fd440cc8f

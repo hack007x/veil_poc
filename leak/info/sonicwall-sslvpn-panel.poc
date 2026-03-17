@@ -1,0 +1,22 @@
+## id: sonicwall-sslvpn-panel
+## name: SonicWall Virtual Office SSL VPN Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sonicwall,discovery
+## description: SonicWall Virtual Office SSL VPN login panel was detected.
+## affects: sonicos
+## verification: true
+
+GET /cgi-bin/welcome HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>Virtual Office</title>"
+#@ matcher: body contains "SonicWALL SSLVPN Web Server" || body contains "SonicWALL SSL-VPN Web Server"
+
+
+
+
+
+# @VEIL-STAMP: b0df4a1c9fedc3fa38e29b3c1d5b9f505502706979036b9c6f273925f6336807

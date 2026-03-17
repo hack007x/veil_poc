@@ -1,0 +1,21 @@
+## id: fortinet-fortigate-panel
+## name: Fortinet FortiGate SSL VPN Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortigate,vpn,discovery
+## description: Detect FortiGate SSL VPN login and extract release date.
+## shodan-query: cpe:"cpe:2.3:o:fortinet:fortios",http.html_hash:-1454941180
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: status_code == 200 && body contains 'top.location=\"/remote/login\";'
+#> extract: name=etag, from=headers, regex=/[Ee][Tt]ag: \"[\w\d]*\-([\w\d]{8})\"/, group=1, internal=true
+
+
+
+
+
+# @VEIL-STAMP: 55c1f4ed5b97a3eeffd62d5ca081fe669851d35729bd1a0cef5eaa34063ccfaf

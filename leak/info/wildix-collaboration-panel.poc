@@ -1,0 +1,22 @@
+## id: wildix-collaboration-panel
+## name: Wildix Collaboration Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,wildix,detect,discovery
+## description: Wildix Collaboration login panel was detected.
+## reference: https://www.wildix.com/product/collaboration-ucc-platform/#
+## shodan-query: http.favicon.hash:-1295577382
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "wildix"
+
+
+
+
+
+# @VEIL-STAMP: 380f9ac09103f391ebdac2ea6216cee11f78cc806191e372d46012cb77474539

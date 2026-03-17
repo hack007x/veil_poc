@@ -1,0 +1,29 @@
+## id: CNVD-2021-32799
+## name: 360 Xintianqing - SQL Injection
+## author: hack007x
+## severity: high
+## tags: cnvd2021,cnvd,360,xintianqing,sqli,vuln
+## description: The Tianqing Terminal Security Management System, designed for government and enterprise use, faces a SQL injection vulnerability. This flaw could enable attackers to access sensitive database information.
+## reference: https://blog.51cto.com/u_9691128/4295047
+## reference: https://www.cnvd.org.cn/patchInfo/show/270651
+## reference: https://github.com/zan8in/afrog/blob/main/v2/pocs/afrog-pocs/CNVD/2021/CNVD-2021-32799.yaml
+## fofa-query: app="360新天擎"
+## verification: true
+
+GET /api/dp/rptsvcsyncpoint?ccid=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"reason":'
+#@ matcher: body contains '"success"'
+#@ matcher: body contains '"antiadwa":'
+#@ matcher: body contains '"clientupgrade":'
+#@ matcher: header["content-type"] contains "application/json"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: aa9b9d6a2f9e0de8cb036ff3c2e5c157724cf5412206b946795cc366bf54fc1c

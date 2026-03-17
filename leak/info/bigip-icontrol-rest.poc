@@ -1,0 +1,27 @@
+## id: bigip-icontrol-rest
+## name: F5 BIG-IP iControl REST Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bigip,f5,discovery
+## description: F5 BIG-IP iControl REST API discovered and may be vulnerable to an authentication bypass (not tested).
+## affects: big-ip_access_policy_manager
+## reference: https://nvd.nist.gov/vuln/detail/CVE-2022-1388
+## reference: https://support.f5.com/csp/article/K23605346
+## reference: https://clouddocs.f5.com/products/big-iq/mgmt-api/v5.4/ApiReferences/bigiq_api_ref/r_auth_login.html
+## shodan-query: http.title:"BIG-IP&reg;-+Redirect" +"Server",http.title:"big-ip&reg;-+redirect" +"server"
+## fofa-query: title="big-ip&reg;-+redirect" +"server"
+## verification: true
+
+GET /mgmt/shared/authn/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "resterrorresponse"
+#@ matcher: status_code == 401
+
+
+
+
+
+# @VEIL-STAMP: 4a755afc7051c27a66f6d084a1cd2a383fd6672f404dc61c792f48ea3056912d

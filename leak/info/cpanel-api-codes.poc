@@ -1,0 +1,25 @@
+## id: cpanel-api-codes
+## name: cPanel API Codes Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cpanel,discovery
+## description: cPanel API Codes panel was detected.
+## affects: cpanel
+## shodan-query: title:"CPanel - API Codes",http.title:"cpanel",cpe:"cpe:2.3:a:cpanel:cpanel",http.title:"cpanel - api codes"
+## fofa-query: title="cpanel - api codes",title="cpanel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>CPanel - API Codes</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 603b9c7756fb1b020c00af987db7a532b8a867babd5765fafd5d996a8cb7d161

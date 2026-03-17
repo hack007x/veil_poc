@@ -1,0 +1,21 @@
+## id: couchdb-fauxton
+## name: Apache CouchDB Fauxton Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,apache,couchdb,discovery
+## description: Apache CouchDB Fauxton panel was detected.
+## affects: couchdb
+## shodan-query: product:"couchdb",cpe:"cpe:2.3:a:apache:couchdb"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Project Fauxton</title>"
+
+
+
+
+
+# @VEIL-STAMP: b8ed8eef6c221dc22e5f42a9eec5aa5f2fb19bdaa557abe241e66318f82179bd

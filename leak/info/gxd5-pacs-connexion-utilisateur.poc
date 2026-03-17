@@ -1,0 +1,22 @@
+## id: gxd5-pacs-connexion-utilisateur
+## name: GXD5 Pacs Connexion Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,discovery
+## description: GXD5 Pacs Connexion panel was detected.
+## shodan-query: http.title:"GXD5 Pacs Connexion utilisateur"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>GXD5 Pacs Connexion utilisateur</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 633233bdefea6de2d351ef00b786ef8a2c61677267a99edcaf8de4ee0d7c6ab7

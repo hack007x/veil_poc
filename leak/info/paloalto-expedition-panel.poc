@@ -1,0 +1,24 @@
+## id: paloalto-expedition-panel
+## name: Palo Alto Expedition Project Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,expedition,palo-alto,login,detect,discovery
+## description: Palo Alto Expedition Project login panel was detected.
+## affects: expedition
+## shodan-query: http.favicon.hash:1499876150
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Expedition Project</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bb69b31045392159c60298d0a1b6a878445c8eb1c0e09a8806e8f32d2b9db742

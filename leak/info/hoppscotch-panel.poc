@@ -1,0 +1,24 @@
+## id: hoppscotch-panel
+## name: Hoppscotch Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,hoppscotch,detect,discovery
+## description: Hoppscotch panel was discovered.
+## reference: https://hoppscotch.io
+## fofa-query: icon_hash="1531008637"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Hoppscotch"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6ec55d9e71f01fd2b02d5d48603c3c0a2dc5503ef2f45e5b55ef5b27ddb92bb2

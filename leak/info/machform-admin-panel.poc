@@ -1,0 +1,25 @@
+## id: machform-admin-panel
+## name: MachForm Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,machform,admin,discovery
+## description: MachForm Admin panel was detected.
+## affects: machform
+## reference: https://www.machform.com/
+## shodan-query: title:"MachForm Admin Panel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'alt="MachForm"' || body contains "<title>MachForm Admin Panel</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6b984c2665e6eec4d5366facdc0e69f39ee90c81ebabeb464e7524b3576a5def

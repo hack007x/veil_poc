@@ -1,0 +1,24 @@
+## id: v2924-admin-panel
+## name: V2924 Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,v2924,discovery
+## description: V2924 admin login panel was detected.
+## reference: https://www.facebook.com/ExWareLabs/photos/a.361854183878462/5538760399521122
+## shodan-query: title:"V2924"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>V2924</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 31f0ef1f3c53b83e762b1fd51d4c1f9aabb0c41e44296b6d11f63047355b0bb5

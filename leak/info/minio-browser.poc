@@ -1,0 +1,24 @@
+## id: minio-browser
+## name: MinIO Browser Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,minio,discovery
+## description: MinIO Browser login panel was detected.
+## affects: minio
+## shodan-query: title:"MinIO Browser",http.title:"minio browser",cpe:"cpe:2.3:a:minio:minio",http.title:"minio console"
+## fofa-query: app="minio",title="minio browser",title="minio console"
+## verification: true
+
+GET /minio/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>minio browser</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 66db79c0e2a59e7b037e364d15e2a77a99b3bd020fb317785341289a76065a01

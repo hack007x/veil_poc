@@ -1,0 +1,27 @@
+## id: sentry-panel
+## name: Sentry Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,sentry,login,discovery
+## description: Sentry login panel was detected.
+## affects: sentry
+## reference: https://sentry.io/
+## shodan-query: http.title:"Login | Sentry",http.title:"login | sentry"
+## fofa-query: title="login | sentry"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "/sentry/" && body contains "Login"
+#> extract: name=ex_regex, from=body, regex=/(?i)"current":\s*"([0-9a-z.-]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b4647646ad9854a8740238ddb1ae77da7558025ddbc6a28b196b6c072141ae59

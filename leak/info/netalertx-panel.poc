@@ -1,0 +1,25 @@
+## id: netalertx-panel
+## name: NetAlert X Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,netalertx,detect,discovery
+## description: NetAlert X panel was discovered.
+## affects: netalertx
+## reference: https://github.com/jokob-sk/NetAlertX
+## fofa-query: NetAlert X
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>NetAlert X | Log in"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f25aeca00a8fbe0e79bf61dab0d698c9e485f19bc53a87ce23186c05e288fe1c

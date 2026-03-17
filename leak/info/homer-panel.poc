@@ -1,0 +1,24 @@
+## id: homer-panel
+## name: Homer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,homer,detect,login,discovery
+## description: A simple static homepage was discovered
+## reference: https://github.com/bastienwirtz/homer
+## reference: https://homer-demo.netlify.app/
+## shodan-query: http.favicon.hash:-417785140
+## verification: true
+
+GET /index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Homer</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3f7e7f8fc4b12ed5186bcc72b5742a852e521268611a4c13f8dc2b9a0a42df9f

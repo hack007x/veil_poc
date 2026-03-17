@@ -1,0 +1,25 @@
+## id: canon-ir-adv
+## name: Canon iR-ADV Panel - Detect
+## author: hack007x
+## severity: info
+## tags: canon,panel,login,detect,discovery
+## shodan-query: title:"Canon iR-ADV"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "iR-ADV"
+#@ matcher: body contains "Authentication"
+#@ matcher: body contains "CANON"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(iR-ADV C[0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d076962004872d32ea387cb507fbc72e31cd20b6bf86c2d41adf5cd266376ad7

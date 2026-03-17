@@ -1,0 +1,24 @@
+## id: mobile-management-panel
+## name: Mobile Management Platform Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mobile,management,discovery
+## description: Mobile Management Platform panel was detected.
+## affects: manageengine_mobile_device_manager_plus
+## fofa-query: title="移动管理平台-企业管理"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "移动管理平台-企业管理" || body contains "Mobile management platform"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version = "(.*)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5018a821aee0b9ca735cdf52305de1ae9cffbf4640644d470d1ddae766ab8c67

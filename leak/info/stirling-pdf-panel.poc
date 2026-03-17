@@ -1,0 +1,24 @@
+## id: stirling-pdf-panel
+## name: Stirling PDF Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,stirling-pdf,detect,discovery
+## description: Stirling PDF panel was discovered.
+## reference: https://github.com/Stirling-Tools/Stirling-PDF
+## fofa-query: title="StirlingPDF"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>StirlingPDF - Sign in" || body contains 'content=\"StirlingPDF", "window.stirlingPDF'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8bb80feaee9926454cf7f379048a4503b2cfdc325e5e0601a92bcd275d5c5469

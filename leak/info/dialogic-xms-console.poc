@@ -1,0 +1,22 @@
+## id: dialogic-xms-console
+## name: Dialogic XMS Admin Console - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dialogic,admin,login,detect,discovery
+## affects: powermedia_xms
+## shodan-query: title:"Dialogic XMS Admin Console"
+## verification: true
+
+GET /index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Dialogic XMS Admin Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d78033a69509d60be0971843c47e246e541083d7bc13bc19453feccb762274f

@@ -1,0 +1,20 @@
+## id: sap-hana-xsengine-panel
+## name: SAP HANA XS Engine Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sap,discovery
+## description: SAP HANA XS Engine admin login panel was detected.
+## verification: true
+
+GET /sap/hana/xs/formLogin/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "/sap/hana/xs/formLogin/images/sap.png"
+
+
+
+
+
+# @VEIL-STAMP: 3a8c4d87f3ed2442d09cb1429ab11e76cf41264aa4d8fa0caf08484df34a4d64

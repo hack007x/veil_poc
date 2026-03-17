@@ -1,0 +1,24 @@
+## id: cwp-webpanel
+## name: Control Web Panel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,centos,discovery
+## description: Control Web Panel login panel was detected.
+## affects: webpanel
+## fofa-query: title=="CWP |用户" || title=="Login | CentOS WebPanel" || body="CentOS WebPanel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: or
+#@ matcher: body contains "Login | CentOS WebPanel" || body contains "CWP |用户" || body contains "http://centos-webpanel.com" || body contains "CentOS WebPanel"
+#@ matcher: body contains "cwpsrv"
+
+
+
+
+
+# @VEIL-STAMP: 3caed4fb67ae264043604782bf5c9c14d755a05603bc38623954fd2f7495952f

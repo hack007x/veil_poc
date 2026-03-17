@@ -1,0 +1,26 @@
+## id: gitlab-saml
+## name: Gitlab SAML - Detection
+## author: hack007x
+## severity: info
+## tags: panel,saml,gitlab,discovery
+## description: The presence of SAML-based authentication on GitLab instances. SAML is commonly used for Single Sign-On (SSO) integrations, which allows users to authenticate with GitLab using an external Identity Provider (IdP).
+## affects: gitlab
+## shodan-query: http.title:"gitlab",cpe:"cpe:2.3:a:gitlab:gitlab",http.html:"gitlab enterprise edition"
+## fofa-query: body="gitlab enterprise edition",title="gitlab"
+## verification: true
+
+GET /users/auth/saml/metadata HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "EntityDescriptor"
+#@ matcher: body contains "SAML"
+#@ matcher: body contains "application/xml"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d02b20f75fc4b6f8a445c6ad68f4492eaf6054935f93591ec9c75447934c7a40

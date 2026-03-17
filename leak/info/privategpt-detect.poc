@@ -1,0 +1,24 @@
+## id: privategpt-detect
+## name: PrivateGPT - Detect
+## author: hack007x
+## severity: info
+## tags: panel,privategpt,detect,discovery,ai
+## description: PrivateGPT panel has been detected.
+## affects: private-gpt
+## reference: https://github.com/zylon-ai/private-gpt
+## shodan-query: html:"private gpt"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "alt=PrivateGPT" || body contains 'title":"My Private GPT' || body contains 'content="My Private GPT'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 925cdf0aec10949246adb7b5ce47b5dde8aa35aca0159373545d3e7b1770299d

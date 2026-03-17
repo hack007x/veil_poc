@@ -1,0 +1,27 @@
+## id: seafile-panel
+## name: Seafile Panel - Detect
+## author: hack007x
+## severity: info
+## tags: sefile,panel,login,seafile,discovery
+## description: Seafile panel was detected.
+## affects: seafile
+## reference: https://www.seafile.com/en/home/
+## reference: https://github.com/haiwen/seafile
+## shodan-query: http.favicon.hash:1552322396
+## fofa-query: icon_hash=1552322396
+## verification: true
+
+GET /accounts/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "SEAFILE_GLOBAL" && body contains "seafile-ui.css"
+
+
+
+
+
+# @VEIL-STAMP: 96ac516a0c532415b639ac304efdf0f51831e72ebb3b715e1b5a2520f4b07ab9

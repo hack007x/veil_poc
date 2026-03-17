@@ -1,0 +1,24 @@
+## id: wowza-streaming-engine
+## name: Wowza Streaming Engine Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wowza,discovery
+## description: Wowza Streaming Engine Manager panel was detected.
+## affects: streaming_engine
+## shodan-query: http.title:"Manager" product:"Wowza Streaming Engine",http.title:"manager" product:"wowza streaming engine",cpe:"cpe:2.3:a:wowza:streaming_engine"
+## fofa-query: title="manager" product:"wowza streaming engine"
+## verification: true
+
+GET /enginemanager/ftu/welcome.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Wowza Streaming Engine Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3a221bd6eb05edf8a925c49154d437b26b1ccfd478b88d2b15dbfbafa67de157

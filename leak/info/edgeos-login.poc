@@ -1,0 +1,22 @@
+## id: edgeos-login
+## name: EdgeOS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,tech,edgeos,edgemax,panel,ui,discovery
+## description: EdgeOS login panel was detected.
+## affects: edgeos
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>EdgeOS</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d1417c5da2fc5f58ff884a0af1cb14345869f6c80f00ab6202b259d948895630

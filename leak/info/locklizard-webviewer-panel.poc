@@ -1,0 +1,25 @@
+## id: locklizard-webviewer-panel
+## name: Locklizard Web Viewer Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,locklizard,webviewer,discovery
+## description: Locklizard Web Viewer login panel was detected.
+## reference: https://www.locklizard.com/pdf_security_webviewer/
+## shodan-query: html:"Locklizard Web Viewer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Locklizard Web Viewer"
+#@ matcher: body contains "Did you remember your password?"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a5696eebe4331229af017ea93fceb21f1b606af4fa3f104c4c5158ca79cd471f

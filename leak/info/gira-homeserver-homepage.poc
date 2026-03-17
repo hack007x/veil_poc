@@ -1,0 +1,25 @@
+## id: gira-homeserver-homepage
+## name: Gira HomeServer 4 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gira,discovery
+## description: Gira HomeServer 4 login panel was detected.
+## affects: gira_home_server_firmware
+## shodan-query: title:"Gira HomeServer 4"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Gira HomeServer 4"
+#@ matcher: body contains "Home page"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fe2f0660da0cda8d706a7b2727849bd1ece30af1d008fef313cfdf41fb67d626

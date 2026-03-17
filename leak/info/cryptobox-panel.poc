@@ -1,0 +1,25 @@
+## id: cryptobox-panel
+## name: Cryptobox Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cryptobox,login,detect,discovery
+## description: Cryptobox was detected.
+## reference: https://www.ercom.com/solutions/cryptobox-presentation
+## shodan-query: title:"Cryptobox"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Cryptobox</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version[0-9%A]+v([0-9.\-a-z]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 4021a66e9c321494e6991c63084d8cf07643dd3e65b867b45e09e6be452a97f0

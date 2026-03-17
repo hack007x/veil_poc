@@ -1,0 +1,24 @@
+## id: pure-storage-login
+## name: Pure Storage Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,purestorage,discovery
+## description: Pure Storage login panel was detected.
+## affects: purity
+## shodan-query: http.title:"Pure Storage Login",http.title:"pure storage login"
+## fofa-query: title="pure storage login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Pure Storage Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dd532b17b0ffda4f69e717983d0788f287e93103482a42537ec26085e2588956

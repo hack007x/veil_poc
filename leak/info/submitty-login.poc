@@ -1,0 +1,25 @@
+## id: submitty-login
+## name: Submitty Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,submitty,oss,discovery
+## description: Submitty login panel was detected.
+## reference: https://github.com/Submitty/Submitty
+## reference: https://rcos.io/
+## verification: true
+
+GET /authentication/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "submitty-banner"
+#@ matcher: body contains "https://submitty.org"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/\/Submitty\/Submitty\/releases\/tag\/([a-z0-9.]+)" target="_blank/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 2fafa7b5a9c3a53e61df4bff21b41b82ffae1ae029844277c83f8eab106a471c

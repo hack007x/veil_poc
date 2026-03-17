@@ -1,0 +1,23 @@
+## id: stridercd-panel
+## name: Strider CD Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cicd,oss,stridercd,strider,discovery
+## description: Strider CD panel was detected.
+## reference: https://github.com/Strider-CD/strider
+## reference: https://strider-cd.github.io
+## shodan-query: http.favicon.hash:115295460
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "Strider: Brilliant Continuous Deployment"
+
+
+
+
+
+# @VEIL-STAMP: fbc211d5b5104d56a2d5c45158724f443ae22e7ddd925492864dc0354ec5aaf3

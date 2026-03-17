@@ -1,0 +1,24 @@
+## id: manageengine-assetexplorer
+## name: ZOHO ManageEngine AssetExplorer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine AssetExplorer panel was detected.
+## affects: manageengine_assetexplorer
+## shodan-query: http.title:"ManageEngine AssetExplorer",http.title:"manageengine assetexplorer"
+## fofa-query: title="manageengine assetexplorer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ManageEngine AssetExplorer</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 727183b3ff18dd6561bf27d5e433aefdc4d347713cf3fcd9fb340f9b8ce34341

@@ -1,0 +1,25 @@
+## id: qnap-photostation-panel
+## name: QNAP Photo Station Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,photostation,qnap,discovery
+## description: QNAP Photo Station panel was detected.
+## affects: photo_station
+## reference: https://www.qnap.com/th-th/software/photo-station
+## shodan-query: http.title:"Photo Station",http.title:"photo station",http.title:"qnap",content-length: 580 "http server 1.0"
+## fofa-query: title="photo station",title="qnap"
+## verification: true
+
+GET /photo/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?m)<title>(.*)Photo Station(.*)<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5eb363607e5ffaa10a0d51d393292d433ee694e9a6973a44b05b148aee764dc4

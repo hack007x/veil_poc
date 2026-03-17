@@ -1,0 +1,27 @@
+## id: zimbra-web-client
+## name: Zimbra Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,zimbra,synacor,discovery
+## description: Zimbra panel was detected. Zimbra provides open source server and client software for messaging and collaboration.
+## affects: zimbra_collaboration_suite
+## reference: https://www.exploit-db.com/ghdb/7409
+## reference: https://www.zimbra.com/
+## shodan-query: http.title:"Zimbra Web Client Sign In",http.title:"zimbra collaboration suite",http.title:"zimbra web client sign in"
+## fofa-query: title="zimbra web client sign in",title="zimbra collaboration suite"
+## verification: true
+
+GET /zimbraAdmin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Zimbra Administration</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/AjxPackage\.setQueryString\("v=(.+)"\);/, group=1
+
+
+
+
+
+# @VEIL-STAMP: ce8dc2768e4b9f933e180d5064d2581b9b45593c89bbfac0b054b5a7ab4f9763

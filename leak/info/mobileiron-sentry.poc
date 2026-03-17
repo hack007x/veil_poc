@@ -1,0 +1,23 @@
+## id: mobileiron-sentry
+## name: MobileIron Sentry Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mobileiron,discovery
+## description: MobileIron Sentry panel was detected.
+## affects: sentry
+## reference: https://help.ivanti.com/mi/help/en_us/sntry/9.9.0/gdcl/Content/SentryGuide/MobileIron_Sentry_overvi.htm
+## shodan-query: http.favicon.hash:967636089
+## verification: true
+
+GET /mics/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "MobileIron System Manager"
+#> extract: name=ex_regex, from=body, regex=/\?([\d.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: fd323872c30ed9d2e54245063d27f031ca804b343134db2530059ca58e08a53f

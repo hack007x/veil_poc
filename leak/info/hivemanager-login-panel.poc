@@ -1,0 +1,24 @@
+## id: hivemanager-login-panel
+## name: HiveManager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,hivemanager,aerohive,discovery
+## description: HiveManager login panel was detected.
+## affects: hivemanager_classic
+## shodan-query: http.favicon.hash:1604363273
+## verification: true
+
+GET /hm/login.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "HiveManager"
+#@ matcher: body contains "HiveManager"
+#@ matcher: body contains 'alt="Aerohive'
+
+
+
+
+
+# @VEIL-STAMP: e305581790a8a18c58c8ab95900fac674b53d418800388b97a8a7ce5128cde14

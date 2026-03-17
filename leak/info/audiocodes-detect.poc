@@ -1,0 +1,24 @@
+## id: audiocodes-detect
+## name: AudioCodes Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,audiocodes,discovery
+## description: AudioCodes login panel was detected.
+## affects: 420hd_ip_phone_firmware
+## shodan-query: http.html:"Audiocodes"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AudioCodes"
+#@ matcher: body contains "login"
+#@ matcher: status_code == 203
+
+
+
+
+
+# @VEIL-STAMP: 842dff6c4877bf79ad5a199376d51d375911d3646d4471e6386826bca5e9328c

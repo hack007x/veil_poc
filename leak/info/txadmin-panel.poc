@@ -1,0 +1,22 @@
+## id: txadmin-panel
+## name: txAdmin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,txadmin,detect,discovery
+## description: txAdmin panel was discovered.
+## fofa-query: title="txAdmin Login"
+## verification: true
+
+GET /auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>txAdmin Login</title>" || body contains "txAdmin Logo"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ff3ba5bb762ce5c89f34c9be66933239fbb62cae5a37c72881c2f23f165dcc62

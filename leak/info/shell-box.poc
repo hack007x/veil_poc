@@ -1,0 +1,27 @@
+## id: shell-box
+## name: Shell In A Box - Detect
+## author: hack007x
+## severity: info
+## tags: shell,emulator,detect,panel,login,shellinabox_project,discovery
+## description: Shell In A Box implements a web server that can export arbitrary command line tools to a web based terminal emulator
+## affects: shellinabox
+## reference: https://github.com/shellinabox/shellinabox
+## reference: https://www.cvedetails.com/vulnerability-list/vendor_id-15771/product_id-33062/Shellinabox-Project-Shellinabox.html
+## shodan-query: http.favicon.hash:-629968763
+## fofa-query: icon_hash=-629968763
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Shell In A Box</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 34e128b844b9ab5f5869218709bc874e0f256d7ce5512c60f16c0675dca4849f

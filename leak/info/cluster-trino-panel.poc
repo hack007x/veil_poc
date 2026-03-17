@@ -1,0 +1,21 @@
+## id: cluster-trino-panel
+## name: Cluster Overview Trino - Panel
+## author: hack007x
+## severity: info
+## tags: cluster,panel,login,discovery
+## description: Cluster Overview Trino Login Panel was discovered.
+## verification: true
+
+GET /ui/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Cluster Overview - Trino" && body contains "Log in"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3b0984b55502e7cb52b2e88290067cfabfef2c0776b4dafbf7496053d2b96703

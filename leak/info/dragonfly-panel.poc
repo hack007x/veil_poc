@@ -1,0 +1,23 @@
+## id: dragonfly-panel
+## name: DragonFly Login - Panel
+## author: hack007x
+## severity: info
+## tags: dragonfly,panel,login,discovery
+## description: Dragonfly Login Panel was discovered
+## fofa-query: body="logo-dragonfly.png"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'href="logo-dragonfly.png"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 513b6f1ab8871a4073a8a0551b353cfa596cae13d264b1751a63845148bc3893

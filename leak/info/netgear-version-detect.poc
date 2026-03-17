@@ -1,0 +1,23 @@
+## id: netgear-version-detect
+## name: NETGEAR Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,router,netgear,discovery
+## description: NETGEAR router panel was detected.
+## verification: true
+
+GET /currentsetting.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body matches /^((((Re(adyShareSupportedLevel|gionTag)|InternetConnectionStatus|SOAPVersion|Firmware|Model)|Region)|LoginMethod)|ParentalControlSupported)=/
+#> extract: name=ex_regex_1, from=body, regex=/Model=([^\s]+)/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/Firmware=([^\s]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: bdf58cddd28e1646a9141b6ba9b6f10bac5ff4e8fcdfede81a8877e9e3554a2c

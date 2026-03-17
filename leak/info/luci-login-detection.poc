@@ -1,0 +1,21 @@
+## id: luci-login-detection
+## name: LuCi Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,discovery
+## description: LuCi login panel was detected.
+## verification: true
+
+GET /cgi-bin/luci HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Authorization Required"
+
+
+
+
+
+# @VEIL-STAMP: 3374a89524c2a7266b790fe8a0ee745c8532940c19cb8cdaca8cae167cf81567

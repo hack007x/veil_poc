@@ -1,0 +1,29 @@
+## id: beego-admin-dashboard
+## name: Beego Admin Dashboard Panel- Detect
+## author: hack007x
+## severity: medium
+## tags: panel,beego,unauth,discovery
+## description: Beego Admin Dashboard panel was detected.
+## affects: beego
+## cvss-score: 5.3
+## reference: https://github.com/beego
+## reference: https://twitter.com/shaybt12/status/1584112903577567234/photo/1
+## shodan-query: html:"Beego Admin Dashboard",http.html:"beego admin dashboard"
+## fofa-query: body="beego admin dashboard"
+## verification: true
+
+GET /listconf?command=conf HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Welcome to Beego Admin Dashboard"
+#@ matcher: body contains "Configurations"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 560981d9de400ba5f5677408a750ca1ff18406f79ee6371e3b187cdf5fb3f520

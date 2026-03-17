@@ -1,0 +1,24 @@
+## id: tenda-11n-wireless-router-panel
+## name: Tenda 11n Wireless Router - Admin Panel
+## author: hack007x
+## severity: info
+## tags: panel,tenda,discovery
+## description: The administrative panel for a Tenda Technology 11n Wireless Router was found.
+## affects: 11n
+## reference: https://www.tendacn.com/products/11n-routers.html
+## shodan-query: http.title:"Tenda 11N Wireless Router Login Screen"
+## verification: true
+
+GET /login.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tenda 11N Wireless Router Login Screen</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a5ad09e183e3bd60f9d0d887daff9c78c9c9f457d2f66b1c2fd54d4b9aae7733

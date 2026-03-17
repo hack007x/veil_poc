@@ -1,0 +1,26 @@
+## id: wso2-management-console
+## name: WSO2 Management Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wso2,edb,discovery
+## description: WSO2 Management Console login panel was detected.
+## affects: api_manager
+## reference: https://www.exploit-db.com/ghdb/5691
+## shodan-query: http.favicon.hash:1398055326
+## fofa-query: icon_hash=1398055326
+## verification: true
+
+GET /carbon/admin/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>WSO2 Management Console</title>" || body contains "WSO2 Carbon Server"
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=server
+
+
+
+
+
+# @VEIL-STAMP: 1dcbeb3befa28b91e8cb8989b60f30f497fc67d17fb0ebd117fca81c3661a501

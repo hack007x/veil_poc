@@ -1,0 +1,23 @@
+## id: teradici-pcoip-panel
+## name: Teradici PCoIP Zero Client Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,teradici,pcoip,discovery
+## description: Teradici PCoIP Zero Client login panel was detected.
+## affects: pcoip_client
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<h4>PCoIP&#174 Zero Client</h4>"
+#@ matcher: body contains "terastyle.css"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1e3cb5d4870d73c6e4ab34163541ae39e1265ec63cfbd9d0132666cfd37641bc

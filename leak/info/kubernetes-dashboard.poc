@@ -1,0 +1,21 @@
+## id: kubernetes-dashboard
+## name: Kubernetes Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kubernetes,devops,discovery
+## description: Kubernetes Dashboard panel was detected.
+## affects: dashboard
+## shodan-query: product:"kubernetes"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Kubernetes Dashboard</title>"
+
+
+
+
+
+# @VEIL-STAMP: 388e1f4c2430eb0794ebbe35ce6b1c53efea4a081f53b29d7322cf3c2708340d

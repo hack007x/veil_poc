@@ -1,0 +1,26 @@
+## id: cyberchef-panel
+## name: Cyber Chef Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cyberchef,login,detect,discovery
+## description: A Cyber Chef Panel was detected
+## affects: cyberchef
+## reference: https://cyberchef.org
+## shodan-query: title:"CyberChef"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>CyberChef</title>"
+#@ matcher: body contains "The Cyber Swiss Army Knife"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7eaba390c8dee207b4dc70830c98767d702d41dc062a7132cda8c1eeb9c1d0ce

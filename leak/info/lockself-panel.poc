@@ -1,0 +1,23 @@
+## id: lockself-panel
+## name: LockSelf Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,lockself,login,detect,discovery
+## description: LockSelf login panel was detected.
+## reference: https://www.lockself.com/en/
+## shodan-query: http.title:"LockSelf"
+## verification: true
+
+GET /application/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>LockSelf" || body contains 'content=\"LockSelf", "name=\"LockSelf'
+
+
+
+
+
+# @VEIL-STAMP: 20f4a22e50dc40b870404b19b60729f291db0b4a7404572079caff2102610222

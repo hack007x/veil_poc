@@ -1,0 +1,23 @@
+## id: powerjob-panel
+## name: PowerJob Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,powerjob,discovery
+## description: PowerJob login panel was detected.
+## affects: powerjob
+## fofa-query: title="PowerJob"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PowerJob</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4f34f6476ce6c452ebc6793bb20018de381077b0c4e0e94bc51e2a3d7cd69516

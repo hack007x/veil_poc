@@ -1,0 +1,24 @@
+## id: raspberrymatic-panel
+## name: RaspberryMatic Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,raspberrymatic,iot,discovery
+## description: RaspberryMatic login panel was detected.
+## affects: raspberrymatic
+## shodan-query: http.favicon.hash:-578216669
+## verification: true
+
+GET /login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>RaspberryMatic WebUI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: abe623b0306b8a0784ed43290823f6ba211567fb3f308f2180e2acec54710c9c

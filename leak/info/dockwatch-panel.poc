@@ -1,0 +1,22 @@
+## id: dockwatch-panel
+## name: Dockwatch Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,dockwatch,detect,discovery
+## description: Dockwatch panel was discovered
+## fofa-query: icon_hash="1991646591"
+## verification: true
+
+GET /login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "dockwatch-maintenance" || body contains "Restart Dockwatch"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4f56103b01c28cfc2939fde12df25e2fa9549562c0004fb949ad2c8a37861a10

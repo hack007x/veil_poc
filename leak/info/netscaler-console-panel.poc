@@ -1,0 +1,23 @@
+## id: netscaler-console-panel
+## name: NetScaler Console - Panel
+## author: hack007x
+## severity: info
+## tags: netscaler,console,panel,login,discovery
+## description: NetScaler Console login panel was discovered.
+## reference: https://docs.netscaler.com/en-us/netscaler-console-service/overview.html
+## shodan-query: title:"NetScaler Console"
+## verification: true
+
+GET /admin_ui/mas/ent/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>NetScaler Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 61fdd1df489148b43a0f4278c284818c0a87fce5981f23cdf63866d167d3b5e5

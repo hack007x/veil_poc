@@ -1,0 +1,24 @@
+## id: cisco-telepresence
+## name: Cisco TelePresence Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco TelePresence login panel was detected.
+## affects: telepresence_tc
+## shodan-query: http.title:"Cisco Telepresence"
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Cisco TelePresence MCU - login:"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c4a2086c72f55939c49740def607a78ba8579d35e4781e5404cf20c87de04d3a

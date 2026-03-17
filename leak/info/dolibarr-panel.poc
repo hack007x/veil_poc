@@ -1,0 +1,27 @@
+## id: dolibarr-panel
+## name: Dolibarr Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dolibarr,discovery
+## description: Dolibarr login panel was detected.
+## shodan-query: http.title:"Dolibarr"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Set-Cookie: DOLSESSID_"
+#@ matcher: body contains '<meta name="author" content="Dolibarr Development Team">' || body contains "authentication mode = dolibarr" || body contains "Includes JS of Dolibarr" || body contains '<div class="login_table_title center" title="Dolibarr'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex_1, from=body, regex=/<td align="center">Dolibarr ([0-9.]+)<\/td>/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/<td class="center">Dolibarr ([0-9.]+)<\/td>/, group=1
+#> extract: name=ex_regex_3, from=body, regex=/<div id="infoVersion">Dolibarr ([0-9.]+)<\/div>/, group=1
+#> extract: name=ex_regex_4, from=body, regex=/amp;version=([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c028d4769fb50603cc25be1a85a1d6aad9bbdc1d6d23a3d4354a077b3741df5d

@@ -1,0 +1,23 @@
+## id: rhadamanthys-stealer-panel
+## name: Rhadamanthys Stealer C2 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: c2,rhadamanthys,stealer,panel,vuln
+## reference: https://twitter.com/0xperator/status/1677873700610162690
+## reference: https://github.com/alex14324/Rhadamanthys-Stealer
+## verification: true
+
+GET /admin/console/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Rhadamanthys Admin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 98ccef38a1e84fb768f5809750dc00bd7105e0d4667bb8bb03c14ab6f3f41406

@@ -1,0 +1,23 @@
+## id: mach-proweb-login
+## name: MACH-ProWeb Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,machproweb,edb,discovery
+## description: MACH-ProWeb login panel was detected.
+## affects: mach-prowebcom
+## reference: https://www.exploit-db.com/ghdb/8023
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Log on to MACH-ProWeb"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c90e369193c42a6dca9879728982ba57cd95e605338a51e6133554f633831af3

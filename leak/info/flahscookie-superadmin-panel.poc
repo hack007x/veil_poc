@@ -1,0 +1,22 @@
+## id: flahscookie-superadmin-panel
+## name: Flahscookie Superadmin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,flahscookie,superadmin,discovery
+## description: Flahscookie Superadmin login panel was detected.
+## shodan-query: title:"Flahscookie Superadmin"
+## verification: true
+
+GET /pages/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Flahscookie Superadmin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 713e106e30cbe39839d9ed6dc983416e9abfc15ee728173de1630fe79937f4eb

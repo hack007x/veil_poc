@@ -1,0 +1,24 @@
+## id: ez-publish-panel
+## name: eZ Publish Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ez,discovery
+## description: eZ Publish login panel was detected.
+## affects: ez_publish
+## shodan-query: http.html:"eZ Publish"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: or
+#@ matcher: body contains 'content="eZ Publish'
+#@ matcher: body contains "eZ Publish"
+
+
+
+
+
+# @VEIL-STAMP: 5135c05c306009b4066c867e9cff9a06c6561db370129b84a04cbf438313b7c3

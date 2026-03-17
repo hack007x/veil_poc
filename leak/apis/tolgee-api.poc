@@ -1,0 +1,26 @@
+## id: tolgee-api
+## name: Tolgee API - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,tolgee,discovery
+## description: Tolgee API was detected.
+## reference: https://docs.tolgee.io/api
+## shodan-query: html:"tolgee"
+## verification: true
+
+GET /api/public/configuration HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Tolgee"
+#@ matcher: body contains "version"
+#@ matcher: body contains "application/json"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/"version"\s*:\s*"([^"]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e3bcc3fb23a4ac0a1a8e9207a360942cab325cf14ddd7efba3b4bf28e3b1e956

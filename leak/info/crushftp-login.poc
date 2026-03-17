@@ -1,0 +1,25 @@
+## id: crushftp-login
+## name: CrushFTP WebInterface Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,crushftp,detect,discovery
+## description: CrushFTP WebInterface login panel was detected.
+## affects: crushftp
+## reference: https://www.exploit-db.com/ghdb/6591
+## shodan-query: http.html:"crushftp"
+## fofa-query: body="crushftp"
+## verification: true
+
+GET /WebInterface/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>CrushFTP WebInterface</title>" || body contains "<title>CrushFTP - Login</title>" || body contains 'src="/WebInterface/Resources/js/crushftp.customize.js"'
+#@ matcher: body contains "Server: CrushFTP HTTP Server"
+
+
+
+
+
+# @VEIL-STAMP: 64f6bb4c6deae030e8fe9b65dd7c1b816d6fd469b8004056c3063e7f31d1cb2a

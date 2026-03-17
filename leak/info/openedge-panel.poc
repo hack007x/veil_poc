@@ -1,0 +1,23 @@
+## id: openedge-panel
+## name: OpenEdge Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openedge,login,detect,discovery
+## description: An OpenEdge login panel was detected.
+## affects: openedge
+## shodan-query: html:"Welcome to Progress Application Server for OpenEdge"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Welcome to Progress Application Server for OpenEdge"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d050c85641a7148fd09e0b17e70e93a3a789cdd2f00622aa57896af64b059990

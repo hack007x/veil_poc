@@ -1,0 +1,23 @@
+## id: frappe-panel
+## name: Frappe Panel - Detect
+## author: hack007x
+## severity: info
+## tags: frappe,login,web,erp,detect,discovery
+## description: Frappe ERPNext Login Panel was discovered.
+## reference: https://frappeframework.com/
+## shodan-query: html:"Login to Frappe"
+## verification: true
+
+GET /login#login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<h4>Login to Frappe</h4>" || body contains "frappe.csrf_token" || body contains "frappe.boot"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c82161004547174499065a56688ca6a604c3f1aa209e4966e6e6c6c8b715ee55

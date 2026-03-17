@@ -1,0 +1,24 @@
+## id: orchid-vms-panel
+## name: Orchid Core VMS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,orchid,ipconfigure,discovery
+## description: Orchid Core VMS panel was detected.
+## affects: orchid_core_vms
+## shodan-query: http.title:"Orchid Core VMS",http.title:"orchid core vms"
+## fofa-query: title="orchid core vms"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Orchid Core VMS - IPConfigure, Inc.</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a103841423c034b6040705ed09495bb1a7a2dcab32acb5bf360a9a4b8bc57fe

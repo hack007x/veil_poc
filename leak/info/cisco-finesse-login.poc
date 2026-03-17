@@ -1,0 +1,23 @@
+## id: cisco-finesse-login
+## name: Cisco Finesse Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,edb,discovery
+## description: Cisco Finesse login panel was detected.
+## affects: finesse
+## reference: https://www.exploit-db.com/ghdb/6824
+## verification: true
+
+GET /desktop/container/landing.jsp?locale=en_US HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<title id="page_title">Sign in to Cisco Finesse</title>'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8e907185d2d7319267b9cdb111e7890b21614f5dea7c651b72ff8380998d7569

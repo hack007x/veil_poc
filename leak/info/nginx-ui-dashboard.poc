@@ -1,0 +1,26 @@
+## id: nginx-ui-dashboard
+## name: Nginx UI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nginx,exposure,f5,discovery
+## description: Nginx UI panel was detected.
+## affects: nginx
+## reference: https://github.com/schenkd/nginx-ui
+## shodan-query: http.title:"nginx ui",cpe:"cpe:2.3:a:f5:nginx"
+## fofa-query: title="nginx ui"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Nginx UI"
+#@ matcher: body contains "Main Config"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bc30eed78cfc5fea484f02d88b764ccf62fd26c73f063b432e92a7685026d324

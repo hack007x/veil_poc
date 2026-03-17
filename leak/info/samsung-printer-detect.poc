@@ -1,0 +1,23 @@
+## id: samsung-printer-detect
+## name: Samsung Printer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: iot,panel,samsung,printer,discovery
+## description: Samsung printer panel was detected.
+## affects: printer_firmware
+## fofa-query: app="SAMSUNG-Printer",app="samsung-printer"
+## verification: true
+
+GET /sws/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SyncThru Web Service"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bed7eb1914b1384630d2e6d5b0970e3207854c5efc0ee0a50d6e769256fd8457

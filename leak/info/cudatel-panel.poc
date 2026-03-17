@@ -1,0 +1,22 @@
+## id: cudatel-panel
+## name: CudaTel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cudatel,discovery
+## description: CudaTel login panel was detected.
+## shodan-query: title:"CudaTel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "CudaTel Communications Server" || body contains 'alt="CudaTel'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 624b8f061f83230f1ada4061e275c925b8c5d7a0b4298cfb28618560e89b79af

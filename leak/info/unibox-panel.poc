@@ -1,0 +1,26 @@
+## id: unibox-panel
+## name: Unibox Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,unibox,login,discovery
+## description: Unibox Administrator panel was detected.
+## affects: unibox
+## shodan-query: http.favicon.hash:176427349
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Unibox Administration</title>"
+#@ matcher: body contains "Please Login to continue"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e26f76eee4e594cef764d11f1bbbd97f5d94ab200beac3cf2edf6e9dde42069e

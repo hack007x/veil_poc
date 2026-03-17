@@ -1,0 +1,25 @@
+## id: changedetection-panel
+## name: Changedetection.io Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,changedetection,detect,discovery
+## description: Change Detection is an open-source service which allows you to detect changes on websites
+## affects: changedetection
+## reference: https://github.com/dgtlmoon/changedetection.io
+## reference: https://changedetection.io/
+## shodan-query: title:"Change Detection"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "changedetection.io</a>" || body contains 'title="Changedetection.io' || body contains "<title>Change Detection" || body contains "Change</strong>Detection.io"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dd755713eec0b7295e75ad16aab33b36d231223a379979e220d658dc32ee5317

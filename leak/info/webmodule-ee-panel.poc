@@ -1,0 +1,24 @@
+## id: webmodule-ee-panel
+## name: Webmodule Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,webmodule-ee,login,discovery
+## description: Webmodule login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7001
+## shodan-query: title:"Webmodule"
+## verification: true
+
+GET /webmodule-ee/login.seam HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Webmodule</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version: ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 279aa8331d436bc8df913eff88f5abe4872f42c8a52424a666f40ada724b9380

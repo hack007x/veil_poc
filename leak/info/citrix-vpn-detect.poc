@@ -1,0 +1,22 @@
+## id: citrix-vpn-detect
+## name: Citrix VPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,citrix,discovery
+## description: Citrix VPN panel was detected.
+## affects: gateway
+## shodan-query: http.title:"citrix gateway"
+## fofa-query: title="citrix gateway"
+## verification: true
+
+GET /vpn/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Citrix Gateway</title>"
+
+
+
+
+
+# @VEIL-STAMP: d77c606e2fc43abe025be8532a1052b1bb73ef3656ad9e5769b46742e02f3d63

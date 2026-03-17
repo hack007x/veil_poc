@@ -1,0 +1,25 @@
+## id: plausible-panel
+## name: Plausible Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,plausible,detect,discovery
+## description: Plausible is intuitive, lightweight and open source web analytics.
+## reference: https://plausible.io/
+## reference: https://github.com/plausible/analytics
+## shodan-query: html:"Plausible"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login"
+#@ matcher: body contains "Plausible · Web analytics"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 23ba3d0d2afb573925bf485a8a7aab1474c935c290a083ae7dfb4593423db92f

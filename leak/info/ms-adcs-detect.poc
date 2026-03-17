@@ -1,0 +1,22 @@
+## id: ms-adcs-detect
+## name: Microsoft Active Directory Certificate Services Panel - Detect
+## author: hack007x
+## severity: info
+## tags: microsoft,ad,panel,discovery
+## description: Microsoft Active Directory Certificate Services panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 302 || status_code == 301
+#@ matcher: header["location"] contains "/certsrv"
+#> extract: name=ex_kval, from=body, kval=location
+
+
+
+
+
+# @VEIL-STAMP: 7e127c16f2eed314558d61ec5b1ed87f122c3aeaaaefb77d73c9bb9eecc7ee0d

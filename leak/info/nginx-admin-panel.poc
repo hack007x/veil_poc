@@ -1,0 +1,23 @@
+## id: nginx-admin-panel
+## name: Nginx Admin Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nginx,admin,discovery
+## description: Nginx Admin Manager login panel was detected.
+## reference: https://ng-admin.jslsolucoes.com/
+## shodan-query: http.title:"nginx admin manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>(.*)Nginx Admin Manager(.*)<\/title>/
+#@ matcher: status_code == 401 || status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c8e5257cf7a3eb5d7e87da9c3bc3e6c467a175d422111200cdb55a14c7402293

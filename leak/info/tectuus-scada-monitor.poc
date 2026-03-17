@@ -1,0 +1,22 @@
+## id: tectuus-scada-monitor
+## name: Tectuus SCADA Monitor Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tectuus,scada,discovery
+## description: Tectuus SCADA Monitor panel was detected.
+## reference: https://www.tectuus.mx/
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>SCADAmonitor</title>"
+
+
+
+
+
+# @VEIL-STAMP: 376f3ae065f9ef17e75c7917e07a69164626ed85d0aa1caf2e29f2461ceb2cbc

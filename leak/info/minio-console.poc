@@ -1,0 +1,24 @@
+## id: minio-console
+## name: MinIO Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,minio,discovery
+## description: MinIO Console login panel was detected.
+## affects: console
+## shodan-query: title:"MinIO Console"
+## fofa-query: app="MinIO-Console"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>minio console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 60ee506b3bb4cc5037e9a00a26d8972239e2f38a8a46414b30b5b6fd8ccc2316

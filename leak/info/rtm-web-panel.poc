@@ -1,0 +1,21 @@
+## id: rtm-web-panel
+## name: RTM WEB - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,rtm-web,discovery
+## shodan-query: RTM WEB
+## verification: true
+
+GET /Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>RTM WEB</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d370e05038d6f151719954090a8854a769c43168de55453e872c3d2f6386d700

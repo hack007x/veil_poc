@@ -1,0 +1,24 @@
+## id: exposed-webalizer
+## name: Webalizer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,webalizer,edb,discovery
+## description: Webalizer panel was detected.
+## reference: https://www.exploit-db.com/ghdb/197
+## verification: true
+
+GET /webalizer/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Webalizer Version"
+#@ matcher: body contains "Usage statistics for"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Webalizer Version ([0-9.-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: c05df8d6cd1ca1873af6525546b6921afce6db3db6f01d61d54bba2dffbdaa36

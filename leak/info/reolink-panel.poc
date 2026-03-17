@@ -1,0 +1,24 @@
+## id: reolink-panel
+## name: Reolink Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,reolink,detect,discovery
+## description: Reolink panel was discovered.
+## shodan-query: title:"Reolink"
+## fofa-query: Reolink
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Reolink</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e565693d66044eef92bcdc3c9a76d86f10f9a8ffcc5d60e2b7eb8c6db085e772

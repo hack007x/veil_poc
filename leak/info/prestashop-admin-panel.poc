@@ -1,0 +1,30 @@
+## id: prestashop-admin-panel
+## name: Prestashop Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: prestashop,panel,login,discovery
+## description: Prestashop admin login panel was detected.
+## affects: prestashop
+## reference: https://www.prestasoo.com/blog/prestashop-admin-login-url
+## shodan-query: http.component:"Prestashop",cpe:"cpe:2.3:a:prestashop:prestashop"
+## verification: true
+
+#$ paths = backoffice | back-office | Backoffice | back-office | admin-dev | backend | admin_ | mikromanage | manage | manager | adminshop | administrator | administracja | adm | webadmin | admin-web | kontrollpanel | amministra | adminas | admin123 | admin0 | adminxx | admin | ps-admin | admins | p-office | admin333 | admin4444 | admin66 | backadmin | admin1 | BackofficeNEW | 4dm1n | administrazione | accesadministrateur | _admin123 | iadmin | panel
+GET /{{paths}}/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ stop_scan: true
+#@ condition: or
+#@ matcher: body contains "PrestaShop"
+#@ matcher: body contains 'class="show-forgot-password'
+#@ matcher: body contains "themes/default/css/admin-theme.css"
+#@ matcher: body contains 'class="show-forgot-password'
+#> extract: name=version, from=body, regex=/<script type="text\/javascript" src="..\/js\/admin\/login.js\?v=([\d.]+)"><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7c409f4344c13ff5b546170869f2be5382fdffdfc683da40d19fce1a15d289d4

@@ -1,0 +1,21 @@
+## id: powerchute-network-panel
+## name: PowerChute Network Shutdown Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,powerchute,detect,discovery
+## shodan-query: html:"PowerChute Network Shutdown"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PowerChute Network Shutdown</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 90c3d97e7aaac9e0a53953eeb155a30ad7f15159eb1a3be7170f1986ea8b1ba6

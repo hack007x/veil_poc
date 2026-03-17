@@ -1,0 +1,23 @@
+## id: adapt-panel
+## name: Adapt Authoring Tool - Panel
+## author: hack007x
+## severity: info
+## tags: panel,adapt,login,detect,discovery
+## description: Login panel for adapt was detected.
+## shodan-query: http.title:"Adapt authoring tool"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Adapt authoring tool</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 16be27dfd352555caaaa88d74492b6f61085618023c247144713a8919efbb1da

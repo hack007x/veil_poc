@@ -1,0 +1,25 @@
+## id: jboss-jbpm-admin
+## name: JBoss jBPM Administration Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: jboss,panel,login,redhat,discovery
+## description: JBoss jBPM Administration Console login panel was detected.
+## affects: jbpm
+## reference: https://github.com/PortSwigger/j2ee-scan/blob/master/src/main/java/burp/j2ee/issues/impl/JBossjBPMAdminConsole.java
+## shodan-query: html:"JBossWS",http.html:"jbossws"
+## fofa-query: body="jbossws"
+## verification: true
+
+GET /jbpm-console/app/tasks.jsf HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "JBoss jBPM Administration Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fb3114d65bff2b2815da062b2201f3825902e9fe6aa761c558e6abd77df64d6e

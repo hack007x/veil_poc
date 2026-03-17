@@ -1,0 +1,26 @@
+## id: sharefile-panel
+## name: Sharefile Login - Panel
+## author: hack007x
+## severity: info
+## tags: sharefile,login,panel,detect,citrix,discovery
+## description: ShareFile is a cloud-based file sharing and collaboration platform that provides secure access to files from anywhere.
+## affects: sharefile
+## reference: https://www.sharefile.com/
+## shodan-query: title:"ShareFile Login",http.title:"sharefile login"
+## fofa-query: title="sharefile login"
+## verification: true
+
+GET /Authentication/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ShareFile Login"
+#@ matcher: body contains "password"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b2f5d1c8a898b4c87ad07c0f2723916a6866a244651a417d479863ad16370e60

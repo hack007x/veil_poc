@@ -1,0 +1,23 @@
+## id: directum-login
+## name: Directum Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: directum,panel,discovery
+## description: Directum login panel was detected.
+## affects: directum
+## fofa-query: title="Directum"
+## verification: true
+
+GET /Login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "DIRECTUM Login" || body contains "Directum Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 18d43e455dc997a82ba181b2a637883606d25ac9a568eb55b946046fe32b657a

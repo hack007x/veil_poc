@@ -1,0 +1,23 @@
+## id: vrealize-hyperic-panel
+## name: vRealize Hyperic Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,panel,vrealize,hyperic,detect,discovery
+## description: vRealize Hyperic login panel was detected
+## affects: hyperic_hq
+## shodan-query: http.title:"Sign In - Hyperic"
+## verification: true
+
+GET /app/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Sign In - Hyperic"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6d800e7babcda3fba613d2fca5df95d81925b5fa0ee440426f797ff57ea000ba

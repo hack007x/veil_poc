@@ -1,0 +1,21 @@
+## id: terramaster-login
+## name: Terramaster Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,terramaster,login,discovery
+## description: Terramaster login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains "<title>TOS Loading</title>"
+#@ matcher: body contains "Server: TOS" || body contains "X-Powered-By: TerraMaster"
+
+
+
+
+
+# @VEIL-STAMP: 5af697f4785b969b09c174e59226a44477b49af6694d8302ec0c343ee831e884

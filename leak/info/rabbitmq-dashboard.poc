@@ -1,0 +1,21 @@
+## id: rabbitmq-dashboard
+## name: RabbitMQ Management Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rabbitmq,vmware,discovery
+## description: RabbitMQ Management panel was detected.
+## affects: rabbitmq
+## shodan-query: cpe:"cpe:2.3:a:vmware:rabbitmq"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "RabbitMQ Management"
+
+
+
+
+
+# @VEIL-STAMP: 75e6bb1e311bd154118e9240eb424feedc55b0db9d59b310a56c560778b605d1

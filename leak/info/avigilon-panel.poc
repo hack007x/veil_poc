@@ -1,0 +1,25 @@
+## id: avigilon-panel
+## name: Avigilon Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,avigilon,discovery
+## description: Avigilon login panel was detected.
+## affects: avigilon_control_center
+## shodan-query: http.title:"Login - Avigilon Control Center",http.title:"login - avigilon control center"
+## fofa-query: title="login - avigilon control center"
+## verification: true
+
+GET /cfg/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login - Avigilon Control Center Gateway</title>" || body contains "<title>Iniciar sesión - Puerta de enlace de Avigilon Control Center</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bbb7bf54ac4fcba2e7eb2ece1cc64a38f691888c2c7e86759c2d179d2b0a8fc5

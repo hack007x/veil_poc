@@ -1,0 +1,20 @@
+## id: solarwinds-orion
+## name: SolarWinds Orion Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,solarwinds,discovery
+## description: SolarWinds Orion login panel was detected.
+## affects: orion_platform
+## verification: true
+
+GET /Orion/Login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "SolarWinds Orion"
+
+
+
+
+
+# @VEIL-STAMP: e3778918143563b389c786d37fc31fd14bde4a902b38d222fd024c10cde861fe

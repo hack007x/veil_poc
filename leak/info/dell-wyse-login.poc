@@ -1,0 +1,23 @@
+## id: dell-wyse-login
+## name: Dell Wyse Management Suite Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dell,login,discovery
+## description: Dell Wyse Management Suite login panel was detected.
+## affects: wyse_management_suite
+## reference: https://research.nccgroup.com/2021/07/06/technical-advisory-arbitrary-file-read-in-dell-wyse-management-suite-cve-2021-21586-cve-2021-21587/
+## verification: true
+
+GET /ccm-web/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Wyse Management Suite</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 522701bb1682ca4c1f3483c27f2606d6bc301096f627c5d3bd1f48c8afcd4214

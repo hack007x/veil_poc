@@ -1,0 +1,26 @@
+## id: influxdb-panel
+## name: InfluxDB Admin Interface Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,influxdb,influxdata,discovery
+## description: InfluxDB admin interface panel was detected.
+## affects: influxdb
+## reference: https://www.influxdata.com/
+## shodan-query: http.title:"InfluxDB - Admin Interface",http.title:"influxdb - admin interface",influxdb
+## fofa-query: title="influxdb - admin interface"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>InfluxDB - Admin Interface</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<b>InfluxDB<\/b> v([\d.]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 08bb3e4e1a200f667ea565ec0ee5bc54a513563c63cd3a9d630481e667a9c43c

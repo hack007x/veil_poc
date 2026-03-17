@@ -1,0 +1,24 @@
+## id: thinfinity-virtualui-panel
+## name: Thinfinity VirtualUI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,thinfinity,virtualui,cybelesoft,discovery
+## description: Thinfinity VirtualUI panel was detected.
+## affects: thinfinity_virtualui
+## shodan-query: http.title:"Thinfinity VirtualUI",http.title:"thinfinity virtualui"
+## fofa-query: title="thinfinity virtualui"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Thinfinity VirtualUI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 94ebfee7543fa0afaa991b8a501eb9739fcfea2b6913a02027967e7d9e51b21a

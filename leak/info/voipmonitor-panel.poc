@@ -1,0 +1,25 @@
+## id: voipmonitor-panel
+## name: VoIPmonitor Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,voipmonitor,login,discovery
+## description: VoIPmonitor login panel was detected.
+## affects: voipmonitor
+## shodan-query: http.title:"VoIPmonitor",http.title:"voipmonitor"
+## fofa-query: title="voipmonitor"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "appShareUrl = 'share.voipmonitor.org'"
+#@ matcher: body contains "VoIPmonitor"
+
+
+
+
+
+# @VEIL-STAMP: fd88eb32ac88c3deb7ce1b6800e9112e933b3ecec7e0aa6792f7776aab9b87fd

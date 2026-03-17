@@ -1,0 +1,24 @@
+## id: episerver-panel
+## name: Episerver Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,optimizely,episerver,discovery
+## description: Episerver login panel was detected.
+## affects: episerver
+## reference: https://docs.developers.optimizely.com/content-cloud/v12.0.0-content-cloud/docs/changing-edit-and-admin-view-urls
+## shodan-query: html:"epihash"
+## verification: true
+
+GET /episerver/cms HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /Util.*%2(f|F)episerver%2(f|F)cms/
+#@ matcher: status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 81927b059331b6bd1ad706881eb2e0f4948c80012aa7fd9b45205793c85fa902

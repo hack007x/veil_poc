@@ -1,0 +1,25 @@
+## id: kong-manager-exposure
+## name: Kong Manager OSS/Admin - Exposure
+## author: hack007x
+## severity: medium
+## tags: kong,manager,misconfig,exposure,discovery
+## description: Exposed Kong Manager (OSS/Admin) interface accessible without authentication.
+## reference: http://github.com/Kong/kong-manager
+## shodan-query: title:"Kong Manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Kong Manager OSS" || body contains "Kong Admin" || body contains "kconfig.js"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: df7898cdf12ce1def6d90b3cea9be68d7a1f4f8b955fc4ddaf20edc16d1fffac

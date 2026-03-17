@@ -1,0 +1,23 @@
+## id: cas-login
+## name: CAS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: apereo,cas,panel,login,discovery
+## description: CAS login panel was detected.
+## affects: central_authentication_service
+## shodan-query: http.title:'CAS - Central Authentication Service',http.title:'cas - central authentication service'
+## fofa-query: title='cas - central authentication service'
+## verification: true
+
+GET /cas/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "Central Authentication Service"
+
+
+
+
+
+# @VEIL-STAMP: f3c7d45df3a3e7c9cea4104770bfb278e80b4d52e38c4e1879c40ef34b7ca99a

@@ -1,0 +1,23 @@
+## id: avayaaura-cm-panel
+## name: Avaya Aura Communication Manager Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,avaya,discovery
+## description: Avaya Aura Communication Manager login panel was detected.
+## affects: aura_communication_manager
+## verification: true
+
+GET /cgi-bin/common/login/webLogin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Avaya Aura"
+#@ matcher: body contains "Communication Manager (CM)"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d3f4cb0de4938b0d16c00ed0493628b0a8d653856e499382edc6940f8ebe266

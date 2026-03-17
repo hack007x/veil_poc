@@ -1,0 +1,23 @@
+## id: open-web-analytics-panel
+## name: Open Web Analytics Login - Detect
+## author: hack007x
+## severity: info
+## tags: open-web-analytics,login,panel,discovery
+## description: Detects the presence of Open Web Analytics login page.
+## shodan-query: html:"OWA CONFIG SETTINGS"
+## verification: true
+
+GET /index.php?owa_do=base.loginForm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "OWA.config.main_url"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 99e1221bc1b77fe0aa2bd11d7779958851515fb2a2eaf5b451a601a6d5e930f0

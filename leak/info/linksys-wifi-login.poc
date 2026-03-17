@@ -1,0 +1,23 @@
+## id: linksys-wifi-login
+## name: Linksys Smart Wi-Fi Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,panel,linksys,iot,discovery
+## description: Linksys Smart Wi-Fi login panel was detected.
+## shodan-query: http.title:"Linksys Smart WI-FI"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Linksys Smart Wi-Fi</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b7ef982ad6e444795de51ef57c79271d988fe7e0c4f3b0bf20f25fd167e26d0d

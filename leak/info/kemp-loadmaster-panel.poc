@@ -1,0 +1,24 @@
+## id: kemp-loadmaster-panel
+## name: Progress Kemp LoadMaster Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,progress,kemp,loadmaster,panel,detect,discovery
+## description: A Progress Kemp LoadMaster panel was detected.
+## reference: https://kemptechnologies.com/
+## shodan-query: html:"Kemp Login Screen"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Kemp Login Screen</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1485a4ac41bc126de82dd6c5a0f1c7431bc65509b39e98352228bb58b2f31e43

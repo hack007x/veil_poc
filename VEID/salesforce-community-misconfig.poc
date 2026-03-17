@@ -32,3 +32,9 @@ message={{url_encode({{actions}})}}&aura.context={{aura_context}}&aura.token=nul
 
 #@ matcher: status_code == 200
 #@ matcher: body contains "recordTypeInfo"
+
+
+
+
+
+# @VEIL-STAMP: 670d80e0341e8c45e4115d087a5004f3aa6084ada715934915a782af6d739757

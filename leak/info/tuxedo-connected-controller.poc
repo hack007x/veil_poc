@@ -1,0 +1,22 @@
+## id: tuxedo-connected-controller
+## name: Tuxedo Connected Controller Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tuxedo,edb,discovery
+## description: Tuxedo Connected Controller login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6486
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tuxedo Connected Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1fb7023e21f2d0a74f76cc01f7f0315f8825071de0b9519356d3b3440b99ae51

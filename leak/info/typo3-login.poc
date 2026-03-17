@@ -1,0 +1,23 @@
+## id: typo3-login
+## name: TYPO3 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,typo3,discovery
+## description: TYPO3 login panel was detected.
+## affects: typo3
+## shodan-query: cpe:"cpe:2.3:a:typo3:typo3"
+## verification: true
+
+GET /typo3/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "TYPO3 CMS" || body contains "typo3-login-form" || body contains "TYPO3 SVN ID:"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6c856f39164a0918f11b301234085d8cec6a26a92c45994c78a7783acd8250e6

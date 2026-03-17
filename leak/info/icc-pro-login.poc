@@ -1,0 +1,24 @@
+## id: icc-pro-login
+## name: ICC PRO Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,icc-pro,edb,discovery
+## description: ICC PRO login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7980
+## shodan-query: title:"Login to ICC PRO system"
+## verification: true
+
+GET /Account/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login to ICC PRO system</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ac0f83a4876decb66e954303b52d0b1ceeeba81f4a99f3481c4e7b5ae4d92e6d

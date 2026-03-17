@@ -1,0 +1,28 @@
+## id: adiscon-loganalyzer
+## name: Adiscon LogAnalyzer - Information Disclosure
+## author: hack007x
+## severity: high
+## tags: adiscon,loganalyzer,syslog,exposure,panel,discovery
+## description: Adiscon LogAnalyzer was discovered. Adiscon LogAnalyzer is a web interface to syslog and other network event data. It provides easy browsing and analysis of real-time network events and reporting services.
+## affects: loganalyzer
+## cvss-score: 7.5
+## reference: https://loganalyzer.adiscon.com/
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Adiscon LogAnalyzer"
+#@ matcher: body contains 'value="SYSLOG"'
+#@ matcher: body contains 'value="EVTRPT"'
+#@ matcher: body contains 'value="WEBLOG"'
+#@ matcher: status_code == 200
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: 854144db256c85265b0decdbe833bb9559f54d77348b3b68f9bf20eab82b05d1

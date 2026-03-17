@@ -1,0 +1,22 @@
+## id: macos-server-panel
+## name: macOS Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,macos-server,detect,discovery
+## shodan-query: title:"macOS Server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "macOS Server"
+#@ matcher: body contains "apple-system"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 56f8f2dc7371463a1eeafa587f5b4f398df85913bd247df60351702b991b3dc8

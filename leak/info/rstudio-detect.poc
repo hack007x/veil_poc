@@ -1,0 +1,21 @@
+## id: rstudio-detect
+## name: RStudio Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rstudio,discovery
+## description: RStudio panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "RStudio"
+#@ matcher: status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 6f51ba6ffe859d33434be6e6ce05b8275e723642c5b86edfb28e22f440af4afb

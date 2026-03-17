@@ -1,0 +1,26 @@
+## id: ssl-network-extender
+## name: CheckPoint SSL Network Extender Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,checkpoint,router,discovery
+## description: CheckPoint SSL Network Extender login panel was detected.
+## affects: ssl_network_extender
+## reference: https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk65210
+## reference: https://sc1.checkpoint.com/documents/R81/WebAdminGuides/EN/CP_R81_RemoteAccessVPN_AdminGuide/Topics-VPNRG/SSL-Network-Extender.htm?TocPath=SSL%20Network%20Extender%7C_____0
+## shodan-query: http.title:"Check Point SSL Network Extender",http.title:"check point ssl network extender",http.title:"ssl network extender login"
+## fofa-query: title="check point ssl network extender",title="ssl network extender login"
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<TITLE>SSL Network Extender Login</TITLE>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1380e9b7fceadcab76a21682083f28c60b668746065baacfdbf2b957236eef4a

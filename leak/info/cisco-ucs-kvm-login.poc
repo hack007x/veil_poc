@@ -1,0 +1,25 @@
+## id: cisco-ucs-kvm-login
+## name: Cisco UCS Manager KVM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,ucs,kvm,discovery
+## description: Cisco UCS Manager KVM login panel was detected.
+## affects: unified_computing_system
+## reference: https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/GUI-User-Guides/Admin-Management/3-1/b_Cisco_UCS_Admin_Mgmt_Guide_3_1/b_Cisco_UCSM_GUI_Admin_Mgmt_Guide_3_1_chapter_01111.html
+## shodan-query: http.title:"Cisco UCS KVM Direct",http.title:"cisco ucs kvm direct"
+## fofa-query: title="cisco ucs kvm direct"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco UCS KVM Direct</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f1d37268d1bdff26d50de4ae877dccd6c94b3acf13a730d624d47491c6365d71

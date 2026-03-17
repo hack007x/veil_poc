@@ -1,0 +1,23 @@
+## id: mpftvc-admin-panel
+## name: MPFTVC Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mpftvc,admin,discovery
+## description: MPFTVC admin login panel was detected.
+## shodan-query: title:"AdminLogin - MPFTVC"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "AdminLogin - MPFTVC" || body contains "Admin-Login: MPFTVC"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: af4573cb3098b3ece3b2b978b4740722a5c696f1c52d9bb9b54cb8faf4c01e36

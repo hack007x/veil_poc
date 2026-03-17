@@ -1,0 +1,22 @@
+## id: vigor-login
+## name: Vigor Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,edb,discovery
+## description: Vigor login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6610
+## verification: true
+
+GET /weblogin.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Vigor Login Page</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fbcdfff5e8b7f17a703f16d12fbd302d79ef46bae4fbc6716f9709e1fd99b4ff

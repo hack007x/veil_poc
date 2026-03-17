@@ -1,0 +1,29 @@
+## id: ibm-maximo-login
+## name: IBM Maximo Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: maximo,panel,ibm,login,detect,discovery
+## description: IBM Maximo login panel was detected.
+## affects: maximo_asset_management
+## reference: https://www.ibm.com/support/pages/what-default-username-and-password-websphere-application-server-community-edition-and-how-add-users-admin-group
+## reference: https://www.ibm.com/products/maximo
+## shodan-query: http.favicon.hash:-399298961
+## fofa-query: icon_hash=-399298961
+## verification: true
+
+GET /maximo/webclient/login/login.jsp?appservauth=true HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "maximo-icon.png"
+#@ matcher: body contains "IBM"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)Copyright\s+IBM\s+Corp\.\s+([0-9-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 3570a05c7f179e9272f76da1dcd10fa4be28fcbee22533807ec32277d9f5e3d8

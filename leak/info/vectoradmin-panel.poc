@@ -1,0 +1,26 @@
+## id: vectoradmin-panel
+## name: VectorAdmin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,vectoradmin,detect,discovery
+## description: VectorAdmin panel was discovered.
+## reference: https://vectoradmin.com
+## reference: https://github.com/Mintplex-Labs/vector-admin
+## reference: https://elest.io/open-source/vectoradmin/resources
+## fofa-query: title=="VectorAdmin - Vector database management made easy."
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>VectorAdmin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e67a3d505d16d79ac98a77d93893a84bab49339582630691687f79791bcc3f89

@@ -1,0 +1,23 @@
+## id: connectwise-backup-manager
+## name: ConnectWise Server Backup Manager SE Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,connectwise,backup,discovery
+## description: ConnectWise Server Backup Manager SE login panel was detected.
+## reference: https://www.connectwise.com/company/trust/security-bulletins/r1soft-and-recover-security-bulletin
+## shodan-query: http.component:zk http.title:"Server Backup Manager"
+## verification: true
+
+GET /login.zul HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Server Backup Manager SE"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6918f5d14479ebd1c5a73eef67b00b4275e885345fcc36375f85dfc9e5fc9b69

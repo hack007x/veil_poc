@@ -1,0 +1,22 @@
+## id: dqs-superadmin-panel
+## name: DQS Superadmin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dqs,superadmin,discovery
+## description: DQS Superadmin login panel was detected.
+## shodan-query: title:"DQS Superadmin"
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "DQS | Superadmin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 22b55437f78b00d0f4ec85dca89056b86c989f06bb729aa45ad6beae55338b9d

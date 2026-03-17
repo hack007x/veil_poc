@@ -1,0 +1,27 @@
+## id: isams-panel
+## name: iSAMS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,isams,login,discovery
+## description: iSAMS was detected.
+## affects: isams
+## reference: https://www.isams.com/platform/the-platform
+## shodan-query: http.favicon.hash:-81573405
+## verification: true
+
+GET /auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "iSAMS Ltd"
+#@ matcher: body contains "iSAMS Authentication Server"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version&nbsp;([0-9\.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 9d72ffeae8013c6c91c6988273f9fc4e89b0b9213c69ef2f673b91222bb9c3f6

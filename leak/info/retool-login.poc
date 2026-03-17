@@ -1,0 +1,23 @@
+## id: retool-login
+## name: Retool Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,panel,retool,discovery
+## description: Retool login panel was detected.
+## affects: retool
+## shodan-query: title:"Retool"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Retool</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 60283ced86646c237bc95f5f26ed8b6b238e7f918e7e83c4e52c1514e5d5d2eb

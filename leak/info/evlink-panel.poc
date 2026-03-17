@@ -1,0 +1,22 @@
+## id: evlink-panel
+## name: EVlink Local Controller - Detection
+## author: hack007x
+## severity: info
+## tags: panel,evlink,login,detect,discovery
+## shodan-query: title:"EVlink Local Controller"
+## fofa-query: title="EVlink Local Controller"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "EVlink Local Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6d22f5b7b53ac19bfb21b90728eb0f6210455d5167a0193933f9a1359acd9765

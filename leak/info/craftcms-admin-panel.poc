@@ -1,0 +1,23 @@
+## id: craftcms-admin-panel
+## name: Craft CMS Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,craftcms,nystudio107,discovery
+## description: Craft CMS admin login panel was detected.
+## affects: seomatic
+## shodan-query: X-Powered-By: Craft CMS,x-powered-by: craft cms,x-powered-by: craft cms html:"seomatic"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: or
+#@ matcher: body contains 'title="Powered by Craft CMS"'
+#@ matcher: body contains '<a id=\"poweredby\" href=\"http:\/\/craftcms.com\/\"'
+
+
+
+
+
+# @VEIL-STAMP: 330f9ec4cfdbd0d62329f4d110d257cf33fbc2710fde9e79ee0c1c3c23af046c

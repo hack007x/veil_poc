@@ -1,0 +1,24 @@
+## id: turnkey-lamp-panel
+## name: TurnKey LAMP Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,turnkey,lamp,detect,discovery
+## description: TurnKey LAMP Control Panel was detected.
+## reference: https://www.turnkeylinux.org/lamp
+## shodan-query: title:"TurnKey LAMP"
+## fofa-query: title="TurnKey LAMP"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "TurnKey LAMP</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 963ad1ffc90f936dca733ce6ba3a1dd5425ec03a733856bf614c74971bfa4a17

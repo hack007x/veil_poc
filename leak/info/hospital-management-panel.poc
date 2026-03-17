@@ -1,0 +1,26 @@
+## id: hospital-management-panel
+## name: Hospital Management System Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,hms,cms,hospital_management_system_project,discovery
+## description: Hospital Management System login panel was detected.
+## affects: hospital_management_system
+## shodan-query: http.html:"Hospital Management System",http.html:"hospital management system"
+## fofa-query: body="hospital management system"
+## verification: true
+
+GET /index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Hospital Management System"
+#@ matcher: body contains "Doctors Login"
+#@ matcher: body contains "Admin Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0c8a7c1ed0e926876e1c1a2bb4941edc62a72da1d39742d6842640b01bd54f1c

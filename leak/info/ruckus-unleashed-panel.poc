@@ -1,0 +1,26 @@
+## id: ruckus-unleashed-panel
+## name: Ruckus Wireless Unleashed Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ruckus,ruckuswireless,discovery
+## description: Ruckus Wireless Unleashed login panel was detected.
+## affects: unleashed_firmware
+## reference: https://www.commscope.com/ruckus/
+## shodan-query: http.title:"Unleashed Login",http.title:"unleashed login"
+## fofa-query: title="unleashed login"
+## verification: true
+
+GET /admin/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Unleashed Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<link href="css\/font-awesome\.min\.css\?(.+)" rel="stylesheet">/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 46a4e23fc68d4ca2a8f62c32687abf43bb91515191ae74b54680a6e80f377412

@@ -1,0 +1,23 @@
+## id: issabel-login
+## name: Issabel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: issabel,panel,discovery
+## description: Issabel login panel was detected.
+## affects: pbx
+## fofa-query: title="Issabel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<a href="http://www.issabel.org"' || body contains "<title>Issabel - Login page</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 390af495f57da9c722273ff72e6614c97f0303c807b05e700dd8a5773a73a09c

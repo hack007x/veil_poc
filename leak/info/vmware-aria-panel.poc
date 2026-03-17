@@ -1,0 +1,22 @@
+## id: vmware-aria-panel
+## name: VMware Aria Operations Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,aria,login,detect,discovery
+## description: Detects VMware Aria Operations Panel.
+## shodan-query: title:"VMware Aria Operations"
+## verification: true
+
+GET /ui/login.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>VMware Aria Operations</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b49fbcea6ee4afabaf8969852cf9a360b069b1648964a0a2a4e992352dc37ba0

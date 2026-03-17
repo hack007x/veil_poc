@@ -1,0 +1,23 @@
+## id: sgp-login-panel
+## name: SGP Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sgp,discovery
+## description: SGP login panel was detected.
+## shodan-query: http.title:"SGP"
+## verification: true
+
+GET /accounts/login?next=/admin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SGP</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/>Ver\. ([0-9.A-Z]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: ee9b59eb00b6f1438bbda3faa8a1ec4d1a5f1c767c8bf058affc66c29ead32fd

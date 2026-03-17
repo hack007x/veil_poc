@@ -1,0 +1,25 @@
+## id: gargoyle-router
+## name: Gargoyle Router Management Utility Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,iot,gargoyle,router,edb,discovery
+## description: Gargoyle Router Management Utility admin login panel was detected.
+## affects: gargoyle
+## reference: https://www.exploit-db.com/ghdb/8004
+## shodan-query: title:"Gargoyle Router Management Utility"
+## verification: true
+
+GET /login.sh HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Gargoyle Router Management Utility</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 084b0cd60ec2d7f0a54cd1a9301c2cfc7cd237c54b5eb01077008873c2834486

@@ -1,0 +1,24 @@
+## id: pulsar-admin-console
+## name: Pulsar Admin Console Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pulsar,console,admin,apache,discovery
+## description: Pulsar admin console panel was detected.
+## affects: pulsar
+## shodan-query: title:"Pulsar Admin Console",http.title:"pulsar admin ui",http.title:"pulsar admin console"
+## fofa-query: title="pulsar admin ui",title="pulsar admin console"
+## verification: true
+
+GET /#/admin/dashboard HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Pulsar Admin Console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 305234cadc097f8cecc231bf48b86956251cf67b1ea464ca7227d5facc812e81

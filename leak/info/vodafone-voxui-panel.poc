@@ -1,0 +1,23 @@
+## id: vodafone-voxui-panel
+## name: Vodafone Vox UI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vodafone,discovery
+## description: Vodafone Vox UI login panel was detected.
+## shodan-query: title:"Vodafone Vox UI"
+## verification: true
+
+GET /login.stm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Vodafone Vox UI"
+#@ matcher: body contains "Welcome to your EasyBox"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 56251da231b62b4e0387da1eedfdfe0ae8663d86b864cb84ba9af774fc422516

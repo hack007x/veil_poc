@@ -1,0 +1,23 @@
+## id: zentral-panel
+## name: Zentral Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zentral,oss,discovery
+## description: Zentral panel was detected.
+## reference: https://github.com/zentralopensource/zentral
+## reference: https://zentral.io
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Zentral</title>"
+#@ matcher: body contains '<div class="panel-footer btn-group btn-group-justified"'
+
+
+
+
+
+# @VEIL-STAMP: da91688fcf8563dad953d6e6a137f9c6dfaad049094a9be7856b84a13dfcd49e

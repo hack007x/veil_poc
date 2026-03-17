@@ -1,0 +1,24 @@
+## id: ekare-insight-panel
+## name: eKare inSight Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,ekare,insight,discovery
+## description: eKare inSight panel was discovered.
+## reference: https://www.ekare.ai/insight
+## fofa-query: icon_hash="125375398"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>eKare inSight"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 59c6724733a8f32f05eef6b817ac67639256d69d096da5988d234b8f0bcf849b

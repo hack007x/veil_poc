@@ -1,0 +1,24 @@
+## id: sphinxonline-panel
+## name: SphinxOnline Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sphinxonline,login,detect,discovery
+## description: SphinxOnline Login Panel was detected.
+## reference: https://www.lesphinx-developpement.fr/
+## shodan-query: http.title:"Connection - SphinxOnline"
+## verification: true
+
+GET /SphinxAuth/Account/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Connection - SphinxOnline</title>" || body contains "SphinxOnline</span>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Sphinxonline ([a-f0-9.]+)<\/a>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7e941fcafe00e64ee37087545a2c9739b2d6c1248a61fd0a1353839e69f6b0bb

@@ -1,0 +1,24 @@
+## id: payroll-management-system-panel
+## name: Payroll Management System Web Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,payroll,discovery
+## description: Payroll Management System Web login panel was detected.
+## affects: payroll_management_system
+## shodan-query: http.title:"Admin | Employee's Payroll Management System"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Admin | Employee's Payroll Management System</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a499248d248c76949cf598bcf31ceb414902c2ad9ab871d21c88267636b0227

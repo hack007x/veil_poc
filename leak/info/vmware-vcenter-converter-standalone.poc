@@ -1,0 +1,24 @@
+## id: vmware-vcenter-converter-standalone
+## name: VMware vCenter Converter Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,vcenter,discovery
+## description: VMware vCenter Converter panel was detected.
+## affects: vcenter_converter_standalone
+## shodan-query: title:"VMware vCenter Converter Standalone",http.title:"vmware vcenter converter standalone"
+## fofa-query: title="vmware vcenter converter standalone"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "VMware vCenter Converter Standalone"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ba35daf7aeac6c3a748b84fe963efb8167c02fc3a2b4975bf8c210c51e474350

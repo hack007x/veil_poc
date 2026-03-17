@@ -1,0 +1,25 @@
+## id: plesk-obsidian-login
+## name: Plesk Obsidian Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,plesk,login,edb,discovery
+## description: Plesk Obsidian login panel was detected.
+## affects: obsidian
+## shodan-query: http.html:"Plesk Obsidian",http.html:"plesk obsidian",http.title:"plesk obsidian"
+## fofa-query: body="plesk obsidian",title="plesk obsidian"
+## verification: true
+
+GET /login_up.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Plesk Obsidian"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)<title>([A-Za-z 0-9.]+)<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b45203f4651bd5b4df84cd45bb001ecb838e30409cae06f53af36a12b2dada9d

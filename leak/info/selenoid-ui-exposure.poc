@@ -1,0 +1,21 @@
+## id: selenoid-ui-exposure
+## name: Selenoid UI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Selenoid UI login panel was detected.
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Selenoid UI</title>"
+#@ matcher: body contains "/manifest.json"
+
+
+
+
+
+# @VEIL-STAMP: 73b36b1c52137888d8901a5e88abd540ed41c7ade5b83e91c0edb4df99ee9464

@@ -1,0 +1,24 @@
+## id: dokploy-panel
+## name: Dokploy Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dokploy,discovery
+## description: Dokploy login panel was detected.
+## affects: dokploy
+## shodan-query: title:dokploy
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Dokploy</title>"
+#@ matcher: body contains "dokploy"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e4a5eb7224146f9b9703d08a5c429e846068bd8748d972ed00ed680f363c885e

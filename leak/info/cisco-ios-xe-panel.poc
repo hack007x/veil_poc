@@ -1,0 +1,25 @@
+## id: cisco-ios-xe-panel
+## name: Cisco IOS XE - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,ssl,discovery
+## description: Cisco IOS XE login panel was detected.
+## affects: ios_xe
+## reference: https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-webui-privesc-j22SaA4z
+## shodan-query: http.html_hash:1076109428
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "webui"
+#@ matcher: body contains "IOS-Self-Signed-Certificate"
+#> extract: name=ex_kval, from=body, kval=ssl_issuer_dn
+
+
+
+
+
+# @VEIL-STAMP: f33e9a6394218c97d19437099ba9c15a3401efcc65293e9bb5b80d72de65c146

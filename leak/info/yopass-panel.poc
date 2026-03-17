@@ -1,0 +1,20 @@
+## id: yopass-panel
+## name: Yopass Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,yopass,discovery
+## description: Yopass panel was detected.
+## shodan-query: title:"Yopass"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Yopass"
+
+
+
+
+
+# @VEIL-STAMP: d674f7393b4a5581f6b18f465e764d5e1e9ccec974dc490c553c46fd41b1a794

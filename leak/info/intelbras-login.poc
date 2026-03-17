@@ -1,0 +1,24 @@
+## id: intelbras-login
+## name: Intelbras Router Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Intelbras router logjn panel was detected.
+## affects: iwr_3000n
+## reference: https://www.exploit-db.com/ghdb/7272
+## shodan-query: http.title:"Intelbras"
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Intelbras</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2b47aac9082f1ccd81ce95070b66f14e23d4bb3dc7e0f6337106036487d7678b

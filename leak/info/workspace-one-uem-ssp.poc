@@ -1,0 +1,25 @@
+## id: workspace-one-uem-ssp
+## name: VMware Workspace ONE UEM Airwatch Self-Service Portal - Detect
+## author: hack007x
+## severity: info
+## tags: panel,workspaceone,vmware,airwatch,ssp,login,detect,discovery
+## description: VMware Workspace ONE UEM Airwatch Self-Service Portal (SSP) login panel was detected.
+## affects: workspace_one_uem
+## reference: https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/2209/UEM_ConsoleBasics/GUID-AWT-SELFSERVICEPORTALOVERVIEW.html
+## shodan-query: http.favicon.hash:"321909464",http.html:"Self-Service Portal"
+## fofa-query: body="ssp loginscreen"
+## verification: true
+
+GET /MyDevice/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Self-Service Portal"
+#@ matcher: body contains "AirWatch"
+
+
+
+
+
+# @VEIL-STAMP: 7ea90a4048c104e602fbe74d110fac23d2883ef24c5d1f2919a4b7ad9d609227

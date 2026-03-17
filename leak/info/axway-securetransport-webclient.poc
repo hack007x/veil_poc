@@ -1,0 +1,25 @@
+## id: axway-securetransport-webclient
+## name: Axway SecureTransport Web Client Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,axway,securetransport,webclient,discovery
+## description: AXWAY Secure Transport Web Client panel was detected.
+## affects: securetransport
+## reference: https://www.axway.com/en/products/managed-file-transfer/securetransport
+## shodan-query: http.title:"st web client",http.title:"securetransport" || http.favicon.hash:1330269434
+## fofa-query: title="securetransport" || http.favicon.hash:1330269434,title="st web client"
+## verification: true
+
+GET /html/skin/ric/C/config/default.config.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'header": "ST Web Client'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e497c6510eaaf3e0bb47d7cf6e088772c02cca136c81a135ea0ac7156e6a79a6

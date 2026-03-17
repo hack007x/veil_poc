@@ -1,0 +1,25 @@
+## id: xspeeder-login
+## name: XSpeeder Login - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xspeeder,router,login,detect
+## description: Detects the presence of XSpeeder router login panels.
+## affects: xspeeder_router
+## reference: https://www.xspeeder.com/
+## shodan-query: http.title:"神行者路由"
+## fofa-query: title="神行者路由"
+## verification: true
+
+GET /login/?nLang=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>神行者路由"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a7eae1a4e57ba7d09a226b3e419906dc3334552f1c5153da22e52ac89d5d60dd

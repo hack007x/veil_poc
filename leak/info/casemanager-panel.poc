@@ -1,0 +1,22 @@
+## id: casemanager-panel
+## name: CaseManager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: casemanager,panel,discovery
+## description: CaseManager login panel was detected.
+## fofa-query: title="CaseManager"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>CaseManager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 93f605a9add55f464c22a279ce4f6342bfd64265f0fb6f323bacf9cab6425e9f

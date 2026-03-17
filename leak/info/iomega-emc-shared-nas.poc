@@ -1,0 +1,22 @@
+## id: iomega-emc-shared-nas
+## name: Iomega LenovoEMC NAS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Iomega LenovoEMC NAS login panel was detected.
+## verification: true
+
+GET /cp/Shares?user=&protocol=webaccess&v=2.3 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains '"access":"read"' || body contains '"access":"readwrite"'
+#@ matcher: body contains "iomega"
+
+
+
+
+
+# @VEIL-STAMP: dad9f8419aade222697849d1a1faa95723f747cedf46850b45f91c3809fd4d81

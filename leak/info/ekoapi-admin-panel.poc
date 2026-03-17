@@ -1,0 +1,24 @@
+## id: ekoapi-admin-panel
+## name: EkoAPI Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ekoapi,discovery
+## description: EkoAPI Admin panel was detected.
+## shodan-query: title:"EkoAPI Admin"
+## fofa-query: title="EkoAPI Admin"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>EkoAPI Admin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bf312e22c3fece2787e9bfc462eeee8ad2aa9ba99bc8591aa0881c7422ef2432

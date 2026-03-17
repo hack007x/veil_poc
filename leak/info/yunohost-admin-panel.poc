@@ -1,0 +1,25 @@
+## id: yunohost-admin-panel
+## name: YunoHost Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,yunohost,detect,discovery
+## description: YunoHost Admin panel was discovered.
+## reference: https://yunohost.org/
+## reference: https://github.com/YunoHost/yunohost
+## fofa-query: title="YunoHost Admin"
+## verification: true
+
+GET /yunohost/admin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>YunoHost Admin" || body contains 'href=\"/yunohost/admin/favicon'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0809af1f6cd4997b92784c0f4ad7a2b3b6f5bcd989e7839f864245b3e93e5263

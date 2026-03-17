@@ -1,0 +1,26 @@
+## id: freepbx-administration-panel
+## name: FreePBX Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: freepbx,panel,sangoma,discovery
+## description: FreePBX admin panel was detected.
+## affects: freepbx
+## shodan-query: http.title:"FreePBX",http.favicon.hash:-1908328911,http.favicon.hash:1574423538
+## fofa-query: title="FreePBX",icon_hash="-1908328911",icon_hash="1574423538"
+## verification: true
+
+GET /admin/config.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FreePBX" || body contains "FreePBX</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/FreePBX\s+([\d\.]+)\s+/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 17ecf6b54518b4f3eb23de4b06fd2a8aa694c2b3f917fc91e8c039490c9a9bf9

@@ -1,0 +1,23 @@
+## id: xenmobile-login
+## name: Xenmobile Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,citrix,discovery
+## description: Xenmobile Console login panel was detected.
+## affects: xenmobile_device_manager_mdm
+## reference: https://www.exploit-db.com/ghdb/6675
+## verification: true
+
+GET /zdm/login_xdm_uc.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>XenMobile - Console - Logon</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d6782b40afba068361c53a1d46517766d5a2ffd5ce39cd6037fc3036be3cb158

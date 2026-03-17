@@ -1,0 +1,23 @@
+## id: redis-commander-exposure
+## name: Redis Commander Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,redis,discovery
+## description: Redis Commander panel was detected.
+## reference: https://joeferner.github.io/redis-commander/
+## reference: https://github.com/joeferner/redis-commander
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Redis Commander"
+#@ matcher: body contains "redisCommanderBearerToken"
+
+
+
+
+
+# @VEIL-STAMP: 6b1f4132b547c7fc0016e3c0790cf86f23daaf2b000a3b510f220b6fae0c7c77

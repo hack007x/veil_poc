@@ -1,0 +1,24 @@
+## id: manageengine-servicedesk
+## name: ZOHO ManageEngine ServiceDesk Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine ServiceDesk panel was detected.
+## affects: manageengine_servicedesk_plus
+## shodan-query: http.title:"ManageEngine ServiceDesk Plus",http.title:"manageengine servicedesk plus"
+## fofa-query: title="manageengine servicedesk plus"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ManageEngine ServiceDesk Plus</title>" || body contains "<title>ManageEngine ServiceDesk Plus - MSP</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 48a5f7b269a66cccfaf1bda4ece03801156c699d6b06f523cd5f1a6cf6e7cc00

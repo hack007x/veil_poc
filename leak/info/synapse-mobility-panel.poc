@@ -1,0 +1,23 @@
+## id: synapse-mobility-panel
+## name: Synapse Mobility Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,synapse,discovery
+## description: Synapse Mobility login panel was detected.
+## reference: https://synapse.fujifilm.eu/synapse-mobility.html
+## shodan-query: http.title:"Synapse Mobility Login"
+## verification: true
+
+GET /pureweb/server/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Synapse Mobility Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0bce2e35c6e16c23b4368c20c6ef78e27303f27a7b9b18b8e54ede39a775a6d2

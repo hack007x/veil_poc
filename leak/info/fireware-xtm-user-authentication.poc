@@ -1,0 +1,24 @@
+## id: fireware-xtm-user-authentication
+## name: Fireware XTM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,watchguard,discovery
+## description: Fireware XTM login panel was detected.
+## affects: fireware_xtm
+## shodan-query: http.title:"Fireware XTM User Authentication",http.title:"fireware xtm user authentication"
+## fofa-query: title="fireware xtm user authentication"
+## verification: true
+
+GET /sslvpn_logon.shtml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>User Authentication"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 00820a72f10090bea6245807162ee1b09052f6ec6c8f17b8044ab747ed4337f7

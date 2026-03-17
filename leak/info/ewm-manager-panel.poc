@@ -1,0 +1,23 @@
+## id: ewm-manager-panel
+## name: EWM Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: ewm,manager,login,panel,discovery
+## description: EWM Manager login panel was detected.
+## shodan-query: http.title:"EWM Manager"
+## verification: true
+
+GET /wfc/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<TITLE>EWM Manager"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/EWM Manager ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 863f7027377fedacc12c1dc5973aa1d48bd466c41954d3cfb8e0cbe5ec6d1f7c

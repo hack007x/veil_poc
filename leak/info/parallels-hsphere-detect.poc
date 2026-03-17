@@ -1,0 +1,24 @@
+## id: parallels-hsphere-detect
+## name: Parallels H-Sphere Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,parallels,hsphere,discovery
+## description: Parallels H-Sphere login panel was detected.
+## affects: h-sphere
+## shodan-query: title:"Parallels H-Sphere",http.title:"h-sphere",http.title:"parallels h-sphere"
+## fofa-query: title="h-sphere",title="parallels h-sphere"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Parallels H-Sphere</title>" || body contains "<TITLE>H-SPHERE</TITLE>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6baeaf5bce5ef94daa65263a3def4c63ea2200376f5832711d69effa103ec504

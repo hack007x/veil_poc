@@ -1,0 +1,23 @@
+## id: selfcheck-panel
+## name: SelfCheck System Manager - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,selfcheck,systemmanager,discovery
+## reference: https://www.facebook.com/photo/?fbid=607747024729154&set=a.467014098802448
+## shodan-query: title:"SelfCheck System Manager"
+## verification: true
+
+GET /SystemManager/Account/SignIn HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SelfCheck System Manager</title>"
+#@ matcher: body contains "Sign In"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a17fe475fa600f6e6b6a32b003f649424df1d6d9d7c047601b9d4ff4aa23f3b6

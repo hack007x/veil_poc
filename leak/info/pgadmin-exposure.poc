@@ -1,0 +1,22 @@
+## id: pgadmin-exposure
+## name: PostgreSQL pgAdmin Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: unauth,pgadmin,postgres,panel,discovery
+## description: PostgreSQL pgAdmin Dashboard panel was detected.
+## verification: true
+
+GET /browser/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "PGADMIN_LANGUAGE="
+#@ matcher: body contains "<title>pgAdmin"
+
+
+
+
+
+# @VEIL-STAMP: 0aadd07120cefe20cc6540b15164b3cd8a0e3f03fd0c43682401ba170489f9da

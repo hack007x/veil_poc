@@ -1,0 +1,23 @@
+## id: flowci-panel
+## name: FlowCI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,flowci,discovery
+## description: FlowCI panel was detected.
+## reference: https://github.com/FlowCI/flow-web-x
+## reference: https://flowci.github.io/#/
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>flow-web-x</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d02ec25fa8ba0e7cb1d2bbccd0577d4aba5b7e8e8c7c43faebffb25b91f8b55f

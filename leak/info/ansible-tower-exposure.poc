@@ -1,0 +1,25 @@
+## id: ansible-tower-exposure
+## name: Ansible Tower - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ansible,redhat,discovery
+## description: Ansible Tower was detected. Ansible Tower is a commercial offering that helps teams manage complex multi-tier deployments by adding control, knowledge, and delegation to Ansible-powered environments.
+## affects: ansible_tower
+## reference: https://docs.ansible.com/ansible-tower/3.8.4/html/administration/
+## reference: https://docs.ansible.com/ansible-tower/latest/html/release-notes/index.html
+## shodan-query: title:"Ansible Tower",http.title:"ansible tower"
+## fofa-query: title="ansible tower"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Ansible Tower</title>" || body contains "ansible-bootstrap"
+#> extract: name=ex_regex, from=body, regex=/href="\/static\/assets\/favicon\.ico\?v=(.+)" \/>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d34cc32080b825b709e23635eb9b104df883c1efee74b825aee8bb5e7befda8c

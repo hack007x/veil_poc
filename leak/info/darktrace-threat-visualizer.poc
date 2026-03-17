@@ -1,0 +1,24 @@
+## id: darktrace-threat-visualizer
+## name: Darktrace Threat Visualizer Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,darktrace,discovery
+## description: Darktrace Threat Visualizer login panel was detected.
+## affects: threat_visualizer
+## shodan-query: html:"Darktrace Threat Visualizer",http.html:"darktrace threat visualizer"
+## fofa-query: body="darktrace threat visualizer"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login | Darktrace Threat Visualizer</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: becf0a99e432f2c4b267aea383ded9fc981eec59cfef809f4167d6f09bd71b60

@@ -1,0 +1,23 @@
+## id: saltstack-config-panel
+## name: SaltStack Config Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,login,saltstack,discovery
+## description: SaltStack config panel was detected.
+## affects: saltstack
+## shodan-query: title:"SaltStack Config"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SaltStack Config"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8c944532f6be27c2158199fa2e9cb61e27aa65e30e76bf60eb9708ccec5239dd

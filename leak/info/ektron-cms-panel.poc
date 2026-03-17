@@ -1,0 +1,24 @@
+## id: ektron-cms-panel
+## name: Ektron CMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ektron,cms,discovery
+## description: Ektron CMS login panel was detected.
+## affects: ektron_content_management_system
+## shodan-query: http.html:"Ektron",http.html:"ektron",cpe:"cpe:2.3:a:ektron:ektron_content_management_system"
+## fofa-query: app="Ektron-CMS",app="ektron-cms",body="ektron"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "EktronClientManager" || body contains "ektronTheme" || body contains "Ektron.ready"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ea27c1ea3f80534a1a0cd72297566607cc48021b1232233b660056afde141b56

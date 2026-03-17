@@ -1,0 +1,24 @@
+## id: CNVD-2023-96945
+## name: McVie Safety Digital Management Platform - Arbitrary File Upload
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2023,file-upload,mcvie,vuln
+## description: Jiangsu Maiwei Intelligent Technology Co., Ltd. is a software technology service provider focusing on customized development of software products. There is a file upload vulnerability in Jiangsu Maiwei Intelligent Technology Co., Ltd.'s safe production digital management platform. An attacker can use this vulnerability to gain server permissions.
+## reference: https://blog.csdn.net/weixin_42628854/article/details/136036109
+## fofa-query: 安全生产数字化管理平台
+## verification: true
+
+GET /Content/Plugins/uploader/FileChoose.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "选择文件"
+#@ matcher: body contains "提交"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c9d546ebca2a45c04d1511e5400eed5ea2a92ff04c646f66a74874b18a26b65a

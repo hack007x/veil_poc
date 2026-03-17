@@ -1,0 +1,23 @@
+## id: apex-central-panel
+## name: TrendMicro Apex Central Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,trendmicro,login,discovery
+## description: TrendMicro Apex Central Login Panel was discovered..
+## verification: true
+
+GET /webapp/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login</title>"
+#@ matcher: body contains "images/logo_trend_20.png"
+#@ matcher: body contains "Action=GetLogonInfo"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fed26fe52e188971d5aa8e58f15637c393a8332d6106334456a21eaf8b8f8766

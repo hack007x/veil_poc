@@ -1,0 +1,23 @@
+## id: otobo-panel
+## name: OTOBO Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,otobo,discovery
+## description: OTOBO login panel was detected.
+## reference: https://github.com/rotheross/otobo
+## shodan-query: http.title:"otobo"
+## verification: true
+
+GET /otobo/index.pl HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>(.*)OTOBO(.*)<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: da327d854d2ab8eab106e4942eba808375af01c9c9e96c947f78a50f47ea69b0

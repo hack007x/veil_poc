@@ -1,0 +1,24 @@
+## id: posteio-admin-panel
+## name: Poste.io Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,poste,login,detect,discovery
+## description: Poste.io login panel was detected.
+## affects: poste.io
+## shodan-query: title:"Administration login" html:"poste<span"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "poste<span"
+#@ matcher: body contains "Administration login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 358560b6c2fba56db8ab65312192b456f407fab570ab2200e2756e378132898e

@@ -1,0 +1,22 @@
+## id: alfresco-panel
+## name: Alfresco Content App Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,alfresco,login,detect,discovery
+## description: Alfresco Content App panel was detected.
+## shodan-query: http.title:"Alfresco Content App"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Alfresco Content App"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b28423c3e24c5643f2c50d566685183a90944b166ea8ea1d487e5aab21dfd799

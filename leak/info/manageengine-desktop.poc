@@ -1,0 +1,24 @@
+## id: manageengine-desktop
+## name: ZOHO ManageEngine Desktop Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine desktop panel was detected.
+## affects: manageengine_desktop_central
+## shodan-query: http.title:"ManageEngine Desktop Central 10",http.title:"manageengine desktop central 10"
+## fofa-query: title="manageengine desktop central 10",app="zoho-manageengine-desktop"
+## verification: true
+
+GET /configurations HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ManageEngine Desktop Central 10</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: be49e6a33203895ac30757df0b0ec41b220a3a8018dafe941a15d1df36704d8b

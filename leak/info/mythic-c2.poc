@@ -1,0 +1,23 @@
+## id: mythic-c2
+## name: Mythic C2 - Detect
+## author: hack007x
+## severity: info
+## tags: c2,ir,osint,mythic,panel,vuln
+## description: A cross-platform, post-exploit, red teaming framework built with python3, docker, docker-compose, and a web browser UI. It's designed to provide a collaborative and user friendly interface for operators, managers, and reporting throughout red teaming.
+## reference: https://www.socinvestigation.com/shodan-filters-to-hunt-adversaries-infrastructure-and-c2/
+## shodan-query: ssl:Mythic port:7443
+## verification: true
+
+GET /new/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Mythic</title><"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b2071dad80bee7296c7dd6e1c363f55bd8c51085317b5862edd458eab96ab5b4

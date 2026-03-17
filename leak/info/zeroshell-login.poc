@@ -1,0 +1,24 @@
+## id: zeroshell-login
+## name: ZeroShell Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zeroshell,discovery
+## description: ZeroShell panel was detected.
+## affects: zeroshell
+## shodan-query: http.title:"ZeroShell",http.title:"zeroshell"
+## fofa-query: title="zeroshell"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ZeroShell</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e78821b5818511350235c5bb1dd0d9c841901a75254c753285c763073fb82d6

@@ -1,0 +1,23 @@
+## id: yarn-manager-exposure
+## name: Apache YARN ResourceManager Panel - Detect
+## author: hack007x
+## severity: low
+## tags: panel,apache,yarn,exposure,discovery
+## description: Apache YARN ResourceManager panel was detected.
+## affects: hadoop
+## verification: true
+
+GET /cluster/cluster HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "hadoop"
+#@ matcher: body contains "resourcemanager"
+#@ matcher: body contains "logged in as: dr.who"
+
+
+
+
+
+# @VEIL-STAMP: 76fd02229f6916346828a1d7879b04f6e8e3e689d19c07df5984fde17b8074a0

@@ -1,0 +1,21 @@
+## id: ems-login-panel
+## name: EMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ems,login,discovery
+## description: EMS login panel was detected.
+## verification: true
+
+GET /EMSWebClient/Login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "EMS Web Client - Login"
+
+
+
+
+
+# @VEIL-STAMP: 1f560a0e9e333a9e79a3b8ee3f8b6aa0c90a3525037bd736c24456ef6a2a5bf6

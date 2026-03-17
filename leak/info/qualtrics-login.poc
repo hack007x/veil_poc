@@ -1,0 +1,21 @@
+## id: qualtrics-login
+## name: Qualtrics Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,qualtrics,discovery
+## description: Qualtrics login panel was detected.
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Powered by Qualtrics" || body contains "Welcome to Qualtrics Certification"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9785a06fd6a13d8f6c5d32079b34922f2fc83bc18d383c0246acea72ceab1ef3

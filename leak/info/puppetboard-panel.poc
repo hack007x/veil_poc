@@ -1,0 +1,26 @@
+## id: puppetboard-panel
+## name: Puppetboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,puppet,exposure,discovery
+## description: Puppetboard panel was detected.
+## reference: https://github.com/voxpupuli/puppetboard
+## shodan-query: http.title:"Puppetboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains '<a href="https://github.com/voxpupuli/puppetboard" target="_blank">'
+#@ matcher: body contains 'puppetboard.css" rel="stylesheet"'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<a href="https:\/\/github.com\/voxpupuli\/puppetboard" target="_blank">([0-9.]+)<\/a><\/div>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5408e06619e0625cbac3e2477a92951e34c9ca3bc5adeda9b47cb534821b65b1

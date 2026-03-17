@@ -1,0 +1,23 @@
+## id: airos-panel
+## name: AirOS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: airos,panel,discovery
+## description: AirOS panel was detected.
+## affects: airos
+## shodan-query: http.favicon.hash:-697231354
+## verification: true
+
+GET /login.cgi?uri=/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "airos_logo.png"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fd73495e066df467046316f37fc1803c326b576981b698a5870fcd5022659bca

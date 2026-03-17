@@ -1,0 +1,20 @@
+## id: hadoop-exposure
+## name: Apache Hadoop Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,apache,hadoop,discovery
+## description: Apache Hadoop panel was detected.
+## affects: hadoop
+## verification: true
+
+GET /dfshealth.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains '<div class="navbar-brand">Hadoop</div>'
+
+
+
+
+
+# @VEIL-STAMP: 5bb2c62db902f32b199e7439496466d03430f2baf9065dd394dc420fcc423f85

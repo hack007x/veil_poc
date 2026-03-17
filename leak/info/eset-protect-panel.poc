@@ -1,0 +1,23 @@
+## id: eset-protect-panel
+## name: Eset Protect Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,eset,panel,detect,discovery
+## description: Login page for Eset Protect
+## shodan-query: http.favicon.hash:751911084
+## verification: true
+
+GET /era/webconsole/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ESET PROTECT" || body contains "window.eset"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/displayVersion: "([0-9.]+)",/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e700e4d88e91f6b63f74d4683992450ceb15e551a90c7ed6a269b6e5a7646fb9

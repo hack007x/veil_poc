@@ -1,0 +1,24 @@
+## id: fortimail-login
+## name: Fortinet FortiMail Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortimail,login,discovery
+## description: Fortinet FortiMail login panel was detected.
+## affects: fortimail
+## shodan-query: title:"Fortimail",http.title:"fortimail"
+## fofa-query: Fortimail && port=443,fortimail && port=443,title="fortimail"
+## verification: true
+
+GET /m/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FortiMail</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2e1e196461cfda566a0ea56c10fdc32f34fdd8c2977f2836e8cfcd966bf2efb9

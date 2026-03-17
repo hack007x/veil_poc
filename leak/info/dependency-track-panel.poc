@@ -1,0 +1,23 @@
+## id: dependency-track-panel
+## name: Dependency-Track Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,dependency,track,discovery
+## description: Dependency Track login panel was discovered.
+## reference: https://docs.dependencytrack.org
+## shodan-query: html:"Dependency-Track"
+## verification: true
+
+GET /login?redirect=%2Fdashboard HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Dependency-Track</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e28084a1f0434b0837ff0a12150f6ce3a8a567876a72c7a338f598202091a433

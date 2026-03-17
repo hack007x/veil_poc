@@ -1,0 +1,20 @@
+## id: samba-swat-panel
+## name: Samba SWAT Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,samba,discovery
+## description: Samba SWAT panel was detected.
+## affects: samba
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains 'Basic realm="SWAT"'
+
+
+
+
+
+# @VEIL-STAMP: b6ff7d3afd11790261554519ed98cfb049c5ab73df7b9edaf3216c45b6f331a3

@@ -1,0 +1,24 @@
+## id: axigen-webadmin
+## name: Axigen Web Admin Detection
+## author: hack007x
+## severity: info
+## tags: axigen,panel,discovery
+## description: An Axigen Web Admin panel was discovered.
+## affects: axigen_mail_server
+## reference: https://www.axigen.com/
+## shodan-query: http.title:"Axigen WebAdmin"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Axigen WebAdmin</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ee95b54fc7be44caf21eed2e6c139ba05398b7423e25bb27c85c05d3bff1d5b8

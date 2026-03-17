@@ -1,0 +1,22 @@
+## id: vertex-tax-panel
+## name: Vertex Tax Installer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vertex,discovery
+## description: Vertex Tax Installer panel was detected.
+## shodan-query: http.html:"Vertex Tax Installer"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Vertex Tax Installer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e18cc75612ed66b887e3c2fe0c961b3caddfb9ffdabc19fd834023da7166c7c

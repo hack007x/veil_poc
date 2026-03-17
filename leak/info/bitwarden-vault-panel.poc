@@ -1,0 +1,25 @@
+## id: bitwarden-vault-panel
+## name: Bitwarden Web Vault Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bitwarden,vault,detect,discovery
+## affects: bitwarden
+## reference: https://bitwarden.com/?utm_source=google&utm_medium=cpc&utm_campaign=AW_ALL_NU_CL_Bitwarden_en_GSN_DTMB_Brand-Login_KW:Brand-Login_Consolidated&utm_content=646427936792&utm_term=bitwarden%20vault%20login|kwd-826827349840&hsa_acc=2567950947&hsa_cam=19621984700&hsa_grp=145977914135&hsa_ad=646427936792&hsa_src=g&hsa_tgt=kwd-826827349840&hsa_kw=bitwarden%20vault%20login&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gad=1&gclid=Cj0KCQjwpompBhDZARIsAFD_Fp-07Mni-xzuKd5Ewi6I7qzRTdZOYSxMsMVvKVWhGm5qg2KUiY2Z7SQaAvSIEALw_wcB
+## shodan-query: title:"Bitwarden Web Vault",http.title:"bitwarden web vault"
+## fofa-query: title="bitwarden web vault"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Bitwarden Web Vault</title>" || body contains 'alt="Bitwarden'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f81cb6c060bdba6af6e0df65fc8e6a633df10af508906d74f53f7be819b447c2

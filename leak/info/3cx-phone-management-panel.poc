@@ -1,0 +1,25 @@
+## id: 3cx-phone-management-panel
+## name: 3CX Phone System Management Console - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,3cx,discovery
+## description: 3CX Phone System Management Console panel was detected.
+## affects: 3cx
+## reference: https://www.3cx.com/
+## reference: https://www.3cx.com/phone-system/
+## reference: https://medium.com/@frycos/pwning-3cx-phone-management-backends-from-the-internet-d0096339dd88
+## shodan-query: http.title:"3CX Phone System Management Console",http.favicon.hash:970132176,http.title:"3cx webclient",http.title:"3cx phone system management console"
+## fofa-query: icon_hash=970132176,title="3cx phone system management console",title="3cx webclient"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "3CX Phone System Management Console" || body contains "Welcome to the 3CX Management Console"
+
+
+
+
+
+# @VEIL-STAMP: 6e06c7be66c62d9040ac7e456afec63a397997a467545895785625663221277b

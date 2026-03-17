@@ -1,0 +1,24 @@
+## id: dokuwiki-panel
+## name: Dokuwiki Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dokuwiki,login,discovery
+## description: Dokuwiki login panel was detected.
+## affects: dokuwiki
+## reference: https://www.dokuwiki.org/dokuwiki
+## shodan-query: http.html:"/dokuwiki/"
+## verification: true
+
+GET /doku.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "dokuwiki__header" || body contains 'content=\"DokuWiki", "/dokuwiki/'
+
+
+
+
+
+# @VEIL-STAMP: 4edc5b369e1b5445f7d48bd880b9c16e280171b958a35d9bf5912b4bef02e85f

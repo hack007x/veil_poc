@@ -1,0 +1,21 @@
+## id: wago-plc-panel
+## name: WAGO PLC Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wago,discovery
+## description: WAGO PLC panel was detected.
+## verification: true
+
+GET /plc/webvisu.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<TITLE>CoDeSys WebVisualization</TITLE>" || body contains "webvisu.jar,minml.jar"
+#@ matcher: body contains "WAGO_Webs"
+
+
+
+
+
+# @VEIL-STAMP: 87bfbc8b58cb186b0b4bb5819f0ed31cc611d1c4125f94edab511a3b1cd69f62

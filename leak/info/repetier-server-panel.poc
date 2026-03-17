@@ -1,0 +1,25 @@
+## id: repetier-server-panel
+## name: Repetier Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,repetier,detect,repetier-server,discovery
+## description: Repetier Server login panel detected.
+## affects: repetier-server
+## shodan-query: title:"Repetier-Server",http.title:"repetier-server"
+## fofa-query: title="repetier-server"
+## verification: true
+
+GET /#!/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'content="Repetier-Server' || body contains "About Repetier-Server"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Repetier\-Server ([A-Za-z]+) ([0-9.]+)/, group=2
+
+
+
+
+
+# @VEIL-STAMP: ac7897649016bac2c212497ea9ed7237211d75919f69468702807e0165e28a8e

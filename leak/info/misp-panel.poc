@@ -1,0 +1,23 @@
+## id: misp-panel
+## name: MISP Threat Intelligence Sharing Platform Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,misp,discovery
+## affects: misp
+## shodan-query: http.title:"Users - MISP",http.title:"users - misp",http.title:"Errors - MISP",http.title:"errors - misp",http.favicon.hash:-137577333
+## fofa-query: title="users - misp",title="errors - misp",icon_hash="-137577333"
+## verification: true
+
+GET /users/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "https://github.com/MISP/MISP" || body contains "<title>Users - MISP</title>"
+#@ matcher: status_code == 200 || status_code == 500
+
+
+
+
+
+# @VEIL-STAMP: 2c1811ba0c236f5a85bcb5ff65debb28c9d54a13c2ddf951d9c60cfb6a97a342

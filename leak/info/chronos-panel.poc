@@ -1,0 +1,27 @@
+## id: chronos-panel
+## name: Chronos Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,chronos,login,detect,discovery
+## description: Chronos Login Panel was detected.
+## reference: https://www.asys.fr/chronos
+## shodan-query: http.html:"chronoslogin.js"
+## fofa-query: body="chronoslogin.js"
+## verification: true
+
+GET /chronos.wsc/asparamlogin.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "chronoslogin.html"
+#@ matcher: body contains "urlcli"
+#@ matcher: body contains "url_portail"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)chronos\s+([0-9.-]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5c3a533b301c4928c4db0438eac2a56d8c68f6a8cda01f94a89558f044d82471

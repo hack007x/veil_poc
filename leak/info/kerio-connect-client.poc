@@ -1,0 +1,23 @@
+## id: kerio-connect-client
+## name: Kerio Connect Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kerio,discovery
+## description: Kerio Connect login panel was detected.
+## affects: kerio_connect
+## shodan-query: http.title:"Kerio Connect Client"
+## verification: true
+
+GET /webmail/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Kerio Connect Client</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3c6526ec8fc82d8b93f8fb9b427f796609bb873fd56ea09df2b8711bcee4c555

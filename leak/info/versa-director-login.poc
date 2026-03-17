@@ -1,0 +1,25 @@
+## id: versa-director-login
+## name: Versa Director Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,versa,director,discovery
+## description: Versa Director login panel was detected.
+## affects: versa_director
+## reference: https://versa-networks.com/products/components/
+## shodan-query: http.title:"Versa Director",Set-Cookie: VD-CSRF-TOKEN
+## fofa-query: title="Versa Director",Set-Cookie: VD-CSRF-TOKEN
+## verification: true
+
+GET /versa/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "versa-login-logo" || body contains "VERSA DIRECTOR"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0e168858a52acff48820b20e7f670ed118b3db98dca890320e4bed90af9295c5

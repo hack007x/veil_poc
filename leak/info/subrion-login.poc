@@ -1,0 +1,24 @@
+## id: subrion-login
+## name: Subrion Admin Panel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,subrion,intelliants,discovery
+## description: Subrion Admin Panel login panel was detected.
+## affects: subrion
+## verification: true
+
+GET /panel HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<h1>Welcome to<br>Subrion Admin Panel</h1>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Subrion CMS ([a-z0-9.]+)<\/a><br>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 3d7e590ba2dd4ebaaf354d72527489dd9c2ead9a289727c2c6bea725deacac9b

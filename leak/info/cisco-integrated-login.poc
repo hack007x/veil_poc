@@ -1,0 +1,23 @@
+## id: cisco-integrated-login
+## name: Cisco Integrated Management Controller Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,edb,discovery
+## description: Cisco Integrated Management Controller login panel was detected.
+## affects: integrated_management_controller
+## reference: https://www.exploit-db.com/ghdb/3859
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cisco Integrated Management Controller Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6a9cf143c9f8c6b842faf7caf4cf145cce0db109bd8c22cb35ee1e34d95e9356

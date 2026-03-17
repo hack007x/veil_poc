@@ -1,0 +1,23 @@
+## id: qualcomm-voip-router
+## name: Qualcomm 4G LTE WiFi VoIP Router Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,qualcomm,iot,router,voip,discovery
+## description: Qualcomm 4G LTE Wifi VoIP router panel was detected.
+## affects: qca4531_firmware
+## fofa-query: app="Qualcomm-4G-LTE-WiFi-VoIP-Router"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>4G LTE WiFi VoIP Router</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 983b435f318d93faa4c246e8cc3730538b41cff1bbfd56d6a19d1539df39b534

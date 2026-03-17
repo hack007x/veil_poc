@@ -1,0 +1,22 @@
+## id: dotcms-admin-panel
+## name: dotAdmin Login Panel- Detect
+## author: hack007x
+## severity: info
+## tags: panel,dotcms,cms,discovery
+## description: dotAdmin login panel was detected.
+## affects: dotcms
+## shodan-query: http.title:"dotcms"
+## fofa-query: title="dotcms"
+## verification: true
+
+GET /dotAdmin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>dotCMS Content Management Platform</title>"
+
+
+
+
+
+# @VEIL-STAMP: 32e185ffad475228a11461b2db30226eb9f91a7bd464ea9442ba41b07af66531

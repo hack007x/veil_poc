@@ -1,0 +1,24 @@
+## id: meshcentral-login
+## name: MeshCentral Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,meshcentral,discovery
+## description: MeshCentral login panel was detected.
+## affects: meshcentral
+## shodan-query: http.title:"MeshCentral - Login",http.title:"meshcentral - login"
+## fofa-query: title="meshcentral - login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>MeshCentral - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6f9be070b973e4bcc0bc0e72aaacc9372929c6d2f79f7ef758b0c4b5a2a7c2a1

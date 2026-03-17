@@ -1,0 +1,23 @@
+## id: topaccess-panel
+## name: Toshiba TopAccess Panel - Detect
+## author: hack007x
+## severity: info
+## tags: topaccess,panel,login,detect,discovery
+## reference: https://business.toshiba.com/downloads/KB/f1Ulds/11646/KH-1020_TAG_EN_0002.pdf
+## shodan-query: title:"topaccess"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'content="TopAccess' || body contains "locale_TopAccess_Messages" || body contains "<title>TopAccess"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 57eeca080babb4056bf8f1efffba0184d9fe7fe9ad73aa1abf8edb10994bf5e8

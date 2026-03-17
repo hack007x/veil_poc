@@ -1,0 +1,25 @@
+## id: rocketchat-panel
+## name: RocketChat Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,rocketchat,login,detect,discovery
+## description: RocketChat login panel was detected.
+## affects: rocket.chat
+## reference: https://www.rocket.chat/
+## shodan-query: http.title:"Rocket.Chat"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Rocket.Chat" || body contains 'content=\"Rocket.Chat'
+
+
+
+
+
+# @VEIL-STAMP: ae8b05db30541b8b736f1bf685b196a076a527c7e71224aa18a75624dacfa371

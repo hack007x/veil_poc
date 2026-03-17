@@ -1,0 +1,26 @@
+## id: linkerd-panel
+## name: Linkerd Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,misconfig,linkerd,exposure,discovery
+## description: Linkerd panel was detected.
+## affects: linkerd
+## shodan-query: html:"data-controller-namespace",http.html:"data-controller-namespace"
+## fofa-query: body="data-controller-namespace"
+## verification: true
+
+GET /namespaces HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Linkerd</title>"
+#@ matcher: body contains 'data-controller-namespace="linkerd'
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c8f7eef53892439989e83e5cd837e720b83b1f91d336dc0c6b36b7d028cb13bc

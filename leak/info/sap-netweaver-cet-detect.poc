@@ -1,0 +1,24 @@
+## id: sap-netweaver-cet-detect
+## name: SAP NetWeaver Composition Environment Tools - Detect
+## author: hack007x
+## severity: info
+## tags: sap,netweaver,cet,detect,discovery
+## description: Detects the presence of the SAP NetWeaver Process Integration / Composition Environment Tools page
+## reference: https://help.sap.com/doc/saphelp_scm700_ehp02/7.0.2/en-US/f6/2a7cb018bc4b239ea5b7af675a18ef/content.htm?no_cache=true
+## shodan-query: http.favicon.hash:-266008933
+## verification: true
+
+GET /rep/start/index.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Composition Environment Tools"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6f841ac6c7580916ac7ba839c097998adf58609eb5649cd3ae0d240228c16e74

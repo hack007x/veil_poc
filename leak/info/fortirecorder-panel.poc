@@ -1,0 +1,25 @@
+## id: fortirecorder-panel
+## name: FortiRecorder Panel - Detect
+## author: hack007x
+## severity: info
+## tags: fortinet,fortirecorder,login,panel,discovery
+## description: FortiRecorder Panel was discovered.
+## reference: https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiRecorder.pdf
+## shodan-query: title:FortiRecorder
+## fofa-query: title="FortiRecorder"
+## verification: true
+
+GET /admin/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FortiRecorder Admin"
+#@ matcher: body contains "Log In"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bae6a8de4c69b6df67f05e08509f1e3cf53f2b5b2cbcd4a24db01e82918cc325

@@ -1,0 +1,24 @@
+## id: victoriametrics-panel
+## name: VictoriaMetrics Panel - Detect
+## author: hack007x
+## severity: info
+## tags: victoriametrics,login,panel,discovery
+## description: A VictoriaMetrics panel was discovered.
+## reference: https://victoriametrics.com/
+## reference: https://docs.victoriametrics.com/
+## shodan-query: http.html:"VictoriaMetrics"
+## verification: true
+
+GET /vmui/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "VM UI" || body contains "VictoriaMetrics"
+
+
+
+
+
+# @VEIL-STAMP: 0172f1007c3d818e78e5bb3985f4abf7cb3e26d23047f397078e0553a2fa8c13

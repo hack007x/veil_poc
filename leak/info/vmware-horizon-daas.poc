@@ -1,0 +1,23 @@
+## id: vmware-horizon-daas
+## name: Desktop Portal VMware Horizon DaaS Trade Platform
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## affects: horizon_daas
+## shodan-query: title:"Horizon DaaS",http.title:"horizon daas"
+## fofa-query: title="horizon daas"
+## verification: true
+
+GET /index.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Desktop Portal | VMware&reg; Horizon DaaS&trade; Platform</title>" || body contains "Desktop Portal | VMware Horizon DaaS"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 42b0f424ded1f097b456a48b37ed2889203196f836f9aae20b8be95e26d31726

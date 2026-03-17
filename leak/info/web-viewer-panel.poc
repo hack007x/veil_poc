@@ -1,0 +1,23 @@
+## id: web-viewer-panel
+## name: Web Viewer for Samsung DVR - Detect
+## author: hack007x
+## severity: info
+## tags: panel,web-viewer,detect,samsung,discovery
+## affects: dvr
+## shodan-query: title:"Web Viewer for Samsung DVR",http.title:"web viewer for samsung dvr"
+## fofa-query: title="web viewer for samsung dvr"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Web Viewer for Samsung DVR</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 069f5d63f223f29efb24c49170d3a29cb97d6aa65b02d8da0ea172a42d06eeba

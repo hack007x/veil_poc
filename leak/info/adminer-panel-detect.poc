@@ -1,0 +1,31 @@
+## id: adminer-panel-detect
+## name: Adminer Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fuzz,adminer,login,sqli,discovery
+## description: Adminer login panel was detected.
+## affects: adminer
+## reference: https://blog.sorcery.ie/posts/adminer/
+## shodan-query: cpe:"cpe:2.3:a:adminer:adminer",http.title:"login - adminer"
+## fofa-query: title="login - adminer",app="adminer" && body="4.7.8"
+## verification: true
+
+#$ path = @file(helpers/wordlists/adminer-paths.txt)
+GET /{{path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: application/json, text/plain, */*
+Referer: {{BaseURL}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "System<td>"
+#@ matcher: body contains "- Adminer</title>>" || body contains "Adminer</a>"
+#> extract: name=ex_regex, from=body, regex=/<span class="version">([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b4224e7f1ff887725540a4ff704aec461713c4fadbaaca42b9b5b03e9019638d

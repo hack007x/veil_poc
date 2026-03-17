@@ -1,0 +1,21 @@
+## id: gemweb-plus-panel
+## name: GEMweb Plus 500 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gemweb,discovery
+## description: GEMweb Plus 500 login panel was detected.
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>GEMweb Plus 500</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 673f79c9f1fbae8cfc9d4a61d748e07e01ac25aabc555dff3fb0505264f16dc3

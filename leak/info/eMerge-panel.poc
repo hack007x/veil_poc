@@ -1,0 +1,25 @@
+## id: eMerge-panel
+## name: Nortek Linear eMerge Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,emerge,nortek,nortekcontrol,discovery
+## description: Nortek Linear eMerge panel was detected.
+## affects: linear_emerge_essential_firmware
+## shodan-query: http.title:"eMerge",http.title:"emerge"
+## fofa-query: title="emerge"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>(.*)Linear eMerge(.*)<\/title>/
+#@ matcher: body matches /\/emerge.ico/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 454abbc32207e8f3e5b3569d258a54ad87558bd75fe77706196848341ea6c306

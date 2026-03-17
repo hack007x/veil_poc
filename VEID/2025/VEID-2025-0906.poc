@@ -16,10 +16,11 @@ User-Agent: {{random_ua}}
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "text/html"
 #@ matcher: body contains "<th>username</th>"
+#@ matcher: body matches /USDT数据库([a-z_]+)表的数据/
 #> extract: name=db_table, from=body, regex=/USDT数据库([a-z_]+)表的数据/, group=1
 
 
 
 
 
-# @VEIL-STAMP: dd494456c7bea342c071c3dd7a7a94c3efbbfa8c43b37dd8393f76ffb0f69236
+# @VEIL-STAMP: df290f1419513d7109cef4d936f4752edec088e85c9bf7cbf8e3fcedd830db0e

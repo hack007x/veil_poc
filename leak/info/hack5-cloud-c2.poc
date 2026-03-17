@@ -1,0 +1,23 @@
+## id: hack5-cloud-c2
+## name: Hack5 Cloud C2 - Detect
+## author: hack007x
+## severity: info
+## tags: c2,ir,osint,hack5c2,panel,vuln
+## description: Cloud C² is a self-hosted web-based command and control suite for networked Hak5 gear that lets you pentest from anywhere. Linux, Mac and Windows computers can host the Cloud C² server while Hak5 gear such as the WiFi Pineapple, LAN Turtle and Packet Squirrel can be provisioned as clients.
+## reference: https://twitter.com/fofabot/status/1742737671037091854
+## fofa-query: app="Hak5-C2"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Hak5 Cloud C²</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2a8e5fe9693325740dc8a8d98619b4a557cb15fc5cbe079d66a3fea99468f087

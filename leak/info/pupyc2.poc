@@ -1,0 +1,24 @@
+## id: pupyc2
+## name: PupyC2 - Detect
+## author: hack007x
+## severity: info
+## tags: c2,ir,osint,pupyc2,panel,vuln
+## description: Pupy is a cross-platform, multi function RAT and post-exploitation tool mainly written in python. It features an all-in-memory execution guideline and leaves a very low footprint. Pupy can communicate using multiple transports, migrate into processes using reflective injection, and load remote python code, python packages and python C-extensions from memory.
+## reference: https://twitter.com/TLP_R3D/status/1654038602282565632
+## reference: https://github.com/n1nj4sec/pupy
+## shodan-query: aa3939fc357723135870d5036b12a67097b03309
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'Etag: "aa3939fc357723135870d5036b12a67097b03309"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 625ab45ed1b817959a157ea115eaa5185b3198cac92376548d6893060f34dd85

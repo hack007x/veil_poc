@@ -1,0 +1,23 @@
+## id: ship-manager-dnv
+## name: Ship Manager DNV - Panel
+## author: hack007x
+## severity: info
+## tags: panel,ship-manager,dnv,maritime,login,detect
+## description: Ship Manager DNV Login Panel was detected.
+## reference: https://www.dnv.com/services/ship-management-operations-and-ship-design-software-14032/
+## verification: true
+
+GET /#/signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Maritime&nbsp;Ship&nbsp;Services"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 67fac81e9f0ceabb7d949a1d69a0f592b3912e87184b66f435edb0c990a6383e

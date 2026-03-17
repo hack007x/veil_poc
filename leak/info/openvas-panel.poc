@@ -1,0 +1,25 @@
+## id: openvas-panel
+## name: OpenVas Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openvas,admin,login,discovery
+## description: An OpenVas Admin login panel was detected.
+## affects: openvas_manager
+## reference: https://openvas.org/
+## shodan-query: http.favicon.hash:1606029165
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Greenbone Security Assistant"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d1f1cad0c609d9d8caf3a2eb12c8d778bf41ae7814c0dc34447855499759de73

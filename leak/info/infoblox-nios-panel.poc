@@ -1,0 +1,24 @@
+## id: infoblox-nios-panel
+## name: Infoblox NIOS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,infoblox,nios,login,detect,discovery
+## description: Infoblox NIOS login panel was detected.
+## affects: nios
+## reference: https://www.infoblox.com/glossary/network-identity-operating-system-nios/
+## shodan-query: http.title:"Infoblox"
+## verification: true
+
+GET /ui/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Infoblox Grid" || body contains "<title>Infoblox System"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 46a3a33cf9ffdc72d5514765f933c5788c516d808f8a7a00cb89a7e69136dca5

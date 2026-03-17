@@ -1,0 +1,26 @@
+## id: atlantis-detect
+## name: Atlantis Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,atlantis,runatlantis,discovery
+## description: Atlantis panel was detected.
+## affects: atlantis
+## reference: https://github.com/runatlantis/atlantis
+## shodan-query: http.favicon.hash:-1706783005
+## fofa-query: icon_hash=-1706783005
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'title="atlantis'
+#@ matcher: body contains "Lock"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8806e55c38942754a92f7d6479eb7a446a13657d3be3ae413e1fdd88949e250f

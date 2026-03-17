@@ -1,0 +1,26 @@
+## id: solarwinds-arm-panel
+## name: SolarWinds ARM (Access Rights Manager) - Detect
+## author: hack007x
+## severity: info
+## tags: panel,solarwinds,discovery
+## description: SolarWinds ARM login panel was detected.
+## affects: access_rights_manager
+## reference: https://www.solarwinds.com/access-rights-manager
+## shodan-query: http.favicon.hash:-1416464161
+## fofa-query: icon_hash=-1416464161
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Solarwinds Access Rights Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a10f4aea7997ca81a29bb09e85f43afab4baafd3cc6cbd8a2897366737403c4f

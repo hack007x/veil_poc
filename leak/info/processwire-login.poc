@@ -1,0 +1,25 @@
+## id: processwire-login
+## name: ProcessWire Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,processwire,discovery
+## description: ProcessWire login panel was detected.
+## affects: processwire
+## reference: https://processwire.com/docs/security/admin/
+## shodan-query: http.html:"processwire"
+## fofa-query: body="processwire"
+## verification: true
+
+GET /processwire/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ProcessWireAdminTheme.init();"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bbf381d51b8dbd43acf532e359ebef6ed3fb4b58c85025e6a7772f5ba4e97e7e

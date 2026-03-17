@@ -1,0 +1,24 @@
+## id: ixcache-panel
+## name: iXCache Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: ixcache,panel,discovery
+## description: iXCache login panel was detected.
+## reference: https://www.panabit.com/cn/product/iXCache/
+## fofa-query: app="iXCache"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>iXCache</title>"
+#@ matcher: status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 29656523e8c075492136acd529e57017b3668c766e0ca82896e465dd2e79fd75

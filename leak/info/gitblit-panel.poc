@@ -1,0 +1,28 @@
+## id: gitblit-panel
+## name: Gitblit Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gitblit,discovery
+## description: Gitblit login panel was detected — a pure Java stack for managing, viewing, and serving Git repositories.
+## affects: gitblit
+## reference: https://www.gitblit.com/
+## reference: https://github.com/gitblit-org/gitblit
+## shodan-query: http.title:"Gitblit",http.title:"gitblit",http.html:"gitblit"
+## fofa-query: body="gitblit",title="gitblit"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Gitblit</title>" || body contains "Welcome to Gitblit"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<span>v([0-9\.]+)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8769d868e2932d99e6c091765d76427e3e6327fffead0c015cb2c70f6b33c4bb

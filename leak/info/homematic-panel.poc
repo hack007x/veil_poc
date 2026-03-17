@@ -1,0 +1,25 @@
+## id: homematic-panel
+## name: Homematic Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,homematic,iot,eq-3,discovery
+## description: Homematic panel was deetcted.
+## affects: homematic_ccu3_firmware
+## shodan-query: http.html:"Homematic",http.html:"homematic"
+## fofa-query: body="homematic"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "HomeMatic Logo" || body contains "<title>HomeMatic WebUI</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d75968b50bfb24c4abd9fc2416902d15cbc16852b035510209228f5bffce62be

@@ -1,0 +1,26 @@
+## id: ibm-websphere-panel
+## name: IBM WebSphere Portal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: ibm,websphere,panel,discovery
+## description: IBM WebSphere Portal login panel was detected.
+## affects: websphere_portal
+## shodan-query: http.html:"IBM WebSphere Portal",http.html:"ibm websphere portal",cpe:"cpe:2.3:a:ibm:websphere_portal"
+## fofa-query: body="ibm websphere portal"
+## verification: true
+
+GET /wps/portal HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "IBM WebSphere Portal" || body contains "IBMPortalWeb"
+#@ matcher: not (body matches /Content-Location: .+/)
+
+
+
+
+
+# @VEIL-STAMP: e404367a9314f9f75472dfd68ebca3f4d997450be0360eb66a2db78fda4f8018

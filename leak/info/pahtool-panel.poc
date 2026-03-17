@@ -1,0 +1,24 @@
+## id: pahtool-panel
+## name: PAHTool Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,pahtool,login,detect,discovery
+## description: PAHTool login panel was detected.
+## reference: http://www.inovultus.com/index.html
+## shodan-query: http.title:"PAHTool"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains ">PAHTool"
+#> extract: name=ex_regex, from=body, regex=/id="appVersion"\s+value="([0-9\.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 161c71d4d8c4cafbd43d02f1b7633def5455ec9a1ac5a53330cbc0b2397c6934

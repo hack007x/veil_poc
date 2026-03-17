@@ -1,0 +1,23 @@
+## id: trendmicro-apexone-panel
+## name: Trend Micro Apex One Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,trendmicro,login,detect,discovery
+## description: Trend Micro Apex One login panel was detected.
+## shodan-query: http.title:"officescan"
+## verification: true
+
+GET /officescan/console/html/cgi/cgiChkMasterPwd.exe HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "officescan"
+#@ matcher: body contains "Trend Micro"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7428ac17875902f7daa3f661bf90398366c5029c4eb7707568bf972a8b62c70e

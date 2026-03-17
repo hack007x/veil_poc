@@ -1,0 +1,22 @@
+## id: loxone-panel
+## name: Loxone Intercom Video Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,loxone,discovery
+## description: Loxone Intercom Video panel was detected.
+## shodan-query: http.title:"Loxone Intercom Video"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Loxone Intercom Video</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e4784e2e487e70efabccc08983e6b7a4ba8b19bfebdd700ded1aeb172c1e6557

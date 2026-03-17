@@ -1,0 +1,22 @@
+## id: splunk-login
+## name: Splunk SOAR Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,splunk,discovery
+## description: Splunk SOAR login panel was detected.
+## shodan-query: http.title:"Splunk SOAR"
+## verification: true
+
+GET /login?next=/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Splunk SOAR</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c1ac998973322682b25c0a56f89249b04ec42f89e0c7a7dacfd70101fb504ef9

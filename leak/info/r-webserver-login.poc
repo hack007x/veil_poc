@@ -1,0 +1,22 @@
+## id: r-webserver-login
+## name: R WebServer Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,rwebserver,discovery
+## description: R WebServer login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7132
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>R WebServer</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 826b8cd1e26811d2e956186e2e30c2c396727dcfcb6d67ccfa17ae53417da028

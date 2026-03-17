@@ -1,0 +1,27 @@
+## id: manageengine-opmanager
+## name: ZOHO ManageEngine OpManager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine OpManager panel was detected.
+## affects: manageengine_opmanager
+## reference: https://www.manageengine.com/
+## shodan-query: http.title:"OpManager Plus",http.title:"opmanager plus"
+## fofa-query: title="opmanager plus"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<div class='opmIconsHolder'>"
+#@ matcher: body contains "<div class='opmLoginFieldHolder'>"
+#@ matcher: body contains "<div class='opmIconsRight'>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b3c831052fa30249f67ce345415df6b6bec63d85b2764de6ea1c1880fbb177dd

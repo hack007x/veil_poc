@@ -1,0 +1,24 @@
+## id: joget-panel
+## name: Joget Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,joget,discovery
+## description: Joget panel was detected.
+## affects: joget_dx
+## shodan-query: http.favicon.hash:-1343712810
+## verification: true
+
+GET /jw/web/; HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "System Error"
+#@ matcher: status_code == 500
+#> extract: name=ex_regex, from=body, regex=/<li>(Version:[ \n\t]*([^<]+)[ \n\t]*)<\/li>/, group=2
+
+
+
+
+
+# @VEIL-STAMP: 7e98191d7093d244c274fa6d0ba85612d456da59d9e1df56a9cda70bd5a339c9

@@ -1,0 +1,26 @@
+## id: sophos-mobile-panel
+## name: Sophos Mobile Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sophos,discovery
+## description: Sophos Mobile panel was detected.
+## affects: mobile
+## reference: https://www.sophos.com/en-us/products/mobile-control
+## reference: https://www.sophos.com/en-us/support/downloads/sophos-mobile
+## shodan-query: http.title:"Sophos Mobile",http.title:"sophos mobile",http.favicon.hash:-1274798165
+## fofa-query: icon_hash=-1274798165,title="sophos mobile"
+## verification: true
+
+GET /login.xhtml?faces-redirect=true HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Sophos Mobile</title>"
+#> extract: name=ex_regex_1, from=body, regex=/src="\/javax\.faces\.resource\/texteditor\/texteditor\.js\.xhtml\?ln=primefaces&amp;v=(.+)"><\/script>/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/src="\/javax\.faces\.resource\/components\.js\.xhtml\?ln=primefaces&amp;v=(.+)"><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: bde20666a2cbfede2e8e3827d1240ca027e69a7f0ada2b3342a5a83a9bd90829

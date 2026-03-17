@@ -1,0 +1,24 @@
+## id: myq-panel
+## name: MyQ Print Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,myq,detect,discovery
+## shodan-query: http.favicon.hash:864100810,http.favicon.hash:784616151,http.favicon.hash:-2012429205,http.favicon.hash:-924708843,title:"MyQ"
+## fofa-query: icon_hash="864100810",icon_hash="784616151",icon_hash="-2012429205",icon_hash="-924708843",title="MyQ"
+## verification: true
+
+GET /en HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>MyQ"
+#@ matcher: body contains "Wsf_App"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/<span class="version">MyQ ([\d\.\w\s\(\)]+)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e1a2062e9d5bb9702a6ffee2aef864bfee48e3ac97a87df4cac4fb1c49af4070

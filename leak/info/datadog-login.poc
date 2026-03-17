@@ -1,0 +1,22 @@
+## id: datadog-login
+## name: Datadog Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,datadog,discovery
+## description: Datadog login panel was detected.
+## shodan-query: title:"Datadog"
+## verification: true
+
+GET /account/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Datadog: Log In</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9dd199c3319dc81923350f858e3ac566d95189c885d41804ff01ae7080a42ab8

@@ -1,0 +1,25 @@
+## id: drawio-flowchartmaker-panel
+## name: draw.io Flowchart Maker Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,drawio,oss,diagrams,discovery
+## description: draw.io Flowchart Maker panel was detected.
+## affects: drawio
+## reference: https://github.com/jgraph/drawio
+## shodan-query: http.title:"Flowchart Maker",http.title:"flowchart maker"
+## fofa-query: title="flowchart maker"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Flowchart Maker & Online Diagram Software</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 03837d810543ca8f113dea313a9e169d0af58bcfe655db861c2166dca920acbf

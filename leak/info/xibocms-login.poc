@@ -1,0 +1,25 @@
+## id: xibocms-login
+## name: Xibo CMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xibocms,discovery
+## description: Xibo CMS login panel was detected.
+## affects: xibo
+## shodan-query: http.html:"/xibosignage/xibo-cms"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "xibo-cms"
+#@ matcher: body contains 'class="XiboFormButton'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/([0-9.]+)            | <a id="source-link"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8dda5cfda0337cde613cb80365cb78b0cea3ffa7a7e6da476b1df3c66d342190

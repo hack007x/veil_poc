@@ -1,0 +1,23 @@
+## id: unifi-os-panel
+## name: UniFi OS - Panel
+## author: hack007x
+## severity: info
+## tags: panel,router,discovery
+## description: UniFi OS Panel was discovered
+## reference: https://gbhackers.com/critical-unifi-os-flaw/
+## shodan-query: title:"UniFi OS"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>UniFi OS</title>" || body contains "UNIFI_OS_MANIFEST"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 58ddffbe22e0ff56947dd74157ac12c2ddd9d9fb3cd324a431c421a35b19d8d8

@@ -1,0 +1,26 @@
+## id: sauter-moduwebvision-panel
+## name: SAUTER moduWeb Vision Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,moduweb,sauter,login,discovery
+## description: Sauter moduWeb Vision was detected.
+## affects: moduweb_vision
+## reference: https://www.sauter-controls.com
+## shodan-query: http.favicon.hash:-1663319756
+## fofa-query: icon_hash=-1663319756
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>SAUTER moduWeb Vision</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fa1d2b9fdc1412b3694e1d3e9bb838e455d6f95ba60a3641b12931add26632d3

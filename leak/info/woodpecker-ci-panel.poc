@@ -1,0 +1,26 @@
+## id: woodpecker-ci-panel
+## name: Woodpecker CI Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,woodpecker,login,discovery
+## description: Woodpecker CI panel was detected. Woodpecker is a community fork of Drone CI, providing a simple yet powerful continuous integration platform.
+## affects: woodpecker
+## reference: https://woodpecker-ci.org/
+## reference: https://github.com/woodpecker-ci/woodpecker
+## fofa-query: title="Woodpecker",body="/web-config.js"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Woodpecker</title>" && body contains "/web-config.js"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2a45c5c82ba0ae845480173bd9217a6c6e15bb2c7f6df923304466d0e9165d25

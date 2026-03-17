@@ -1,0 +1,24 @@
+## id: privx-panel
+## name: SSH PrivX Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,privx,discovery
+## description: SSH PrivX login panel was detected.
+## affects: privx
+## reference: https://www.ssh.com/products/privx/
+## shodan-query: title:"PrivX"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>PrivX</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 50e53fe44f09d760e9650924b8d6fb5137d0ffdcda1e549f6b50470ca8b72bbd

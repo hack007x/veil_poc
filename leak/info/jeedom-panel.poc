@@ -1,0 +1,25 @@
+## id: jeedom-panel
+## name: Jeedom Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,jeedom,login,discovery
+## description: Jeedom login panel was detected.
+## affects: jeedom
+## shodan-query: http.title:"Jeedom",http.title:"jeedom"
+## fofa-query: title="jeedom"
+## verification: true
+
+GET /index.php?v=d HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Jeedom</title>"
+#@ matcher: body contains "JEEDOM_PRODUCT_NAME"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: addeb9c09c5018a2428573c4dd364e39702e498bd11b2a66581cec5fcec888b1

@@ -1,0 +1,23 @@
+## id: kraken-cluster-monitoring
+## name: Kraken Cluster Monitoring Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kraken,cluster,discovery
+## description: Kraken Cluster Monitoring Dashboard was detected.
+## shodan-query: http.title:"Kraken dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Kraken dashboard"
+#@ matcher: body contains "Kraken cluster monitoring"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b4abb6755d309baca46b2c293f2be201e3fc70d7af1b703bdcc47a37a4b54aa3

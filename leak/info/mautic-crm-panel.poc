@@ -1,0 +1,23 @@
+## id: mautic-crm-panel
+## name: Mautic CRM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,mautic,crm,panel,discovery
+## description: Mautic CRM login panel was detected.
+## reference: https://github.com/mautic/mautic
+## verification: true
+
+GET /s/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Mautic</title>"
+#@ matcher: body contains "var mauticBasePath"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7d64efa217c7b5798449413fe5cddd488e39702830a000d2cd6a810bc89f0b9a

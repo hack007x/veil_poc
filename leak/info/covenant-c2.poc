@@ -1,0 +1,23 @@
+## id: covenant-c2
+## name: Covenant C2 - Detect
+## author: hack007x
+## severity: info
+## tags: c2,ir,osint,covenant,panel,vuln
+## description: Covenant is a .NET command and control framework that aims to highlight the attack surface of .NET, make the use of offensive .NET tradecraft easier,and serve as a collaborative command and control platform for red teamers.
+## reference: https://www.socinvestigation.com/shodan-filters-to-hunt-adversaries-infrastructure-and-c2/
+## shodan-query: ssl:”Covenant” http.component:”Blazor”
+## verification: true
+
+GET /covenantuser/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Covenant - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 31b348f33dff8ac8956feda8b0babb407f4e2b0d9025d1e7ea4e2018dabd5894

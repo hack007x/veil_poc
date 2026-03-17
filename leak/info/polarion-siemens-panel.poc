@@ -1,0 +1,24 @@
+## id: polarion-siemens-panel
+## name: Polarion Siemens Login - Panel
+## author: hack007x
+## severity: info
+## tags: polarion,siemens,login,panel,detect,discovery
+## description: Detects the exposed Polarion Siemens login page.
+## reference: https://polarion.plm.automation.siemens.com/
+## shodan-query: http.favicon.hash:-1135703796,http.favicon.hash:707299418
+## verification: true
+
+GET /polarion/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Polarion AG"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/buildId=([\d\w\-\_]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 95ac3237f5ec006b9bcf27a477c0a7e806cb5025323c00e5d1c393281a8fa825

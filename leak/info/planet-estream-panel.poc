@@ -1,0 +1,25 @@
+## id: planet-estream-panel
+## name: Planet eStream Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,planet,estream,planetestream,discovery
+## description: Planet eStream login panel was detected.
+## affects: planet_estream
+## shodan-query: title:"Login - Planet eStream",http.title:"login - planet estream"
+## fofa-query: title="login - planet estream"
+## verification: true
+
+GET /Login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Login - Planet eStream" || body contains "Powered by Planet eStream" || body contains 'aria-label="Planet eStream Website'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 200e27c0a7b2adecd91b285329c17089ec4fd2bb8eac9d72164434822beebfc9

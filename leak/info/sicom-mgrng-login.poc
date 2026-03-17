@@ -1,0 +1,21 @@
+## id: sicom-mgrng-login
+## name: Sicom MGRNG - Administrative Login Found
+## author: hack007x
+## severity: info
+## tags: sicom,mgrng,panel,discovery
+## description: Sicom MGRNG administrative login page found.
+## verification: true
+
+GET /~sicom/mgrng/LoginForm.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>MGRNG Login</title>"
+
+
+
+
+
+# @VEIL-STAMP: b770d82043445a9acde7f47b8840028719dbcb96c613563a3eb9119b2987db3e

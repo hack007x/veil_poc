@@ -1,0 +1,24 @@
+## id: epson-web-control-detect
+## name: Epson Printer
+## author: hack007x
+## severity: info
+## tags: panel,unauth,epson,edb,iot,printer,discovery
+## description: An Epson printer web panel was discovered.
+## reference: https://www.exploit-db.com/ghdb/6873
+## verification: true
+
+GET /cgi-bin/home HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Epson Web Control"
+#@ matcher: body contains "Basic Control"
+#@ matcher: body contains "Advanced"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 97016c7fc5a1461abb59aeed6d615dadeffd2d455428fdd2f7c56cbc99024e02

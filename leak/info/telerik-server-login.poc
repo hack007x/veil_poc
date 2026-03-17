@@ -1,0 +1,24 @@
+## id: telerik-server-login
+## name: Telerik Report Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: telerik,panel,discovery
+## description: Telerik Report Server login panel was detected.
+## affects: telerik_report_server
+## shodan-query: http.html:"Telerik Report Server"
+## verification: true
+
+GET /Account/Login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Telerik Report Server"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 29f6ebb01ba5a8760634be888420fb214d3c11b79e889510f109df9cecbefc75

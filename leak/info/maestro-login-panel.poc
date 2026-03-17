@@ -1,0 +1,24 @@
+## id: maestro-login-panel
+## name: Maestro LuCI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,maestro,luci,discovery
+## description: Maestro LuCI login panel was detected.
+## shodan-query: http.title:"Maestro - LuCI"
+## verification: true
+
+GET /cgi-bin/luci HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Maestro - LuCI</title>"
+#@ matcher: body contains "Please enter your username and password."
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0659cbf3b382e8d4eed4cdd1ace17cdf6819feba391e169fe0b9d75f3bc2c777

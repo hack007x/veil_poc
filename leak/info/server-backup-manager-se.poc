@@ -1,0 +1,22 @@
+## id: server-backup-manager-se
+## name: Server Backup Manager SE Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,server,backup,manager,discovery
+## description: Server Backup Manager SE login panel was detected.
+## shodan-query: http.title:"Server Backup Manager SE"
+## verification: true
+
+GET /login.zul HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>.*(Server Backup Manager SE).*<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e8fbd66d86a96d77dd4c0ab17f2c61ad063dde9ff5bcc57f703eef287b5a39f8

@@ -1,0 +1,22 @@
+## id: smartping-dashboard
+## name: SmartPing Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,misconfig,unauth,smartping,discovery
+## description: SmartPing Dashboard panel was detected.
+## shodan-query: title:"SmartPing Dashboard"
+## verification: true
+
+GET /config.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SmartPing Dashboard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b97f6d0b2173918e945901b1c7b9d2713567d06e18832ee48c054f7c5ae89c66

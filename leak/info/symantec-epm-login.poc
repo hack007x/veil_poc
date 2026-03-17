@@ -1,0 +1,24 @@
+## id: symantec-epm-login
+## name: Symantec Endpoint Protection Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: symantec,panel,login,discovery
+## description: Symantec Endpoint Protection Manager login panel was detected.
+## affects: endpoint_protection_manager
+## shodan-query: http.title:"Symantec Endpoint Protection Manager",http.title:"symantec endpoint protection manager"
+## fofa-query: title="symantec endpoint protection manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Symantec Endpoint Protection Manager</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8def9747fb4a7efcf73254401935f0c2bee5e49479cd09e4885515a5539a3108

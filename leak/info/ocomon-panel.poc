@@ -1,0 +1,28 @@
+## id: ocomon-panel
+## name: OcoMon Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ocomon,oss,ocomon_project,discovery
+## description: a tiny helpdesk system written in php
+## affects: ocomon
+## reference: https://sourceforge.net/projects/ocomonphp/
+## shodan-query: http.html:"OcoMon",http.html:"ocomon"
+## fofa-query: body="ocomon"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /(?i)(OcoMon)/
+#@ matcher: body contains "open_form/ticket_form_open.php"
+#> extract: name=ex_regex_1, from=body, regex=/Versão: ([0-9.]+)/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/Versão:&nbsp;([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 18cc7a50f74604e8266a9092fb31f8c174f5a6b51da7f26b416fef9f84eaa019

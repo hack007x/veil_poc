@@ -1,0 +1,24 @@
+## id: leostream-panel
+## name: Leostream Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,leostream,discovery
+## description: Leostream login panel was detected.
+## affects: connection_broker
+## reference: https://leostream.com
+## shodan-query: http.title:"Leostream"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Leostream</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 830a53d1b5b056abfa722b68bfddd3b996e370c81ff806c657bbcd2edb567631

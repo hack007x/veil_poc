@@ -1,0 +1,25 @@
+## id: sage-panel
+## name: Sage X3 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sage,login,discovery
+## description: Sage X3 login panel was detected.
+## affects: x3
+## shodan-query: http.title:"Sage X3",http.title:"sage x3"
+## fofa-query: title="sage x3"
+## verification: true
+
+GET /auth/login/page HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Sage  X3</title>"
+#@ matcher: body contains "'/auth/sage-id/registerStart'"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9c7472efd6fdfe4c290d072c7065f0ecc8a83b58968b6060005410c640eda965

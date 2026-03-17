@@ -1,0 +1,22 @@
+## id: hal-management-panel
+## name: HAL Management Console Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,hal,discovery
+## description: HAL Management Console login panel was discovered.
+## shodan-query: html:"HAL Management Console"
+## verification: true
+
+GET /console/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>HAL Management Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a7be7eda4c0141352233d9ec8e62e088ce8ec48bd6969421e86e38dc7ecab035

@@ -1,0 +1,25 @@
+## id: arcserve-panel
+## name: ArcServe Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,arcserve,detect,discovery
+## affects: udp
+## reference: https://twitter.com/HunterMapping/status/1674267368359444480
+## reference: https://github.com/mdsecactivebreach/CVE-2023-26258-ArcServe
+## shodan-query: http.favicon.hash:-1889244460,http.favicon.hash:"-1889244460"
+## fofa-query: icon_hash="-1889244460"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Arcserve UDP" || body contains "/arcserve.js"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5955c398eb2ca97bf13ab31e6636984eabe8ff30ed1e10c01bdad827fef6c76f

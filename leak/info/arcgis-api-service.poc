@@ -1,0 +1,27 @@
+## id: arcgis-api-service
+## name: ArcGIS REST Services Directory - Detect
+## author: hack007x
+## severity: info
+## tags: panel,arcgis,rest,api,detect,esri,discovery
+## description: Check for the existence of the "/arcgis/rest/services" path on an ArcGIS server.
+## affects: arcgis_server
+## reference: https://enterprise.arcgis.com/en/
+## shodan-query: title:"ArcGIS",http.title:"arcgis"
+## fofa-query: title="arcgis"
+## verification: true
+
+GET /arcgis/rest/services HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "REST Services Directory"
+#@ matcher: body contains "ArcGIS"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Current Version:\s*<\/b>\s*([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: a272063494bbc03f7ce2e979d232b98cef2b5f2a314c525d24080119c8ca9f97

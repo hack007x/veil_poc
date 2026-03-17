@@ -1,0 +1,25 @@
+## id: hydra-dashboard
+## name: Hydra Router Dashboard - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exposure,hydra,hydra_project,discovery
+## description: Hydra router dashboard was detected.
+## affects: hydra
+## shodan-query: title:"Hydra Router Dashboard",http.title:"hydra router dashboard"
+## fofa-query: title="hydra router dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Hydra Router Dashboard"
+#@ matcher: body contains "screen: 'dashboard'"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 999b14140df2bb24865ac290c668375296c6fb404f9e5ad9e55e427603a39146

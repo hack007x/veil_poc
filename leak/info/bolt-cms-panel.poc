@@ -1,0 +1,24 @@
+## id: bolt-cms-panel
+## name: BoltCMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,bolt,cms,login,boltcms,discovery
+## description: BoltCMS login panel was detected.
+## affects: bolt
+## reference: https://github.com/bolt/bolt
+## shodan-query: cpe:"cpe:2.3:a:bolt:bolt"
+## verification: true
+
+GET /bolt/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<form action="/bolt/login"' || body contains '<img class="logo" alt="Bolt CMS logo"' || body contains '<img src="/app/view/img/bolt-logo.png"' || body contains '<link rel="shortcut icon" href="/app/view/img/favicon-bolt.ico">' || body contains '<link rel="stylesheet" href="/app/view/css/bolt-old-ie.css"' || body contains '<link rel="stylesheet" href="/app/view/css/bolt.css"' || body contains '<script src="/app/view/js/bolt.js"></script>' || body contains '<script src="/app/view/js/bolt.min.js"' || body contains '<script src="/assets/bolt.js"></script>' || body contains "Bolt requires JavaScript to function properly and continuing without it might corrupt or erase data." || body contains "Bolt » Login" || body contains "Cookies are required to log on to Bolt. Please allow cookies."
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7ecee745ef96fd52a91bce371435ec6c67748d3ab0d5ec6e0c592b146630155f

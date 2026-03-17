@@ -1,0 +1,26 @@
+## id: redfish-api
+## name: Redfish API - Detect
+## author: hack007x
+## severity: info
+## tags: config,exposure,redfish,api,discovery
+## description: Redfish API was detected.
+## reference: https://en.wikipedia.org/wiki/Redfish_(specification)
+## reference: https://www.dmtf.org/standards/redfish
+## shodan-query: http.html:"/redfish/v1"
+## verification: true
+
+GET /redfish/v1/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"@odata.type":' || body contains "/redfish/v1/$metadata#Message"
+#@ matcher: header["content-type"] contains "application/json"
+#@ matcher: status_code == 200 || status_code == 502
+#> extract: name=ex_regex, from=body, regex=/[a-z]+\.v?([0-9_\.]+)\./, group=1
+
+
+
+
+
+# @VEIL-STAMP: f868a16ca92b22f4557d188406cfae328c726329d060f76eeac033ac96e973b6

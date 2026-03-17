@@ -1,0 +1,21 @@
+## id: synnefo-admin-panel
+## name: Synnefo Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,synnefo,discovery
+## description: Synnefo Admin login panel was detected.
+## verification: true
+
+GET /synnefoclient/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Synnefo Admin</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6851bcfc1bd8d3da11c8e4953cc0a81bd44df1068cb9a42580a985e9d4e00bdc

@@ -1,0 +1,27 @@
+## id: ibm-odm-panel
+## name: IBM Operational Decision Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ibm,login,detect,decision-center,discovery
+## description: IBM Operational Decision Manager panel was detected.
+## affects: operational_decision_manager
+## reference: https://www.ibm.com/docs/en/odm/8.12.0
+## reference: https://www.ibm.com/products/operational-decision-manager
+## shodan-query: http.title:"Decision Center | Business Console"
+## fofa-query: title="Decision Center | Business Console"
+## verification: true
+
+GET /decisioncenter/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Decision Center | Business Console</title>" || body contains '<h1 class="title">Decision Center | Business Console</h1>' || body contains "com/ibm/rules/decisioncenter/setup/Login"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/(?i)"js\/dist\/([0-9.]+)\/decisioncenter"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b1138ddaaf1ba6e33e42170a42cc2ed5d63697433cc4bb07e39cc63c3003b029

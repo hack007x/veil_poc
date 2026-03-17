@@ -1,0 +1,23 @@
+## id: okiko-sfiler-portal
+## name: OKIOK S-Filer Portal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: okiko,panel,discovery
+## description: OKIOK S-Filer Portal login panel was detected.
+## shodan-query: http.title:"S-Filer"
+## verification: true
+
+GET /sfiler/Login.action HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>S-Filer Portal - Login</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<br\/>S\-Filer\/([A-Za-z 0-9.]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5f7710d7cc27d93eddde151624d85e412877b08d62e78be22fdd0fe5b80070fb

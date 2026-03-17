@@ -1,0 +1,24 @@
+## id: kiwitcms-login
+## name: Kiwi TCMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: kiwitcms,panel,discovery
+## description: Kiwi TCMS login panel was detected.
+## affects: kiwi_tcms
+## reference: https://kiwitcms.org
+## shodan-query: title:"Kiwi TCMS - Login" http.favicon.hash:-1909533337,http.title:"kiwi tcms - login" http.favicon.hash:-1909533337
+## fofa-query: title="kiwi tcms - login" http.favicon.hash:-1909533337
+## verification: true
+
+GET /accounts/login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Kiwi TCMS"
+#> extract: name=ex_regex, from=body, regex=/Version ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8486e7b593648f937c0464ba4629465915eab73c50f9eb420def622aea1e8b8d

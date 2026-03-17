@@ -1,0 +1,27 @@
+## id: cheatsh-detect
+## name: cheat.sh Instance - Detection
+## author: hack007x
+## severity: info
+## tags: tech,cheatsh,detection,devtools
+## description: Detects exposed cheat.sh instances. cheat.sh is a community-driven cheat sheet service that provides quick command-line reference for programming languages and Unix commands. While designed to be public, self-hosted instances may expose internal documentation.
+## affects: cheat.sh
+## reference: https://github.com/chubin/cheat.sh
+## reference: https://cheat.sh/
+## shodan-query: title:"cheat.sh"
+## fofa-query: title="cheat.sh"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "cheat.sh" || body contains "curl cheat.sh"
+#@ matcher: body contains ":firstpage" || body contains "cht.sh" || body contains "/files/style.css"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 76bbe27aded7dba893bf42d131bcfa9c882782e4a18072a7da4068555b058ed0

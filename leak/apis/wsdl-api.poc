@@ -1,0 +1,20 @@
+## id: wsdl-api
+## name: WSDL API - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,discovery
+## description: WSDL API was detected.
+## reference: https://www.w3.org/TR/wsdl/
+## verification: true
+
+GET /?wsdl HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "wsdl:definitions"
+
+
+
+
+
+# @VEIL-STAMP: 40174c2a4811c2f2c7202c8a3ef5dd14aa9c281e8426f343f7d1333ee83b3492

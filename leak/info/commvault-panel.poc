@@ -1,0 +1,24 @@
+## id: commvault-panel
+## name: Commvault Web Console Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,commvault,backup,login,detect,discovery
+## description: Commvault web console login panel was detected.
+## reference: https://www.commvault.com/
+## shodan-query: http.favicon.hash:-542502280
+## verification: true
+
+GET /commandcenter/login/preSso.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "commandcenter/wcSSO.do"
+#@ matcher: body contains "Path=/commandcenter"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e7621cff639937eb645d3debf6d3f9c2de2fcda0ad06bc767b955f59c2111e9

@@ -1,0 +1,22 @@
+## id: honeywell-web-controller
+## name: Honeywell Excel Web Control Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,discovery
+## description: Honeywell Excel Web Control login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/7130
+## verification: true
+
+GET /standard/default.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Honeywell XL Web Controller</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 47ff30ce1ae0c09b5f5ef17d9c8514bf31f132b63a7da6a3b696413ee111e47b

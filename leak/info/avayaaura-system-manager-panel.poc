@@ -1,0 +1,24 @@
+## id: avayaaura-system-manager-panel
+## name: Avaya Aura System Manager Login - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,avaya,discovery
+## description: Avaya Aura System Manager login panel was detected.
+## affects: aura_system_manager
+## verification: true
+
+GET /network-login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Avaya Aura"
+#@ matcher: body contains "System Manager"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<\/sup> System Manager ([a-z0-9.]+)<\/h1>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 8f93a5b3b7039fddf1f224527a65c1d8851c6eaa08f3db1bd1935de9910d889c

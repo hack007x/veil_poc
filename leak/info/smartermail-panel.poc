@@ -1,0 +1,26 @@
+## id: smartermail-panel
+## name: SmarterMail Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,smartermail,login,detect,discovery
+## description: SmarterMail login panel was detected.
+## affects: smartermail
+## reference: https://www.smartertools.com/smartermail/business-email-server
+## shodan-query: http.title:"SmarterMail"
+## verification: true
+
+GET /Login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login to SmarterMail"
+#@ matcher: body contains "SmarterTools Inc."
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/SmarterMail\s+(?:Enterprise|Professional)\s+([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 718171f4f65f87b911f1b893b90e15b1d20b93a1b6844022aefeabc15a1671bc

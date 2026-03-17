@@ -1,0 +1,24 @@
+## id: cisco-ucm-selfcare-portal
+## name: Cisco Unified Communications Self-Service User Portal - Detection
+## author: hack007x
+## severity: info
+## tags: detect,cisco,ucm,panel
+## description: Detected the presence of the Cisco Unified Communications User Management Panel.
+## affects: unified_communications_manager
+## shodan-query: http.title:"Unified Communications Self Care Portal"
+## fofa-query: title="Unified Communications Self Care Portal"
+## verification: true
+
+GET /ucmuser/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'webAppName: "ucmuser"' || body contains 'webAppName="ucmuser"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7f6143f3ef98635dce0cd2f91e5514a65aeb86ab496cd19e1f5e3df368bf48a3

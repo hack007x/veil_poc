@@ -1,0 +1,28 @@
+## id: seafile-api
+## name: Seafile API - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,detect,discovery
+## description: Seafile API was detected.
+## affects: seafile
+## reference: https://download.seafile.com/published/web-api/home.md
+## reference: https://manual.seafile.com/
+## reference: https://www.seafile.com/en/home/
+## shodan-query: http.html:"seafile"
+## verification: true
+
+GET /api2/server-info/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "seafile-basic" || body contains "seafile-pro"
+#@ matcher: header["content-type"] contains "application/json"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/"version":\s*"([0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 009d493f567dcf8faf9389757096435f615c2db9ee761f1b846985885d02a3e1

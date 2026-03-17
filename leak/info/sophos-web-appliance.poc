@@ -1,0 +1,24 @@
+## id: sophos-web-appliance
+## name: Sophos Web Appliance
+## author: hack007x
+## severity: info
+## tags: panel,login,sophos,discovery
+## affects: web_appliance
+## reference: https://docs.sophos.com/nsg/swa/help/en-us/nsg/swa/concepts/AboutYourAppliance.html
+## shodan-query: http.favicon.hash:-893681401,http.title:"sophos web appliance"
+## fofa-query: title="sophos web appliance",icon_hash=-893681401
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Sophos Web Appliance</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b560291b5a248d1b57776a3148f2a005e0027e24a8377d1da796552169f96753

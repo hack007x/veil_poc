@@ -1,0 +1,22 @@
+## id: polycom-login
+## name: Polycom Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: edb,panel,discovery
+## description: Polycom login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6863
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Polycom Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e31df17864acb72339e13c0bc4983a2c39262059198f7b2e6c97847f3dce1753

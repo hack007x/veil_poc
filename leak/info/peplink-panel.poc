@@ -1,0 +1,24 @@
+## id: peplink-panel
+## name: Peplink Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,peplink,router,login,discovery
+## description: peplink login panel was detected.
+## affects: balance_two_firmware
+## shodan-query: html:"PEPLINK"
+## verification: true
+
+GET /cgi-bin/MANGA/index.cgi HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'init_company_name = "Peplink"'
+#@ matcher: body contains "<title>Web Admin | Welcome"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6af0be2a68e16d852f282f13557eeab2552552122d50706f6731d3f34cbe333e

@@ -1,0 +1,24 @@
+## id: cisco-anyconnect-vpn
+## name: Cisco AnyConnect VPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: cisco,panel,vpn,discovery
+## description: Cisco AnyConnect VPN panel was detected.
+## affects: anyconnect_secure_mobility_client
+## reference: https://github.com/Gilks/hostscan-bypass
+## verification: true
+
+GET /CACHE/sdesktop/data.xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<config>"
+#@ matcher: body contains "<hostscan>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 530731fb5d87e7fc6c6258c7080cf3ab08d3de370fa5c7410fa5430582a61ca0

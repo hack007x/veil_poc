@@ -1,0 +1,26 @@
+## id: tufin-securetrack-login
+## name: Tufin SecureTrack Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tufin,discovery
+## description: Tufin SecureTrack login panel was detected.
+## affects: securetrack
+## reference: https://www.tufin.com/tufin-orchestration-suite/securetrack
+## shodan-query: http.title:"SecureTrack - Tufin Technologies",http.title:"securetrack - tufin technologies"
+## fofa-query: title="securetrack - tufin technologies"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>SecureTrack - Tufin Technologies</title>" || body contains "document.title = 'SecureTrack - Tufin Technologies';"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b823bc2185ebd06ec10a4aa620264570f0443f6b5890b4b8fa1846e896c7a526

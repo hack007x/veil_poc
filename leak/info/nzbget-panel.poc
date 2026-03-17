@@ -1,0 +1,25 @@
+## id: nzbget-panel
+## name: NZBGet Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,nzbget,discovery
+## description: NZBGet login panel was detected.
+## affects: nzbget
+## shodan-query: html:"NZBGet",http.html:"nzbget"
+## fofa-query: body="nzbget"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>NZBGet</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1923aa20ef35eee64fa4679e2fbd049715153c94f4676718c1eadfc4e61ad665

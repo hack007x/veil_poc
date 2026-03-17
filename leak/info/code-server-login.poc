@@ -1,0 +1,26 @@
+## id: code-server-login
+## name: Code-Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,detect,misc,coder,discovery
+## description: Code-Server login panel was detected.
+## affects: code-server
+## shodan-query: http.title:"code-server login"
+## fofa-query: title="code-server login"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Welcome to code-server"
+#@ matcher: body contains "Please log in below. Check the config file at ~/.config/code-server/config.yaml for the password."
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0ec52ee00ab3c9c71317946cc423f0f27409886a6d62565eda387006ea4d8ae2

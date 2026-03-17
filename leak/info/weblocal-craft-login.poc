@@ -1,0 +1,22 @@
+## id: weblocal-craft-login
+## name: Web Local Craft Terminal Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: Web Local Craft Terminal login panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6800
+## verification: true
+
+GET /home.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "WEB Local Craft Terminal"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 0bd8f2dd785c819dc83ca431cc35e39c56e0496ba23d13c723163f9eb2fe8408

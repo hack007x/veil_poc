@@ -1,0 +1,24 @@
+## id: acemanager-login
+## name: ACEmanager Detection
+## author: hack007x
+## severity: info
+## tags: panel,login,tech,acemanager,sierrawireless,discovery
+## description: ACEManager was detected. ACEManager is a configuration and diagnostic tool for the Sierra Wireless AirLink Raven modems.
+## affects: airlink_mobility_manager
+## fofa-query: app="ACEmanager",app="acemanager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>::: ACEmanager :::</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/ALEOS Version ([0-9.]+) \| Copyright &co/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7ae1fca2423b0b48af82cedfbab563c11155627dea25c05d9e85f882e8202676

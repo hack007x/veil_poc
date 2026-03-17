@@ -1,0 +1,24 @@
+## id: manageengine-analytics
+## name: ZOHO ManageEngine Analytics Plus Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine analytics plus panel was detected.
+## affects: manageengine_analytics_plus
+## shodan-query: http.title:"apex it help desk"
+## fofa-query: app="ZOHO-流量管理",app="zoho-流量管理",title="apex it help desk"
+## verification: true
+
+GET /iam/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ManageEngine Analytics Plus</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d944d4adc4ebe601f616a1e20bf6fb02e853e783a94fa8d0956bb42292cb3c83

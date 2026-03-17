@@ -1,0 +1,25 @@
+## id: centreon-panel
+## name: Centreon Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,centreon,login,discovery
+## description: Centreon login panel was detected.
+## affects: centreon_web
+## shodan-query: http.title:"Centreon",http.title:"centreon"
+## fofa-query: title="centreon"
+## verification: true
+
+GET /centreon/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Centreon - IT & Network Monitoring</title>" || body contains '<input name="centreon_token" type="hidden"'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/v. (.*)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 4047c58d020f4ea46142bdd2d732cba538045f9d23a7d648f5f0e6e9311e0f5c

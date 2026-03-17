@@ -1,0 +1,28 @@
+## id: buildbot-panel
+## name: Buildbot Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,buildbot,cicd,discovery
+## description: Buildbot panel was detected.
+## affects: buildbot
+## reference: https://buildbot.net
+## shodan-query: http.title:"BuildBot",http.title:"buildbot"
+## fofa-query: title="buildbot"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /<title(.*)>Buildbot<\/title>/
+#@ matcher: body matches /buildbot_config/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/\[\"Buildbot\", \"([0-9.]+)\"\]/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 312233ef38fab455b8a714629dc85de713ab44137efa1db69370f103eea29806

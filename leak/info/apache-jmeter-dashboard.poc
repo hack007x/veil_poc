@@ -1,0 +1,25 @@
+## id: apache-jmeter-dashboard
+## name: Apache JMeter Dashboard Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: apache,jmeter,panel,discovery
+## description: Apache JMeter Dashboard login panel was detected.
+## affects: jmeter
+## shodan-query: title:"Apache JMeter Dashboard",http.title:"apache jmeter dashboard"
+## fofa-query: title="apache jmeter dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Apache JMeter Dashboard"
+#@ matcher: body contains "Dashboard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 226dd46dbb56488852d55a291d4e10cfcfc17de4b20279c204cb8fa001db2efb

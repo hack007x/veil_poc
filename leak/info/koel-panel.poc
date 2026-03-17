@@ -1,0 +1,27 @@
+## id: koel-panel
+## name: Koel Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,koel,login,discovery
+## description: Personal audio streaming service that works.
+## affects: koel
+## reference: https://koel.dev/
+## reference: https://github.com/koel/koel
+## shodan-query: title:"Koel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Koel</title>"
+#@ matcher: body contains "Personal audio streaming service that works."
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8d430fa119210f49eb46a9d48bd19fcc19ab249b2dca21f18db2738a4b84657c

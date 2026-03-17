@@ -1,0 +1,26 @@
+## id: fortios-panel
+## name: FortiOS Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortios,discovery
+## description: FortiOS admin login panel was detected.
+## affects: fortios
+## reference: https://www.horizon3.ai/fortinet-iocs-cve-2022-40684/
+## shodan-query: http.favicon.hash:945408572,cpe:"cpe:2.3:o:fortinet:fortios",port:10443 http.favicon.hash:945408572,http.html:"/remote/login" "xxxxxxxx"
+## fofa-query: body="/remote/login" "xxxxxxxx",icon_hash=945408572
+## verification: true
+
+GET /api/v2/cmdb/system/admin/admin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/remote/login"
+#@ matcher: body contains "Server: xxxxxxxx-xxxxx"
+#@ matcher: status_code == 403
+
+
+
+
+
+# @VEIL-STAMP: 30bdd429fcbad51152c464d15e95f5969c5a3fb173400ff1de455f953b27f0b5

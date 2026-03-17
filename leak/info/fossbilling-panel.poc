@@ -1,0 +1,24 @@
+## id: fossbilling-panel
+## name: FOSSBilling Panel - Detect
+## author: hack007x
+## severity: info
+## tags: fossbilling,panel,detect,discovery
+## description: FOSSBilling panel has been detected.
+## affects: fossbilling
+## shodan-query: title:"FOSSBilling"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>FOSSBilling"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 734171f82bd0ec89d2b1542bbf7ed3b03bd6c5cc79d6c0e890560b6a589230f9

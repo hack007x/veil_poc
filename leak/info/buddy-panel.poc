@@ -1,0 +1,24 @@
+## id: buddy-panel
+## name: Buddy Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,buddy,cicd,discovery
+## description: Buddy panel was detected.
+## reference: https://buddy.works
+## shodan-query: http.favicon.hash:-850502287
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains '<meta name="application-name" content="Buddy">' || body contains "Buddy App"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a4cda63bac1f32a634a0af3eaea9b6fde6caf05b9187284935222e76ca3416ba

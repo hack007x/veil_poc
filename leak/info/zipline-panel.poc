@@ -1,0 +1,24 @@
+## id: zipline-panel
+## name: Diced Zipline - Detect
+## author: hack007x
+## severity: info
+## tags: diced,zipline,login,panel,detect,discovery
+## description: Zipline panel was detected.
+## affects: zipline
+## reference: https://github.com/diced/zipline
+## shodan-query: html:"Zipline"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"title":"Zipline"' || body contains "Zipline – Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 50e21d7d7e7a7a86790fa280b0389c17351f372e7f4e919070691ef551b68f6d

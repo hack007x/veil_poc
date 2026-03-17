@@ -1,0 +1,34 @@
+## id: wadl-api
+## name: WADL API - Detect
+## author: hack007x
+## severity: info
+## tags: exposure,api,discovery
+## description: WADL API was detected.
+## reference: https://github.com/dwisiswant0/wadl-dumper
+## reference: https://www.nopsec.com/leveraging-exposed-wadl-xml-in-burp-suite/
+## verification: true
+
+#$ path = /application.wadl | /application.wadl?detail=true | /api/application.wadl | /api/v1/application.wadl | /api/v2/application.wadl | 
+GET {{path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ matcher: body contains "This is simplified WADL with user and core resources only" || body contains "http://jersey.java.net" || body contains "http://wadl.dev.java.net/2009/02"
+
+---
+
+
+
+OPTIONS {{path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ stop_scan: true
+#@ matcher: body contains "This is simplified WADL with user and core resources only" || body contains "http://jersey.java.net" || body contains "http://wadl.dev.java.net/2009/02"
+
+
+
+
+
+# @VEIL-STAMP: 25c8a09862df7c9247ad910ebe978d3f211a9d24177fa4549b59fcb8686f7681

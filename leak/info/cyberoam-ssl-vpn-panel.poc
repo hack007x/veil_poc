@@ -1,0 +1,26 @@
+## id: cyberoam-ssl-vpn-panel
+## name: Cyberoam SSL VPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cyberoam,vpn,sophos,discovery
+## description: Cyberoam SSL VPN panel was detected.
+## affects: cyberoam
+## reference: https://docs.sophos.com/nsg/Cyberoam/Version%2010.x/10.6.3/Guides/Cyberoam%20SSL%20VPN%20User%20Guide.pdf
+## shodan-query: title:"Cyberoam SSL VPN Portal",http.title:"cyberoam ssl vpn portal"
+## fofa-query: title="cyberoam ssl vpn portal"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Cyberoam SSL VPN Portal</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/src="\/javascript\/validation\/sslvpnlogin\.js\?version=(.+)" ><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d45c7c5cd173b0b9992ffd62f4aff4523518a9fe8f98d5ae315235c331048f4b

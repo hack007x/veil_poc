@@ -1,0 +1,26 @@
+## id: alfresco-detect
+## name: Alfresco CMS Detection
+## author: hack007x
+## severity: info
+## tags: alfresco,tech,panel,discovery
+## description: Alfresco CMS was discovered.
+## affects: alfresco
+## reference: https://www.alfresco.com/
+## verification: true
+
+GET /alfresco/api/-default-/public/cmis/versions/1.1/atom HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "org\/alfresco\/api\/opencmis\/OpenCMIS.get"
+#@ matcher: header["content-type"] contains "application/json"
+#> extract: name=ex_regex_1, from=body, regex=/Enterprise v.*([0-9]\.[0-9]+\.[0-9]+)/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/Community v.*([0-9]\.[0-9]+\.[0-9]+)/, group=1
+#> extract: name=ex_regex_3, from=body, regex=/Community Early Access v.*([0-9]\.[0-9]+\.[0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 919ba48713d9340e29ae22626d9943c9496d8a3524a984fb7c6df86dab2d67b4

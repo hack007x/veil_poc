@@ -1,0 +1,23 @@
+## id: dataiku-panel
+## name: Dataiku Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dataiku,discovery
+## description: Dataiku panel was detected.
+## affects: data_science_studio
+## shodan-query: title:"dataiku"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Dataiku</title>"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: d952c5f42bf31aaf8fe408cdd591e2e29d5ed47fa032d9cab83edbdba2882d94

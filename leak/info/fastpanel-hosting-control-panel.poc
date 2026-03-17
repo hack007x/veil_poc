@@ -1,0 +1,22 @@
+## id: fastpanel-hosting-control-panel
+## name: FASTPANEL Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fastpanel,discovery
+## description: FASTPANEL login panel was detected.
+## shodan-query: title:"FASTPANEL HOSTING CONTROL"
+## verification: true
+
+GET /authentication HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FASTPANEL HOSTING CONTROL"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 186fb31aa9d82caaac8363f686d00f9b4173cb06a5009accdfb414255061532a

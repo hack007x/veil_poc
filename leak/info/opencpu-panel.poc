@@ -1,0 +1,21 @@
+## id: opencpu-panel
+## name: OpenCPU Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,opencpu,oss,discovery
+## description: OpenCPU panel was detected.
+## reference: https://github.com/opencpu/opencpu/
+## verification: true
+
+GET /ocpu/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "OpenCPU Test Page" || body contains "OpenCPU API Explorer"
+
+
+
+
+
+# @VEIL-STAMP: 4af301698580c7019ac8ae462ff72095a9ff0068303e5f14b5ecf2c1a203f1bb

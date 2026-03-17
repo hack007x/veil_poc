@@ -1,0 +1,22 @@
+## id: tactical-rmm-panel
+## name: Tactical RMM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tacticalrmm,login,detect,discovery
+## description: Tactical RMM login panel was detected.
+## shodan-query: http.title:"Tactical RMM - Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tactical RMM - Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e96af869a35e32193b8d1ed0fb545c183bef73a5d82a9190157b970abbe58121

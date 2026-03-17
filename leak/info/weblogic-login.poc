@@ -1,0 +1,25 @@
+## id: weblogic-login
+## name: Oracle WebLogic Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,oracle,weblogic,login,discovery
+## description: Oracle WebLogic login panel was detected.
+## affects: weblogic_server
+## shodan-query: product:"Oracle Weblogic",product:"oracle weblogic",http.title:"oracle peoplesoft sign-in"
+## fofa-query: title="oracle peoplesoft sign-in"
+## verification: true
+
+GET /console/login/LoginForm.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "WebLogic"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/WebLogic Server Version: (.*?)</, group=1
+
+
+
+
+
+# @VEIL-STAMP: e0d26001b0d81f578b5ecc3886d25e424c86add4684280be2372d178aac2435c

@@ -1,0 +1,26 @@
+## id: magicinfo-panel
+## name: Samsung MagicINFO Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,magicinfo,detect,discovery
+## description: Samsung MagicINFO panel was discovered.
+## affects: magicinfo
+## reference: https://www.samsung.com/de/business/display-solutions/magicinfo/
+## shodan-query: title:"MagicINFO"
+## fofa-query: title:"MagicINFO"
+## verification: true
+
+GET /MagicInfo/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>MagicInfo Server" || body contains "/MagicInfo/logo.ico"
+#@ matcher: status_code == 404
+
+
+
+
+
+# @VEIL-STAMP: c3476301916cb7726e76077d591a5fdd78650a28c2d17e59f0d0b0d668dc6bbd

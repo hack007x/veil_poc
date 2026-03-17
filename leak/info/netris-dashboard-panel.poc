@@ -1,0 +1,22 @@
+## id: netris-dashboard-panel
+## name: Netris Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,netris,discovery
+## description: Netris Dashboard panel was detected.
+## shodan-query: http.title:"Netris Dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Netris Dashboard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d06da7edf444202585c0bf968cbba905d06bc08155991e0cbdf24ac1d8246093

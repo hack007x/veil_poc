@@ -1,0 +1,24 @@
+## id: immich-panel
+## name: Immich Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,immich,detect,discovery
+## description: Immich is a self-hosted photo and video backup solution
+## reference: https://immich.app/
+## reference: https://github.com/immich-app/immich
+## shodan-query: http.favicon.hash:-43504595
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login - Immich" || body contains '"PUBLIC_IMMICH_' || body contains 'alt="Immich Logo' || body contains "Welcome to Immich"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9dd58d3de2a87b8466ee1dd97304f1e12786461d95370d6d0290c756b770a0ea

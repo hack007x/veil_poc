@@ -1,0 +1,76 @@
+## id: exposed-mcp-server
+## name: Exposed MCP JSON-RPC 2.0 API Detection
+## author: hack007x
+## severity: info
+## tags: mcp,jsonrpc,devtools,exposure,api,ai,llm,discovery
+## description: Detects exposed Machine Control Protocol (MCP) servers through JSON-RPC 2.0 API endpoints. MCP servers often provide administrative access to AI tools, LLM systems, or other automation infrastructure. Exposed MCP interfaces can lead to unauthorized access, information disclosure, and potential system compromise. This template tests multiple detection methods including tools/list, rpc.discover, resources/list, and prompts/list.
+## reference: https://jsonrpc.org/specification
+## reference: https://github.com/anthropics/anthropic-tools/tree/main/mcp
+## reference: https://lab.wallarm.com/wallarm-research-nuclei-template-counter-threats-targeting-llm-apps/
+## verification: true
+
+#$ method = rpc.discover | rpc.describe | rpc.listTools | tools/list | resources/list | prompts/list | tool.status | tool.help | tool.version | tool.list
+POST / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "{{method}}",
+  "params": {},
+  "id": 1
+}
+
+
+
+#@ condition: and
+#@ stop_scan: true
+#@ matcher: body contains "jsonrpc"
+#@ matcher: body contains "result"
+#@ matcher: body matches /"available_tools"\s*:\s*\[/
+#@ matcher: body matches /"name"\s*:\s*"get_tools"/
+#@ matcher: body matches /"server_status"\s*:\s*\{/
+#@ matcher: body matches /"observatories_by_type"/
+#@ matcher: body matches /"parameters"\s*:\s*\{/
+#@ matcher: body matches /"tools"\s*:\s*\[.*?\]/
+#@ matcher: body matches /"resources"\s*:\s*\[.*?\]/
+#@ matcher: body matches /"prompts"\s*:\s*\[.*?\]/
+#> extract: name=ex_regex, from=body, regex=/"name"\s*:\s*"([^"]+)"/, group=1
+
+---
+
+POST /mcp/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "{{method}}",
+  "params": {},
+  "id": 1
+}
+
+
+#@ condition: and
+#@ stop_scan: true
+#@ matcher: body contains "jsonrpc"
+#@ matcher: body contains "result"
+#@ matcher: body matches /"available_tools"\s*:\s*\[/
+#@ matcher: body matches /"name"\s*:\s*"get_tools"/
+#@ matcher: body matches /"server_status"\s*:\s*\{/
+#@ matcher: body matches /"observatories_by_type"/
+#@ matcher: body matches /"parameters"\s*:\s*\{/
+#@ matcher: body matches /"tools"\s*:\s*\[.*?\]/
+#@ matcher: body matches /"resources"\s*:\s*\[.*?\]/
+#@ matcher: body matches /"prompts"\s*:\s*\[.*?\]/
+#> extract: name=ex_regex, from=body, regex=/"name"\s*:\s*"([^"]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7aa9205cf3d870b02ae9090ed575a596661b3e518beb9c283acaf8aebb285b68

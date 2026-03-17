@@ -1,0 +1,22 @@
+## id: gyra-master-admin
+## name: GYRA Master Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,master,admin,gyra,discovery
+## description: GYRA Master Admin login panel was detected.
+## shodan-query: title:"Login | GYRA Master Admin"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login | GYRA Master Admin"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 78e9ef4418b1c1bb13a2dac460f7cd9ab3a4af22d196ff5e229d95f7bd2388e9

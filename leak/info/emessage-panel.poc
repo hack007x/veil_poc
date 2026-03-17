@@ -1,0 +1,22 @@
+## id: emessage-panel
+## name: eMessage Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,emessage,discovery
+## description: eMessage login panel was detected.
+## fofa-query: title="emessage"
+## verification: true
+
+GET /login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?i)<title>emessage.*<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f017720ef81da67d3a20e05297423b1c68dc83e2468940e27f5746627dd7fb18

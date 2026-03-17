@@ -1,0 +1,26 @@
+## id: truenas-panel
+## name: TrueNAS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: login,panel,truenas,ixsystems,discovery
+## description: TrueNAS scale is a free and open-source NAS solution
+## affects: truenas
+## reference: https://www.truenas.com
+## shodan-query: html:"TrueNAS",http.html:"truenas"
+## fofa-query: body="truenas"
+## verification: true
+
+GET /ui/sessions/signin HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "'TrueNAS'"
+#@ matcher: body contains "assets/images/TrueNAS"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 55bf47d646676ed85913972be482f432159df29d67f19925fad8573b03f8cb3e

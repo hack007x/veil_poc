@@ -1,0 +1,22 @@
+## id: acunetix-panel-detect
+## name: Acunetix Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: An Acunetix login panel was detected.
+## reference: https://www.acunetix.com/
+## verification: true
+
+GET /#/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Acunetix</title>" || body contains "<acx-root></acx-root>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 18c5bda8218de4ca5dec804c5ea1d46083b6c577cf1c338a7a7a9e2b64f6120a

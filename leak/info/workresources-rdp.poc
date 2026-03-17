@@ -1,0 +1,22 @@
+## id: workresources-rdp
+## name: RDWeb RemoteApp and Desktop Connections - Web Access
+## author: hack007x
+## severity: info
+## tags: panel,workresources,discovery
+## description: RDWeb RemoteApp and Desktop Connections does not display.
+## shodan-query: http.title:"RD Web Access"
+## verification: true
+
+GET /RDWeb/Pages/en-US/login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Error: Unable to display RD Web Access</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2cffb1a2130740e8baee7551d59775bf152445d38f8b955eb1c6f826321342d2

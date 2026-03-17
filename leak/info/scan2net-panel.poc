@@ -1,0 +1,25 @@
+## id: scan2net-panel
+## name: Scan2Net - Panel
+## author: hack007x
+## severity: info
+## tags: panel,scan2net,login,discovery
+## description: Scan2Net Login was detected. This software is used to manage ImageAccess devices.Universities and public institutions often use ImageAccess devices.
+## shodan-query: http.favicon.hash:1780061475,http.title:"Scan2Net"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "/cgi/index.cgi"
+#@ matcher: body contains "/scanner_ico.gif"
+#@ matcher: body contains "Enhanced Scanning"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9ef40a4c6c84480ed75159a9df7fd16b9b6d583e15b523be6a1b9a76d00704d0

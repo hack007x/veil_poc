@@ -1,0 +1,24 @@
+## id: wingftp-panel
+## name: Wing FTP Server Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,wingftp,discovery
+## description: Detects the presence of Wing FTP Server web interface
+## affects: wingftp
+## reference: https://www.wftpserver.com/
+## shodan-query: http.html_hash:2121146066,http.favicon.hash:963565804,title:"Wing FTP Server",Server: Wing FTP Server
+## fofa-query: icon_hash="963565804",title="Wing FTP Server",Server: Wing FTP Server
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Wing FTP Server"
+#> extract: name=ex_regex, from=body, regex=/Wing FTP Server\s+v?([0-9]+\.[0-9]+\.[0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 6420541431cc7bd4ff0d605c257b6d43d71c9888dc24c7c48b6cb6ac89588a00

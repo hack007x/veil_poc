@@ -1,0 +1,25 @@
+## id: fortiweb-login
+## name: Fortinet FortiWeb Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortiweb,login,discovery
+## description: Fortinet FortiWeb login panel was detected.
+## affects: fortiweb
+## shodan-query: http.title:"FortiWeb - ",http.title:"fortiweb - "
+## fofa-query: title="fortiweb - "
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Please login"
+#@ matcher: body contains "ftnt-fortinet-grid"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3eef60e4746ad697822dda4bb88a9ba8af91567ce493b0212338b19cd6f734a2

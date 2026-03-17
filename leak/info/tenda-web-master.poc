@@ -1,0 +1,22 @@
+## id: tenda-web-master
+## name: Tenda Web Master Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tenda,router,discovery
+## description: Tenda Web Master login panel was detected.
+## shodan-query: title:"Tenda Web Master"
+## verification: true
+
+GET /login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tenda Web Master</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6b2e4140f392e6ac83dca57e61cfd9e0cdf8939fcc35d2dab9248beb4d072f53

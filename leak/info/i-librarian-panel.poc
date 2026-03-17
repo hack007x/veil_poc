@@ -1,0 +1,25 @@
+## id: i-librarian-panel
+## name: I-Librarian Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,i-librarian,detect,discovery
+## description: I Librarian panel was discovered.
+## reference: https://github.com/mkucej/i-librarian-free
+## reference: https://github.com/mkucej/i-librarian
+## fofa-query: I, Librarian
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>I, Librarian" || body contains "I, Librarian Free"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e0d78090c862477ff9f3c23575c6c141b9fe18d32254999ea5cd2ce617767712

@@ -1,0 +1,23 @@
+## id: supertokens-login-panel
+## name: Supertokens Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,supertokens,discovery
+## description: A Supertokens login panel was detected.
+## reference: https://supertokens.com
+## shodan-query: html:"<title>SuperTokens "
+## verification: true
+
+GET /auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>SuperTokens + React"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 90d77e821ddd8b8c23b8fe5b435098514c340643a1d378345b719d99b1823460

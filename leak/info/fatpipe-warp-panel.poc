@@ -1,0 +1,23 @@
+## id: fatpipe-warp-panel
+## name: FatPipe WARP - Panel Detect
+## author: hack007x
+## severity: info
+## tags: tech,fatpipe,panel,discovery
+## description: the FatPipe WARP administration panel was discovered.
+## reference: https://www.fatpipeinc.com/products/warp/index.php
+## verification: true
+
+GET /fpui/jsp/login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FatPipe WARP&nbsp;| Log in</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<h5>([0-9.a-z]+)<\/h5>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e64aa1cc93788bd321c4853dabf8bc49355874c7c0aeea0238bb697ec8f571fd

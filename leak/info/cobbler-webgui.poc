@@ -1,0 +1,25 @@
+## id: cobbler-webgui
+## name: Cobbler WebGUI Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: cobbler,webserver,panel,cobblerd,discovery
+## description: Cobbler WebGUI login panel was detected.
+## affects: cobbler
+## shodan-query: http.title:"Cobbler Web Interface",http.title:"cobbler web interface"
+## fofa-query: title="cobbler web interface"
+## verification: true
+
+GET /cobbler_web HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Cobbler Web Interface</title>" || body contains "/cobbler_webui_content/" || body contains "/cobbler_web/do_login"
+
+
+
+
+
+# @VEIL-STAMP: 5843927035622ca705a83ba9b523f916becf66e1490fdd51db7d08520b6e073d

@@ -1,0 +1,23 @@
+## id: epson-projector-detect
+## name: Epson Projector Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: iot,projector,panel,unauth,epson,discovery
+## description: Epson Projector login panel was detected.
+## fofa-query: cgi-bin/webconf.exe
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "cgi-bin/webconf.exe?page=1"
+#@ matcher: body contains "<title>Web Control</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 231bc3c607d2b9c4fb6d2bed5cc7c42acc78896803546e930d357c205b15de6f

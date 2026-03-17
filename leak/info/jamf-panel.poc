@@ -1,0 +1,23 @@
+## id: jamf-panel
+## name: Jamf MDM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: jamf,panel,mdm,discovery
+## description: Jamf Mobile Device Management login panel was detected.
+## affects: jamf
+## shodan-query: http.favicon.hash:1262005940
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ matcher: body contains "Jamf Pro Login" || body contains "Jamf Cloud Node"
+#> extract: name=ex_regex, from=body, regex=/<meta name=\"version\" content=\"(.*)\">/, group=1
+
+
+
+
+
+# @VEIL-STAMP: de66a1bd642dca4c4dd9747c45823fd03cf9ada6b6cd1e7de07b24e6107fa523

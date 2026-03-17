@@ -1,0 +1,28 @@
+## id: fortiauthenticator-detect
+## name: FortiAuthenticator - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortiauthenticator,detect,discovery
+## description: The FortiAuthenticator panel was detected.
+## affects: fortiauthenticator
+## shodan-query: http.favicon.hash:-1653412201
+## fofa-query: icon_hash=-1653412201
+## verification: true
+
+GET /api/v1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "list_endpoint"
+#@ matcher: body contains "schema"
+#@ matcher: body contains "faccloudhost"
+#@ matcher: header["content-type"] contains "application/json"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 30cec548ae1e2ac3562b23bda997ae662b28037559ac339b1df42fe360a4bf19

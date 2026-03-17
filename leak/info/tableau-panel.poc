@@ -1,0 +1,22 @@
+## id: tableau-panel
+## name: Tableau Python Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tableau,panel,python,discovery
+## description: Tableau Python Server panel was detected.
+## fofa-query: app="Tableau-Python-Server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Tableau Python Server</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e805664f8f40bc74cf5a702610fad8123f088913a04653931fc1b2bfbc4ac9f

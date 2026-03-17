@@ -1,0 +1,23 @@
+## id: omniampx-panel
+## name: Omnia MPX Node Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,omnia,omniampx,discovery
+## description: Omnia MPX Node login panel was detected.
+## affects: omnia_mpx_node
+## shodan-query: http.html:"Omnia MPX"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Omnia MPX Node | Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5a45e8294157850ba341537712137fd338b043a9ea6e32c5d732ef94b12e15dd

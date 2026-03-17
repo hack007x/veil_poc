@@ -1,0 +1,25 @@
+## id: spark-panel
+## name: Apache Spark Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,spark,apache,discovery
+## description: Apache Spark panel was detected.
+## affects: spark
+## reference: https://www.hypeinnovation.com
+## shodan-query: html:"/apps/IMT/Html/",http.html:"/apps/imt/html/",http.title:"spark master at"
+## fofa-query: title="spark master at",body="/apps/imt/html/"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "url=servlet/hype"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 45b20ddf7139780eeffbe81efd5c2a7941a4546affaff041258e5d1579066580

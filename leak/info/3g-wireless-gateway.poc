@@ -1,0 +1,24 @@
+## id: 3g-wireless-gateway
+## name: 3G Wireless Gateway Detection
+## author: hack007x
+## severity: info
+## tags: panel,router,edb,discovery
+## description: A 3G wireless gateway was detected.
+## reference: https://www.exploit-db.com/ghdb/7050
+## verification: true
+
+GET /htmlcode/html/indexdefault.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "g_i3gState"
+#@ matcher: body contains "g_sysinfo_sim_state"
+#@ matcher: body contains "g_iUID"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7837484e8fd2337ad55ba681743448e54c169c68b3d503c1844cf1fff10bb7da

@@ -1,0 +1,22 @@
+## id: normhost-backup-server-manager
+## name: Normhost Backup Server Manager Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,normhost,discovery
+## description: Normhost Backup server manager panel was detected.
+## shodan-query: http.title:"Normhost Backup server manager"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'content="Normhost Backup server manager'
+#@ matcher: status_code == 401
+
+
+
+
+
+# @VEIL-STAMP: d440bec611b29c8435d91605cc28de1e889d73042d06457ed7c3812ae76459d3

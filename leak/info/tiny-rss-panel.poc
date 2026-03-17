@@ -1,0 +1,24 @@
+## id: tiny-rss-panel
+## name: Tiny RSS Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tiny-rss,login,detect,discovery
+## description: Tiny Tiny RSS is a free RSS feed reader
+## affects: tiny_tiny_rss
+## reference: https://tt-rss.org/
+## shodan-query: http.favicon.hash:-418614327
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Tiny Tiny RSS" || body contains "ttrss_login" || body contains "ttrss_utility"
+
+
+
+
+
+# @VEIL-STAMP: 9611af740fa583b57dbbe317b071593522d7e9a43c1ab3c9e1ea0badabcbe4f5

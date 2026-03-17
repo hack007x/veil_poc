@@ -1,0 +1,24 @@
+## id: zabbix-server-login
+## name: Zabbix Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zabbix,discovery
+## description: Zabbix login panel was detected.
+## affects: zabbix
+## shodan-query: http.title:"zabbix-server",cpe:"cpe:2.3:a:zabbix:zabbix",http.favicon.hash:892542951
+## fofa-query: icon_hash=892542951,app="zabbix-监控系统" && body="saml",title="zabbix-server"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>zabbix-server: Zabbix</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 774dde9ab868dbe6a4180928fb430a46faf6898a8bc8ae286a7a57852f00f457

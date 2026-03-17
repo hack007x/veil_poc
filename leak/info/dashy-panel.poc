@@ -1,0 +1,27 @@
+## id: dashy-panel
+## name: Dashy Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dashy,detect,discovery
+## affects: dashy
+## reference: https://dashy.to/
+## shodan-query: http.favicon.hash:-1013024216
+## fofa-query: icon_hash=-1013024216
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Dashy"
+#@ matcher: body contains 'content="Dashy'
+#@ matcher: body contains "/css/dashy."
+#@ matcher: body contains "web-icons/dashy-logo.png"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c915d2f97d6ac32f3e53ddf0647b15d5950a7e3e2076f126e981ef0a890007ce

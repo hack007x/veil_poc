@@ -1,0 +1,24 @@
+## id: securepoint-utm
+## name: Securepoint UTM Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: securepoint,panel,discovery
+## description: Securepoint UTM admin panel was detected.
+## affects: unified_threat_management
+## fofa-query: app="Securepoint-UTM-v11-Admin-Interface-11.8.8.8"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body matches /<title>Securepoint UTM v11 - (.*)<\/title>/
+#> extract: name=ex_regex, from=body, regex=/\- Admin Interface \- ([0-9. (a-z)]+)<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: d5a0ad35180c2845a780ea8f0cf7126ebe8989ec07a489f29f56a9083108ef9a

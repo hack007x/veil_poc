@@ -1,0 +1,23 @@
+## id: cisco-sendgrid
+## name: Cisco ServiceGrid Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco ServiceGrid login panel was detected.
+## shodan-query: http.title:"Cisco ServiceGrid"
+## verification: true
+
+GET /pages/sdcall/Login.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?m)^<title>Cisco ServiceGrid (.*)<\/title>$/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<div class="top\-margin">Version ([0-9.]+)<\/div>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 3c1a05070cc9327a6bcee819bf7c2ecf91e40e9a49399f715665844d65999128

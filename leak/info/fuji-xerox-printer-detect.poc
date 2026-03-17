@@ -1,0 +1,22 @@
+## id: fuji-xerox-printer-detect
+## name: Fuji Xerox Printer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: iot,panel,fuji,printer,discovery
+## description: Fuji Xerox printer panel was detected.
+## shodan-query: http.html:"Fuji Xerox Co., Ltd"
+## verification: true
+
+GET /hdstat.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Fuji Xerox Co., Ltd"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 057d0c699395c2648b12b57cfad67d63fd2187be2c74fad97df0fb614b7fd04e

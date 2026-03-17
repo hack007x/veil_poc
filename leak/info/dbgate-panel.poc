@@ -1,0 +1,21 @@
+## id: dbgate-panel
+## name: DbGate Web Client Management - Panel Detect
+## author: hack007x
+## severity: info
+## tags: panel,dbgate,oss,discovery
+## description: The DbGate Web Client Management Panel is detected on the target system.
+## reference: https://github.com/dbgate/dbgate
+## shodan-query: http.favicon.hash:1198579728
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>DbGate</title>" || body contains "starting_dbgate_zero" || body contains "Loading DbGate App" || body contains "DbGate - web based opensource database administration tool for MS SQL, MySQL, Postgre SQL"
+
+
+
+
+
+# @VEIL-STAMP: 851f14ac2d6d9da55fd72fd5603239727dfb2ebbfebba52bf0aee7f9256e59d0

@@ -1,0 +1,26 @@
+## id: gitlab-detect
+## name: Gitlab Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gitlab,discovery
+## description: Gitlab login panel was detected.
+## affects: gitlab
+## shodan-query: http.title:"GitLab",cpe:"cpe:2.3:a:gitlab:gitlab",http.title:"gitlab"
+## fofa-query: title="gitlab"
+## verification: true
+
+GET /users/sign_in HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "GitLab"
+#@ matcher: body contains "https://about.gitlab.com"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7a03dfae052033d82fc1de480851913312a9faf52b994f8c3a1269027c370f4e

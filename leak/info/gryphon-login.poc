@@ -1,0 +1,20 @@
+## id: gryphon-login
+## name: Gryphon Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,gryphon,router,discovery
+## description: Gryphon router panel was detected.
+## shodan-query: http.title:"Gryphon"
+## verification: true
+
+GET /cgi-bin/luci/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Gryphon" || body contains "Welcome to GryphonCare"
+
+
+
+
+
+# @VEIL-STAMP: 118be249b54cca25df2772589f8393d228fca6f30f284515b09554d1f152d5dd

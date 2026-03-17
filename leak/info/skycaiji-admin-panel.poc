@@ -1,0 +1,24 @@
+## id: skycaiji-admin-panel
+## name: SkyCaiji Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,tech,skycaiji,discovery
+## description: SkyCaiji admin panel was detected.
+## affects: skycaiji
+## verification: true
+
+GET /index.php?s=/admin/Index/index HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<p>Powered by <a href="https://www.skycaiji.com" target="_blank">'
+#@ matcher: body contains '<a href="/index.php?s=/Admin/Index/find_password">'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/com">SkyCaiji<\/a> ([A-Z0-9.]+) 后台管理<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 526c7d7934f84010854258cf166f0f727e0a67730deb2777f8e5d925320a1bab

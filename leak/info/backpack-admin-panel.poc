@@ -1,0 +1,21 @@
+## id: backpack-admin-panel
+## name: Laravel Backpack Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,backpack,admin,discovery
+## description: Laravel Backpack admin login panel was detected.
+## affects: backpack\\\\crud
+## shodan-query: title:"Backpack Admin"
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "Backpack Admin" || body contains "backpack_alerts"
+
+
+
+
+
+# @VEIL-STAMP: 6ef700211f7d729ea7d530f11ed83027de4705fff853ee798712c5bd003da2a3

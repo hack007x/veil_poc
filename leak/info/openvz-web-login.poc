@@ -1,0 +1,23 @@
+## id: openvz-web-login
+## name: OpenVZ Web Panel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openvz,discovery
+## description: OpenVZ Web Panel login panel was detected.
+## reference: https://github.com/sibprogrammer/owp
+## shodan-query: http.favicon.hash:-1898583197
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Login - OpenVZ Web Panel"
+
+
+
+
+
+# @VEIL-STAMP: 93b4aa4e2f20e344bd896cd87f141a8d8b5229e5310bd335f787f9fc277f08cf

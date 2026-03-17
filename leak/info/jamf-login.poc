@@ -1,0 +1,24 @@
+## id: jamf-login
+## name: Jamf Pro Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,jamf,discovery
+## description: Jamf Pro login panel was detected.
+## affects: jamf
+## shodan-query: title:"Jamf Pro"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body matches /<title>Jamf Pro Login(.*)<\/title>/
+#@ matcher: status_code == 401
+
+
+
+
+
+# @VEIL-STAMP: dd75f753a8e4cd1b09ef28ff420b36b8aa853590b598588cd19db7519d031fb0

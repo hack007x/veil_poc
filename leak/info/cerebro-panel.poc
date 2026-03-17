@@ -1,0 +1,21 @@
+## id: cerebro-panel
+## name: Cerebro Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cerebro,discovery
+## description: Cerebro login panel was detected.
+## reference: https://github.com/lmenezes/cerebro
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Cerebro</title>"
+#> extract: name=ex_regex, from=body, regex=/<small>([a-z0-9.]+)<\/small>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 43f68f6e1e036bc71ec6bcae0e21864bcecf9bf6d2894d3bb217a4ee1685768e

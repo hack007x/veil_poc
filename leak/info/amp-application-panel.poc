@@ -1,0 +1,24 @@
+## id: amp-application-panel
+## name: Application Management Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,amp,cubecoders,discovery
+## description: Application Management Panel was detected.
+## affects: amp
+## shodan-query: title:"AMP - Application Management Panel",http.title:"amp - application management panel"
+## fofa-query: title="amp - application management panel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>AMP - Application Management Panel</title>"
+#@ matcher: header["content-type"] contains "text/html"
+
+
+
+
+
+# @VEIL-STAMP: d861b6392e27f3b2be5e2de1de9bc147ea2374a137dbbdbdc435d46be57f6fc3

@@ -1,0 +1,22 @@
+## id: deepmail-panel
+## name: Advanced eMail Solution DEEPMail - Panel
+## author: hack007x
+## severity: info
+## tags: panel,deepmail,login,detect,discovery
+## description: Advanced eMail Solution DEEPMail login panel was detected.
+## shodan-query: http.title:"Advanced eMail Solution DEEPMail"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Advanced eMail Solution DEEPMail</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 937fca0db3c007808b0f92c0df3562dcfd067e7673c36821ad8c40254f06fa16

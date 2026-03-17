@@ -1,0 +1,23 @@
+## id: turnkey-openvpn
+## name: TurnKey OpenVPN Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openvpn,turnkey,webshell,vpn,discovery
+## description: TurnKey OpenVPN panel was detected.
+## shodan-query: http.title:"TurnKey OpenVPN"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "TurnKey OpenVPN"
+#@ matcher: body contains "Web Shell"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 221f045797faee0b5f90c9e9b0bb5572905f1e8589f20c2b2783e380d98f1814

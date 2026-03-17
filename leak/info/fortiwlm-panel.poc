@@ -1,0 +1,26 @@
+## id: fortiwlm-panel
+## name: Fortinet FortiWLM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,fortinet,fortiwlm,login,discovery
+## description: Fortinet FortiWLM login panel was detected.
+## affects: fortiwlm
+## reference: https://docs.fortinet.com/product/fortiwlm/8.6
+## shodan-query: html:"fortiwlm",http.html:"fortiwlm",http.title:"fortiwlm"
+## fofa-query: title="fortiwlm",body="fortiwlm"
+## verification: true
+
+GET /wlm/login?next=/wlm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>FortiWLM Login</title>"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 876b5c3dfbec75a67103399f0400cc3a54ee9b5ddb1bdea3a63d7d0ecb3fa239

@@ -1,0 +1,26 @@
+## id: axigen-webmail
+## name: Axigen WebMail PanelDetection
+## author: hack007x
+## severity: info
+## tags: axigen,panel,discovery
+## description: An Axigen webmail panel was discovered.
+## affects: axigen_mail_server
+## reference: https://www.axigen.com/
+## shodan-query: http.title:"Axigen WebMail"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /(?i)(Axigen WebMail)/
+#@ matcher: body matches /<title>Axigen Standard Webmail - (.*)<\/title>/
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<script type="text\/javascript" src="js\/lib_login\.js\?v=(.+)"><\/script>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 9183a487c86c34da5b2984e97c9e430e23723220c48a33b07150280af3954624

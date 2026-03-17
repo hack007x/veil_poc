@@ -1,0 +1,26 @@
+## id: monstra-admin-panel
+## name: Monstra Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,monstra,discovery
+## description: Monstra admin panel was detected.
+## affects: monstra_cms
+## reference: https://github.com/monstra-cms/monstra/
+## shodan-query: http.favicon.hash:419828698
+## fofa-query: icon_hash=419828698
+## verification: true
+
+GET /admin/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'content="Monstra Admin Area'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Version ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 5858ced02320d65c10b694938c174cbf8b5884c40c2f5381753ed6f8f30f78e0

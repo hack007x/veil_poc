@@ -1,0 +1,22 @@
+## id: gladinet-centrestack-panel
+## name: CentreStack Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,centrestack,login,gladinet,discovery
+## description: Gladinet CentreStack login panel was detected.
+## shodan-query: title:"CentreStack"
+## verification: true
+
+GET /portal/loginpage.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "CentreStack - Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b73b80ae709d2d271eea22291152d9ded4c98f158d6415dde8a2efe5ae27589f

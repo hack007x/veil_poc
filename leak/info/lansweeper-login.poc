@@ -1,0 +1,25 @@
+## id: lansweeper-login
+## name: Lansweeper Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: lansweeper,tech,panel,discovery
+## description: Lansweeper login panel was detected.
+## affects: lansweeper
+## shodan-query: title:"Lansweeper - Login",http.title:"lansweeper - login"
+## fofa-query: title="lansweeper - login"
+## verification: true
+
+GET /login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Lansweeper - Login"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/"\/js\/CustomControls\.js\?([0-9.]+)" type="text\/javascript"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: da99a1d17d60eda0eba7826788eb0c5ab516627a71a6be68f4ad3c02798fb749

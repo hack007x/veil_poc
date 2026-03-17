@@ -1,0 +1,23 @@
+## id: vistaweb-panel
+## name: Vista Web Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,vistaweb,login,discovery
+## description: Vista Web login panel was detected.
+## reference: https://resa.aero/solutions-operations-facturation/vista-web/
+## verification: true
+
+GET /account/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "login" && body contains "/lib/@resa/identityserver/" && body contains "resa.aero"
+#> extract: name=ex_regex, from=body, regex=/v=([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 37dfd877816105f875a15ffe075b8b8f83e0b9e0683b905ed2585f42f9cc3691

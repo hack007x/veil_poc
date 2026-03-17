@@ -1,0 +1,22 @@
+## id: codemeter-webadmin-panel
+## name: CodeMeter - WebAdmin Panel Access
+## author: hack007x
+## severity: info
+## tags: codemeter,webadmin,panel,wibu,discovery
+## description: CodeMeter WebAdmin panel was accessed.
+## affects: codemeter
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: header["set-cookie"] contains "Set-Cookie: CmWebAdminSession"
+#@ matcher: status_code == 301 || status_code == 302
+
+
+
+
+
+# @VEIL-STAMP: 103b4767cda3aa82de9d2ac227a9af9b51a9eef65d8f83aaddf0341e46709bca

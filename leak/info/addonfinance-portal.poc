@@ -1,0 +1,22 @@
+## id: addonfinance-portal
+## name: AddOnFinance Portal - Detect
+## author: hack007x
+## severity: info
+## tags: panel,addon,finance,detect,discovery
+## description: AddOnFinance Portal Panel was detected.
+## shodan-query: title:"AddOnFinancePortal"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "AddOnFinancePortal</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 366f8c25a5c1ecdf1b17abacf3941eebf5bbab83e75e09126c58fa26abb52cd9

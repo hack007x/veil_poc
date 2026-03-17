@@ -1,0 +1,24 @@
+## id: openvpn-router-management
+## name: OpenVPN Server Router Management Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openvpn,router,discovery
+## description: OpenVPN Server Router Management Panel was detected.
+## affects: openvpn
+## shodan-query: http.html:"Router Management - Server OpenVPN",http.html:"router management - server openvpn",http.title:"openvpn-admin",cpe:"cpe:2.3:a:openvpn:openvpn"
+## fofa-query: body="router management - server openvpn",title="openvpn-admin"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Router Management - Server OpenVPN"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 44b2502ffbb209a809ebca744365bb46f5e42b91febd1ca081999e8aed8ae61c

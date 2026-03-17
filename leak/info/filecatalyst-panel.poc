@@ -1,0 +1,22 @@
+## id: filecatalyst-panel
+## name: FileCatalyst File Transfer Solution - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,filecatalyst,detect,discovery
+## description: Detects the presence of FileCatalyst file transfer solution login panel
+## shodan-query: html:"FileCatalyst file transfer solution"
+## verification: true
+
+GET /workflow/jsp/logon.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "FileCatalyst file transfer solution"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f151e74ae12e64877eb523e9e1e366f70bda1d3bbf997e675e6f0c24d70b0c75

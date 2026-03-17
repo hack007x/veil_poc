@@ -1,0 +1,25 @@
+## id: phpminiadmin-panel
+## name: phpMiniAdmin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,phpminiadmin,discovery
+## description: phpMiniAdmin login panel was detected.
+## affects: phpminiadmin
+## reference: https://github.com/osalabs/phpminiadmin
+## shodan-query: http.html:"phpMiniAdmin"
+## verification: true
+
+GET /phpminiadmin.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>phpMiniAdmin"
+#> extract: name=ex_regex, from=body, regex=/phpMiniAdmin ([0-9._]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 7ff75e975e61fec545c9ae8140d257d358ad9f0ae1526eec3c6b46424e315308

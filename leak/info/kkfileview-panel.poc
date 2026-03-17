@@ -1,0 +1,23 @@
+## id: kkfileview-panel
+## name: kkFileView Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kkfileview,discovery
+## description: kkFileView panel was detected.
+## affects: kkfileview
+## shodan-query: http.title:"kkFileView"
+## verification: true
+
+GET /index HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>kkFileView演示首页</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6a6d3e7e9bbf828d7909e1aac34750c0a9c1b222be4a9455dd692c8c971c676f

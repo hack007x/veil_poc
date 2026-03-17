@@ -1,0 +1,24 @@
+## id: cisco-sd-wan
+## name: Cisco SD-WAN Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,cisco,discovery
+## description: Cisco SD-WAN login panel was detected.
+## affects: sd-wan
+## reference: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-bufovulns-B5NrSHbj
+## shodan-query: cpe:"cpe:2.3:a:cisco:sd-wan"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "SD-Wan Center"
+
+
+
+
+
+# @VEIL-STAMP: 0a60583769fcc43c63ed834cc70e69e6295de6392e269176b28f3839877c593a

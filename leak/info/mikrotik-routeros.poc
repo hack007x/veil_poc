@@ -1,0 +1,33 @@
+## id: mikrotik-routeros
+## name: MikroTik Router OS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,mikrotik,discovery
+## description: MikroTik Router OS login panel was detected.
+## affects: routeros
+## reference: https://systemweakness.com/routeros-user-with-just-ftp-policy-can-write-to-filesystem-cve-2021-27221-e3e45d780dfe
+## shodan-query: http.title:"mikrotik routeros > administration"
+## fofa-query: title="mikrotik routeros > administration"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "If this device is not in your possession, please contact your local network administrator"
+#@ matcher: body contains ".mikrotik.com"
+#@ matcher: body contains "<title>mikrotik routeros > administration</title>" || body contains "<title>Mikrotik Router" || body contains '<img src="/webcfg/' || body contains "<title>MikroTik RouterOS Managing Webpage</title>"
+#@ matcher: body contains "Please log on to use the mikrotik hotspot service"
+#@ matcher: body contains "mikrotik hotspot > login"
+#@ matcher: body contains "Server: mikrotik httpproxy"
+#> extract: name=ex_regex_1, from=body, regex=/<h1>RouterOS (.+)<\/h1>/, group=1
+#> extract: name=ex_regex_2, from=body, regex=/<div class="top">mikrotik routeros (.[0-9.]+) configuration page<\/div>/, group=1
+#> extract: name=ex_regex_3, from=body, regex=/routeros (.[0-9.]+) /, group=1
+#> extract: name=ex_regex_4, from=body, regex=/<b>MikroTik RouterOS (.[0-9.]+)<\/b>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f494b565db4159dbb776154683314a2c7b1a0fa371371febaeb1b4b2466c283e

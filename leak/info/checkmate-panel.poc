@@ -1,0 +1,21 @@
+## id: checkmate-panel
+## name: Checkmate Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: checkmate,panel,discovery,login
+## description: Checkmate administrative login page was found.
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Checkmate</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 39f79eb58540c31b8bb713759f736a3ecbc5487dfa6c8680d99f0b8d719113f9

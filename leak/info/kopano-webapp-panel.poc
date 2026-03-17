@@ -1,0 +1,26 @@
+## id: kopano-webapp-panel
+## name: Kopano WebApp Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kopano,login,detect,discovery
+## description: Kopano WebApp login panel was detected.
+## affects: webapp
+## reference: https://kopano.com/
+## shodan-query: http.title:"Kopano WebApp"
+## verification: true
+
+GET /webapp/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Kopano WebApp" || body contains 'content=\"Kopano WebApp'
+#> extract: name=ex_regex, from=body, regex=/\?kv([0-9.]+)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1b43acd4f589872e84c61da2a2c72df9dde649e718ad355625f38ec3367164e9

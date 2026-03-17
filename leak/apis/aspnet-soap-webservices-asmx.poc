@@ -1,0 +1,26 @@
+## id: aspnet-soap-webservices-asmx
+## name: SOAP-based ASP.NET web services ASMX - Detect
+## author: hack007x
+## severity: info
+## tags: config,exposure,asmx,soap,discovery
+## description: SOAP-based ASP.NET web services collection was detected.
+## reference: https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/write-web-service
+## shodan-query: http.html:".asmx?WSDL"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains ".asmx?op="
+#@ matcher: body contains ".asmx?WSDL"
+#@ matcher: body contains ".asmx?disco"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<p class="heading1">([A-Za-z0-9\s_\-\.]+)<\/p>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 289a9404dcb2d365454d5cab71a910e8546b8a7faa8058f45f18d820e17d562a

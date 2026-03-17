@@ -1,0 +1,24 @@
+## id: vmware-cloud-director
+## name: VMware Cloud Director Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,vmware,discovery
+## description: VMware Cloud Director login panel was detected.
+## affects: cloud_director
+## shodan-query: title:"Welcome to VMware Cloud Director",http.title:"welcome to vmware cloud director"
+## fofa-query: title="welcome to vmware cloud director"
+## verification: true
+
+GET /login/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Welcome to VMware Cloud Director</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: ff374968a69b44dbd05f2cfb128ed22ef4e9c4fac7121e7dea5ba77aae887450

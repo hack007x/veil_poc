@@ -1,0 +1,24 @@
+## id: openemr-detect
+## name: OpenEMR Product Registration Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,openemr,open-emr,discovery
+## description: OpenEMR Product Registration panel was detected.
+## affects: openemr
+## shodan-query: http.html:"OpenEMR",http.html:"openemr",http.title:"openemr",http.favicon.hash:1971268439
+## fofa-query: app="OpenEMR",body="openemr",title="openemr",app="openemr",icon_hash=1971268439
+## verification: true
+
+GET /interface/login/login.php?site=default HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '"title":"OpenEMR Product Registration"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 719729ce0a0e5a51cefbb73acb0c4a95e842a2af08d5f5d3dcf2ebb52c8ba569

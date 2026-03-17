@@ -1,0 +1,25 @@
+## id: hybris-administration-console
+## name: Hybris Administration Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,hybris,sap,discovery
+## description: Hybris Administration Console login panel was detected.
+## affects: hybris
+## shodan-query: title:"Hybris",http.title:"hybris"
+## fofa-query: title="hybris"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "hybris administration console"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 21a155c66004727f61ed3958e6a13baef5412f8133b8c92ec184b31b3e0f6400

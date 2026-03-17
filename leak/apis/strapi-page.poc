@@ -1,0 +1,22 @@
+## id: strapi-page
+## name: Strapi API - Detect
+## author: hack007x
+## severity: info
+## tags: api,strapi,exposure,discovery
+## description: Strapi API was detected.
+## affects: strapi
+## reference: https://strapi.io/
+## shodan-query: http.title:"Welcome to your Strapi app"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Welcome to your Strapi app</title>"
+
+
+
+
+
+# @VEIL-STAMP: 0c32e10d3f1a9991021aa701d4635adb46d3137f607af80f9de3a98b15545324

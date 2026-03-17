@@ -1,0 +1,25 @@
+## id: cyberpanel-panel
+## name: Cyberpanel Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: cyberpanel,panel,login,detect,discovery
+## description: Cyberpanel login panel was detected.
+## affects: cyberpanel
+## reference: https://cyberpanel.net/KnowledgeBase/
+## shodan-query: html:"cyberpanel"
+## fofa-query: app="Cyberpanel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /<title>(.*)CyberPanel(.*)<\/title>/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 71145d0d1729f94b6881ac1d1f506e822b3a7ae6c0daa1890fab1cdab5e0d569

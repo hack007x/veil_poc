@@ -1,0 +1,24 @@
+## id: tautulli-unauth
+## name: Tautulli Panel - Unauthenticated Access
+## author: hack007x
+## severity: medium
+## tags: panel,misconfig,tautulli,unauth,exposure,discovery
+## affects: tautulli
+## shodan-query: title:"Tautulli - Home",http.title:"tautulli",http.title:"tautulli - home"
+## fofa-query: title="tautulli - home",title="tautulli"
+## verification: true
+
+GET /home HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Tautulli - Home"
+#@ matcher: body contains "Libraries</a>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 6e3511ec9c9cacee041f4e1287f2b109a8ac4e01d870d4af8f90c1e6df42d41f

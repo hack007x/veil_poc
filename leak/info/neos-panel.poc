@@ -1,0 +1,24 @@
+## id: neos-panel
+## name: Neos CMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,neos,cms,login,discovery
+## description: Neos CMS login panel was detected.
+## reference: https://github.com/neos/neos/blob/master/Configuration/Routes.yaml
+## verification: true
+
+GET /neos/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Neos comes with ABSOLUTELY NO WARRANTY"
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=body, kval=x_flow_powered
+
+
+
+
+
+# @VEIL-STAMP: 8ce6ca9720f999024858c3bfcc96c3ca0fa9b182fa85a9c59f064b7e5e4f5ae1

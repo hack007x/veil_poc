@@ -1,0 +1,24 @@
+## id: ruckus-wireless-admin-login
+## name: Ruckus Wireless Admin Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,exposed,ruckus,ruckuswireless,discovery
+## description: Ruckus Wireless admin login panel was detected.
+## affects: e510
+## shodan-query: title:"ruckus",http.title:"ruckus"
+## fofa-query: title="ruckus"
+## verification: true
+
+GET /login.asp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Ruckus Wireless Admin</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1d73b958705dc04e48702e2e16389cb77544d5c57741debb0af778872a779595

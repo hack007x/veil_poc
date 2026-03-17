@@ -1,0 +1,23 @@
+## id: selenium-grid
+## name: Selenium Grid Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,unauth,selenium,discovery
+## description: Selenium Grid panel was detected.
+## affects: selenium_grid
+## shodan-query: http.title:"Selenium Grid"
+## verification: true
+
+GET /ui/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Selenium Grid</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8906ebbd551eb204ae10a374932e3187d35a1df27a8ec1665f6a237de8124f0f

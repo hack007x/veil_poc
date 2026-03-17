@@ -1,0 +1,23 @@
+## id: ollama-llm-panel
+## name: Ollama LLM Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ollama,llm,detect,discovery,ai
+## description: Ollama LLM Panel was detected
+## affects: ollama
+## shodan-query: Ollama is running
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Ollama is running"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 699540fb10ef8f8c6aba0dd74dd1acc76a17452aa57bbd0be859c02872bd2954

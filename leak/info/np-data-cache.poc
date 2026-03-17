@@ -1,0 +1,23 @@
+## id: np-data-cache
+## name: NP Data Cache Panel - Detect
+## author: hack007x
+## severity: info
+## tags: np,panel,cache,discovery
+## description: NP Data Cache panel was detected.
+## shodan-query: title:"NP Data Cache"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "NP Data Cache"
+#@ matcher: body contains "Server logs (if subscribed)"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8a7b1e7eb8a373b70897b3dad0c6f8da7edc62e773604dae5fe8913d11776b43

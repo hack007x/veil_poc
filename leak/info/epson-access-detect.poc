@@ -1,0 +1,24 @@
+## id: epson-access-detect
+## name: Epson Device Unauthorized Access Detect
+## author: hack007x
+## severity: info
+## tags: iot,printer,panel,unauth,epson,edb,discovery
+## description: A publicly available Epson device panel (printer, scanner, etc.) was detected.
+## reference: https://www.exploit-db.com/ghdb/6922
+## verification: true
+
+GET /PRESENTATION/EPSONCONNECT HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Epson Connect"
+#@ matcher: body contains "/IMAGE/EPSONLOGO.PNG"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/<title>([A-Z-0-9]+) Series<\/title>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e6fb3f5fcbac78c95ed5974a9437778d8dcba561576d774e002122182d24fb91

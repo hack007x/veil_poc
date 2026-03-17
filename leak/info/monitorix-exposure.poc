@@ -1,0 +1,26 @@
+## id: monitorix-exposure
+## name: Monitorix Panel - Detect
+## author: hack007x
+## severity: info
+## tags: monitorix,exposure,logs,panel,discovery
+## description: Monitorix panel was detected.
+## reference: https://www.monitorix.org/
+## verification: true
+
+GET /monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<!-- graph table begins -->"
+#@ matcher: body contains "Global kernel usage</b>"
+#@ matcher: body contains "Kernel usage per processor</b>"
+#@ matcher: body contains "<!-- graph table ends -->"
+#@ matcher: body contains "1day.png'"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 1aefb73efcbfc8b0edc01effab0b1e345433c93eba4b5417f3031cf996aebe94

@@ -1,0 +1,22 @@
+## id: clave-login-panel
+## name: Clave Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,clave,login,discovery
+## description: Clave login panel was detected.
+## verification: true
+
+GET /admin.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "Clave"
+
+
+
+
+
+# @VEIL-STAMP: d8b1e9956658025e7f34e9eaecd9aa9dbdc04738573090502128938500c11fb7

@@ -1,0 +1,27 @@
+## id: celonis-login-panel
+## name: Celonis Login - Panel
+## author: hack007x
+## severity: info
+## tags: panel,celonis,login,detect,discovery
+## description: Detects Celonis Process Intelligence login panels.
+## affects: celonis
+## reference: https://www.celonis.com
+## shodan-query: http.title:"Celonis",html:"Amazing insights. Better results."
+## fofa-query: body="Amazing insights. Better results."
+## verification: true
+
+GET /welcome HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Amazing insights. Better results."
+#@ matcher: body contains "draw-celonis-logo"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/Celonis\s([0-9]+\.[0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: f576c92103c1d214888f1f138352b2821ae1a6207939c651414c817f3786fc53

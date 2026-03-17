@@ -1,0 +1,27 @@
+## id: metabase-panel
+## name: Metabase Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,metabase,login,discovery
+## description: Metabase login panel was detected.
+## affects: metabase
+## shodan-query: http.title:"Metabase",http.title:"metabase"
+## fofa-query: title="metabase",app="metabase"
+## verification: true
+
+GET /auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Metabase</title>"
+#@ matcher: body contains "window.MetabaseBootstrap"
+#@ matcher: body contains "window.MetabaseRoot"
+#> extract: name=ex_regex, from=body, regex=/"(v\d+.\d+.\d+.?\d?)"/, group=1
+
+
+
+
+
+# @VEIL-STAMP: a3e670974e7e56d03844cd7c5b949f11e01e91f9ce61b370c65b5133e9e2a24c

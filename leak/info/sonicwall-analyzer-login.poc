@@ -1,0 +1,24 @@
+## id: sonicwall-analyzer-login
+## name: SonicWall Analyzer Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,sonicwall,discovery
+## description: SonicWall Analyzer login panel was detected.
+## affects: analyzer
+## shodan-query: title:"SonicWall Analyzer Login",http.title:"sonicwall analyzer login"
+## fofa-query: title="sonicwall analyzer login"
+## verification: true
+
+GET /sgms/auth HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SonicWall Analyzer Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: e37ca2055c877f169506209361b3537df6c627ddb5dbba8fe3d943a799bed11e

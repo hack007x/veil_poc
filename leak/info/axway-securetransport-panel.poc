@@ -1,0 +1,27 @@
+## id: axway-securetransport-panel
+## name: Axway SecureTransport Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,axway,securetransport,discovery
+## description: AXWAY SecureTransport login panel was detected.
+## affects: securetransport
+## reference: https://www.axway.com/en/products/managed-file-transfer/securetransport
+## shodan-query: http.title:"SecureTransport" || http.favicon.hash:1330269434,http.title:"st web client",http.title:"securetransport" || http.favicon.hash:1330269434
+## fofa-query: title="securetransport" || http.favicon.hash:1330269434,title="st web client"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Axway SecureTransport" || body contains 'alt="Axway SecureTransport"' || body contains "Welcome to SecureTransport" || body contains 'PrintServerInfo("SecureTransport'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/"SecureTransport", "([0-9.]+)",/, group=1
+
+
+
+
+
+# @VEIL-STAMP: b77eee8da3a57a64d8b8648455e56fe4dcf4f3ff35655a5929a9c427376c7cc2

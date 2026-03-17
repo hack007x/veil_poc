@@ -1,0 +1,25 @@
+## id: syncserver-panel
+## name: Symmetricom SyncServer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,syncserver,symmetricom,detect,microchip,discovery
+## affects: syncserver_s650_firmware
+## shodan-query: html:"Symmetricom SyncServer",http.html:"symmetricom syncserver"
+## fofa-query: body="symmetricom syncserver"
+## verification: true
+
+GET /login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Symmetricom SyncServer"
+#@ matcher: body contains "login"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/Symmetricom SyncServer ([A-Z0-9]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 57e0758af4cca47b4bf3b570be6d1f2150ce231ded5d0fbb0d809e4f024ec3a2

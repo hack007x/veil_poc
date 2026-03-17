@@ -1,0 +1,24 @@
+## id: manageengine-supportcenter
+## name: ZOHO ManageEngine SupportCenter Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,zoho,manageengine,zohocorp,discovery
+## description: ZOHO ManageEngine SupportCenter panel was detected.
+## affects: manageengine_supportcenter_plus
+## shodan-query: http.title:"ManageEngine SupportCenter Plus",http.title:"manageengine supportcenter plus"
+## fofa-query: title="manageengine supportcenter plus"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ManageEngine SupportCenter Plus</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: f9a6c70209606232067901a457fab3e407b1218e0440974f688526620df8fe51

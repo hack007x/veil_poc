@@ -1,0 +1,21 @@
+## id: somfy-login
+## name: Somfy Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,discovery
+## description: Somfy login panel was detected.
+## verification: true
+
+GET /m_login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Home motion by Somfy"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 209afa84fe106f7ab70205009402731e87cd9f1fcbf9a9aaa6d9d075a4305c35

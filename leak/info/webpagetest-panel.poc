@@ -1,0 +1,21 @@
+## id: webpagetest-panel
+## name: WebPageTest Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,webpagetest,discovery
+## description: WebPageTest login panel was detected.
+## affects: webpagetest
+## shodan-query: title:"WebPageTest"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "WebPageTest - Website Performance and Optimization Test"
+
+
+
+
+
+# @VEIL-STAMP: 40005b11d78f91f9942d38eb10fe69c31f9baca86ae65a19426e0500e62ada11

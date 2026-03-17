@@ -1,0 +1,24 @@
+## id: daybyday-panel
+## name: DaybydayCRM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,daybyday,daybydaycrm,discovery
+## description: DaybydayCRM login panel was detected.
+## affects: daybyday
+## shodan-query: http.title:"Daybyday",http.title:"daybyday"
+## fofa-query: title="daybyday"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Daybyday - Login</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 19734681f3b764ebf391e0ab29b73425fa6f67b0a701f2a2a6e2218b3a9c87da

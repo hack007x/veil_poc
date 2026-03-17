@@ -1,0 +1,23 @@
+## id: haivision-gateway-panel
+## name: Haivision Gateway Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,haivision,login,detect,discovery
+## description: Haivision Gateway login panel was detected.
+## reference: https://www.haivision.com/
+## shodan-query: http.title:"Haivision Gateway"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Haivision Gateway" || body contains 'content=\"Haivision Gateway'
+
+
+
+
+
+# @VEIL-STAMP: 2cb170588b1696a84eff558a4dbc6c85cf700a0a66d32cacdcffb7c02ed19e52

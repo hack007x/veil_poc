@@ -1,0 +1,25 @@
+## id: mantisbt-panel
+## name: MantisBT Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,mantisbt,discovery
+## description: MantisBT login panel was detected.
+## affects: mantisbt
+## reference: https://www.mantisbt.org/
+## shodan-query: http.favicon.hash:662709064,cpe:"cpe:2.3:a:mantisbt:mantisbt"
+## fofa-query: icon_hash=662709064
+## verification: true
+
+GET /login_page.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'title="MantisBT: Text Search"' || body contains 'title="MantisBT: Issue Id"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 929bea8d50c8ccecf44fa76593b73533772858027b8d62d3914e2b72929d1805

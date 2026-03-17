@@ -1,0 +1,23 @@
+## id: ametys-admin-login
+## name: Ametys Admin Login Panel
+## author: hack007x
+## severity: info
+## tags: panel,ametys,cms,discovery
+## description: An Ametys admin login panel was discovered.
+## affects: ametys
+## verification: true
+
+GET /_admin/index.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Ametys - Log in" || body contains '<span class="ametys-version">'
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/&nbsp;([0-9.]+)<\/span>/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 66b6a836e8a5c6a6b6752a0e42e2b4be229ac4520f74b3611cc5de365f78d431

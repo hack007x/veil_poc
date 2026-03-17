@@ -1,0 +1,26 @@
+## id: monsta-ftp-detect
+## name: Monsta FTP - Detect
+## author: hack007x
+## severity: info
+## tags: tech,monsta,ftp,detect
+## description: Detects Monsta FTP web-based file manager interface.
+## reference: https://www.monstaftp.com/
+## shodan-query: http.title:"Monsta FTP"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains 'ng-app="MonstaFTP"'
+#@ matcher: body contains "<title>Monsta FTP"
+#@ matcher: status_code == 200
+#> extract: name=version, from=body, regex=/monsta-min-([0-9.]+)\.js/, group=1
+
+
+
+
+
+# @VEIL-STAMP: e6a115700e3852f81f14a50e262cbd8384c5b930daaeda1d308eddeba6dc7508

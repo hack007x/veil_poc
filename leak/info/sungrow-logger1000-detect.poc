@@ -1,0 +1,25 @@
+## id: sungrow-logger1000-detect
+## name: SUNGROW Logger1000 Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,logger1000,sungrow,discovery
+## description: SUNGROW (Solar Energy Inverter Monitoring Devices) Logger1000 panel was detected.
+## reference: https://www.europe-solarstore.com/download/Sungrow/Sungrow-data-logger-1000_1000B-usert-manual.pdf
+## shodan-query: title:logger html:"htmlWebpackPlugin.options.title"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "htmlWebpackPlugin.options.title"
+#@ matcher: body contains "logger"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 292ea81dad3c37cb2ef9bb1b7e7bb03014678b7048254cc0988dcc275c5c01b8

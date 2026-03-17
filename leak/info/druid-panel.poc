@@ -1,0 +1,22 @@
+## id: druid-panel
+## name: Druid Monitor Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,druid,apache,discovery
+## description: Druid Monitor login panel was detected.
+## affects: druid
+## verification: true
+
+GET /druid/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>druid monitor</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9d410c57dbd69a523760d09594b8400d446f2d185cb7bba68f60e2b5baddfc25

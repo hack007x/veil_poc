@@ -1,0 +1,23 @@
+## id: polycom-admin-detect
+## name: Polycom Admin Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,polycom,discovery
+## description: Polycom admin panel was detected.
+## affects: vvx
+## verification: true
+
+GET /systemstatus.xml HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "SYSTEMSTATUS"
+#@ matcher: body contains "Server: lighttpd"
+
+
+
+
+
+# @VEIL-STAMP: 9aea49774815c21340b57ef57fdfeac8c5170bf9174dca37ce4a6f7b4e3977ec

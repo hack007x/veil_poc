@@ -1,0 +1,23 @@
+## id: trellix-panel
+## name: Trellix Login Panel
+## author: hack007x
+## severity: info
+## tags: trellix,panel,login,discovery
+## description: Trellix login panel was detected.
+## shodan-query: Server: Trellix
+## verification: true
+
+GET /login/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /Trellix/
+#@ matcher: status_code == 200
+#> extract: name=ex_kval, from=headers, kval=Server
+
+
+
+
+
+# @VEIL-STAMP: 09cd26ba20a84545c6aa404011e04fb5035ad616ede0995ebcce97a514567563

@@ -1,0 +1,22 @@
+## id: weatherlink-configuration
+## name: WeatherLinkIP Configuration Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,discovery
+## description: WeatherLinkIP configuration panel was detected.
+## reference: https://www.exploit-db.com/ghdb/6007
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>WeatherLinkIP Configuration</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5729e289f1dc215d77430e398cc9bb8198e995a10f0d0d1957ff1d8d515c0f7d

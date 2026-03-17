@@ -1,0 +1,24 @@
+## id: netdata-dashboard-detect
+## name: Netdata Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: netdata,panel,tech,discovery
+## description: Netdata Dashboard panel was detected.
+## affects: netdata
+## shodan-query: Server: NetData Embedded HTTP Server,http.title:"netdata dashboard",server: netdata embedded http server
+## fofa-query: title="netdata dashboard"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>netdata dashboard</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c4bd93ba5bdbcca560e158f3b10e1061980b7a5f609caa6bedfa37c7bb0786ee

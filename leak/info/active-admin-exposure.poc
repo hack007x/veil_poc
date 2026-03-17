@@ -1,0 +1,23 @@
+## id: active-admin-exposure
+## name: ActiveAdmin Admin Dasboard Exposure
+## author: hack007x
+## severity: info
+## tags: panel,activeadmin,discovery
+## description: An ActiveAdmin Admin dashboard was discovered.
+## affects: activeadmin
+## reference: https://activeadmin.info/
+## verification: true
+
+GET /admin/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "active_admin_content"
+#@ matcher: body contains "active_admin-"
+
+
+
+
+
+# @VEIL-STAMP: 0d6e55c4871407fa921ae8bb78452f9dcedef2385eaed4965c77dff9d2c1f0c8

@@ -1,0 +1,21 @@
+## id: defectdojo-panel
+## name: DefectDojo Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,defectdojo,discovery
+## description: DefectDojo login panel was detected.
+## affects: defectdojo
+## shodan-query: html:"DefectDojo Logo"
+## verification: true
+
+GET /login?next= HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains '<img src="/static/dojo/img/logo.png" alt="DefectDojo Logo'
+
+
+
+
+
+# @VEIL-STAMP: c29a16ba51468406aafc334f1852a082f142fa84be4bbb776f999e6de0128aaf

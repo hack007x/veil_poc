@@ -1,0 +1,23 @@
+## id: powerlogic-ion
+## name: PowerLogic ION Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,edb,schneider-electric,discovery
+## description: PowerLogic ION panel was detected.
+## affects: ion7600
+## reference: https://www.exploit-db.com/ghdb/6810
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "PowerLogic ION"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: b4184292a257d4df91abc65df2ac15f5f0714fcbffa6d5ad0a56512a7b5fa465

@@ -1,0 +1,21 @@
+## id: kaes-file-manager
+## name: Kae's File Manager Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,kaes,filemanager,kfm,discovery
+## description: Kae's File Manager login panel was detected.
+## verification: true
+
+GET /kfm/index.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "File Manager - Kae's File Manager"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 9fb4f7b425688096c54613d824124c4fc7e4b5d67a36c56021a8242d248e422f

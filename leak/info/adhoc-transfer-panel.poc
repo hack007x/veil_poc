@@ -1,0 +1,25 @@
+## id: adhoc-transfer-panel
+## name: WS-FTP Ad Hoc Transfer Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,wsftp,ad-hoc,detect,login,progress,discovery
+## description: WS_FTP Ad Hoc panel was detected.
+## affects: ws_ftp
+## shodan-query: http.title:"Ad Hoc Transfer",ws_ftp port:22,http.title:"ad hoc transfer",http.title:"ws_ftp server web transfer"
+## fofa-query: title="ws_ftp server web transfer",title="ad hoc transfer"
+## verification: true
+
+GET /AHT/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "Ad Hoc Transfer"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 3793aa6549b49579d430cc1f13e2646dcb7dd26fc1e3a27592245e3c67d14ab5

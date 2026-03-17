@@ -1,0 +1,22 @@
+## id: m-bus-panel
+## name: M-Bus Converter Web Interface - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,m-bus,detect,discovery
+## shodan-query: title:"JC-e converter webinterface"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>JC-e converter webinterface</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2e8583c43c4fd6668d2a9663535b2be764da39a34f7cb9bcfa857fea091347ec

@@ -1,0 +1,25 @@
+## id: dynamicweb-panel
+## name: Dynamicweb Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,dynamicweb,discovery
+## description: Dynamicweb login panel was detected.
+## reference: https://www.dynamicweb.com
+## shodan-query: http.component:"Dynamicweb"
+## verification: true
+
+GET /Admin/Access/default.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Accept-Encoding: gzip, deflate
+
+#@ condition: and
+#@ matcher: body contains "Dynamicweb"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/version ([0-9.]+)/, group=1
+
+
+
+
+
+# @VEIL-STAMP: 1ba294f04339decf773123cdef29bd092e305b4ea418c494d3c7ee514b52cd64

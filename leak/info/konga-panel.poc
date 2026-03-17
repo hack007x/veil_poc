@@ -1,0 +1,24 @@
+## id: konga-panel
+## name: Konga Panel - Detect
+## author: hack007x
+## severity: info
+## tags: tech,konga,oss,panel,pantsel,discovery
+## description: Konga panel was detected.
+## affects: konga
+## reference: https://github.com/pantsel/konga
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Konga</title>"
+#@ matcher: status_code == 200
+#> extract: name=ex_regex, from=body, regex=/konga_version = "(.*)";/, group=1
+
+
+
+
+
+# @VEIL-STAMP: bbdd14c4f5ddfa1c27c2933d3be006e9ef4707f7379a84bbbd4be0b4c507f7d8

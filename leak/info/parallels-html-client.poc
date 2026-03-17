@@ -1,0 +1,19 @@
+## id: parallels-html-client
+## name: Parallels HTML5 Client Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,discovery
+## description: Parallels HTML5 Client login panel was detected.
+## verification: true
+
+GET /RASHTML5Gateway/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "<title>Parallels HTML5 Client</title>"
+
+
+
+
+
+# @VEIL-STAMP: 9a4f4ec825ba6f447c123b2dbcfe3c0bec0188f0a757ba841cede404ec6b3358

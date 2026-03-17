@@ -1,0 +1,23 @@
+## id: osasi-panel
+## name: OSASI Login - Panel
+## author: hack007x
+## severity: info
+## tags: osasi,panel,login,detect,discovery
+## description: OSASI Login panel was discovered.
+## shodan-query: html:"/css/osasiasp.css"
+## verification: true
+
+GET /users/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "/img/osasil_logo_f.png"
+#@ matcher: body contains "UserLoginid"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 062fb5ba840eb0e796ced55dc49507e81186fc9db6331292b72f86c799622b5c

@@ -1,0 +1,24 @@
+## id: virtua-software-panel
+## name: Virtua Software Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,virtua,virtuasoftware,discovery
+## description: Virtua Software panel was detected.
+## affects: cobranca
+## shodan-query: http.favicon.hash:876876147
+## fofa-query: icon_hash=876876147
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains '<title id="tituloPagina">Virtua Software</title>'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d1d1aa0d1639beab0631f1602ae907013707b4a7762b5d758f1868fb9dfc1931

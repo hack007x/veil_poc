@@ -1,0 +1,22 @@
+## id: plastic-scm-login
+## name: Unity Plastic SCM Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,plastic,discovery
+## description: Unity Plastic SCM login panel was detected.
+## shodan-query: http.title:"Plastic SCM"
+## verification: true
+
+GET /account HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Log in - Plastic SCM</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 033af87ac3f364bce28eef78a5fe11460107f7d4247ef1f44524c1df18e429a7

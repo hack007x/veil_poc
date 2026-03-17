@@ -1,0 +1,24 @@
+## id: coldfusion-administrator-login
+## name: ColdFusion Administrator Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,coldfusion,adobe,discovery
+## description: ColdFusion Administrator login panel was detected.
+## affects: coldfusion
+## shodan-query: http.title:"ColdFusion Administrator Login",http.component:"adobe coldfusion",http.title:"coldfusion administrator login",cpe:"cpe:2.3:a:adobe:coldfusion"
+## fofa-query: app="adobe-coldfusion",title="coldfusion administrator login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "ColdFusion Administrator Login"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8779b1aaa9218bad96e31faade59a56012004df82d2b7bc24cd98961aaebcb2d

@@ -1,0 +1,24 @@
+## id: metasploit-panel
+## name: Metasploit Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,metasploit,login,rapid7,discovery
+## description: Metasploit Web Panel is detected
+## affects: metasploit
+## shodan-query: http.title:"metasploit",http.title:"metasploit - setup and configuration"
+## fofa-query: title="metasploit",title="metasploit - setup and configuration"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Metasploit</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: d628e5f7e775cd641b3644750358935becc16e6bad87b73f7ac7e06bf84dfe24

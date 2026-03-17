@@ -1,0 +1,22 @@
+## id: veeam-backup-azure-panel
+## name: Veeam Backup for Microsoft Azure Panel - Detect
+## author: hack007x
+## severity: info
+## tags: azure,panel,backup,veeam,microsoft,discovery
+## description: Veeam Backup for Microsoft Azure panel was detected.
+## shodan-query: title:"Veeam Backup for Microsoft Azure"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>Veeam Backup for Microsoft Azure</title>"
+
+
+
+
+
+# @VEIL-STAMP: 24d93ae502a5e5b867f2f493a4f6a405b0c8040405fa01c0b8809292ddabefed

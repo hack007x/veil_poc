@@ -1,0 +1,24 @@
+## id: lomnido-panel
+## name: Lomnido Panel - Detect
+## author: hack007x
+## severity: info
+## tags: lomnido,panel,login,detect,discovery
+## description: Lomnido was detected.
+## reference: https://lomnido.com/
+## shodan-query: http.title:"Lomnido Login"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Lomnido Login</title>"
+#@ matcher: body contains "/lomnido/saml"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 44a8892243656fea4c9b6aef8dec49456e6f599ee3d421d140b76d253d6d436f

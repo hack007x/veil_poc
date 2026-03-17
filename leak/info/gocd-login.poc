@@ -1,0 +1,24 @@
+## id: gocd-login
+## name: GoCD Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: go,panel,gocd,thoughtworks,discovery
+## description: GoCD login panel was detected.
+## affects: gocd
+## shodan-query: html:"GoCD Version",http.html:"gocd version",http.title:"create a pipeline - go" html:"gocd version"
+## fofa-query: title="create a pipeline - go" html:"gocd version",body="gocd version"
+## verification: true
+
+GET /go/auth/login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Login - Go</title>" || body contains "gocd-params"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2039381036bce7088aef54f03cebbf5ed1fece03489111c3cb27cc9914db0b52

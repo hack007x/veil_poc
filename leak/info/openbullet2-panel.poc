@@ -1,0 +1,23 @@
+## id: openbullet2-panel
+## name: OpenBullet 2 - Panel
+## author: hack007x
+## severity: info
+## tags: openbullet,panel,login,discovery
+## description: Openbullet was detected.
+## shodan-query: http.favicon.hash:-1264095219
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>OpenBullet2</title>" || body contains "<title>Openbullet2WebClient</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: a358a32532c09530e48fd84769227bfe5b6326ad35fd3ba21526abef26bde7cf

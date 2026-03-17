@@ -1,0 +1,22 @@
+## id: aem-forms-panel
+## name: Adobe Experience Manager Forms - Panel
+## author: hack007x
+## severity: info
+## tags: panel,login,adobe,detect,discovery
+## description: Adobe Experience Manager Forms was discovered.
+## affects: experience_manager_forms
+## verification: true
+
+GET /lc/libs/livecycle/core/content/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Adobe Experience Manager forms</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5871b43f210fc51f2e39cac65720b906e8fdbcb694436f4ac03215a537291136

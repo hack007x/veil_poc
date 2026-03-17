@@ -1,0 +1,24 @@
+## id: esphome-panel
+## name: ESPHome Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,esphome,iot,discovery
+## description: ESPHome login panel was detected.
+## affects: esphome
+## shodan-query: title:"Login - ESPHome",http.title:"login - esphome"
+## fofa-query: title="login - esphome"
+## verification: true
+
+GET /login HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'class="esphome-header'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: bf2493c1cdf10a5ce17f16356ac206390694f0988866df4e9336c7e59da3560c

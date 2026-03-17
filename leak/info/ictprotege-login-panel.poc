@@ -1,0 +1,23 @@
+## id: ictprotege-login-panel
+## name: ICT Protege WX Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ictprotege,ict,discovery
+## affects: protege_wx_firmware
+## shodan-query: title:"ICT Protege WX&reg;",http.title:"ict protege wx&reg;"
+## fofa-query: title="ict protege wx&reg;"
+## verification: true
+
+GET /login.htm HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>ICT Protege WX&reg;</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c0da434425d71f47339d12bf58cca407e064149c6bfd02f5542de2e320f88895

@@ -1,0 +1,21 @@
+## id: ni-web-based-panel
+## name: NI Web-based Configuration & Monitoring - Detect
+## author: hack007x
+## severity: info
+## tags: detect,ni,web-based,panel,discovery
+## shodan-query: title:"NI Web-based Configuration & Monitoring",http.favicon.hash:1192389544
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "NI Web-based Configuration & Monitoring" || body contains "NI Web-based Monitoring"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 328f06d1ae6364f3562400cf66dd81a2b2fa92016b2e1ac7a3eed65570758048

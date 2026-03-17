@@ -1,0 +1,23 @@
+## id: endpoint-protector-panel
+## name: Endpoint Protector Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,endpoint,login,detect,endpoint-protector,discovery
+## description: Endpoint Protector - Reporting and Administration Tool login panel was detected.
+## affects: endpoint_protector
+## shodan-query: http.title:"Endpoint Protector"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Endpoint Protector - Reporting and Administration Tool"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 23e3182582ed194fe28eab8fd93af37705aa3ed247c1d02c9c2789971ed34ca9

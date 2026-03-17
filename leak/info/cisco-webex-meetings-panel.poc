@@ -1,0 +1,26 @@
+## id: cisco-webex-meetings-panel
+## name: Cisco Webex Meetings - Panel
+## author: hack007x
+## severity: info
+## tags: panel,cisco,webex,detect,discovery,login
+## description: Detects Cisco Webex Meetings panel by requesting the modern Webex dashboard and matching unique Webex HTML markers.
+## affects: webex-meetings
+## reference: https://www.webex.com/
+## shodan-query: http.title:"Cisco Webex Meetings"
+## fofa-query: title="Cisco Webex Meetings"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ follow_redirects: true
+#@ condition: and
+#@ matcher: body contains "<title>Cisco Webex Meetings" || body contains 'content="Cisco Webex Site' || body contains 'webexTimezoneId":' || body contains 'webexClientId":'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 00d7fd71d16a749f959f854d60d08ea3ffb1a7e6b0ebd2619e838e0c4d34651d

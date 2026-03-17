@@ -1,0 +1,24 @@
+## id: yzmcms-panel
+## name: YzmCMS Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,yzmcms,login,discovery
+## description: YzmCMS login panel was detected.
+## affects: yzmcms
+## shodan-query: http.title:"YzmCMS",http.title:"yzmcms"
+## fofa-query: title="yzmcms"
+## verification: true
+
+GET /admin/index/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains 'Powered By <a href="http://www.yzmcms.com"' || body contains "Powered By YzmCMS"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 2a7e7a8d8ad221352c94919873593290253813ec2ef959e1b2034f906041a2f6

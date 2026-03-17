@@ -1,0 +1,22 @@
+## id: xweb500-panel
+## name: Xweb500 Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,xweb500,discovery
+## description: Xweb500 login panel was detected.
+## affects: dixell_xweb-500_firmware
+## verification: true
+
+GET /cgi-bin/xweb500.cgi HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Xweb500</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 55b7ce36a9bf0c99541e7ea2bf90093fa0be4492118ae3e9a7948d9757b38b30

@@ -1,0 +1,22 @@
+## id: alternc-panel
+## name: AlternC Desktop Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,alternc,login,detect,discovery
+## description: AlternC Desktop panel was detected.
+## shodan-query: http.title:"AlternC Desktop"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>AlternC Desktop"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5a3c64bf817d1a262b307cdf959f00be9a789665803bfc1783ea90059b39022a

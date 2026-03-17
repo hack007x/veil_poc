@@ -1,0 +1,23 @@
+## id: klog-server-panel
+## name: Klog Server Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,login,klog-server,detect,discovery
+## description: Klog Server panel was discovered.
+## affects: klog_server
+## reference: https://www.klogserver.com/
+## verification: true
+
+GET /login.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>KLog Server"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 882c93f288eb6e4e2d41b47e00620a394ef80c6e187943dbb504d6dfe6e49c41

@@ -1,0 +1,23 @@
+## id: spotweb-login-panel
+## name: SpotWeb Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,spotweb,detect,spotweb_project,discovery
+## affects: spotweb
+## shodan-query: title:"SpotWeb - overview",http.title:"spotweb - overview"
+## fofa-query: title="spotweb - overview"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "SpotWeb - overview" || body contains "initSpotwebJs"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 869b8be9de9ccea85a93d5ecffbac0feae28369fb11da31c6edb22296e29ff56

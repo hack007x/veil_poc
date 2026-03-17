@@ -1,0 +1,23 @@
+## id: monitorr-panel
+## name: Monitorr Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,monitorr,detect,discovery
+## affects: monitorr
+## shodan-query: http.favicon.hash:-211006074
+## fofa-query: icon_hash="-211006074"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains 'content=\"Monitorr", "Monitorr is loading", "title=\"Monitorr Settings'
+
+
+
+
+
+# @VEIL-STAMP: e08e33d7f4603bd7dbf0904cd1e90e4c19f7797dd13b40c9e856f5bb02c7097b

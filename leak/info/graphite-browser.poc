@@ -1,0 +1,24 @@
+## id: graphite-browser
+## name: Graphite Browser Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: graphite,panel,discovery
+## description: Graphite Browser login panel was detected.
+## affects: graphite
+## reference: https://graphiteapp.org/
+## shodan-query: http.title:"Graphite Browser"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>Graphite Browser</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5e0d83b732d64ab7017abc63699039ba5436e5f135b6ea64db14bbf5c45a8068

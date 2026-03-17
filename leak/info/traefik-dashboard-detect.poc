@@ -1,0 +1,22 @@
+## id: traefik-dashboard-detect
+## name: Traefik Dashboard Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,traefik,discovery
+## description: Traefik Dashboard panel was detected.
+## affects: traefik
+## shodan-query: http.title:"traefik"
+## fofa-query: title="traefik"
+## verification: true
+
+GET /dashboard/ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains '<meta name=description content="Traefik UI">'
+
+
+
+
+
+# @VEIL-STAMP: 78b978efe63b56783f7ef6f19494bfe6d99951497c3756d6fa2d866627a70dd7

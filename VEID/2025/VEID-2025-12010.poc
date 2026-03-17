@@ -15,10 +15,11 @@ User-Agent: {{random_ua}}
 #@ condition: and
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "pdf"
+#@ matcher: body matches /root:[^\n]+/
 #> extract: name=passwd_root, from=body, regex=/(root:[^\n]+)/, group=1
 
 
 
 
 
-# @VEIL-STAMP: 4049602cc4913c64ff75afb63a0c5a60821b329e2deeade8c8b2874b8f5da94a
+# @VEIL-STAMP: bde6d925e52614b35a71a860d2654ca802bc856b6129e143aa5c098d97e2f4de

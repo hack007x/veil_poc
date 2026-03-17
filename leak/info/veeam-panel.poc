@@ -1,0 +1,24 @@
+## id: veeam-panel
+## name: Veeam Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,veeam,discovery
+## description: Veeam login panel was detected.
+## affects: one_reporter
+## shodan-query: http.favicon.hash:-633512412
+## verification: true
+
+GET /login.aspx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "Login - Veeam ONE Reporter"
+#@ matcher: header["content-type"] contains "text/html"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 57bc601acd050b509243b50f3f907a3cab143cdac5cf4d6af177aadca60c1163

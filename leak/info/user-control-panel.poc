@@ -1,0 +1,22 @@
+## id: user-control-panel
+## name: User Control Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ucp,discovery
+## description: User Control Panel was detected.
+## shodan-query: title:"User Control Panel"
+## verification: true
+
+GET / HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: status_code == 200
+#@ matcher: body contains "<title>User Control Panel</title>"
+
+
+
+
+
+# @VEIL-STAMP: 9943828f7cf14fc58b01bab585e16159732fdc13f194717c8926c71254c780d1

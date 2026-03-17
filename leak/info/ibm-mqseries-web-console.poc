@@ -1,0 +1,23 @@
+## id: ibm-mqseries-web-console
+## name: IBM MQ Web Console Login Panel - Detect
+## author: hack007x
+## severity: info
+## tags: panel,ibm,discovery
+## description: IBM MQ Web Console login panel was detected.
+## affects: mq
+## reference: https://www.ibm.com/docs/en/ibm-mq/9.0?topic=console-getting-started-mq
+## verification: true
+
+GET /ibmmq/console/login.html HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<title>MQ Console</title>"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 67c760f9d6a918679b60d30927bd26cf29d18f82b2800dc9b6521d8c391f006b
