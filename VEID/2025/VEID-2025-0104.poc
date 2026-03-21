@@ -16,10 +16,10 @@ Content-Type: application/json
 
 #@ condition: and
 #@ matcher: status_code == 200
-#@ matcher: body contains "successfully"
+#@ matcher: body contains "Apply successfully"
 
 
 
 
 
-# @VEIL-STAMP: c7761955814cd8f98e18cf47afbc39fd79aac836e06af7d3610ec0b5b255bce9
+# @VEIL-STAMP: cf9379263eb72350a8c4de443d94c765b35492e4b2490cd228d670583e2f2c96

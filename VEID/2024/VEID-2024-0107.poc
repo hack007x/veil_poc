@@ -17,10 +17,10 @@ User-Agent: {{random_ua}}
 #@ condition: and
 #@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "html"
-#@ matcher: body matches /root:[^\n]+/
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/
 
 
 
 
 
-# @VEIL-STAMP: 65294292879bffd7bf300532cfa45fcd066c54293287c48f14836d53f3f8b21d
+# @VEIL-STAMP: 64dd60d864424d2e6f718fab52b8b9cf1ad7310ad919be7214f3d77e4d581ffd

