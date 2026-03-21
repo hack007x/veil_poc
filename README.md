@@ -2,7 +2,7 @@ The latest version has a total of 3251 POCs
 Community curated list of templates for the veil engine to find security vulnerabilities.
 ---
 veid 漏洞速查表 https://moonveil.vip/veid.php
-| VEID | 漏洞名称 | 等级 | 作者 | 验证 | 
+| VEID | 漏洞名称 | 等级 | 作者 |
 |:-----|:--------|:--------|:-----|
 | VEID-2025-0102 | 华测监测预警系统FileDownLoad.ashx存在任意文件读取漏洞 | ![High](https://img.shields.io/badge/-high-orange) | hack007x |
 | VEID-2025-0103 | 停车场后台管理系统GetVideo存在SQL注入漏洞 | ![Critical](https://img.shields.io/badge/-critical-red) | hack007x |
