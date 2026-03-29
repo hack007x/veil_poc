@@ -1,4 +1,4 @@
-The latest version has a total of 3251 POCs
+The latest version has a total of 3410 POCs
 Community curated list of templates for the veil engine to find security vulnerabilities.
 ---
 veid 漏洞速查表 https://moonveil.vip/veid.php
